@@ -252,6 +252,11 @@ a { color: inherit; }
 .answer-reading-question summary > svg {color:var(--primary);flex:none;}
 .answer-number {display:inline-flex;align-items:center;justify-content:center;flex:none;background:var(--indigo-well);color:var(--primary);border-radius:7px;width:28px;height:28px;font-size:12px;}
 .answer-reading-body {display:flex;flex-direction:column;gap:16px;padding:0 0 24px 40px;}
+.answer-content-block,.answer-variant {display:flex;flex-direction:column;gap:16px;}
+.answer-variant {padding:18px;border:1px solid var(--border);border-radius:8px;background:var(--well);}
+.answer-content-block > h3 {margin-bottom:-8px;}
+.answer-related-link {display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--border);text-decoration:none;}
+.answer-related-link svg {flex:none;}
 .answer-reading-body h3 {font-size:16px;margin-bottom:8px;}
 .answer-reading-body > p {margin-top:-10px;}
 .answer-deeper {background:var(--indigo-well);border-left:3px solid var(--primary);padding:16px;border-radius:8px;}

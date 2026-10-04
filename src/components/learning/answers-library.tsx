@@ -7,12 +7,14 @@ import { COPY } from '@/lib/i18n';
 import { tr } from '@/lib/translate';
 import { PageHeading } from './page-heading';
 
-type Props = { topics: AnswerSummary[]; source: AnswerSource; group: number; query: string; page: number; pageCount: number; totalTopics: number; totalAnswers: number; groups: { id: number; count: number }[] };
+type Props = { topics: AnswerSummary[]; source: AnswerSource; group: number; query: string; page: number; pageCount: number; totalTopics: number; totalAnswers: number; deepAnswers: number; progressIds: string[][]; groups: { id: number; count: number }[] };
 export function AnswersLibrary(props: Props) {
-  const { topics, source, group, query, page, pageCount, totalTopics, totalAnswers, groups } = props;
+  const { topics, source, group, query, page, pageCount, totalTopics, totalAnswers, deepAnswers, progressIds, groups } = props;
   const language = useLearningStore(state => state.language);
   const contentLanguage = useLearningStore(state => state.contentLanguage);
   const studied = useLearningStore(state => state.studied);
+  const studiedIds = new Set(studied);
+  const learnedCount = progressIds.filter(ids => ids.some(id => studiedIds.has(id))).length;
   const copy = COPY[language];
   const ru = language === 'ru';
   function href(values: { source?: AnswerSource; group?: number; page?: number; q?: string }) {
@@ -31,10 +33,10 @@ export function AnswersLibrary(props: Props) {
       <a className="button subtle" href="/answers/export" download><Download size={17}/>{ru ? 'Скачать общий HTML' : 'Download combined HTML'}</a>
     </PageHeading>
     <section className="panel answers-recommendation">
-      <div><span className="badge"><BookOpen size={14}/>{copy.recommended}</span><h2>React · Deep understanding</h2><p>{ru ? 'Начните с глубокого разбора: сначала поймите механизм, затем прочитайте ответ и проверьте себя в тесте.' : 'Start with the deep explanation: understand the mechanism, read the answer, then check yourself in a test.'}</p><span className="source-line">react_deep_understanding.html · 79 {ru ? 'тем' : 'topics'} · 367 {copy.questionsOf}</span></div>
+      <div><span className="badge"><BookOpen size={14}/>{copy.recommended}</span><h2>React · Deep understanding</h2><p>{ru ? 'Начните с глубокого разбора: сначала поймите механизм, затем прочитайте ответ и проверьте себя в тесте.' : 'Start with the deep explanation: understand the mechanism, read the answer, then check yourself in a test.'}</p><span className="source-line">react_deep_understanding.html · 79 {ru ? 'тем' : 'topics'} · {deepAnswers} {copy.questionsOf}</span></div>
       <Link className="button primary" href="/answers/deep-1">{ru ? 'Начать читать' : 'Start reading'}<ArrowRight size={17}/></Link>
     </section>
-    <div className="answers-intro"><span>{totalAnswers} {ru ? 'вопроса с ответами' : 'questions and answers'} · 3 {ru ? 'источника' : 'sources'}</span><span><CheckCircle2 size={15}/>{studied.length} {copy.learned.toLowerCase()} · 0 {ru ? 'токенов' : 'tokens'}</span></div>
+    <div className="answers-intro"><span>{totalAnswers} {ru ? 'вопроса без повторов' : 'questions without duplicates'} · 3 {ru ? 'источника' : 'sources'}</span><span><CheckCircle2 size={15}/>{learnedCount} {copy.learned.toLowerCase()} · 0 {ru ? 'токенов' : 'tokens'}</span></div>
     <nav className="answers-source-filters" aria-label={copy.source}>
       {(['all','deep','quiz','interview'] as const).map(value => <Link key={value} href={href({ source: value, group: 0 })} className={'button ' + (source === value ? 'primary' : 'subtle')} aria-current={source === value ? 'page' : undefined}>{value === 'all' ? copy.all : value === 'deep' ? (ru ? 'Deep · рекомендуется' : 'Deep · recommended') : value === 'quiz' ? copy.tests : copy.interview}</Link>)}
     </nav>
@@ -47,7 +49,7 @@ export function AnswersLibrary(props: Props) {
         <button className="button primary" type="submit"><Search size={16}/>{ru ? 'Найти' : 'Search'}</button>
       </form>
       <div className="section-heading"><h2>{copy.topics} <span className="count">{totalTopics}</span></h2>{(group > 0 || query) && <Link href={href({ group: 0, q: '' })}>{ru ? 'Сбросить фильтры' : 'Reset filters'}</Link>}</div>
-      <div className="answers-topic-grid">{topics.map(topic => <Link className="answer-topic-card" key={topic.id} href={'/answers/' + topic.id} prefetch={false}><span className="eyebrow">{topic.sources.includes('quiz') ? 'Deep + quiz' : topic.sources.includes('deep') ? 'Deep' : 'Interview'} · {copy.group} {topic.group}</span><h3>{tr(topic.title, contentLanguage)}</h3><p lang={contentLanguage}>{tr(topic.preview, contentLanguage)}</p><span>{topic.count ? topic.count + ' ' + copy.questionsOf : (ru ? 'Пример архитектуры' : 'Architecture example')}<ArrowRight size={16}/></span></Link>)}</div>
+      <div className="answers-topic-grid">{topics.map(topic => <Link className="answer-topic-card" key={topic.id} href={'/answers/' + topic.id} prefetch={false}><span className="eyebrow">{topic.sources.includes('quiz') ? 'Deep + quiz' : topic.sources.includes('deep') ? 'Deep' : 'Interview'} · {copy.group} {topic.group}</span><h3>{tr(topic.title, contentLanguage)}</h3><p lang={contentLanguage}>{tr(topic.preview, contentLanguage)}</p><span>{topic.count ? topic.count + ' ' + copy.questionsOf : topic.relatedCount ? (ru ? 'Общий ответ' : 'Shared answer') : (ru ? 'Пример архитектуры' : 'Architecture example')}<ArrowRight size={16}/></span></Link>)}</div>
       {!topics.length && <p role="status">{copy.empty}</p>}
       <nav className="answers-pagination" aria-label={ru ? 'Страницы ответов' : 'Answer pages'}>{page > 1 && <Link className="button subtle" href={href({ page: page - 1 })}>{copy.previous}</Link>}<span>{page} / {pageCount}</span>{page < pageCount && <Link className="button subtle" href={href({ page: page + 1 })}>{copy.next}</Link>}</nav>
     </section>
