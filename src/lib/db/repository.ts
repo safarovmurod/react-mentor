@@ -2,7 +2,6 @@ import { localDb } from './dexie-db';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import type {
   UserProfile,
-  UserSettings,
   ResumeSession,
   StudyEvent,
   NoteItem,

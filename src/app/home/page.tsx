@@ -11,9 +11,10 @@ import { MonthCards } from '@/components/learning/month-cards';
 
 export default function HomePage() {
   const state=useLearningStore();
+  const {ready,activeMonth,ensureDailySet}=state;
   const copy=COPY[state.language];
   const today=dateKey();
-  useEffect(()=>{if(state.ready)state.ensureDailySet(state.activeMonth,today);},[state.ready,state.activeMonth,state.ensureDailySet,today]);
+  useEffect(()=>{if(ready)ensureDailySet(activeMonth,today);},[ready,activeMonth,ensureDailySet,today]);
   const ids=state.dailySets[today+'-'+state.activeMonth]||[];
   const read=ids.filter(id=>state.studied.includes(id)).length;
   const answered=ids.filter(id=>state.answers[today+':test:'+id]).length;

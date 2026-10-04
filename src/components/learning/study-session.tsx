@@ -13,6 +13,7 @@ import { QuestionAnswer } from './question-answer';
 export interface SessionConfig { mode:StudyMode; daily?:boolean; month?:number; topic?:string; group?:number; review?:boolean }
 export function StudySession({config}:{config:SessionConfig}) {
   const state=useLearningStore();const copy=COPY[state.language];const today=dateKey();
+  const {ready,ensureDailySet}=state;
   const month=config.month||state.activeMonth;
   const [index,setIndex]=useState(0);
   const [shown,setShown]=useState(config.mode==='learn');
@@ -21,7 +22,7 @@ export function StudySession({config}:{config:SessionConfig}) {
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState('');
   const [finished,setFinished]=useState(false);
-  useEffect(()=>{if(state.ready&&config.daily)state.ensureDailySet(month,today);},[state.ready,config.daily,state.ensureDailySet,month,today]);
+  useEffect(()=>{if(ready&&config.daily)ensureDailySet(month,today);},[ready,config.daily,ensureDailySet,month,today]);
   let questions=config.mode==='interview'?ALL_QUESTIONS:QUIZ_QUESTIONS;
   if(config.daily) {
     const ids=state.dailySets[`${today}-${month}`]||[];

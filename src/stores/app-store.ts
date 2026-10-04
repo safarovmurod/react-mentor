@@ -20,6 +20,8 @@ interface AppState {
   // Tutor drawer state
   tutorDrawerOpen: boolean;
   setTutorDrawerOpen: (open: boolean) => void;
+  tutorQuestion: { id: string; text: string } | null;
+  setTutorQuestion: (question: { id: string; text: string } | null) => void;
 
   // Active study time tracking (seconds today)
   activeSecondsToday: number;
@@ -48,6 +50,8 @@ export const useAppStore = create<AppState>((set) => ({
 
   tutorDrawerOpen: false,
   setTutorDrawerOpen: (tutorDrawerOpen) => set({ tutorDrawerOpen }),
+  tutorQuestion: null,
+  setTutorQuestion: (tutorQuestion) => set({ tutorQuestion }),
 
   activeSecondsToday: 0,
   incrementActiveSeconds: (secs = 1) =>

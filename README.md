@@ -36,6 +36,7 @@ npm install
 npm run typecheck   # Санҷиши сахтгиронаи TypeScript (0 errors)
 npm run lint        # Санҷиши ESLint
 npm run test        # Санҷиши ҳамаи тестҳои Vitest
+npm run test:e2e    # Браузер: прогресс, XP, refresh ва Tutor (desktop + mobile)
 npm run build       # Ҷамъоварии production build
 ```
 
@@ -102,5 +103,9 @@ SUPABASE_SERVICE_ROLE_KEY=
 PAIRING_SECRET=
 AI_TUTOR_ENABLED=false
 AI_PROVIDER_KEY=
-AI_MODEL=gpt-4o-mini
+AI_MODEL=cx/gpt-6.1-sol
 ```
+
+Шрифтҳои Inter ва JetBrains Mono дар `src/app/fonts` бо лицензияҳои OFL локалӣ нигоҳ дошта мешаванд; build ба Google Fonts ниёз надорад.
+
+AI Tutor аз тугмаи header ё «Чуқур фаҳмон» дар ҷавоби тест кушода мешавад. Аввал аз ҳамон саволу ҷавоб ва маводи шарҳи лоиҳа ҷавоб медиҳад — 0 токен. Танҳо барои саволи дар мавод ёфтнашуда `AI_TUTOR_ENABLED=true` ва калиди нави серверии AnyModel лозиманд. Қадамҳо, маҳдудиятҳои токен ва санҷишҳо дар [docs/anymodel-tutor.md](docs/anymodel-tutor.md) оварда шудаанд. Калидро танҳо дар танзимоти махфӣ ё `.env.local` нигоҳ доред.

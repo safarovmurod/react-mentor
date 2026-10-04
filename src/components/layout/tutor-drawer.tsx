@@ -1,174 +1,150 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/stores/app-store';
-import { X, Send, Sparkles, HelpCircle, Layers } from 'lucide-react';
+import { X, Send, Sparkles, Layers } from 'lucide-react';
+import Link from 'next/link';
+import { useLearningStore } from '@/stores/learning-store';
+import { isDeepFollowUp, type TutorSource } from '@/lib/tutor/shared';
 
 interface ChatMsg {
   id: string;
   sender: 'user' | 'assistant';
   text: string;
-  isDeep?: boolean;
+  mode?: 'local' | 'online';
+  tokens?: number;
+  error?: boolean;
+  source?: TutorSource;
+  followUp?: boolean;
+  subject?: string;
 }
 
 export function TutorDrawer() {
-  const { tutorDrawerOpen, setTutorDrawerOpen } = useAppStore();
-  const [messages, setMessages] = useState<ChatMsg[]>([
-    {
-      id: 'welcome',
-      sender: 'assistant',
-      text: 'Салом! Ман ментори шахсии ту дар React ва JavaScript ҳастам. Ҳар саволе дорӣ, бпурс ё коди нофаҳморо нишон те, кӯтоҳ ва сода мефаҳмонам.',
-    },
-  ]);
+  const open = useAppStore(state => state.tutorDrawerOpen);
+  const setOpen = useAppStore(state => state.setTutorDrawerOpen);
+  const selectedQuestion = useAppStore(state => state.tutorQuestion);
+  const setSelectedQuestion = useAppStore(state => state.setTutorQuestion);
+  const language = useLearningStore(state => state.contentLanguage);
+  const [messages, setMessages] = useState<ChatMsg[]>([{
+    id: 'welcome', sender: 'assistant',
+    text: 'Салом! Аввал ҷавобро аз саволу ҷавобҳои лоиҳа меёбем: ройгон, бе токен. Танҳо барои саволи дар лоиҳа набуда AI истифода мешавад.',
+  }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const sending = useRef(false);
+  const dialog = useRef<HTMLElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const messageList = useRef<HTMLDivElement>(null);
 
-  if (!tutorDrawerOpen) return null;
+  useEffect(() => {
+    if (open && selectedQuestion) setInput(selectedQuestion.text);
+  }, [open, selectedQuestion]);
 
-  async function handleSend(isDeep = false) {
-    if (!input.trim() && !isDeep) return;
-
-    const userText = isDeep ? 'Чуқур фаҳмон' : input;
-    const userMsg: ChatMsg = {
-      id: Date.now().toString(),
-      sender: 'user',
-      text: userText,
+  useEffect(() => {
+    if (!open) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    inputRef.current?.focus();
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false);
+      if (event.key !== 'Tab') return;
+      const controls = dialog.current?.querySelectorAll<HTMLElement>('button:not([disabled]), textarea:not([disabled])');
+      if (!controls?.length) return;
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKey);
+      previousFocus?.focus();
     };
+  }, [open, setOpen]);
 
-    setMessages((prev) => [...prev, userMsg]);
-    if (!isDeep) setInput('');
+  useEffect(() => {
+    if (messageList.current) messageList.current.scrollTop = messageList.current.scrollHeight;
+  }, [messages, loading, open]);
+
+  async function send(deep = false) {
+    if (sending.current || (!deep && !input.trim())) return;
+    const followUp = deep || isDeepFollowUp(input);
+    const lastQuestion = [...messages].reverse().find(message => message.sender === 'user' && !message.followUp);
+    const lastReply = [...messages].reverse().find(message => message.sender === 'assistant' && message.subject === lastQuestion?.text && !message.error);
+    if (deep && !lastQuestion && !selectedQuestion) return;
+    sending.current = true;
     setLoading(true);
-
+    const text = deep ? 'Саволи пешинаро қадам ба қадам чуқуртар фаҳмон.' : input.trim();
+    const query = followUp ? selectedQuestion?.text || lastQuestion?.text || text : text;
+    const questionId = followUp ? selectedQuestion?.id || lastReply?.source?.questionId
+      : selectedQuestion?.text === text ? selectedQuestion.id : undefined;
+    const history = messages.filter(message => message.id !== 'welcome' && !message.error)
+      .slice(-4).map(message => ({
+        role: message.sender, content: message.text.slice(0, 600),
+      }));
+    setMessages(previous => [...previous, { id: crypto.randomUUID(), sender: 'user', text: selectedQuestion && deep ? selectedQuestion.text : text, followUp: followUp && !selectedQuestion }]);
+    setSelectedQuestion(null);
+    if (!deep) setInput('');
     try {
-      const res = await fetch('/api/tutor', {
+      const topicId = window.location.pathname.match(/^\/lesson\/([^/]+)$/)?.[1];
+      const response = await fetch('/api/tutor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'ask',
-          userText,
-          isDeep,
-        }),
+        body: JSON.stringify({ action: 'ask', userText: query, isDeep: followUp, history, topicId, questionId, language }),
+        signal: AbortSignal.timeout(50000),
       });
-
-      const data = await res.json();
-      const assistantMsg: ChatMsg = {
-        id: (Date.now() + 1).toString(),
-        sender: 'assistant',
-        text: data.reply || 'Савол фаҳмо шуд.',
-        isDeep,
-      };
-
-      setMessages((prev) => [...prev, assistantMsg]);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          sender: 'assistant',
-          text: 'Дар пайвастшавӣ хатогӣ шуд. Кӯшиши дигар кун.',
-        },
-      ]);
+      const data = await response.json();
+      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : 'AI дастнорас аст.');
+      if (typeof data.reply !== 'string' || !data.reply.trim()) throw new Error('Ҷавоб холӣ аст. Баъдтар кӯшиш кунед.');
+      setMessages(previous => [...previous, {
+        id: crypto.randomUUID(), sender: 'assistant', text: data.reply,
+        mode: data.mode === 'online' ? 'online' : 'local',
+        source: data.source,
+        subject: query,
+        tokens: Number.isSafeInteger(data.usage?.totalTokens) && data.usage.totalTokens >= 0 ? data.usage.totalTokens : undefined,
+      }]);
+    } catch (caught) {
+      setMessages(previous => [...previous, {
+        id: crypto.randomUUID(), sender: 'assistant', error: true,
+        text: caught instanceof Error && caught.name !== 'TimeoutError'
+          ? caught.message : 'Пайвастшавӣ қатъ шуд ё AI дер ҷавоб дод. Баъдтар кӯшиш кунед.',
+      }]);
     } finally {
+      sending.current = false;
       setLoading(false);
     }
   }
 
-  return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none pointer-events-auto">
-      <div
-        className="fixed inset-y-0 right-0 flex max-w-full pl-0 lg:pl-10"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="w-screen max-w-md border-l border-slate-800 bg-slate-950 p-4 shadow-2xl flex flex-col justify-between">
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-950 text-cyan-400 border border-cyan-800">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <div>
-                <h3 className="text-sm font-bold text-white">Ментори React (Local)</h3>
-                <span className="text-[11px] text-slate-400">Шарҳи сода бо лаҳҷаи фаҳмо</span>
-              </div>
-            </div>
-            <button
-              onClick={() => setTutorDrawerOpen(false)}
-              className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Messages list */}
-          <div className="flex-1 overflow-y-auto py-4 space-y-3">
-            {messages.map((m) => (
-              <div
-                key={m.id}
-                className={`flex flex-col ${
-                  m.sender === 'user' ? 'items-end' : 'items-start'
-                }`}
-              >
-                <div
-                  className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-xs leading-relaxed ${
-                    m.sender === 'user'
-                      ? 'bg-cyan-600 text-white font-medium'
-                      : 'border border-slate-800 bg-slate-900/90 text-slate-200'
-                  }`}
-                >
-                  <p className="whitespace-pre-wrap">{m.text}</p>
-                </div>
-              </div>
-            ))}
-            {loading && (
-              <div className="flex items-center gap-2 text-xs text-slate-400 italic">
-                <Sparkles className="h-3.5 w-3.5 animate-spin text-cyan-400" />
-                <span>Ментор дар ҳоли навиштан...</span>
-              </div>
-            )}
-          </div>
-
-          {/* Quick prompts & Actions */}
-          <div className="space-y-2 border-t border-slate-800 pt-3">
-            <div className="flex flex-wrap gap-1.5">
-              <button
-                onClick={() => {
-                  setInput('useState чиба даркорай?');
-                }}
-                className="flex items-center gap-1 rounded-md border border-slate-800 bg-slate-900/80 px-2 py-1 text-[11px] text-slate-300 hover:border-slate-700"
-              >
-                <HelpCircle className="h-3 w-3 text-cyan-400" />
-                useState чиба даркорай?
-              </button>
-              <button
-                onClick={() => handleSend(true)}
-                className="flex items-center gap-1 rounded-md border border-cyan-800/60 bg-cyan-950/40 px-2 py-1 text-[11px] text-cyan-300 hover:bg-cyan-900/50"
-              >
-                <Layers className="h-3 w-3 text-cyan-400" />
-                Чуқур фаҳмон
-              </button>
-            </div>
-
-            {/* Input area */}
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="Саволатро навис..."
-                className="flex-1 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
-              />
-              <button
-                onClick={() => handleSend()}
-                disabled={loading || !input.trim()}
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-600 text-white hover:bg-cyan-500 disabled:opacity-50 transition-colors"
-              >
-                <Send className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
+  if (!open) return null;
+  const tokens = messages.reduce((sum, message) => sum + (message.tokens || 0), 0);
+  return <div className="tutor-backdrop" onClick={() => setOpen(false)}>
+    <aside className="tutor-panel" role="dialog" aria-modal="true" aria-labelledby="tutor-title" ref={dialog} onClick={event => event.stopPropagation()}>
+      <div className="tutor-heading">
+        <div><h2 id="tutor-title"><Sparkles size={19}/> AI Tutor</h2><p>Аввал маводи лоиҳа · AI барои саволҳои нав</p></div>
+        <button className="icon-button" onClick={() => setOpen(false)} aria-label="Пӯшидани Tutor"><X size={20}/></button>
       </div>
-    </div>
-  );
+      <div className="tutor-messages" aria-live="polite" aria-relevant="additions" ref={messageList}>
+        {messages.map(message => <div key={message.id} className={'tutor-message ' + message.sender + (message.error ? ' tutor-error' : '')}>
+          {message.mode && <span className="tutor-source">{message.mode === 'online' ? 'AI · AnyModel' : message.source ? 'Маводи лоиҳа' : 'Локалӣ'}{message.tokens !== undefined ? ' · ' + message.tokens + ' токен' : ''}</span>}
+          <p>{message.text}</p>
+          {message.source && <Link className="tutor-source" href={'/lesson/' + encodeURIComponent(message.source.topicId)} onClick={()=>setOpen(false)}>Манбаъ: {message.source.title} · {message.source.sourceId}</Link>}
+        </div>)}
+        {loading && <p role="status" className="tutor-loading">Ментор ҷавоб тайёр мекунад…</p>}
+      </div>
+      <div className="tutor-composer">
+        <div className="tutor-shortcuts">
+          <button className="button subtle" disabled={loading} onClick={() => setInput('useState чиба даркорай?')}>useState?</button>
+          <button className="button subtle" disabled={loading || (!selectedQuestion && !messages.some(message => message.sender === 'user' && !message.followUp))} onClick={() => send(true)}><Layers size={15}/>Чуқур фаҳмон</button>
+        </div>
+        <form onSubmit={event => { event.preventDefault(); void send(); }}>
+          <label className="sr-only" htmlFor="tutor-input">Савол ба Tutor</label>
+          <textarea id="tutor-input" ref={inputRef} value={input} maxLength={1500} rows={3} disabled={loading}
+            onChange={event => setInput(event.target.value)} placeholder="Савол ё кодатро навис…"/>
+          <button className="button primary" type="submit" disabled={loading || !input.trim()} aria-label="Фиристодан"><Send size={17}/>Фиристодан</button>
+        </form>
+        <p className="tutor-footnote">{tokens > 0 ? 'Дар ин суҳбат сарф шуд: ' + tokens + ' токен. ' : ''}AI метавонад хато кунад; кодро санҷед.</p>
+      </div>
+    </aside>
+  </div>;
 }

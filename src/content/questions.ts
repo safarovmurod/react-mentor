@@ -337,7 +337,7 @@ export function getAllQuestions(): QuizQuestion[] {
     'jotai_atomic', 'tanstack_query', 'ts_react_props', 'performance_memo'
   ];
 
-  topicsForGeneration.forEach((tId, idx) => {
+  topicsForGeneration.forEach((tId) => {
     result.push({
       id: `gen_q_${tId}_tf`,
       topicId: tId,

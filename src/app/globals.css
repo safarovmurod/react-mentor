@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+.tutor-backdrop { position: fixed; inset: 0; z-index: 1000; background: #0006; display: flex; justify-content: flex-end; }
+.tutor-panel { width: min(440px, 100vw); height: 100dvh; background: var(--card); color: var(--text); display: flex; flex-direction: column; box-shadow: -8px 0 32px #0002; }
+.tutor-heading { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); }
+.tutor-heading h2 { display: flex; gap: 8px; align-items: center; }
+.tutor-heading p, .tutor-footnote { color: var(--text-muted); font-size: 12px; margin-top: 6px; }
+.tutor-messages { flex: 1; min-height: 0; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.tutor-message { max-width: 95%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--canvas); align-self: flex-start; }
+.tutor-message p { white-space: pre-wrap; overflow-wrap: anywhere; color: inherit; }
+.tutor-message.user { align-self: flex-end; background: var(--primary); color: white; }
+.tutor-source { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.tutor-error { border-color: #dc2626; }
+.tutor-loading { color: var(--text-muted); }
+.tutor-composer { padding: 16px 20px; border-top: 1px solid var(--border); }
+.tutor-shortcuts { display: flex; gap: 8px; margin-bottom: 12px; }
+.tutor-shortcuts .button { font-size: 12px; padding: 7px 10px; }
+.tutor-composer form { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.tutor-composer textarea { width: 100%; resize: vertical; max-height: 160px; background: var(--canvas); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px; font: inherit; }
+
 /* ============ ReactMentor design system (Stitch) ============
    Canvas #f7f8fa · Cards #ffffff · Border #e2e8f0 · Primary #4f46e5
    Text #0f172a/#334155/#64748b · Code #0f172a · Inter + JetBrains Mono */
