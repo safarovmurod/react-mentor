@@ -109,3 +109,9 @@ AI_MODEL=cx/gpt-6.1-sol
 Шрифтҳои Inter ва JetBrains Mono дар `src/app/fonts` бо лицензияҳои OFL локалӣ нигоҳ дошта мешаванд; build ба Google Fonts ниёз надорад.
 
 AI Tutor аз тугмаи header ё «Чуқур фаҳмон» дар ҷавоби тест кушода мешавад. Аввал аз ҳамон саволу ҷавоб ва маводи шарҳи лоиҳа ҷавоб медиҳад — 0 токен. Танҳо барои саволи дар мавод ёфтнашуда `AI_TUTOR_ENABLED=true` ва калиди нави серверии AnyModel лозиманд. Қадамҳо, маҳдудиятҳои токен ва санҷишҳо дар [docs/anymodel-tutor.md](docs/anymodel-tutor.md) оварда шудаанд. Калидро танҳо дар танзимоти махфӣ ё `.env.local` нигоҳ доред.
+# Accounts
+
+Google/email sign-in, private profiles, device sync and authenticator QR setup:
+[docs/accounts-setup.md](docs/accounts-setup.md). Supports a shared Supabase Free
+project using separate ReactMentor tables. Apply its standalone migration and
+configure Vercel public Supabase variables before expecting live sign-in.

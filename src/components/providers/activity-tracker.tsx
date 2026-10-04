@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useAppStore } from '@/stores/app-store';
+import { useLearningStore } from '@/stores/learning-store';
 
 /**
  * Real Active Study Time Tracker
@@ -13,6 +14,7 @@ export function ActivityTracker() {
 
   const lastInteractionRef = useRef<number>(0);
   const isDocumentVisibleRef = useRef<boolean>(true);
+  const pendingSecondsRef = useRef(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -44,6 +46,8 @@ export function ActivityTracker() {
 
       if (isDocumentVisibleRef.current && idleMillis < fiveMinutes) {
         incrementActiveSeconds(1);
+        pendingSecondsRef.current++;
+        if (pendingSecondsRef.current>=15) {useLearningStore.getState().addStudySeconds(pendingSecondsRef.current);pendingSecondsRef.current=0;}
       } else if (idleMillis >= fiveMinutes) {
         setIsIdle(true);
       }
@@ -55,6 +59,8 @@ export function ActivityTracker() {
       window.removeEventListener('scroll', handleActivity);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       clearInterval(timer);
+      // Do not write on unmount: an account switch may already have changed scope.
+      pendingSecondsRef.current=0;
     };
   }, [incrementActiveSeconds, setIsIdle]);
 

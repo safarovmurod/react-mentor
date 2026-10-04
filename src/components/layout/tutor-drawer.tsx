@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/stores/app-store';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { X, Send, Sparkles, Layers } from 'lucide-react';
 import Link from 'next/link';
 import { useLearningStore } from '@/stores/learning-store';
@@ -88,9 +89,11 @@ export function TutorDrawer() {
     if (!deep) setInput('');
     try {
       const topicId = window.location.pathname.match(/^\/lesson\/([^/]+)$/)?.[1];
+      const session=await getSupabaseBrowserClient()?.auth.getSession();
+      const token=session?.data.session?.access_token;
       const response = await fetch('/api/tutor', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',...(token ? {Authorization:'Bearer '+token}:{}) },
         body: JSON.stringify({ action: 'ask', userText: query, isDeep: followUp, history, topicId, questionId, language }),
         signal: AbortSignal.timeout(50000),
       });

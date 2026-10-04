@@ -5,6 +5,7 @@ import { gradeInterviewAnswer } from '@/lib/grading/interview-grader';
 import { TUTOR_SYSTEM_PROMPT, tutorContext } from '@/lib/tutor/prompt';
 import { projectAnswer } from '@/lib/tutor/project-answers';
 import { isDeepFollowUp, wantsDeepExplanation } from '@/lib/tutor/shared';
+import { authenticatedUser } from '@/lib/account/require-user';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -73,6 +74,11 @@ export async function POST(req: NextRequest) {
   }
   const key = process.env.AI_PROVIDER_KEY;
   if (!key) return error('Калиди AI дар сервер танзим нашудааст. Аз дарсҳои платформа истифода баред.', 503);
+  // Project answers remain public/free. A configured account deployment requires
+  // an authenticated (and, when enrolled, MFA-verified) user for paid requests.
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && !await authenticatedUser(req)) {
+    return error('Барои саволи AI ба аккаунт ворид шавед ва муҳофизатро тасдиқ кунед.',401);
+  }
   if (inFlight || Date.now() < nextRequestAt) return error('Каме интизор шавед: дархости AI аллакай фиристода шудааст.', 429);
 
   inFlight = true;

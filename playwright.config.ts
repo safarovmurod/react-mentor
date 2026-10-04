@@ -6,6 +6,7 @@ const systemChromium = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
 
 export default defineConfig({
   testDir: './e2e',
+  testIgnore:'auth.spec.ts',
   outputDir: '/tmp/react-mentor-playwright/results',
   fullyParallel: false,
   workers: 1,

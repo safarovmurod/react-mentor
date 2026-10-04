@@ -15,10 +15,18 @@ beforeEach(() => {
   vi.stubEnv('AI_TUTOR_ENABLED', 'true');
   vi.stubEnv('AI_PROVIDER_KEY', 'test-only-placeholder-not-a-real-key');
   vi.stubEnv('AI_MODEL', 'cx/gpt-6.1-sol');
+  vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL','');
+  vi.stubEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY','');
 });
 afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
 describe('Tutor API', () => {
+  it('requires a real account for paid AI when account auth is configured',async ()=>{
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL','https://example.supabase.co');vi.stubEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY','public-example');
+    const {POST}=await import('@/app/api/tutor/route');
+    expect((await POST(request(input))).status).toBe(401);expect(fetchMock).not.toHaveBeenCalled();
+    const known=await POST(request({...input,userText:'useState чиба даркорай?'}));expect(known.status).toBe(200);expect((await known.json()).mode).toBe('local');expect(fetchMock).not.toHaveBeenCalled();
+  });
   it('uses actual course material without calling AI when disabled', async () => {
     vi.stubEnv('AI_TUTOR_ENABLED', 'false');
     const { POST } = await import('@/app/api/tutor/route');
