@@ -1,6 +1,6 @@
 export const COPY = {
   ru: {
-    home:'Мой день', plan:'Учебный план', practice:'Практика', tests:'Тесты', interview:'Интервью', revision:'Повторение', weak:'Сложные темы', notes:'Заметки', settings:'Настройки',
+    home:'Мой день', plan:'Учебный план', practice:'Практика', tests:'Тесты', interview:'Интервью', revision:'Повторение', weak:'Сложные темы', notes:'Заметки', answers:'Ответы', settings:'Настройки',
     back:'Назад', month:'Месяц', week:'Неделя', open:'Открыть', start:'Начать', continue:'Продолжить', learn:'Изучить', questions:'Вопросы', topics:'Темы', all:'Все', questionsOf:'вопросов',
     today:'Сегодня', daily:'Вопросы дня', dailyText:'Сначала изучите ответы. Затем проверьте себя на тех же вопросах.',
     learnStep:'Изучить ответы', testStep:'Пройти тест', interviewStep:'Ответить своими словами', recommended:'Рекомендуется',
@@ -25,7 +25,7 @@ export const COPY = {
     prompt:'Промпт для Stitch',openLesson:'Открыть разбор', noCloud:'Только этот браузер', select:'Выбрать', selected:'Выбрано',
   },
   en: {
-    home:'My day', plan:'Study plan', practice:'Practice', tests:'Tests', interview:'Interview', revision:'Review', weak:'Difficult topics', notes:'Notes', settings:'Settings',
+    home:'My day', plan:'Study plan', practice:'Practice', tests:'Tests', interview:'Interview', revision:'Review', weak:'Difficult topics', notes:'Notes', answers:'Answers', settings:'Settings',
     back:'Back', month:'Month', week:'Week', open:'Open', start:'Start', continue:'Continue', learn:'Learn', questions:'Questions', topics:'Topics', all:'All', questionsOf:'questions',
     today:'Today', daily:'Daily questions', dailyText:'Study the answers first. Then test yourself on the same questions.',
     learnStep:'Study the answers', testStep:'Take the test', interviewStep:'Explain in your own words', recommended:'Recommended',

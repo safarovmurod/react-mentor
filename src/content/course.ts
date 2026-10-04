@@ -60,14 +60,12 @@ export const LEARNING_TOPICS: LearningTopic[] = [
   ...EXTRA_TOPICS,
 ];
 
-function topicForQuestion(question: string) {
-  return LEARNING_TOPICS.find(topic => topic.questions.some(item => item.question === question));
-}
-
 export const QUIZ_QUESTIONS: LearningQuestion[] = [
-  ...quizSource.groups.flatMap(group => group.items.map(question => {
-    const topic = topicForQuestion(question.question);
-    if (!topic) throw new Error(`Unmapped source question: ${question.id}`);
+  ...quizSource.groups.flatMap((group, groupIndex) => group.items.map(question => {
+    // The source groups share deep's order. Repeated titles such as “Cleanup чист?”
+    // must keep their own topic, explanation and code instead of the first match.
+    const topic = LEARNING_TOPICS[groupIndex];
+    if (!topic || deepSource[groupIndex].title !== group.topic) throw new Error(`Unmapped source question: ${question.id}`);
     return {
       id: `quiz-${question.id}`, sourceId: question.id, topicId: topic.id, month: topic.month,
       group: question.page, question: question.question, answer: question.correctAnswer,
