@@ -72,13 +72,14 @@ export async function POST(req: NextRequest) {
       usage: { totalTokens: 0 },
     });
   }
+  // Registration is mandatory for paid AI, including deployments whose account
+  // configuration is missing. Course material above stays free for guests.
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return error('Воридшавӣ ба аккаунт ҳоло пайваст нашудааст. AI баъди пайваст шудани воридшавӣ дастрас мешавад.',503);
+  }
+  if (!await authenticatedUser(req)) return error('Барои саволи AI бо Google ё email ба аккаунт ворид шавед.',401);
   const key = process.env.AI_PROVIDER_KEY;
   if (!key) return error('Калиди AI дар сервер танзим нашудааст. Аз дарсҳои платформа истифода баред.', 503);
-  // Project answers remain public/free. A configured account deployment requires
-  // an authenticated (and, when enrolled, MFA-verified) user for paid requests.
-  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && !await authenticatedUser(req)) {
-    return error('Барои саволи AI ба аккаунт ворид шавед ва муҳофизатро тасдиқ кунед.',401);
-  }
   if (inFlight || Date.now() < nextRequestAt) return error('Каме интизор шавед: дархости AI аллакай фиристода шудааст.', 429);
 
   inFlight = true;

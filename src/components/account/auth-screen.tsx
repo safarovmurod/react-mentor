@@ -44,7 +44,7 @@ export function AuthScreen() {
       <button className="button subtle" disabled={busy || !account.configured}><Mail size={17}/>{busy ? 'Подождите…':mode==='signup' ? 'Создать аккаунт':mode==='reset' ? 'Отправить ссылку':'Войти с email'}</button>
     </form>
     {(error || account.error) && <p role="alert" className="error-message">{error || account.error}</p>}{message && <p role="status" className="account-success">{message}</p>}
-    {!account.configured && <p className="account-hint">Вход пока не подключён. Можно учиться в гостевом режиме.</p>}
+    {!account.configured && <p className="account-hint" role="status">Вход временно недоступен. Материалы курса доступны гостям; для AI нужен аккаунт.</p>}
     <div className="auth-links"><button onClick={()=>{setMode(mode==='signup' ? 'login':'signup');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='signup' ? 'Уже есть аккаунт? Войти':'Создать аккаунт'}</button><button onClick={()=>{setMode(mode==='reset' ? 'login':'reset');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='reset' ? 'Назад ко входу':'Забыли пароль?'}</button></div>
     {!account.user && <button className="guest-button" onClick={()=>{account.continueAsGuest();if (window.location.pathname!=='/home') window.location.assign('/home');}} disabled={busy}>Продолжить как гость</button>}
     <p className="auth-security"><ShieldCheck size={15}/>Google или email · бесплатный аккаунт</p>

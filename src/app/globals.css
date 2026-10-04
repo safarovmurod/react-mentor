@@ -57,6 +57,9 @@
 .tutor-error { border-color: #dc2626; }
 .tutor-loading { color: var(--text-muted); }
 .tutor-composer { padding: 16px 20px; border-top: 1px solid var(--border); }
+.tutor-signin {padding:10px;border-radius:8px;background:var(--primary-soft);margin-bottom:12px;display:flex;flex-direction:column;gap:8px;}
+.tutor-signin p {font-size:12px;}
+.tutor-signin .button {align-self:flex-start;font-size:12px;}
 .tutor-shortcuts { display: flex; gap: 8px; margin-bottom: 12px; }
 .tutor-shortcuts .button { font-size: 12px; padding: 7px 10px; }
 .tutor-composer form { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }

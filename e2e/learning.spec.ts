@@ -78,6 +78,7 @@ test('Tutor opens, replies from actual local course material and closes with Esc
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.getByLabel('Савол ба Tutor')).toBeFocused();
+  await expect(dialog.getByRole('link',{name:'Воридшавӣ / регистрация',exact:true})).toHaveAttribute('href','/login');
   await dialog.getByLabel('Савол ба Tutor').fill('useState чиба даркорай?');
   await dialog.getByRole('button', { name: 'Фиристодан', exact: true }).click();
   await expect(dialog.locator('.tutor-source').first()).toHaveText('Маводи лоиҳа · 0 токен');

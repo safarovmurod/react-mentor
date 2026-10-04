@@ -7,6 +7,7 @@ import { X, Send, Sparkles, Layers } from 'lucide-react';
 import Link from 'next/link';
 import { useLearningStore } from '@/stores/learning-store';
 import { isDeepFollowUp, type TutorSource } from '@/lib/tutor/shared';
+import { useAccount } from '@/components/account/account-provider';
 
 interface ChatMsg {
   id: string;
@@ -21,6 +22,7 @@ interface ChatMsg {
 }
 
 export function TutorDrawer() {
+  const account=useAccount();
   const open = useAppStore(state => state.tutorDrawerOpen);
   const setOpen = useAppStore(state => state.setTutorDrawerOpen);
   const selectedQuestion = useAppStore(state => state.tutorQuestion);
@@ -28,7 +30,7 @@ export function TutorDrawer() {
   const language = useLearningStore(state => state.contentLanguage);
   const [messages, setMessages] = useState<ChatMsg[]>([{
     id: 'welcome', sender: 'assistant',
-    text: 'Салом! Аввал ҷавобро аз саволу ҷавобҳои лоиҳа меёбем: ройгон, бе токен. Танҳо барои саволи дар лоиҳа набуда AI истифода мешавад.',
+    text: 'Салом! Аввал ҷавобро аз саволу ҷавобҳои лоиҳа меёбем: ройгон, бе токен. Барои саволи дар лоиҳа набуда AI истифода мешавад — бо аккаунти Google ё email ворид шавед.',
   }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -50,7 +52,7 @@ export function TutorDrawer() {
     function onKey(event: KeyboardEvent) {
       if (event.key === 'Escape') setOpen(false);
       if (event.key !== 'Tab') return;
-      const controls = dialog.current?.querySelectorAll<HTMLElement>('button:not([disabled]), textarea:not([disabled])');
+      const controls = dialog.current?.querySelectorAll<HTMLElement>('button:not([disabled]), textarea:not([disabled]), a[href]');
       if (!controls?.length) return;
       const first = controls[0], last = controls[controls.length - 1];
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -136,6 +138,7 @@ export function TutorDrawer() {
         {loading && <p role="status" className="tutor-loading">Ментор ҷавоб тайёр мекунад…</p>}
       </div>
       <div className="tutor-composer">
+        {!account.user && <div className="tutor-signin"><p>Маводи дарсҳо — ройгон. Барои истифодаи AI аввал бо Google ё email ворид шавед.</p><Link className="button subtle" href="/login" onClick={()=>setOpen(false)}>Воридшавӣ / регистрация</Link></div>}
         <div className="tutor-shortcuts">
           <button className="button subtle" disabled={loading} onClick={() => setInput('useState чиба даркорай?')}>useState?</button>
           <button className="button subtle" disabled={loading || (!selectedQuestion && !messages.some(message => message.sender === 'user' && !message.followUp))} onClick={() => send(true)}><Layers size={15}/>Чуқур фаҳмон</button>

@@ -57,7 +57,8 @@ Auth, database, storage and TOTP can run within Supabase's Free plan limits;
 Google OAuth does not require SMS. Free tiers have quotas and may pause inactive
 projects. AnyModel's existing paid AI budget is separate. Known authored course
 answers stay public/local and cost zero tokens. Paid AI requires a verified
-account when Supabase is configured; durable billing quotas remain separate.
+account for every deployment. Missing Supabase configuration blocks paid AI
+instead of falling back to anonymous access; durable billing quotas remain separate.
 
 ## Verification
 
