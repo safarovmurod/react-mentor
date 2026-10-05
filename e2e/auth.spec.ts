@@ -3,13 +3,13 @@ import {expect,test,type Page} from '@playwright/test';
 const ids={a:'11111111-1111-4111-8111-111111111111',b:'22222222-2222-4222-8222-222222222222'};
 const errors=new WeakMap<Page,string[]>();
 test.beforeEach(async ({page})=>{const messages:string[]=[];errors.set(page,messages);page.on('console',m=>{if (m.type()==='error') messages.push(m.text());});page.on('pageerror',e=>{throw e;});});
-test.afterEach(async ({page})=>{expect(errors.get(page)).toEqual([]);await expect(page.locator('nextjs-portal').getByText(/Runtime Error|Build Error/)).toHaveCount(0);});
+test.afterEach(async ({page},info)=>{const unexpected=(errors.get(page)||[]).filter(message=>!(info.title.includes('temporary email quota') && /status of 429/.test(message)));expect(unexpected).toEqual([]);await expect(page.locator('nextjs-portal').getByText(/Runtime Error|Build Error/)).toHaveCount(0);});
 
-async function mockBackend(page:Page) {
+async function mockBackend(page:Page,signupFailure=false) {
   const profiles=new Map<string,{display_name:string;avatar_path:string|null}>();
   const progress=new Map<string,{data:Record<string,unknown>;revision:number}>();
   const factors=new Map<string,{id:string;friendly_name:string;factor_type:string;status:string}[]>();
-  const uploads:string[]=[];let oauth='';
+  const uploads:string[]=[];const signups:{email:string;data:{full_name:string};redirect:string|null}[]=[];let oauth='';
   const user=(id:string)=>({id,aud:'authenticated',role:'authenticated',email:id===ids.a ? 'a@example.com':'b@example.com',created_at:new Date().toISOString(),app_metadata:{provider:'email',providers:['email']},user_metadata:{},factors:factors.get(id) || []});
   const token=(id:string,aal='aal1')=>[Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url'),Buffer.from(JSON.stringify({sub:id,exp:Math.floor(Date.now()/1000)+3600,aal,amr:[]})).toString('base64url'),'test-signature'].join('.');
   const session=(id:string,aal='aal1')=>({access_token:token(id,aal),refresh_token:'test-refresh',token_type:'bearer',expires_in:3600,user:user(id)});
@@ -19,6 +19,11 @@ async function mockBackend(page:Page) {
     let id='';try {id=JSON.parse(Buffer.from(bearer!.split('.')[1],'base64url').toString()).sub;} catch {}
     const json=(data:unknown)=>route.fulfill({json:data});
     if (url.pathname==='/auth/v1/authorize') {oauth=url.toString();return route.fulfill({contentType:'text/html',body:'<title>Mock Google redirect</title>Mock OAuth destination'});}
+    if (url.pathname==='/auth/v1/signup') {
+      const body=req.postDataJSON();signups.push({email:body.email,data:body.data,redirect:url.searchParams.get('redirect_to')});
+      if (signupFailure) return route.fulfill({status:429,headers:{'x-supabase-api-version':'2024-01-01','access-control-expose-headers':'X-Supabase-Api-Version'},json:{code:'over_email_send_rate_limit',msg:'Email rate limit exceeded'}});
+      return json({...user(ids.a),email:body.email,user_metadata:body.data});
+    }
     if (url.pathname==='/auth/v1/token') {const body=req.postDataJSON();return json(session(body.email==='b@example.com' ? ids.b:ids.a));}
     if (url.pathname==='/auth/v1/user') return json(user(id));
     if (url.pathname==='/auth/v1/logout') return json({});
@@ -42,7 +47,7 @@ async function mockBackend(page:Page) {
     if (url.pathname.startsWith('/storage/v1/object/') && method==='POST') {expect(url.pathname).toContain(id);uploads.push(url.pathname);return json({Key:url.pathname});}
     throw new Error('Unexpected backend request: '+method+' '+url.pathname);
   });
-  return {profiles,progress,factors,uploads,oauth:()=>oauth};
+  return {profiles,progress,factors,uploads,signups,oauth:()=>oauth};
 }
 async function login(page:Page,email='a@example.com') {
   await page.getByLabel('Email',{exact:true}).fill(email);await page.getByLabel('Пароль',{exact:true}).fill('test-password-123');await page.getByRole('button',{name:'Войти с email',exact:true}).click();
@@ -58,13 +63,37 @@ test('Google is recommended and starts a PKCE OAuth redirect (mock backend)',asy
   const destination=new URL(backend.oauth());expect(destination.searchParams.get('redirect_to')).toBe('http://127.0.0.1:3101/auth/callback');expect(destination.searchParams.get('code_challenge')).toBeTruthy();
 });
 
+test('email signup sends the name and callback, then asks for email confirmation (mock backend)',async ({page})=>{
+  const backend=await mockBackend(page);await page.goto('/login');
+  await page.getByRole('button',{name:'Создать аккаунт',exact:true}).click();
+  await page.getByLabel('Ваше имя',{exact:true}).fill('Одина');
+  await page.getByLabel('Email',{exact:true}).fill('new@example.com');
+  await page.getByLabel('Пароль',{exact:true}).fill('test-password-123');
+  await page.getByRole('button',{name:'Создать аккаунт',exact:true}).first().click();
+  await expect(page.getByRole('status')).toContainText('Проверьте email и подтвердите адрес');
+  expect(backend.signups).toEqual([{email:'new@example.com',data:{full_name:'Одина'},redirect:'http://127.0.0.1:3101/auth/callback'}]);
+});
+
+test('signup explains a temporary email quota and allows retry (mock backend)',async ({page})=>{
+  // Chromium also logs the expected HTTP 429; the UI must explain that failure.
+  await mockBackend(page,true);await page.goto('/login');
+  await page.getByRole('button',{name:'Создать аккаунт',exact:true}).click();
+  await page.getByLabel('Ваше имя',{exact:true}).fill('Одина');
+  await page.getByLabel('Email',{exact:true}).fill('new@example.com');
+  await page.getByLabel('Пароль',{exact:true}).fill('test-password-123');
+  await page.getByRole('button',{name:'Создать аккаунт',exact:true}).first().click();
+  await expect(page.locator('.auth-card').getByRole('alert')).toContainText('Лимит отправки писем');
+  await expect(page.getByRole('button',{name:'Создать аккаунт',exact:true}).first()).toBeEnabled();
+});
+
 test('first name, private notes and profile survive login, account switching and reload (mock backend)',async ({page})=>{
   const backend=await mockBackend(page);await page.goto('/home');await login(page);await firstName(page,'Мансур');
+  await page.goto('/home');await expect(page.locator('.dashboard-heading p')).toContainText('Мансур');
   await page.goto('/notes');await page.getByRole('button',{name:'Новая заметка',exact:true}).click();await page.getByLabel('Название',{exact:true}).fill('Личная заметка A');await page.getByLabel('Текст',{exact:true}).fill('Только аккаунт A');await page.getByRole('button',{name:'Сохранить',exact:true}).click();
   await page.goto('/settings');await page.getByRole('button',{name:'Синхронизировать',exact:true}).click();await expect.poll(()=>backend.progress.get(ids.a)?.data.notes).toEqual([expect.objectContaining({title:'Личная заметка A'})]);
   await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await expect(page.getByRole('heading',{name:'Ваш путь в React'})).toBeVisible();await login(page,'b@example.com');
   // First profile is mandatory and must not reuse account A's name.
-  await firstName(page,'Одина');await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toHaveCount(0);await page.goto('/settings');
+  await firstName(page,'Одина');await page.goto('/home');await expect(page.locator('.dashboard-heading p')).toContainText('Одина');await expect(page.locator('.dashboard-heading p')).not.toContainText('Мансур');await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toHaveCount(0);await page.goto('/settings');
   await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await login(page);await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toBeVisible();await page.reload();await expect(page.getByText('Личная заметка A',{exact:true})).toBeVisible();
   const keys=await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('react-mentor-account-v1:')));expect(keys).toContain('react-mentor-account-v1:'+ids.a);expect(keys).toContain('react-mentor-account-v1:'+ids.b);
 });

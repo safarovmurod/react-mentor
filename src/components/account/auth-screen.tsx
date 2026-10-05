@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { Atom, Mail, ShieldCheck } from 'lucide-react';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { useAccount } from './account-provider';
+import { authErrorMessage } from '@/lib/account/auth-errors';
 
 export function AuthScreen() {
   const account=useAccount();
   const [mode,setMode]=useState<'login'|'signup'|'reset'>('login');
   const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[name,setName]=useState('');
   const [busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
+  function continueAsGuest() {account.continueAsGuest();if (window.location.pathname!=='/home') window.location.assign('/home');}
   async function google() {
     const client=getSupabaseBrowserClient();if (!client) return;
     setBusy(true);setError('');
@@ -30,23 +32,25 @@ export function AuthScreen() {
       } else {
         const {error}=await client.auth.signInWithPassword({email,password});if (error) throw error;
       }
-    } catch {setError(mode==='login' ? 'Не удалось войти. Проверьте email, пароль и подтверждение адреса.':'Не удалось отправить запрос. Проверьте данные и повторите позже.');}
+    } catch (cause) {setError(authErrorMessage(cause,mode));}
     finally {setBusy(false);}
   }
   const title=mode==='signup' ? 'Начнём учиться вместе':mode==='reset' ? 'Восстановить доступ':'Ваш путь в React';
   return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><p className="eyebrow">REACTMENTOR</p><h1>{title}</h1><p>Личный прогресс, заметки и практика — на компьютере и телефоне.</p>
-    <button className="button primary google-button" onClick={google} disabled={busy || !account.configured}><span className="google-mark" aria-hidden="true">G</span>Продолжить с Google<span className="recommend-tag">Рекомендуем</span></button>
+    {!account.configured && <section className="auth-unavailable"><p role="status">Вход и регистрация пока не подключены. Курс и ответы доступны без аккаунта; для AI нужен аккаунт.</p><button className="button primary" onClick={continueAsGuest}>Продолжить как гость</button></section>}
+    <div className="google-option"><button className="button primary google-button" onClick={google} disabled={busy || !account.configured}><span className="google-mark" aria-hidden="true">G</span><span>Продолжить с Google</span></button><span className="recommend-tag">Рекомендуем</span></div>
     <div className="auth-divider">или через email</div>
     <form className="account-form" onSubmit={submit}>
+      <fieldset className="account-fields" disabled={busy || !account.configured} aria-label={mode==='signup'?'Регистрация через email':'Вход через email'}>
       {mode==='signup' && <label>Ваше имя<input autoComplete="name" value={name} onChange={e=>setName(e.target.value)} required minLength={2} maxLength={60}/></label>}
       <label>Email<input type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} required maxLength={254}/></label>
       {mode!=='reset' && <label>Пароль<input type="password" autoComplete={mode==='signup' ? 'new-password':'current-password'} value={password} onChange={e=>setPassword(e.target.value)} required minLength={mode==='signup' ? 8:1} maxLength={128}/></label>}
       <button className="button subtle" disabled={busy || !account.configured}><Mail size={17}/>{busy ? 'Подождите…':mode==='signup' ? 'Создать аккаунт':mode==='reset' ? 'Отправить ссылку':'Войти с email'}</button>
+      </fieldset>
     </form>
     {(error || account.error) && <p role="alert" className="error-message">{error || account.error}</p>}{message && <p role="status" className="account-success">{message}</p>}
-    {!account.configured && <p className="account-hint" role="status">Вход временно недоступен. Материалы курса доступны гостям; для AI нужен аккаунт.</p>}
     <div className="auth-links"><button onClick={()=>{setMode(mode==='signup' ? 'login':'signup');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='signup' ? 'Уже есть аккаунт? Войти':'Создать аккаунт'}</button><button onClick={()=>{setMode(mode==='reset' ? 'login':'reset');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='reset' ? 'Назад ко входу':'Забыли пароль?'}</button></div>
-    {!account.user && <button className="guest-button" onClick={()=>{account.continueAsGuest();if (window.location.pathname!=='/home') window.location.assign('/home');}} disabled={busy}>Продолжить как гость</button>}
+    {!account.user && account.configured && <button className="guest-button" onClick={continueAsGuest} disabled={busy}>Продолжить как гость</button>}
     <p className="auth-security"><ShieldCheck size={15}/>Google или email · бесплатный аккаунт</p>
   </section></div>;
 }

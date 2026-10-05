@@ -60,13 +60,39 @@ answers stay public/local and cost zero tokens. Paid AI requires a verified
 account for every deployment. Missing Supabase configuration blocks paid AI
 instead of falling back to anonymous access; durable billing quotas remain separate.
 
+## Production diagnosis, 2026-10-05
+
+The deployed `/login` returned HTTPS 200. Its served client chunk still contained
+unresolved `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` references,
+with no configured project URL. The client therefore sets `configured=false` and
+disables Google and email signup before making an authentication request. This
+is a deployment configuration blocker, rather than a rejected registration.
+Supabase's Google authorize endpoint returned HTTP 302 to `accounts.google.com`;
+that confirms the provider redirect, not a completed OAuth login or callback.
+
+Set both public variables from the Provider configuration section in the actual
+Vercel project's Production environment and redeploy. These are build-time
+variables: adding them to cloud-environment settings alone does not update Vercel.
+The current task had no saved/runtime Supabase management or Vercel API token,
+so live configuration, migration and authenticated end-to-end verification remain
+pending. Do not substitute a test placeholder or service-role key.
+
+The unconfigured UI now explains the missing account connection, disables the
+email fields and provides a prominent guest entry. Known provider errors have
+specific safe messages for email confirmation, closed signup and temporary email
+quotas. Mobile QA covers 320–430px headers, a 360×568px drawer with fixed controls
+and scrolling navigation, keyboard/backdrop closing, and guest entry. Guest home
+greetings no longer use a hard-coded person's name; signed-in greetings use the
+current profile.
+
 ## Verification
 
 `npm run test` verifies account cache isolation, guest preservation, merging,
 note tombstones, delayed old-account responses and CAS conflict recovery.
 `npm run test:e2e` runs existing course/Tutor regression checks without Supabase.
 `npm run test:auth` uses an isolated mock Supabase backend for desktop/mobile
-Google PKCE redirect, email login, mandatory first name, account switching,
+Google PKCE redirect, email signup/confirmation messaging, email quota errors,
+email login, mandatory first name, account switching,
 cloud note sync, reload, re-encoded photo upload, phone QR, TOTP enrollment and
 MFA login challenge. These tests are **not** evidence of live OAuth/provider
 connectivity. Browser plugin was unavailable; QA uses Playwright/Chromium.

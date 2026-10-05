@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { CalendarDays, BookOpen, BookOpenCheck, Code2, MessagesSquare, ListChecks, RotateCcw, CircleAlert, NotebookPen, Settings2, X, ArrowUpRight } from 'lucide-react';
 import { useAppStore } from '@/stores/app-store';
@@ -19,6 +20,33 @@ export function Sidebar() {
   const pathname=usePathname();
   const open=useAppStore(state=>state.sidebarOpen);
   const setOpen=useAppStore(state=>state.setSidebarOpen);
+  const [mobile,setMobile]=useState(false);
+  const drawer=useRef<HTMLElement>(null);
+  const closeButton=useRef<HTMLButtonElement>(null);
+  useEffect(()=>{
+    const media=window.matchMedia('(max-width: 860px)');
+    const update=()=>{setMobile(media.matches);if (!media.matches) setOpen(false);};
+    update();media.addEventListener('change',update);
+    return ()=>media.removeEventListener('change',update);
+  },[setOpen]);
+  useEffect(()=>{
+    if (!open || !mobile) return;
+    const previousFocus=document.activeElement instanceof HTMLElement ? document.activeElement:null;
+    const previousOverflow=document.body.style.overflow;
+    document.body.style.overflow='hidden';
+    closeButton.current?.focus();
+    function onKey(event:KeyboardEvent) {
+      if (event.key==='Escape') {event.preventDefault();setOpen(false);return;}
+      if (event.key!=='Tab') return;
+      const controls=drawer.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])');
+      if (!controls?.length) return;
+      const first=controls[0],last=controls[controls.length-1];
+      if (event.shiftKey && document.activeElement===first) {event.preventDefault();last.focus();}
+      else if (!event.shiftKey && document.activeElement===last) {event.preventDefault();first.focus();}
+    }
+    document.addEventListener('keydown',onKey);
+    return ()=>{document.body.style.overflow=previousOverflow;document.removeEventListener('keydown',onKey);if (previousFocus?.isConnected) previousFocus.focus();};
+  },[open,mobile,setOpen]);
   const language=useLearningStore(state=>state.language);
   const month=useLearningStore(state=>state.activeMonth);
   const completed=useLearningStore(state=>state.completedTopics);
@@ -26,7 +54,7 @@ export function Sidebar() {
   const total=LEARNING_TOPICS.filter(topic=>topic.month===month).length;
   const count=LEARNING_TOPICS.filter(topic=>topic.month===month&&completed.includes(topic.id)).length;
   return <>{open&&<button className="sidebar-overlay" aria-label={language==='ru'?'Закрыть меню':'Close menu'} onClick={()=>setOpen(false)}/>}
-    <aside className={'sidebar '+(open?'is-open':'')}><div className="sidebar-top"><span className="eyebrow">{language==='ru'?'ОБУЧЕНИЕ':'WORKSPACE'}</span><button className="icon-button mobile-menu" onClick={()=>setOpen(false)} aria-label={language==='ru'?'Закрыть меню':'Close menu'}><X size={18}/></button></div>
+    <aside id="learning-sidebar" ref={drawer} className={'sidebar '+(open?'is-open':'')} role={mobile&&open?'dialog':undefined} aria-modal={mobile&&open?true:undefined} aria-label={language==='ru'?'Навигация по курсу':'Course navigation'} inert={mobile&&!open}><div className="sidebar-top"><span className="eyebrow">{language==='ru'?'ОБУЧЕНИЕ':'WORKSPACE'}</span><button ref={closeButton} className="icon-button mobile-menu" onClick={()=>setOpen(false)} aria-label={language==='ru'?'Закрыть меню':'Close menu'}><X size={20}/></button></div>
       <nav>{items.map(item=>{const Icon=item.icon;const active=pathname===item.href || (item.href==='/answers'&&pathname.startsWith('/answers/')) || (item.href==='/plan'&&(pathname.startsWith('/lesson/')||pathname.startsWith('/plan/')));return <Link key={item.href} href={item.href} aria-current={active?'page':undefined} className={'nav-item '+(active?'active':'')} onClick={()=>setOpen(false)}><Icon size={18}/><span>{copy[item.key]}</span>{active&&<span className="nav-dot"/>}</Link>;})}</nav>
       <div className="sidebar-bottom"><div className="sidebar-progress"><div className="between"><span>{copy.month} {month}</span><ArrowUpRight size={16}/></div><strong>{count}<span> / {total}</span></strong><div className="progress-track"><span style={{width:(total?count/total*100:0)+'%'}}/></div></div><Link href="/settings" className={'nav-item '+(pathname==='/settings'?'active':'')} onClick={()=>setOpen(false)}><Settings2 size={18}/>{copy.settings}</Link><Link href="/settings" className="profile-row" onClick={()=>setOpen(false)}><AccountAvatar/><div><strong>{account.profile?.displayName || (language==='ru' ? 'Гость':'Guest')}</strong><span>{account.user ? (language==='ru' ? 'Личный аккаунт':'Personal account'):(language==='ru' ? 'В этом браузере':'In this browser')}</span></div></Link></div>
     </aside></>;
