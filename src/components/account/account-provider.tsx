@@ -1,7 +1,9 @@
 'use client';
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import type { Session, User } from '@supabase/supabase-js';
+import { isAuthRetryableFetchError } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient, isSupabaseConfigured } from '@/lib/supabase/client';
+import { verifySavedSession } from '@/lib/account/session';
 import { startAccountSync, type SyncStatus } from '@/lib/account/sync';
 import { switchLearningAccount } from '@/stores/learning-store';
 import { useAppStore } from '@/stores/app-store';
@@ -10,7 +12,7 @@ import { useLearningStore } from '@/stores/learning-store';
 
 export interface AccountProfile {displayName:string;avatarPath:string|null;avatarUrl:string|null;}
 interface AccountContext {
-  configured:boolean;loading:boolean;user:User|null;profile:AccountProfile|null;guest:boolean;
+  configured:boolean;loading:boolean;user:User|null;profile:AccountProfile|null;guest:boolean;restoreFailed:boolean;
   error:string;needsMfa:boolean;syncStatus:SyncStatus;recovery:boolean;
   reload:()=>Promise<void>;saveProfile:(name:string,avatarPath?:string|null)=>Promise<void>;
   signOut:()=>Promise<void>;continueAsGuest:()=>void;syncNow:()=>Promise<void>;
@@ -23,12 +25,15 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
   const [loading,setLoading]=useState(true), [profile,setProfile]=useState<AccountProfile|null>(null);
   const [guest,setGuest]=useState(false), [error,setError]=useState(''), [needsMfa,setNeedsMfa]=useState(false);
   const [syncStatus,setSyncStatus]=useState<SyncStatus>('local'), [recovery,setRecovery]=useState(false);
+  const [restoreFailed,setRestoreFailed]=useState(false);
   const generation=useRef(0), scope=useRef<string|null|undefined>(undefined);
   const coordinator=useRef<ReturnType<typeof startAccountSync>|null>(null);
   const currentSession=useRef<Session|null>(null);
+  const sessionReady=useRef(false), retryRestoration=useRef(false);
 
   const loadSession=useCallback(async (next:Session|null)=>{
     const run=++generation.current;
+    sessionReady.current=false;retryRestoration.current=false;setRestoreFailed(false);
     setLoading(true);setError('');setProfile(null);setSession(next);currentSession.current=next;
     coordinator.current?.stop();coordinator.current=null;
     // Invalidate private UI before any asynchronous authentication operation.
@@ -36,9 +41,9 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
     const client=getSupabaseBrowserClient();
     try {
       if (next && client) {
-        const {data:verified,error:verifyError}=await client.auth.getUser(next.access_token);
+        next=await verifySavedSession(client,next);
         if (run!==generation.current) return;
-        if (verifyError || verified.user?.id!==next.user.id) throw new Error('Сессия истекла. Войдите ещё раз.');
+        currentSession.current=next;setSession(next);
         const {data:assurance,error:aalError}=await client.auth.mfa.getAuthenticatorAssuranceLevel(next.access_token);
         if (run!==generation.current) return;
         if (aalError || !assurance) throw new Error('Не удалось проверить защиту аккаунта.');
@@ -64,15 +69,26 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
         setGuest(!isSupabaseConfigured || sessionStorage.getItem('react-mentor-guest')==='true');
       }
       useAppStore.setState({activeSecondsToday:useLearningStore.getState().studySeconds[dateKey()] || 0});
-    } catch (cause) {if (run===generation.current) setError(cause instanceof Error ? cause.message:'Не удалось открыть аккаунт.');}
+      sessionReady.current=true;
+    } catch (cause) {if (run===generation.current) {
+      retryRestoration.current=true;
+      setError(isAuthRetryableFetchError(cause) ? 'Не удалось проверить подключение. Сохранённый вход восстановится, когда появится интернет.':cause instanceof Error ? cause.message:'Не удалось открыть аккаунт.');
+    }}
     finally {if (run===generation.current) setLoading(false);}
   },[]);
 
   const reload=useCallback(async ()=>{
     const client=getSupabaseBrowserClient();
     if (!client) {await loadSession(null);return;}
+    const run=++generation.current;
+    setLoading(true);setRestoreFailed(false);setError('');
     const {data,error:sessionError}=await client.auth.getSession();
-    if (sessionError) {setLoading(false);setError('Не удалось восстановить сессию. Войдите ещё раз.');return;}
+    if (run!==generation.current) return;
+    if (sessionError) {
+      const retryable=isAuthRetryableFetchError(sessionError);
+      retryRestoration.current=retryable;setRestoreFailed(retryable);setLoading(false);
+      setError(retryable ? 'Сохранённый вход временно недоступен. Подключитесь к интернету — аккаунт восстановится автоматически.':'Сессия истекла. Войдите ещё раз.');return;
+    }
     await loadSession(data.session);
     if (!data.session && new URLSearchParams(window.location.search).has('error')) setError('Вход не завершён. Повторите вход через Google или email.');
   },[loadSession]);
@@ -85,13 +101,20 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
       if (event==='PASSWORD_RECOVERY') setRecovery(true);
       // Supabase callbacks hold its auth lock. Never await auth calls inside them.
       if (event==='INITIAL_SESSION') return;
-      if (event==='TOKEN_REFRESHED' && next?.user.id===currentSession.current?.user.id) {
+      if (event==='TOKEN_REFRESHED' && sessionReady.current && !retryRestoration.current && next?.user.id===currentSession.current?.user.id) {
+        currentSession.current=next;setSession(next);return;
+      }
+      // Supabase repeats SIGNED_IN on tab focus. Keep the already verified UI.
+      if (event==='SIGNED_IN' && sessionReady.current && next?.access_token===currentSession.current?.access_token) {
         currentSession.current=next;setSession(next);return;
       }
       const timer=setTimeout(()=>{scheduled.delete(timer);if (active) void loadSession(next);},0);scheduled.add(timer);
     });
+    const online=()=>{if (active && retryRestoration.current) void reload();};
+    const pageShow=(event:PageTransitionEvent)=>{if (active && event.persisted) void reload();};
+    window.addEventListener('online',online);window.addEventListener('pageshow',pageShow);
     void Promise.resolve().then(()=>{if (active) return reload();});
-    return ()=>{active=false;for (const timer of scheduled) clearTimeout(timer);stop();listener?.data.subscription.unsubscribe();};
+    return ()=>{active=false;for (const timer of scheduled) clearTimeout(timer);stop();listener?.data.subscription.unsubscribe();window.removeEventListener('online',online);window.removeEventListener('pageshow',pageShow);};
   },[loadSession,reload]);
 
   async function saveProfile(name:string,avatarPath?:string|null) {
@@ -115,5 +138,5 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
     if (currentSession.current) return;
     sessionStorage.setItem('react-mentor-guest','true');setGuest(true);setError('');
   }
-  return <Context.Provider value={{configured:isSupabaseConfigured,loading,user:session?.user || null,profile,guest,error,needsMfa,syncStatus,recovery,reload,saveProfile,signOut,continueAsGuest,syncNow:async ()=>{await coordinator.current?.sync();}}}>{children}</Context.Provider>;
+  return <Context.Provider value={{configured:isSupabaseConfigured,loading,user:session?.user || null,profile,guest,restoreFailed,error,needsMfa,syncStatus,recovery,reload,saveProfile,signOut,continueAsGuest,syncNow:async ()=>{await coordinator.current?.sync();}}}>{children}</Context.Provider>;
 }

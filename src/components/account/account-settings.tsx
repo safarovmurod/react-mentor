@@ -64,7 +64,7 @@ export function AccountSettings() {
     </section>
     <section className="panel account-panel"><div className="section-heading"><h2><Cloud size={19}/>Сохранение и устройства</h2><span className="account-badge" role="status">{statuses[account.syncStatus]}</span></div><p>Ваши ответы, XP, заметки, настройки и код доступны только вашему аккаунту. На другом устройстве войдите в тот же аккаунт.</p><div className="button-row"><button className="button subtle" onClick={account.syncNow} disabled={account.syncStatus==='syncing'}><RefreshCw size={16}/>Синхронизировать</button><button className="button subtle" onClick={importGuest}>Добавить прогресс гостя из этого браузера</button></div><PhoneQr/></section>
     <SecuritySettings/>
-    <section className="panel account-panel"><h2>Сессия</h2><p>Выход закроет аккаунт на этом устройстве. На других устройствах он останется открытым.</p><button className="button subtle" onClick={account.signOut}><LogOut size={17}/>Выйти из аккаунта</button></section>
+    <section className="panel account-panel"><h2>Сессия</h2><p>Вход сохраняется на этом устройстве после закрытия браузера. Выход закроет аккаунт здесь; на других устройствах он останется открытым.</p><button className="button subtle" onClick={account.signOut}><LogOut size={17}/>Выйти из аккаунта</button></section>
   </>;
 }
 

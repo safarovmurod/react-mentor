@@ -126,6 +126,29 @@ and scrolling navigation, keyboard/backdrop closing, and guest entry. Guest home
 greetings no longer use a hard-coded person's name; signed-in greetings use the
 current profile.
 
+## Remembered login
+
+Supabase persists the session and refresh token in this browser's local storage;
+the existing SDK storage key is retained so deployment does not log out current
+users. Access tokens refresh automatically. If the server rejects a cached
+access token, the app tries one refresh and verifies the new token before opening
+private data. A revoked refresh token still requires a new login.
+
+Temporary restoration/network errors show a retry screen and resume on reconnect
+rather than presenting registration again. Returning through browser back/forward
+cache rechecks the session. Repeated same-token SIGNED_IN notifications on tab
+focus preserve the open lesson/Tutor and avoid resetting the verified account.
+Name onboarding remains one time per account; logout still removes this device's
+session. Other browsers/devices require their own initial login. Cleared browser
+storage, private-browsing windows and server-side session revocation cannot retain
+an indefinite login.
+
+A persistent Chromium profile test closes and relaunches the actual browser,
+restores the existing account, refreshes an expired access token without another
+password/OAuth request, then verifies that explicit logout survives another
+restart. These backend responses are mocked; no real refresh tokens are logged or
+copied into test artifacts.
+
 ## Verification
 
 `npm run test` verifies account cache isolation, guest preservation, merging,

@@ -1,18 +1,28 @@
-import {expect,test,type Page} from '@playwright/test';
+import {chromium,expect,test,type BrowserContext,type Page} from '@playwright/test';
+import {mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {existsSync} from 'node:fs';
 
 const ids={a:'11111111-1111-4111-8111-111111111111',b:'22222222-2222-4222-8222-222222222222'};
 const errors=new WeakMap<Page,string[]>();
 test.beforeEach(async ({page})=>{const messages:string[]=[];errors.set(page,messages);page.on('console',m=>{if (m.type()==='error') messages.push(m.text());});page.on('pageerror',e=>{throw e;});});
 test.afterEach(async ({page},info)=>{const unexpected=(errors.get(page)||[]).filter(message=>!(info.title.includes('temporary email quota') && /status of 429/.test(message)));expect(unexpected).toEqual([]);await expect(page.locator('nextjs-portal').getByText(/Runtime Error|Build Error/)).toHaveCount(0);});
 
-async function mockBackend(page:Page,signupFailure=false) {
-  const profiles=new Map<string,{display_name:string;avatar_path:string|null}>();
-  const progress=new Map<string,{data:Record<string,unknown>;revision:number}>();
-  const factors=new Map<string,{id:string;friendly_name:string;factor_type:string;status:string}[]>();
+interface MockServerState {
+  profiles:Map<string,{display_name:string;avatar_path:string|null}>;
+  progress:Map<string,{data:Record<string,unknown>;revision:number}>;
+  factors:Map<string,{id:string;friendly_name:string;factor_type:string;status:string}[]>;
+}
+async function mockBackend(page:Page,signupFailure=false,previous?:MockServerState) {
+  const profiles=previous?.profiles || new Map<string,{display_name:string;avatar_path:string|null}>();
+  const progress=previous?.progress || new Map<string,{data:Record<string,unknown>;revision:number}>();
+  const factors=previous?.factors || new Map<string,{id:string;friendly_name:string;factor_type:string;status:string}[]>();
+  const tokenGrants:string[]=[];
   const uploads:string[]=[];const signups:{email:string;data:{full_name:string};redirect:string|null}[]=[];let oauth='';
   const user=(id:string)=>({id,aud:'authenticated',role:'authenticated',email:id===ids.a ? 'a@example.com':'b@example.com',created_at:new Date().toISOString(),app_metadata:{provider:'email',providers:['email']},user_metadata:{},factors:factors.get(id) || []});
   const token=(id:string,aal='aal1')=>[Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url'),Buffer.from(JSON.stringify({sub:id,exp:Math.floor(Date.now()/1000)+3600,aal,amr:[]})).toString('base64url'),'test-signature'].join('.');
-  const session=(id:string,aal='aal1')=>({access_token:token(id,aal),refresh_token:'test-refresh',token_type:'bearer',expires_in:3600,user:user(id)});
+  const session=(id:string,aal='aal1')=>({access_token:token(id,aal),refresh_token:'test-refresh:'+id+':'+aal,token_type:'bearer',expires_in:3600,user:user(id)});
   await page.route('https://auth-test.supabase.co/**',async route=>{
     const req=route.request(),url=new URL(req.url());const method=req.method();
     const bearer=req.headers().authorization?.split(' ')[1];
@@ -24,7 +34,11 @@ async function mockBackend(page:Page,signupFailure=false) {
       if (signupFailure) return route.fulfill({status:429,headers:{'x-supabase-api-version':'2024-01-01','access-control-expose-headers':'X-Supabase-Api-Version'},json:{code:'over_email_send_rate_limit',msg:'Email rate limit exceeded'}});
       return json({...user(ids.a),email:body.email,user_metadata:body.data});
     }
-    if (url.pathname==='/auth/v1/token') {const body=req.postDataJSON();return json(session(body.email==='b@example.com' ? ids.b:ids.a));}
+    if (url.pathname==='/auth/v1/token') {
+      const body=req.postDataJSON(),grant=url.searchParams.get('grant_type') || '';tokenGrants.push(grant);
+      if (grant==='refresh_token') {const [,account,aal]=body.refresh_token.split(':');expect([ids.a,ids.b]).toContain(account);return json(session(account,aal));}
+      return json(session(body.email==='b@example.com' ? ids.b:ids.a));
+    }
     if (url.pathname==='/auth/v1/user') return json(user(id));
     if (url.pathname==='/auth/v1/logout') return json({});
     if (url.pathname==='/auth/v1/factors' && method==='POST') {
@@ -47,7 +61,7 @@ async function mockBackend(page:Page,signupFailure=false) {
     if (url.pathname.startsWith('/storage/v1/object/') && method==='POST') {expect(url.pathname).toContain(id);uploads.push(url.pathname);return json({Key:url.pathname});}
     throw new Error('Unexpected backend request: '+method+' '+url.pathname);
   });
-  return {profiles,progress,factors,uploads,signups,oauth:()=>oauth};
+  return {profiles,progress,factors,uploads,signups,tokenGrants,oauth:()=>oauth};
 }
 async function login(page:Page,email='a@example.com') {
   await page.getByLabel('Email',{exact:true}).fill(email);await page.getByLabel('Пароль',{exact:true}).fill('test-password-123');await page.getByRole('button',{name:'Войти с email',exact:true}).click();
@@ -96,6 +110,44 @@ test('first name, private notes and profile survive login, account switching and
   await firstName(page,'Одина');await page.goto('/home');await expect(page.locator('.dashboard-heading p')).toContainText('Одина');await expect(page.locator('.dashboard-heading p')).not.toContainText('Мансур');await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toHaveCount(0);await page.goto('/settings');
   await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await login(page);await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toBeVisible();await page.reload();await expect(page.getByText('Личная заметка A',{exact:true})).toBeVisible();
   const keys=await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('react-mentor-account-v1:')));expect(keys).toContain('react-mentor-account-v1:'+ids.a);expect(keys).toContain('react-mentor-account-v1:'+ids.b);
+});
+
+test('remembered login survives closing the browser, refreshes expired access and respects logout (mock backend)',async ({},info)=>{
+  test.setTimeout(60000);
+  const directory=await mkdtemp(join(tmpdir(),'react-mentor-remembered-login-'));
+  let context:BrowserContext|undefined;const pageErrors:string[]=[];
+  async function open(previous?:MockServerState){
+    context=await chromium.launchPersistentContext(directory,{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || (existsSync('/usr/bin/chromium') ? '/usr/bin/chromium':undefined),baseURL:info.project.use.baseURL,viewport:info.project.use.viewport});
+    const page=context.pages()[0];page.on('pageerror',error=>pageErrors.push(error.message));
+    const backend=await mockBackend(page,false,previous);return {page,backend};
+  }
+  try {
+    const first=await open();await first.page.goto('/home');await login(first.page,'b@example.com');await firstName(first.page,'Одина');
+    await first.page.evaluate(()=>{
+      const key=Object.keys(localStorage).find(key=>key.endsWith('-auth-token'))!;
+      const saved=JSON.parse(localStorage.getItem(key)!);saved.expires_at=Math.floor(Date.now()/1000)-60;
+      const [header,payload,signature]=saved.access_token.split('.');
+      const claims=JSON.parse(atob(payload.replace(/-/g,'+').replace(/_/g,'/')));claims.exp=saved.expires_at;
+      saved.access_token=[header,btoa(JSON.stringify(claims)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''),signature].join('.');
+      localStorage.setItem(key,JSON.stringify(saved));
+    });
+    await context!.close();context=undefined;
+    const resumed=await open(first.backend);await resumed.page.goto('/login');
+    await expect(resumed.page.locator('.header-tools .avatar')).toHaveAttribute('aria-label','Одина');
+    await expect(resumed.page).toHaveURL(/\/home$/);
+    await expect(resumed.page.getByRole('heading',{name:'Как вас называть?'})).toHaveCount(0);
+    expect(resumed.backend.tokenGrants).toEqual(['refresh_token']);expect(resumed.backend.oauth()).toBe('');
+    expect(await resumed.page.evaluate(()=>{
+      const key=Object.keys(localStorage).find(key=>key.endsWith('-auth-token'))!;
+      return JSON.parse(localStorage.getItem(key)!).expires_at>Math.floor(Date.now()/1000);
+    })).toBe(true);
+    await resumed.page.goto('/settings');await resumed.page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();
+    await expect(resumed.page.getByRole('heading',{name:'Ваш путь в React'})).toBeVisible();
+    await context!.close();context=undefined;
+    const loggedOut=await open(first.backend);await loggedOut.page.goto('/home');
+    await expect(loggedOut.page.getByRole('button',{name:'Войти с email',exact:true})).toBeVisible();
+    expect(loggedOut.backend.tokenGrants).toEqual([]);expect(pageErrors).toEqual([]);
+  } finally {await context?.close();await rm(directory,{recursive:true,force:true});}
 });
 
 test('photo upload, phone QR and authenticator enrollment/challenge work (mock backend)',async ({page},info)=>{
