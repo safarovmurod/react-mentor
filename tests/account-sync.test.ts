@@ -17,11 +17,11 @@ it('discards a delayed old-account cloud response after switching accounts',asyn
   expect(useLearningStore.getState().notes).toEqual([{id:'b',title:'B',content:'Private B'}]);expect(rpc).not.toHaveBeenCalled();
 });
 
-it('merges a revision conflict with other-device work before retrying a write',async ()=>{
+it.each(['PT409','40001'])('merges a %s revision conflict with other-device work before retrying a write',async (code)=>{
   const remote={revision:1,data:{studied:['remote'],awards:{remote:5}}};
   const read=vi.fn().mockResolvedValueOnce({data:null,error:null}).mockResolvedValue({data:remote,error:null});
   const builder={select:()=>builder,eq:()=>builder,maybeSingle:read};
-  const rpc=vi.fn().mockResolvedValueOnce({data:null,error:{code:'40001'}}).mockImplementation(async (_name,args)=>({data:[{revision:2,data:args.progress_data}],error:null}));
+  const rpc=vi.fn().mockResolvedValueOnce({data:null,error:{code}}).mockImplementation(async (_name,args)=>({data:[{revision:2,data:args.progress_data}],error:null}));
   const client={from:()=>builder,rpc} as unknown as SupabaseClient;
   switchLearningAccount('account-a');useLearningStore.getState().markStudied('local');
   const status=vi.fn(),sync=startAccountSync(client,'account-a',status);

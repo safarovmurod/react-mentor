@@ -55,7 +55,7 @@ begin
   -- Serializes creation and updates for this account only, across all devices.
   perform pg_advisory_xact_lock(hashtextextended(uid::text,0));
   select revision into current_revision from public.react_mentor_progress where user_id=uid;
-  if coalesce(current_revision,0) <> expected_revision then raise exception 'Revision conflict' using errcode='40001'; end if;
+  if coalesce(current_revision,0) <> expected_revision then raise exception 'Revision conflict' using errcode='PT409'; end if;
   return query insert into public.react_mentor_progress(user_id,data,revision)
     values(uid,progress_data,1)
     on conflict (user_id) do update set data=excluded.data, revision=react_mentor_progress.revision+1,updated_at=now()

@@ -29,7 +29,7 @@ export function startAccountSync(client: SupabaseClient, userId: string, status:
       if (serialized!==lastSaved) {
         const {data:saved,error:writeError}=await client.rpc('react_mentor_save_progress',{expected_revision:revision,progress_data:snapshot});
         if (stopped) return;
-        if (writeError?.code==='40001') {timer=setTimeout(sync,200);return;}
+        if (writeError?.code==='PT409' || writeError?.code==='40001') {timer=setTimeout(sync,200);return;}
         if (writeError || !saved?.[0]) throw writeError || new Error('Missing sync response');
         revision=saved[0].revision;lastSaved=serialized;
       }

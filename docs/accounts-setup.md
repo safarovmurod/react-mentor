@@ -9,15 +9,21 @@ No SMS provider or paid phone verification is required.
 
 ## Existing shared Supabase project
 
-Target: `alafwzjqxwjanoqrirwi`. One Supabase project can serve two applications.
-Apply **only** `supabase/migrations/20261004000000_accounts.sql` for this feature.
+Target: `sqveszluhdargkiqowjp` (safarovmurod's Project), selected by the owner after
+the setup token confirmed access to this project. One Supabase project can serve
+two applications. `REACT_MENTOR_SUPABASE_PROJECT_REF` overrides the setup script's
+default when an explicitly selected project changes.
+Apply `supabase/migrations/20261004000000_accounts.sql` and the incremental
+`supabase/migrations/20261005000000_progress_conflict.sql` for this feature.
 It is standalone and uses `react_mentor_profiles`, `react_mentor_progress`,
 `react-mentor-avatars` and prefixed functions/policies. It does not modify the
 other application's tables or require the older workspace migration.
 
 The migration uses auth.uid() owner policies, private storage and an MFA check.
 When a verified factor exists, private database/storage access needs aal2.
-Progress writes use a per-account lock and revision compare-and-swap. Offline
+Progress writes use a per-account lock and revision compare-and-swap. Revision
+mismatches return HTTP 409 (`PT409`) so they do not become retrying server errors;
+the client rereads and merges before retrying and supports the older `40001` code. Offline
 edits merge achievements once, use timestamps for preferences/code/reviews and
 retain note deletion tombstones. Client timestamps are for conflict resolution,
 not trusted competition scores. Simultaneous study time uses the greatest
@@ -32,7 +38,7 @@ use; they are not encrypted against someone with browser/device access.
 
 1. In Supabase Authentication, enable Google using the existing Google Cloud
    OAuth client (or create a Web application OAuth client). Authorized redirect
-   URI: `https://alafwzjqxwjanoqrirwi.supabase.co/auth/v1/callback`.
+   URI: `https://sqveszluhdargkiqowjp.supabase.co/auth/v1/callback`.
    Google credentials stay in Supabase. A shared project uses the same Auth
    users and MFA factors for both apps; do not change another app's OAuth setup.
 2. Add allowed redirect URLs:
@@ -41,9 +47,11 @@ use; they are not encrypted against someone with browser/device access.
    Preserve the existing Site URL and all other app redirects. Add development
    callbacks only for development environments. Enable email signup/confirmation
    and TOTP enrollment/verification. Supabase's default email sender is limited;
-   use a suitable SMTP service if production signup volume needs it.
+   configure custom SMTP for public email registration. Without custom SMTP,
+   Supabase's built-in sender restricts recipients to project team addresses;
+   this is a provider restriction, not a successful global registration setup.
 3. Vercel project environment variables, Production:
-   - `NEXT_PUBLIC_SUPABASE_URL=https://alafwzjqxwjanoqrirwi.supabase.co`
+   - `NEXT_PUBLIC_SUPABASE_URL=https://sqveszluhdargkiqowjp.supabase.co`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY=<publishable or anon key>`
    **Never** use a service-role key for a NEXT_PUBLIC variable. Redeploy after
    changing these variables: Next.js includes them at build time.
@@ -51,7 +59,9 @@ use; they are not encrypted against someone with browser/device access.
    securely for `api.supabase.com`, then `node scripts/setup-accounts.mjs`.
    It only targets this project, preserves other redirects and does not print
    keys. It cannot create Google OAuth credentials or configure Vercel by itself.
-   The management token is not an application runtime requirement.
+   Updating Auth callbacks also required `project_admin_write` on this scoped
+   token in the live API, even with Auth Config read-write. Dashboard URL changes
+   are an alternative. The management token is not a runtime requirement.
 
 Auth, database, storage and TOTP can run within Supabase's Free plan limits;
 Google OAuth does not require SMS. Free tiers have quotas and may pause inactive
@@ -73,9 +83,40 @@ that confirms the provider redirect, not a completed OAuth login or callback.
 Set both public variables from the Provider configuration section in the actual
 Vercel project's Production environment and redeploy. These are build-time
 variables: adding them to cloud-environment settings alone does not update Vercel.
-The current task had no saved/runtime Supabase management or Vercel API token,
-so live configuration, migration and authenticated end-to-end verification remain
-pending. Do not substitute a test placeholder or service-role key.
+Vercel access was subsequently connected through the CLI. A project-scoped
+Supabase setup token was entered as a Production Secret in Vercel and used only
+inside an isolated setup deployment (`--prod --skip-domain`). No management token
+was copied into repository files, client bundles or public configuration.
+
+The token's real project listing identified `sqveszluhdargkiqowjp`, rather than
+the initially supplied `alafwzjqxwjanoqrirwi`. The owner selected the accessible
+project and resumed it from its Supabase dashboard. After it became
+`ACTIVE_HEALTHY`, the standalone account migration was applied successfully.
+
+Live checks created two temporary, preconfirmed accounts, signed in using real
+password authentication, created profiles and progress, uploaded private photos,
+and verified cross-account reads/updates and anonymous progress writes were
+blocked. The initial `40001` revision error caused a real HTTP request timeout;
+the incremental migration changes expected conflicts to HTTP 409 (`PT409`). The
+same live check then passed, including stale-revision rejection. Temporary test
+accounts, progress, profiles and photos were removed after verification.
+
+Provider configuration at that check: email and signup enabled, TOTP enrollment
+and verification enabled, Google initially disabled, email confirmation required, custom
+SMTP absent, and ReactMentor callback missing. The owner then enabled Google;
+the final management check confirmed `googleEnabled=true`. Preconfirmed test logins do not
+verify confirmation email delivery. The owner is adding callback URLs and Google
+credentials in the dashboard; full Google consent/callback remains unverified.
+The setup token cannot PATCH Auth settings: HTTP 403 reported missing
+`project_admin_write`. Preserve the shared project's Site URL and other callbacks.
+
+Production public URL and validated anon key were saved through the Vercel API.
+A CONNECT 403 blocked reading a protected temporary deployment from this cloud
+instance, so the isolated build saved the public variables directly through
+the Vercel API. Temporary management credentials were removed from the project
+and all seven isolated setup deployments were deleted before the regular push.
+The main domain was never promoted to an isolated setup deployment. Never substitute a test placeholder or
+service-role key for the public client key.
 
 The unconfigured UI now explains the missing account connection, disables the
 email fields and provides a prominent guest entry. Known provider errors have
