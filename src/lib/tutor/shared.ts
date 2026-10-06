@@ -4,6 +4,7 @@ export interface TutorSource {
   title: string;
   file: string;
   sourceId: string;
+  href?: string;
 }
 
 export function isDeepFollowUp(text: string): boolean {

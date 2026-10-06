@@ -1,4 +1,7 @@
 import { expect, test } from '@playwright/test';
+test.beforeEach(async ({page})=>{
+  await page.addInitScript(()=>{if (!localStorage.getItem('react-mentor-learning-v2')) localStorage.setItem('react-mentor-learning-v2',JSON.stringify({version:2,state:{selectedCourse:'react',courseChosen:true}}));});
+});
 
 test('phone header controls never overlap and the menu scrolls, traps focus and closes', async ({ page }, info) => {
   const errors: string[] = [];

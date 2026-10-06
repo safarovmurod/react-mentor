@@ -5,6 +5,8 @@ const question = quiz.groups[0].items[0];
 const consoleErrors = new WeakMap<Page, string[]>();
 
 test.beforeEach(async ({ page }) => {
+  // These regression scenarios concern a learner who already chose React.
+  await page.addInitScript(()=>{if (!localStorage.getItem('react-mentor-learning-v2')) localStorage.setItem('react-mentor-learning-v2',JSON.stringify({version:2,state:{selectedCourse:'react',courseChosen:true}}));});
   const errors: string[] = [];
   consoleErrors.set(page, errors);
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });

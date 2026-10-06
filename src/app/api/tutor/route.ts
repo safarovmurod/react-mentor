@@ -6,12 +6,16 @@ import { TUTOR_SYSTEM_PROMPT, tutorContext } from '@/lib/tutor/prompt';
 import { projectAnswer } from '@/lib/tutor/project-answers';
 import { isDeepFollowUp, wantsDeepExplanation } from '@/lib/tutor/shared';
 import { authenticatedUser } from '@/lib/account/require-user';
+import { COURSE_IDS } from '@/lib/courses/ids';
+import { courseAnswer } from '@/lib/courses/tutor';
+import { courseName } from '@/content/courses/catalog';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
 
 const schema = z.object({
   action: z.enum(['ask', 'grade_interview', 'explain_code']),
+  courseId: z.enum(COURSE_IDS).default('react'),
   topicId: z.string().max(100).optional(),
   questionId: z.string().max(100).optional(),
   userText: z.string().trim().min(1).max(1500),
@@ -44,10 +48,11 @@ export async function POST(req: NextRequest) {
   catch { return error('Маълумоти JSON нодуруст аст.', 400); }
   const parsed = schema.safeParse(body);
   if (!parsed.success) return error('Савол ё таърихи чат нодуруст ё хеле дароз аст.', 400);
-  const { action, topicId, questionId, userText, codeContext, isDeep, history, language } = parsed.data;
+  const { action, courseId, topicId, questionId, userText, codeContext, isDeep, history, language } = parsed.data;
 
   // Official grading stays deterministic and consumes no provider tokens.
   if (action === 'grade_interview') {
+    if (courseId!=='react') return error('Интервью этого курса использует самооценку по исходному ответу.',404);
     const question = CORE_INTERVIEW_QUESTIONS.find(item => item.id === questionId);
     if (!question) return error('Саволи интервью ёфт нашуд.', 404);
     return NextResponse.json({ mode: 'local', ...gradeInterviewAnswer(question, userText) });
@@ -59,11 +64,11 @@ export async function POST(req: NextRequest) {
     ? [...history].reverse().find(item => item.role === 'user' && !isDeepFollowUp(item.content))?.content || ''
     : userText;
   if (action === 'ask') {
-    const local = projectAnswer(query, { questionId, deep, language });
+    const local = courseId==='react' ? projectAnswer(query, { questionId, deep, language }) : await courseAnswer(courseId,query,{questionId,deep,language});
     if (local) return NextResponse.json({ mode: 'local', ...local, usage: { totalTokens: 0 } });
     if (deep && !query) return NextResponse.json({ mode: 'local', reply: 'Кадом саволро чуқур фаҳмонем? Савол ё мавзӯъро нависед.', usage: { totalTokens: 0 } });
   }
-  const context = tutorContext(topicId, query);
+  const context = courseId==='react' ? tutorContext(topicId, query) : 'Selected course: '+courseName(courseId)+'. Answer for this course. No matching published course reference was found; do not claim to have read Telegram files.';
   if (process.env.AI_TUTOR_ENABLED !== 'true') {
     return NextResponse.json({
       mode: 'local',

@@ -5,6 +5,19 @@ import {switchLearningAccount,useLearningStore} from '@/stores/learning-store';
 beforeEach(()=>{localStorage.clear();switchLearningAccount(null);vi.useFakeTimers();});
 afterEach(()=>vi.useRealTimers());
 
+it('sends and restores course-scoped data through the existing owner-protected progress RPC',async ()=>{
+  let row:{revision:number;data:unknown}|null=null;
+  const builder={select:()=>builder,eq:()=>builder,maybeSingle:async()=>({data:row,error:null})};
+  const rpc=vi.fn(async (_name,args)=>{row={revision:(row?.revision||0)+1,data:args.progress_data};return {data:[row],error:null};});
+  const client={from:()=>builder,rpc} as unknown as SupabaseClient;
+  switchLearningAccount('a');useLearningStore.getState().chooseCourse('html');useLearningStore.getState().saveCourseNote('html',{id:'n',title:'HTML',content:'Synced note'});
+  const first=startAccountSync(client,'a',vi.fn());await vi.advanceTimersByTimeAsync(10);first.stop();
+  expect(rpc.mock.calls[0][1].progress_data.courses.html.notes[0].content).toBe('Synced note');
+  localStorage.clear();switchLearningAccount('a');expect(useLearningStore.getState().courses).toEqual({});
+  const second=startAccountSync(client,'a',vi.fn());await vi.advanceTimersByTimeAsync(10);
+  expect(useLearningStore.getState().selectedCourse).toBe('html');expect(useLearningStore.getState().courses.html?.notes[0].content).toBe('Synced note');second.stop();
+});
+
 it('discards a delayed old-account cloud response after switching accounts',async ()=>{
   let respond!:(value:unknown)=>void;
   const pending=new Promise(resolve=>{respond=resolve;});

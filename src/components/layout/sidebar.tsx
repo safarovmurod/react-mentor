@@ -2,13 +2,14 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { CalendarDays, BookOpen, BookOpenCheck, Code2, MessagesSquare, ListChecks, RotateCcw, CircleAlert, NotebookPen, Settings2, X, ArrowUpRight } from 'lucide-react';
+import { CalendarDays, BookOpen, BookOpenCheck, Code2, MessagesSquare, ListChecks, RotateCcw, CircleAlert, NotebookPen, Settings2, X, ArrowUpRight, Layers } from 'lucide-react';
 import { useAppStore } from '@/stores/app-store';
 import { useLearningStore } from '@/stores/learning-store';
 import { COPY } from '@/lib/i18n';
 import { LEARNING_TOPICS } from '@/content/course';
 import { useAccount } from '@/components/account/account-provider';
 import { AccountAvatar } from '@/components/account/account-avatar';
+import { courseName } from '@/content/courses/catalog';
 const items = [
   {key:'home',href:'/home',icon:CalendarDays},{key:'plan',href:'/plan',icon:BookOpen},{key:'practice',href:'/practice',icon:Code2},
   {key:'tests',href:'/tests',icon:ListChecks},{key:'interview',href:'/interview',icon:MessagesSquare},{key:'revision',href:'/revision',icon:RotateCcw},
@@ -50,12 +51,15 @@ export function Sidebar() {
   const language=useLearningStore(state=>state.language);
   const month=useLearningStore(state=>state.activeMonth);
   const completed=useLearningStore(state=>state.completedTopics);
+  const course=useLearningStore(state=>state.selectedCourse);
+  const courseCount=useLearningStore(state=>course==='react'?0:state.courses[course]?.completedTopics.length || 0);
   const copy=COPY[language];
   const total=LEARNING_TOPICS.filter(topic=>topic.month===month).length;
   const count=LEARNING_TOPICS.filter(topic=>topic.month===month&&completed.includes(topic.id)).length;
   return <>{open&&<button className="sidebar-overlay" aria-label={language==='ru'?'Закрыть меню':'Close menu'} onClick={()=>setOpen(false)}/>}
     <aside id="learning-sidebar" ref={drawer} className={'sidebar '+(open?'is-open':'')} role={mobile&&open?'dialog':undefined} aria-modal={mobile&&open?true:undefined} aria-label={language==='ru'?'Навигация по курсу':'Course navigation'} inert={mobile&&!open}><div className="sidebar-top"><span className="eyebrow">{language==='ru'?'ОБУЧЕНИЕ':'WORKSPACE'}</span><button ref={closeButton} className="icon-button mobile-menu" onClick={()=>setOpen(false)} aria-label={language==='ru'?'Закрыть меню':'Close menu'}><X size={20}/></button></div>
-      <nav>{items.map(item=>{const Icon=item.icon;const active=pathname===item.href || (item.href==='/answers'&&pathname.startsWith('/answers/')) || (item.href==='/plan'&&(pathname.startsWith('/lesson/')||pathname.startsWith('/plan/')));return <Link key={item.href} href={item.href} aria-current={active?'page':undefined} className={'nav-item '+(active?'active':'')} onClick={()=>setOpen(false)}><Icon size={18}/><span>{copy[item.key]}</span>{active&&<span className="nav-dot"/>}</Link>;})}</nav>
-      <div className="sidebar-bottom"><div className="sidebar-progress"><div className="between"><span>{copy.month} {month}</span><ArrowUpRight size={16}/></div><strong>{count}<span> / {total}</span></strong><div className="progress-track"><span style={{width:(total?count/total*100:0)+'%'}}/></div></div><Link href="/settings" className={'nav-item '+(pathname==='/settings'?'active':'')} onClick={()=>setOpen(false)}><Settings2 size={18}/>{copy.settings}</Link><Link href="/settings" className="profile-row" onClick={()=>setOpen(false)}><AccountAvatar/><div><strong>{account.profile?.displayName || (language==='ru' ? 'Гость':'Guest')}</strong><span>{account.user ? (language==='ru' ? 'Личный аккаунт':'Personal account'):(language==='ru' ? 'В этом браузере':'In this browser')}</span></div></Link></div>
+      <Link href="/courses" className="nav-item course-switch" onClick={()=>setOpen(false)}><Layers size={18}/><span>{language==='ru'?'Выбрать курс':'Choose course'}<small>{courseName(course)}</small></span></Link>
+      <nav>{items.map(item=>{const Icon=item.icon;const href=course==='react'||item.key==='notes'?item.href:`/courses/${course}${item.href}`;const active=pathname===href || (course==='react'&&item.href==='/answers'&&pathname.startsWith('/answers/')) || (course==='react'&&item.href==='/plan'&&(pathname.startsWith('/lesson/')||pathname.startsWith('/plan/')));return <Link key={item.href} href={href} aria-current={active?'page':undefined} className={'nav-item '+(active?'active':'')} onClick={()=>setOpen(false)}><Icon size={18}/><span>{copy[item.key]}</span>{active&&<span className="nav-dot"/>}</Link>;})}</nav>
+      <div className="sidebar-bottom"><div className="sidebar-progress"><div className="between"><span>{course==='react'?copy.month+' '+month:courseName(course)}</span><ArrowUpRight size={16}/></div><strong>{course==='react'?count:courseCount}<span>{course==='react'?' / '+total:' '+copy.topics.toLowerCase()}</span></strong><div className="progress-track"><span style={{width:(course==='react'&&total?count/total*100:0)+'%'}}/></div></div><Link href="/settings" className={'nav-item '+(pathname==='/settings'?'active':'')} onClick={()=>setOpen(false)}><Settings2 size={18}/>{copy.settings}</Link><Link href="/settings" className="profile-row" onClick={()=>setOpen(false)}><AccountAvatar/><div><strong>{account.profile?.displayName || (language==='ru' ? 'Гость':'Guest')}</strong><span>{account.user ? (language==='ru' ? 'Личный аккаунт':'Personal account'):(language==='ru' ? 'В этом браузере':'In this browser')}</span></div></Link></div>
     </aside></>;
 }

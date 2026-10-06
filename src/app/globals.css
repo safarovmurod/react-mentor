@@ -1,5 +1,51 @@
 @import "tailwindcss";
 
+.course-intro {max-width:720px;margin-bottom:24px;}
+.course-intro .eyebrow {display:flex;align-items:center;gap:8px;color:var(--primary);}
+.course-intro h1 {font-size:clamp(28px,4vw,40px);line-height:1.2;margin:12px 0;}
+.course-intro p {font-size:16px;line-height:1.7;}
+.course-route {display:flex;align-items:flex-start;gap:14px;padding:20px;margin-bottom:24px;}
+.course-route>svg {flex:none;color:var(--primary);}
+.course-route p {margin:8px 0;line-height:1.6;}
+.course-route span,.course-prerequisite {font-size:12px;color:var(--text-muted);}
+.course-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.course-card {display:flex;flex-direction:column;gap:14px;padding:24px;min-width:0;}
+.course-card h2 {font-size:23px;}
+.course-card p {font-size:14px;line-height:1.7;flex:1;}
+.course-card .badge {white-space:normal;text-align:right;font-size:10px;display:flex;gap:4px;align-items:center;}
+.course-selected {border-color:var(--primary);}
+.course-symbol {width:48px;height:48px;display:grid;place-items:center;flex:none;border-radius:14px;background:var(--primary-soft);color:var(--primary);font-family:var(--font-jetbrains),monospace;font-weight:700;}
+.course-status {font-size:12px;padding-top:12px;border-top:1px solid var(--border);color:var(--text-muted);}
+.course-ready {color:var(--success-text);}
+.course-card .button {justify-content:space-between;min-height:44px;}
+.course-switch {flex:none;margin-bottom:10px;}
+.course-switch small {display:block;color:var(--text-muted);font-size:11px;margin-top:3px;}
+.course-waiting {display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:28px;max-width:760px;}
+.course-waiting>svg {color:var(--primary);}
+.course-waiting p {line-height:1.8;}
+.course-waiting .button {height:auto;white-space:normal;min-height:44px;}
+.course-filters {display:flex;gap:16px;margin-bottom:20px;align-items:flex-end;}
+.course-filters label:first-child {flex:1;}
+.course-filters label,.course-question>label {display:flex;flex-direction:column;gap:8px;}
+.course-filters input,.course-filters select,.course-question textarea {font:inherit;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;max-width:100%;min-width:0;}
+.course-lessons {display:flex;flex-direction:column;gap:20px;}
+.course-lesson {padding:24px;min-width:0;overflow-wrap:anywhere;scroll-margin-top:90px;}
+.course-lesson h2 {margin-bottom:12px;}
+.course-lesson details,.course-question {border-top:1px solid var(--border);padding-top:16px;margin-top:16px;}
+.course-lesson summary {cursor:pointer;font-weight:600;padding-bottom:12px;}
+.course-lesson p {line-height:1.8;margin-bottom:12px;}
+.course-lesson pre {overflow:auto;max-width:100%;background:#0f172a;color:#f8fafc;border-radius:10px;padding:16px;margin:12px 0;font-family:var(--font-jetbrains),monospace;font-size:13px;}
+.course-question h3 {margin-bottom:12px;}
+.course-options {display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.course-options label,.course-criterion {display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid var(--border);border-radius:8px;}
+.course-options input,.course-criterion input {flex:none;margin-top:4px;accent-color:var(--primary);}
+.course-criterion {margin:8px 0;}
+.course-sources {display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;font-size:12px;color:var(--primary);}
+.course-files {padding:24px;margin-top:24px;display:flex;flex-direction:column;gap:12px;}
+.course-files a {overflow-wrap:anywhere;flex-wrap:wrap;}
+@media(max-width:1100px) {.course-grid {grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:600px) {.course-grid {grid-template-columns:1fr;}.course-card {padding:20px;}.course-filters {flex-direction:column;align-items:stretch;}.course-lesson,.course-waiting {padding:20px;}.course-route {padding:16px;}}
+
 .account-screen { min-height:100dvh; display:flex; align-items:center; justify-content:center; padding:28px 16px; background:radial-gradient(ellipse at top, var(--primary-soft), var(--canvas) 65%); }
 .auth-card { width:min(100%,460px); padding:32px; display:flex; flex-direction:column; gap:18px; background:var(--card); border:1px solid var(--border); border-radius:20px; box-shadow:var(--shadow-2); }
 .auth-card h1 {font-size:28px;line-height:1.2;}

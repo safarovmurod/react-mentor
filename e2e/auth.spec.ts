@@ -68,6 +68,8 @@ async function login(page:Page,email='a@example.com') {
 }
 async function firstName(page:Page,name:string) {
   await expect(page.getByRole('heading',{name:'Как вас называть?'})).toBeVisible();await page.getByLabel('Ваше имя',{exact:true}).fill(name);await page.getByRole('button',{name:'Начать обучение',exact:true}).click();await expect(page.locator('.header-tools .avatar')).toHaveAttribute('aria-label',name);
+  await expect(page.getByRole('heading',{name:'Что будем изучать?'})).toBeVisible();
+  await page.getByRole('button',{name:'Выбрать React',exact:true}).click();
 }
 
 test('Google is recommended and starts a PKCE OAuth redirect (mock backend)',async ({page},info)=>{

@@ -28,6 +28,7 @@ export function TutorDrawer() {
   const selectedQuestion = useAppStore(state => state.tutorQuestion);
   const setSelectedQuestion = useAppStore(state => state.setTutorQuestion);
   const language = useLearningStore(state => state.contentLanguage);
+  const courseId = useLearningStore(state => state.selectedCourse);
   const [messages, setMessages] = useState<ChatMsg[]>([{
     id: 'welcome', sender: 'assistant',
     text: 'Салом! Аввал ҷавобро аз саволу ҷавобҳои лоиҳа меёбем: ройгон, бе токен. Барои саволи дар лоиҳа набуда AI истифода мешавад — бо аккаунти Google ё email ворид шавед.',
@@ -96,7 +97,7 @@ export function TutorDrawer() {
       const response = await fetch('/api/tutor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',...(token ? {Authorization:'Bearer '+token}:{}) },
-        body: JSON.stringify({ action: 'ask', userText: query, isDeep: followUp, history, topicId, questionId, language }),
+        body: JSON.stringify({ action: 'ask', courseId, userText: query, isDeep: followUp, history, topicId, questionId, language }),
         signal: AbortSignal.timeout(50000),
       });
       const data = await response.json();
@@ -133,14 +134,14 @@ export function TutorDrawer() {
         {messages.map(message => <div key={message.id} className={'tutor-message ' + message.sender + (message.error ? ' tutor-error' : '')}>
           {message.mode && <span className="tutor-source">{message.mode === 'online' ? 'AI · AnyModel' : message.source ? 'Маводи лоиҳа' : 'Локалӣ'}{message.tokens !== undefined ? ' · ' + message.tokens + ' токен' : ''}</span>}
           <p>{message.text}</p>
-          {message.source && <Link className="tutor-source" href={'/lesson/' + encodeURIComponent(message.source.topicId)} onClick={()=>setOpen(false)}>Манбаъ: {message.source.title} · {message.source.sourceId}</Link>}
+          {message.source && <Link className="tutor-source" href={message.source.href || '/lesson/' + encodeURIComponent(message.source.topicId)} onClick={()=>setOpen(false)}>Манбаъ: {message.source.title} · {message.source.sourceId}</Link>}
         </div>)}
         {loading && <p role="status" className="tutor-loading">Ментор ҷавоб тайёр мекунад…</p>}
       </div>
       <div className="tutor-composer">
         {!account.user && <div className="tutor-signin"><p>Маводи дарсҳо — ройгон. Барои истифодаи AI аввал бо Google ё email ворид шавед.</p><Link className="button subtle" href="/login" onClick={()=>setOpen(false)}>Воридшавӣ / регистрация</Link></div>}
         <div className="tutor-shortcuts">
-          <button className="button subtle" disabled={loading} onClick={() => setInput('useState чиба даркорай?')}>useState?</button>
+          <button className="button subtle" disabled={loading} onClick={() => setInput(courseId==='react'?'useState чиба даркорай?':'Мавзӯи аввалро чуқур фаҳмон.')}>{courseId==='react'?'useState?':'Мавзӯи курс'}</button>
           <button className="button subtle" disabled={loading || (!selectedQuestion && !messages.some(message => message.sender === 'user' && !message.followUp))} onClick={() => send(true)}><Layers size={15}/>Чуқур фаҳмон</button>
         </div>
         <form onSubmit={event => { event.preventDefault(); void send(); }}>
