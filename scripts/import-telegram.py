@@ -239,7 +239,7 @@ class Importer:
             record['status'] = 'read-error'
 
     def image_text(self, file):
-        result = subprocess.run(['tesseract',str(file),'stdout',*self.tessdata_args,'-l','+'.join(self.languages)], capture_output=True, text=True, timeout=120, check=True)
+        result = subprocess.run(['tesseract',str(file),'stdout',*self.tessdata_args,'-l','+'.join(self.languages)], env={**os.environ,'OMP_THREAD_LIMIT':os.environ.get('OMP_THREAD_LIMIT','1')}, capture_output=True, text=True, timeout=120, check=True)
         return result.stdout
 
 

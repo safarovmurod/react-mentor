@@ -4,15 +4,28 @@ The existing React library remains published. On 2026-10-06 the public channel
 preview became reachable. Ten preview pages were collected back to the first
 visible message: 151 message widgets, 100 document references, 24 photo widgets
 and 33 video widgets. This is the public preview, not proof of the complete
-authenticated history. The original PDF, ZIP, image and video bytes remain unread.
+authenticated history. Original PDFs, ZIPs, full-resolution images and videos
+remain unread; the 23 educational public-preview images have now been reviewed.
 
 Four readable messages (#77 Sass, #84 Git fetch, #191 JSON Server, #192 Axios)
 now provide 8 reviewed lessons, 37 questions and 8 manual practice tasks in CSS,
 Git and JavaScript 2. The examples, expanded explanations and corrections are
 explicit editorial additions. Sass @import deprecation and JSON Server 0.17.4
-CLI syntax were checked against official sources. HTML, JavaScript 1 and C++
-remain empty; no PDF-based lessons have been invented. Published source files
-still total zero.
+CLI syntax were checked against official sources. Image review adds 22 lessons,
+36 questions and 22 practical tasks in HTML, JavaScript 1 and C++. Altogether:
+30 lessons, 73 questions and 30 manual practice tasks, besides the existing React
+course. These are source-backed text explanations, not PDF viewers or claims of
+reading inaccessible PDFs. Cropped examples are marked and replaced with
+explicitly authored complete examples. One noneducational service screenshot is
+excluded. Three exact preview duplicates are grouped by SHA-256: #8/#16/#18 and
+#179/#180. Twenty unique preview JPEGs are published with matching source links;
+they are labelled previews, not original-resolution attachments.
+
+JavaScript has one catalog card and two linked stages: month 1 JS1, month 2 JS2.
+Each published course offers a suggested 30-day plan using actual topics, then
+practice and quizzes. Repeated practice days do not inflate the lesson count.
+The home view shows one next uncompleted topic. Progress remains independent
+between the two JavaScript stages, with persistent shared account synchronization.
 
 /courses/materials lists original Telegram message links, search and type
 filters. 61 filename/size groups preserve all 100 document links: the 39 matching
@@ -35,9 +48,11 @@ The Browser plugin is unavailable in this session. An open user Telegram tab
 does not grant shell/Playwright access to its authenticated browser profile.
 The public t.me preview now returns 200. Document buttons and embedded message
 pages contain Telegram message URLs rather than original download URLs.
-cdn4.telesco.pe photos and Stepik/Tailwind/Canva/YouTube links returned proxy
-CONNECT 403. Their observed hosts were added to the configuration draft,
-preserving prior rules; saving does not activate the current runtime network.
+cdn4.telesco.pe photos initially returned proxy CONNECT 403; a subsequent retry
+returned HTTP 200 and all 24 public-preview images were downloaded. Stepik,
+Tailwind and Canva returned HTTP 403; YouTube remains unavailable. Their observed
+hosts were added to the configuration draft, preserving prior rules; saving does
+not activate the current runtime network. Runtime status is based on actual retries.
 Do not copy Telegram cookies or sessions or request passwords/OTP in chat.
 
 Collect accessible text and metadata automatically, without authentication:
@@ -91,7 +106,8 @@ download endpoint validates size/digest and forces attachment/octet-stream with
 nosniff and sandbox headers; it never executes uploaded HTML/SVG/JS.
 File tracing includes that directory for Vercel deployment. Check the actual
 deployment/storage size before committing large source bundles; do not enable a
-paid storage plan without owner approval. No source binaries are included yet.
+paid storage plan without owner approval. The published bundle includes only
+20 small reviewed preview JPEGs; excluded service images are never published.
 
 Course modules load separately through /api/courses/{courseId}; the shared
 selector receives counts only. Ready status follows actual lesson counts.
@@ -133,4 +149,9 @@ Supabase or PDF fixtures are test evidence, not imported channel material.
 Current content checks: seven SCSS examples compiled with Sass 1.105.1; a local
 fixture verified Git fetch refspec updates task-1 without switching main; a
 temporary JSON Server 0.17.4 returned the documented /users and /users/1 data.
+Seven authored C++17 examples compile with warnings treated as errors and run;
+palindrome checks include 0, 1221, 120 and the documented input limit. JavaScript
+examples are checked for missing nested fields, falsy values, zero prices, empty
+scores, birthdays, unsorted/duplicate dates and zero in LCM. OCR limits each
+tesseract process to one OpenMP thread by default to avoid oversubscription.
 These are authored example checks, not claims of reading inaccessible files.

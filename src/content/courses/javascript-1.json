@@ -1,1 +1,1544 @@
-{"courseId":"javascript-1","sources":[],"files":[],"lessons":[]}
+{
+  "courseId": "javascript-1",
+  "sources": [
+    {
+      "id": "photo-115",
+      "title": "Telegram · 115 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/115"
+    },
+    {
+      "id": "photo-132",
+      "title": "Telegram · 132 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/132"
+    },
+    {
+      "id": "photo-161",
+      "title": "Telegram · 161 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/161"
+    },
+    {
+      "id": "photo-171",
+      "title": "Telegram · 171 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/171"
+    }
+  ],
+  "files": [
+    {
+      "id": "preview-7e0a4050174e89d1",
+      "title": "Превью Telegram · 115-0.jpg",
+      "url": "/course-files/7e0a4050174e89d1c018f4c4a0c591c95ab5564391aa1aa5ee429eba96a625b6.jpg",
+      "bytes": 21421,
+      "sha256": "7e0a4050174e89d1c018f4c4a0c591c95ab5564391aa1aa5ee429eba96a625b6",
+      "sourceIds": [
+        "photo-115"
+      ]
+    },
+    {
+      "id": "preview-fb677bebbfbc6e95",
+      "title": "Превью Telegram · 132-0.jpg",
+      "url": "/course-files/fb677bebbfbc6e95ee341985427ba606b26f84d67807501e8859035a7d708517.jpg",
+      "bytes": 28425,
+      "sha256": "fb677bebbfbc6e95ee341985427ba606b26f84d67807501e8859035a7d708517",
+      "sourceIds": [
+        "photo-132"
+      ]
+    },
+    {
+      "id": "preview-c3715e3579e156dc",
+      "title": "Превью Telegram · 161-0.jpg",
+      "url": "/course-files/c3715e3579e156dc650047507bac6d0bd3ebd1041fa7d7455cbc04c4a565b55a.jpg",
+      "bytes": 76980,
+      "sha256": "c3715e3579e156dc650047507bac6d0bd3ebd1041fa7d7455cbc04c4a565b55a",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-59e55530493b0186",
+      "title": "Превью Telegram · 161-1.jpg",
+      "url": "/course-files/59e55530493b0186460c45ae5c743c20e33ab409bdb6fe5798039d15994ceff4.jpg",
+      "bytes": 74793,
+      "sha256": "59e55530493b0186460c45ae5c743c20e33ab409bdb6fe5798039d15994ceff4",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-7c7aa6767292f730",
+      "title": "Превью Telegram · 161-2.jpg",
+      "url": "/course-files/7c7aa6767292f730188a2a76a5923b6345217e0104eb1fc802ae1597c0fdc965.jpg",
+      "bytes": 83377,
+      "sha256": "7c7aa6767292f730188a2a76a5923b6345217e0104eb1fc802ae1597c0fdc965",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-779b3c1e41884103",
+      "title": "Превью Telegram · 161-3.jpg",
+      "url": "/course-files/779b3c1e418841035c9d16d7a20962c81e7cc270b8f9da48bb07bd0b123196ba.jpg",
+      "bytes": 69619,
+      "sha256": "779b3c1e418841035c9d16d7a20962c81e7cc270b8f9da48bb07bd0b123196ba",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-f5706714b61ffb9d",
+      "title": "Превью Telegram · 161-4.jpg",
+      "url": "/course-files/f5706714b61ffb9d81a443e88dd64fe8a519fec7535f87236f843ad5ca0b0523.jpg",
+      "bytes": 72314,
+      "sha256": "f5706714b61ffb9d81a443e88dd64fe8a519fec7535f87236f843ad5ca0b0523",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-f0b700145d696c7b",
+      "title": "Превью Telegram · 161-5.jpg",
+      "url": "/course-files/f0b700145d696c7b1974f4100b94c4daef6e82e4da5f3e94b07255bf10f54ffc.jpg",
+      "bytes": 78235,
+      "sha256": "f0b700145d696c7b1974f4100b94c4daef6e82e4da5f3e94b07255bf10f54ffc",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-aff5ad5e96e34ed3",
+      "title": "Превью Telegram · 161-6.jpg",
+      "url": "/course-files/aff5ad5e96e34ed30aebf80419e63b40f271257c3af109f2a4e69d07e6db6d77.jpg",
+      "bytes": 72388,
+      "sha256": "aff5ad5e96e34ed30aebf80419e63b40f271257c3af109f2a4e69d07e6db6d77",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-38e528f557efb529",
+      "title": "Превью Telegram · 161-7.jpg",
+      "url": "/course-files/38e528f557efb5294fa85e72b2d0bc996630a381ef8603ecb143f52e32c7528d.jpg",
+      "bytes": 82904,
+      "sha256": "38e528f557efb5294fa85e72b2d0bc996630a381ef8603ecb143f52e32c7528d",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-178b5343a333e71b",
+      "title": "Превью Telegram · 161-8.jpg",
+      "url": "/course-files/178b5343a333e71b182496a9c708e4fa024a95a482293616d8fe80dd174be588.jpg",
+      "bytes": 81051,
+      "sha256": "178b5343a333e71b182496a9c708e4fa024a95a482293616d8fe80dd174be588",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-eb35dcbb31b2c232",
+      "title": "Превью Telegram · 161-9.jpg",
+      "url": "/course-files/eb35dcbb31b2c232538f249337890254c11a3e4b2623de1244b4afea556db8f4.jpg",
+      "bytes": 91085,
+      "sha256": "eb35dcbb31b2c232538f249337890254c11a3e4b2623de1244b4afea556db8f4",
+      "sourceIds": [
+        "photo-161"
+      ]
+    },
+    {
+      "id": "preview-e8da13fcb63c98d4",
+      "title": "Превью Telegram · 171-0.jpg",
+      "url": "/course-files/e8da13fcb63c98d4ff4d236ca6ac844f70a1dfa0fd09f7716a39350b40c9e5f1.jpg",
+      "bytes": 76668,
+      "sha256": "e8da13fcb63c98d4ff4d236ca6ac844f70a1dfa0fd09f7716a39350b40c9e5f1",
+      "sourceIds": [
+        "photo-171"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "js-array-transform",
+      "title": {
+        "tg": "JavaScript: forEach, map, filter ва find",
+        "ru": "JavaScript: forEach, map, filter и find"
+      },
+      "summary": {
+        "tg": "Барои иҷро, табдил ё ҷустуҷӯ методи дурустро интихоб кунед.",
+        "ru": "Выберите метод для действия, преобразования или поиска."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-132"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. forEach барои ҳар элемент кор мекунад, array-и натиҷа намедиҳад.\n2. map аз ҳар элемент як натиҷа месозад.\n3. filter ҳамаи мувофиқҳоро медиҳад.\n4. find танҳо аввалин мувофиқро медиҳад; набошад undefined.",
+            "ru": "1. forEach выполняет действие для каждого элемента, не возвращая массив результата.\n2. map создаёт по результату на каждый элемент.\n3. filter возвращает все подходящие элементы.\n4. find возвращает первый подходящий либо undefined."
+          },
+          "code": "const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(n => n * 2);\nconst even = numbers.filter(n => n % 2 === 0);\nconst firstEven = numbers.find(n => n % 2 === 0);\nnumbers.forEach(n => console.log(n));\nconsole.log(doubled, even, firstEven);",
+          "language": "javascript",
+          "output": {
+            "tg": "[2,4,6,8] · [2,4] · 2",
+            "ru": "[2,4,6,8] · [2,4] · 2"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "const result = numbers.forEach(...) → undefined, на array. Callback-и map бояд return дошта бошад; бо { } return-ро фаромӯш накунед. Сурат танҳо як слайд аз маҷмуа аст.",
+            "ru": "const result = numbers.forEach(...) даёт undefined. Callback map должен возвращать значение; при { } не забудьте return. На фотографии виден один слайд, а не вся презентация."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-array-transform-q1",
+          "question": {
+            "tg": "map чӣ медиҳад?",
+            "ru": "Что возвращает map?"
+          },
+          "answer": {
+            "tg": "Array-и нав бо натиҷаи callback барои ҳар элемент; дар мисол [2,4,6,8].",
+            "ru": "Новый массив с результатом callback для каждого элемента; в примере [2,4,6,8]."
+          },
+          "options": [
+            {
+              "tg": "Array-и нав",
+              "ru": "Новый массив"
+            },
+            {
+              "tg": "Фақат аввалин элемент",
+              "ru": "Только первый элемент"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "js-array-transform-q2",
+          "question": {
+            "tg": "filter ва find чӣ фарқ доранд?",
+            "ru": "Чем отличаются filter и find?"
+          },
+          "answer": {
+            "tg": "filter array медиҳад, find як элемент ё undefined.",
+            "ru": "filter возвращает массив, find — элемент либо undefined."
+          },
+          "options": [
+            {
+              "tg": "Якхелаанд",
+              "ru": "Одинаковы"
+            },
+            {
+              "tg": "Ҳама / аввалин",
+              "ru": "Все / первый"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(n => n * 2);\nconst even = numbers.filter(n => n % 2 === 0);\nconst firstEven = numbers.find(n => n % 2 === 0);\nnumbers.forEach(n => console.log(n));\nconsole.log(doubled, even, firstEven);",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-array-aggregate",
+      "title": {
+        "tg": "JavaScript: reduce, some, every ва toSorted",
+        "ru": "JavaScript: reduce, some, every и toSorted"
+      },
+      "summary": {
+        "tg": "Ҷамъ, шарт ва тартиби array-ро ҳисоб кунед.",
+        "ru": "Посчитайте сумму, проверьте условия и упорядочьте массив."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-132"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. reduce ҷамъро аз 0 оғоз мекунад.\n2. some: ақаллан яке; every: ҳама.\n3. toSorted array-и нави тартибдор медиҳад.\n4. Барои рақам comparator (a,b)=>a-b лозим аст.",
+            "ru": "1. reduce начинает сумму с 0.\n2. some: хотя бы один; every: все.\n3. toSorted возвращает новый упорядоченный массив.\n4. Для чисел нужен comparator (a,b)=>a-b."
+          },
+          "code": "const values = [10, 2, 5];\nconst total = values.reduce((sum, n) => sum + n, 0);\nconst hasLarge = values.some(n => n > 8);\nconst allPositive = values.every(n => n > 0);\nconst ordered = values.toSorted((a, b) => a - b);\nconsole.log(total, hasLarge, allPositive, ordered);",
+          "language": "javascript",
+          "output": {
+            "tg": "17 true true [2,5,10]",
+            "ru": "17 true true [2,5,10]"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "sort array-и аслиро иваз мекунад, toSorted не. toSorted браузери муосир мехоҳад; fallback: [...values].sort(...). reduce бе initial value барои [] хато медиҳад; every([]) true ва some([]) false аст.",
+            "ru": "sort изменяет исходный массив, toSorted — нет. В старом браузере используйте [...values].sort(...). reduce без начального значения бросает ошибку на []; every([]) даёт true, some([]) — false."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-array-aggregate-q1",
+          "question": {
+            "tg": "Чаро reduce аз 0 оғоз мешавад?",
+            "ru": "Зачем reduce начинает с 0?"
+          },
+          "answer": {
+            "tg": "Ҷамъ қимати аввал дорад ва [] бехато 0 медиҳад.",
+            "ru": "Сумма имеет начальное значение, а [] возвращает 0 без ошибки."
+          },
+          "options": [
+            {
+              "tg": "Барои [] ҳам",
+              "ru": "Для пустого массива тоже"
+            },
+            {
+              "tg": "Барои CSS",
+              "ru": "Для CSS"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "js-array-aggregate-q2",
+          "question": {
+            "tg": "toSorted array-и аслиро иваз мекунад?",
+            "ru": "Меняет ли toSorted исходный массив?"
+          },
+          "answer": {
+            "tg": "Не, нусхаи нав медиҳад. sort бошад array-и аслиро иваз мекунад.",
+            "ru": "Нет, возвращает новую копию. sort меняет исходный массив."
+          },
+          "options": [
+            {
+              "tg": "Ҳа",
+              "ru": "Да"
+            },
+            {
+              "tg": "Не",
+              "ru": "Нет"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "const values = [10, 2, 5];\nconst total = values.reduce((sum, n) => sum + n, 0);\nconst hasLarge = values.some(n => n > 8);\nconst allPositive = values.every(n => n > 0);\nconst ordered = values.toSorted((a, b) => a - b);\nconsole.log(total, hasLarge, allPositive, ordered);",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-gcd-lcm",
+      "title": {
+        "tg": "JavaScript: НОД ва НОК",
+        "ru": "JavaScript: НОД и НОК"
+      },
+      "summary": {
+        "tg": "Бо боқимонда divisor-и умумиро ёбед ва НОК ҳисоб кунед.",
+        "ru": "Найдите общий делитель через остаток и вычислите НОК."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-115"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. a ва b рақамҳои бутуни ғайриманфӣ мебошанд.\n2. Дар gcd a,b → b,a%b кунед, то b=0 шавад.\n3. a-и боқимонда НОД аст.\n4. НОК = (a/НОД)*b; агар яке 0 бошад, натиҷа 0.",
+            "ru": "1. a и b — неотрицательные целые.\n2. В gcd заменяйте a,b на b,a%b, пока b не станет 0.\n3. Оставшееся a — НОД.\n4. НОК = (a/НОД)*b; если один аргумент 0, ответ 0."
+          },
+          "code": "function gcd(a, b) {\n  while (b !== 0) {\n    [a, b] = [b, a % b];\n  }\n  return a;\n}\nfunction lcm(a, b) {\n  return a === 0 || b === 0 ? 0 : (a / gcd(a, b)) * b;\n}\nconsole.log(gcd(4, 6), lcm(4, 6));",
+          "language": "javascript",
+          "output": {
+            "tg": "2 12",
+            "ru": "2 12"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Сурат аз max то 1 divisor меҷӯяд; барои мусбат дуруст, вале суст аст. Ин ҷо алгоритми Евклид шарҳ дода шудааст. Вуруд ва натиҷа дар доираи safe integer бошанд; барои float ин алгоритмро истифода накунед.",
+            "ru": "На фотографии делитель перебирается от max до 1: для положительных работает, но медленно. Здесь разобран алгоритм Евклида. Вход и результат должны помещаться в safe integer; для дробных значений этот алгоритм не используйте."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-gcd-lcm-q1",
+          "question": {
+            "tg": "gcd(4,6) чанд аст?",
+            "ru": "Чему равен gcd(4,6)?"
+          },
+          "answer": {
+            "tg": "2: калонтарин рақаме, ки 4 ва 6 ба он пурра тақсим мешаванд.",
+            "ru": "2: наибольшее число, на которое 4 и 6 делятся без остатка."
+          },
+          "options": [
+            {
+              "tg": "2",
+              "ru": "2"
+            },
+            {
+              "tg": "12",
+              "ru": "12"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "js-gcd-lcm-q2",
+          "question": {
+            "tg": "lcm(4,6) чанд аст?",
+            "ru": "Чему равен lcm(4,6)?"
+          },
+          "answer": {
+            "tg": "12: хурдтарин мусбате, ки ҳам ба 4 ва ҳам ба 6 тақсим мешавад.",
+            "ru": "12: наименьшее положительное число, делящееся и на 4, и на 6."
+          },
+          "options": [
+            {
+              "tg": "12",
+              "ru": "12"
+            },
+            {
+              "tg": "2",
+              "ru": "2"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function gcd(a, b) {\n  while (b !== 0) {\n    [a, b] = [b, a % b];\n  }\n  return a;\n}\nfunction lcm(a, b) {\n  return a === 0 || b === 0 ? 0 : (a / gcd(a, b)) * b;\n}\nconsole.log(gcd(4, 6), lcm(4, 6));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-object-values",
+      "title": {
+        "tg": "JavaScript: Object.values ва join",
+        "ru": "JavaScript: Object.values и join"
+      },
+      "summary": {
+        "tg": "Арзишҳои object-ро бо фосила пайваст карда, дуюмро такрор кунед.",
+        "ru": "Соедините значения объекта пробелами и повторите второе."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Object.values array-и арзишҳоро медиҳад.\n2. join(\" \") байни онҳо як фосила мегузорад.\n3. Агар ду арзиш ё зиёд бошад, дуюмро ба охир илова кунед.\n4. Барои як арзиш онро такрор намекунем; барои {} матни холӣ.",
+            "ru": "1. Object.values возвращает массив значений.\n2. join(\" \") вставляет один пробел между ними.\n3. Если значений минимум два, добавьте второе в конец.\n4. Единственное значение не повторяем; для {} возвращаем пустую строку."
+          },
+          "code": "function repeatSecond(obj) {\n  const values = Object.values(obj);\n  if (values.length >= 2) values.push(values[1]);\n  return values.join(\" \");\n}\nconsole.log(repeatSecond({1: \"Mommy\", 2: \"please\", 3: \"help\"}));",
+          "language": "javascript",
+          "output": {
+            "tg": "Mommy please help please",
+            "ru": "Mommy please help please"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "obj[1], obj[2], obj[3] танҳо се key-и муайянро мегирад. Object.values барои шумораи дигар ҳам кор мекунад. Тартиби key-ҳои integer аввал рақамӣ аст; барои тартиби комилан муайян array истифода кунед.",
+            "ru": "obj[1], obj[2], obj[3] жёстко привязаны к трём ключам. Object.values работает с другим количеством. Целочисленные ключи идут в числовом порядке; для произвольного заданного порядка используйте массив."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-object-values-q1",
+          "question": {
+            "tg": "join(\" \") чӣ мекунад?",
+            "ru": "Что делает join(\" \")?"
+          },
+          "answer": {
+            "tg": "Элементҳои array-ро ба як string бо фосила дар байни онҳо табдил медиҳад.",
+            "ru": "Соединяет элементы массива в строку, вставляя пробел между ними."
+          },
+          "options": [
+            {
+              "tg": "Array-и object месозад",
+              "ru": "Создаёт массив объектов"
+            },
+            {
+              "tg": "Матн месозад",
+              "ru": "Создаёт строку"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function repeatSecond(obj) {\n  const values = Object.values(obj);\n  if (values.length >= 2) values.push(values[1]);\n  return values.join(\" \");\n}\nconsole.log(repeatSecond({1: \"Mommy\", 2: \"please\", 3: \"help\"}));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-count-by-field",
+      "title": {
+        "tg": "JavaScript: ҳисоб аз рӯи field",
+        "ru": "JavaScript: подсчёт по полю"
+      },
+      "summary": {
+        "tg": "Чанд user role-и admin дорад?",
+        "ru": "Сколько пользователей имеют роль admin?"
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Барои ҳар object як бор гузаред.\n2. item[key] field-и номи дар key бударо мехонад.\n3. Бо === value-ро муқоиса кунед.\n4. Ҳар мувофиқ count-ро 1 зиёд мекунад.",
+            "ru": "1. Переберите каждый объект один раз.\n2. item[key] читает поле с именем из переменной key.\n3. Сравните значение через ===.\n4. Каждое совпадение увеличивает count на 1."
+          },
+          "code": "function countByField(items, key, value) {\n  let count = 0;\n  for (const item of items) {\n    if (item[key] === value) count++;\n  }\n  return count;\n}\nconsole.log(countByField([{role:\"admin\"},{role:\"user\"},{role:\"admin\"}], \"role\", \"admin\"));",
+          "language": "javascript",
+          "output": {
+            "tg": "2",
+            "ru": "2"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "item.key ҳамеша field-и айнан \"key\"-ро мехонад. item[key] номи тағйирёбандаро мегирад. === string \"1\"-ро бо number 1 баробар намегирад.",
+            "ru": "item.key всегда читает поле с буквальным именем key. item[key] использует имя из переменной. === не приравнивает строку \"1\" к числу 1."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-count-by-field-q1",
+          "question": {
+            "tg": "Барои номи field дар variable кадом syntax?",
+            "ru": "Как читать поле с именем из переменной?"
+          },
+          "answer": {
+            "tg": "item[key]: қавси квадратӣ номи дар variable бударо истифода мекунад.",
+            "ru": "item[key]: квадратные скобки используют имя из переменной."
+          },
+          "options": [
+            {
+              "tg": "item[key]",
+              "ru": "item[key]"
+            },
+            {
+              "tg": "item.key",
+              "ru": "item.key"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function countByField(items, key, value) {\n  let count = 0;\n  for (const item of items) {\n    if (item[key] === value) count++;\n  }\n  return count;\n}\nconsole.log(countByField([{role:\"admin\"},{role:\"user\"},{role:\"admin\"}], \"role\", \"admin\"));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-object-pairs",
+      "title": {
+        "tg": "JavaScript: object ба ҷуфтҳои key/value",
+        "ru": "JavaScript: объект в пары key/value"
+      },
+      "summary": {
+        "tg": "Object.entries ва sort-ро якҷо истифода кунед.",
+        "ru": "Используйте Object.entries и sort вместе."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Object.entries ҳар field-ро ба [key,value] табдил медиҳад.\n2. Comparator key-и ҳар ҷуфтро мегирад.\n3. localeCompare тартиби матнии key-ро медиҳад.\n4. Арзиш бо key-и худ мемонад.",
+            "ru": "1. Object.entries превращает поле в [key,value].\n2. Comparator берёт ключ каждой пары.\n3. localeCompare задаёт текстовый порядок ключей.\n4. Значение остаётся рядом со своим ключом."
+          },
+          "code": "function sortedPairs(obj) {\n  return Object.entries(obj).sort(([a], [b]) => a.localeCompare(b));\n}\nconsole.log(sortedPairs({b:2, a:1}));",
+          "language": "javascript",
+          "output": {
+            "tg": "[[\"a\",1],[\"b\",2]]",
+            "ru": "[[\"a\",1],[\"b\",2]]"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "sort() бе comparator тамоми pair-ро ба string табдил медиҳад. Барои тартиб танҳо аз рӯи key, comparator-ро равшан нависед.",
+            "ru": "sort() без comparator сравнивает строковое представление всей пары. Для сортировки только по ключу задайте comparator явно."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-object-pairs-q1",
+          "question": {
+            "tg": "Object.entries({a:1}) чӣ медиҳад?",
+            "ru": "Что возвращает Object.entries({a:1})?"
+          },
+          "answer": {
+            "tg": "[[\"a\",1]]: array-и ҷуфтҳои key ва value.",
+            "ru": "[[\"a\",1]]: массив пар ключа и значения."
+          },
+          "options": [
+            {
+              "tg": "[1]",
+              "ru": "[1]"
+            },
+            {
+              "tg": "[[\"a\",1]]",
+              "ru": "[[\"a\",1]]"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function sortedPairs(obj) {\n  return Object.entries(obj).sort(([a], [b]) => a.localeCompare(b));\n}\nconsole.log(sortedPairs({b:2, a:1}));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-deep-property",
+      "title": {
+        "tg": "JavaScript: хондани address.city",
+        "ru": "JavaScript: чтение address.city"
+      },
+      "summary": {
+        "tg": "Роҳи бо нуқта ҷудошударо қадам ба қадам хонед.",
+        "ru": "Прочитайте путь через точку по шагам."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. path.split(\".\") → [\"address\",\"city\"].\n2. Аз object оғоз кунед.\n3. Ҳар key ба сатҳи навбатӣ мегузарад.\n4. Агар сатҳ null ё key нест, undefined баргардонед.\n5. 0, false ва \"\" арзишҳои воқеӣ ҳастанд.",
+            "ru": "1. path.split(\".\") даёт [\"address\",\"city\"].\n2. Начните с объекта.\n3. Каждый ключ переводит на следующий уровень.\n4. При null или отсутствии ключа верните undefined.\n5. 0, false и \"\" — настоящие значения."
+          },
+          "code": "function deepProperty(obj, path) {\n  let current = obj;\n  for (const key of path.split(\".\")) {\n    if (current == null || !Object.hasOwn(current, key)) return undefined;\n    current = current[key];\n  }\n  return current;\n}\nconsole.log(deepProperty({address:{city:\"Dushanbe\"}}, \"address.city\"));",
+          "language": "javascript",
+          "output": {
+            "tg": "Dushanbe",
+            "ru": "Dushanbe"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Дар манбаъ return obj || \"undefined\" 0 ва false-ро гум мекунад, ва сатҳи нест метавонад crash кунад. undefined арзиши махсус аст, \"undefined\" бошад string. Машқ барои object-и маълумот ва path-и ғайрихолӣ аст.",
+            "ru": "В источнике return obj || \"undefined\" теряет 0 и false, а отсутствующий промежуточный уровень вызывает ошибку. undefined — специальное значение, \"undefined\" — строка. Упражнение рассчитано на объект данных и непустой путь."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-deep-property-q1",
+          "question": {
+            "tg": "Агар арзиш 0 бошад, онро гум мекунем?",
+            "ru": "Теряем ли значение 0?"
+          },
+          "answer": {
+            "tg": "Не. 0 арзиши воқеӣ аст; танҳо key-и набуда undefined медиҳад.",
+            "ru": "Нет. 0 — настоящее значение; undefined означает отсутствие ключа."
+          },
+          "options": [
+            {
+              "tg": "Ҳа",
+              "ru": "Да"
+            },
+            {
+              "tg": "Не",
+              "ru": "Нет"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "js-deep-property-q2",
+          "question": {
+            "tg": "\"undefined\" ва undefined якхелаанд?",
+            "ru": "Одинаковы ли \"undefined\" и undefined?"
+          },
+          "answer": {
+            "tg": "Не: аввал string, дуюм арзиши махсуси набудани натиҷа.",
+            "ru": "Нет: первое — строка, второе — специальное значение отсутствия результата."
+          },
+          "options": [
+            {
+              "tg": "Не",
+              "ru": "Нет"
+            },
+            {
+              "tg": "Ҳа",
+              "ru": "Да"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function deepProperty(obj, path) {\n  let current = obj;\n  for (const key of path.split(\".\")) {\n    if (current == null || !Object.hasOwn(current, key)) return undefined;\n    current = current[key];\n  }\n  return current;\n}\nconsole.log(deepProperty({address:{city:\"Dushanbe\"}}, \"address.city\"));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-category-stats",
+      "title": {
+        "tg": "JavaScript: омори категорияи маҳсулот",
+        "ru": "JavaScript: статистика категории товаров"
+      },
+      "summary": {
+        "tg": "count, totalPrice ва avgPrice-ро танҳо барои категорияи интихобшуда ҳисоб кунед.",
+        "ru": "Посчитайте count, totalPrice и avgPrice только для выбранной категории."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Ҳисобҳоро аз 0 оғоз кунед.\n2. Агар category мувофиқ набошад, гузаред.\n3. count-ро зиёд ва price-ро ҷамъ кунед.\n4. avgPrice=totalPrice/count, агар count>0 бошад.",
+            "ru": "1. Начните счётчики с 0.\n2. Пропускайте неподходящую category.\n3. Увеличивайте count и прибавляйте price.\n4. avgPrice=totalPrice/count, если count>0."
+          },
+          "code": "function categoryStats(products, category) {\n  let count = 0, totalPrice = 0;\n  for (const product of products) {\n    if (product.category !== category) continue;\n    count++;\n    totalPrice += product.price;\n  }\n  return {count, totalPrice, avgPrice: count ? totalPrice / count : 0};\n}\nconsole.log(categoryStats([{category:\"kitchen\",price:12},{category:\"electronics\",price:250}], \"kitchen\"));",
+          "language": "javascript",
+          "output": {
+            "tg": "{count:1,totalPrice:12,avgPrice:12}",
+            "ru": "{count:1,totalPrice:12,avgPrice:12}"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Шарт бояд count>0 бошад, на totalPrice>0: маҳсулоти нархаш 0 ҳам маҳсулот аст. Дар сурат sample аз рост бурида шудааст; мисол ин ҷо мустақил ва пурра аст. Вуруд price-и number-и ғайриманфӣ дорад.",
+            "ru": "Условие должно проверять count>0, а не totalPrice>0: товар с нулевой ценой тоже считается. Фото обрезает sample справа; здесь приведён самостоятельный полный пример. Вход содержит неотрицательные числовые price."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-category-stats-q1",
+          "question": {
+            "tg": "Чаро пеш аз тақсим count санҷида мешавад?",
+            "ru": "Зачем проверять count перед делением?"
+          },
+          "answer": {
+            "tg": "То барои категорияи холӣ ба 0 тақсим накунем. Дар ин шарт avgPrice барои он 0 аст.",
+            "ru": "Чтобы не делить на 0 для пустой категории. По условию её avgPrice равен 0."
+          },
+          "options": [
+            {
+              "tg": "Барои sort",
+              "ru": "Для sort"
+            },
+            {
+              "tg": "Ба 0 тақсим нашавад",
+              "ru": "Избежать деления на 0"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function categoryStats(products, category) {\n  let count = 0, totalPrice = 0;\n  for (const product of products) {\n    if (product.category !== category) continue;\n    count++;\n    totalPrice += product.price;\n  }\n  return {count, totalPrice, avgPrice: count ? totalPrice / count : 0};\n}\nconsole.log(categoryStats([{category:\"kitchen\",price:12},{category:\"electronics\",price:250}], \"kitchen\"));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-average-score",
+      "title": {
+        "tg": "JavaScript: миёнаи баҳои донишҷӯ",
+        "ru": "JavaScript: средний балл студента"
+      },
+      "summary": {
+        "tg": "Барои ҳар донишҷӯ object-и name ва avg созед.",
+        "ru": "Создайте объект с name и avg для каждого студента."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161",
+        "photo-171"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. map ҳар донишҷӯро ба натиҷаи нав табдил медиҳад.\n2. reduce баҳоро аз 0 ҷамъ мекунад.\n3. Ҷамъро ба шумораи баҳо тақсим кунед.\n4. Барои scores=[] avg=null: баҳо ҳоло нест.",
+            "ru": "1. map превращает каждого студента в новый результат.\n2. reduce суммирует оценки начиная с 0.\n3. Разделите сумму на число оценок.\n4. Для scores=[] используйте avg=null: оценок пока нет."
+          },
+          "code": "function averageScores(students) {\n  return students.map(student => {\n    const sum = student.scores.reduce((total, score) => total + score, 0);\n    return {name:student.name, avg:student.scores.length ? sum/student.scores.length : null};\n  });\n}\nconsole.log(averageScores([{name:\"Ali\",scores:[80,90,100]},{name:\"Sara\",scores:[70,75]}]));",
+          "language": "javascript",
+          "output": {
+            "tg": "[{name:\"Ali\",avg:90},{name:\"Sara\",avg:72.5}]",
+            "ru": "[{name:\"Ali\",avg:90},{name:\"Sara\",avg:72.5}]"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "reduce бе 0 барои [] хато медиҳад; тақсим ба length=0 NaN медиҳад. null-и холӣ аз баҳои ҳақиқии 0 фарқ мекунад. Ду сурати ҳамин мавзӯъ як дарс шуданд.",
+            "ru": "reduce без 0 бросает ошибку на [], а деление на length=0 даёт NaN. null для отсутствия оценок отличается от настоящего среднего 0. Две фотографии этой темы объединены в один урок."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-average-score-q1",
+          "question": {
+            "tg": "Миёнаи [80,90,100] чанд аст?",
+            "ru": "Среднее [80,90,100] равно?"
+          },
+          "answer": {
+            "tg": "90: (80+90+100)/3=270/3.",
+            "ru": "90: (80+90+100)/3=270/3."
+          },
+          "options": [
+            {
+              "tg": "90",
+              "ru": "90"
+            },
+            {
+              "tg": "270",
+              "ru": "270"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "js-average-score-q2",
+          "question": {
+            "tg": "scores=[] дар ин машқ чӣ медиҳад?",
+            "ru": "Что даёт scores=[] в этом упражнении?"
+          },
+          "answer": {
+            "tg": "avg:null: барои ҳисоб ҳоло ягон баҳо нест.",
+            "ru": "avg:null: оценок для расчёта пока нет."
+          },
+          "options": [
+            {
+              "tg": "NaN",
+              "ru": "NaN"
+            },
+            {
+              "tg": "null",
+              "ru": "null"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function averageScores(students) {\n  return students.map(student => {\n    const sum = student.scores.reduce((total, score) => total + score, 0);\n    return {name:student.name, avg:student.scores.length ? sum/student.scores.length : null};\n  });\n}\nconsole.log(averageScores([{name:\"Ali\",scores:[80,90,100]},{name:\"Sara\",scores:[70,75]}]));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-age-birthday",
+      "title": {
+        "tg": "JavaScript: синну сол бо рӯзи таваллуд",
+        "ru": "JavaScript: возраст с учётом дня рождения"
+      },
+      "summary": {
+        "tg": "Танҳо фарқи солҳо кофӣ нест: зодрӯз расидааст ё не?",
+        "ru": "Разницы годов мало: день рождения уже наступил или ещё нет?"
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Сол, моҳ ва рӯзро аз YYYY-MM-DD гиред.\n2. age=соли ҳозира−соли таваллуд.\n3. Агар моҳ/рӯзи ҳозира пеш аз зодрӯз бошад, 1 кам кунед.\n4. asOf-ро параметр медиҳем: тест аз вақти компютер вобаста намешавад.",
+            "ru": "1. Получите год, месяц и день из YYYY-MM-DD.\n2. age=текущий год−год рождения.\n3. Если текущая дата раньше дня рождения в этом году, вычтите 1.\n4. Передайте asOf параметром: проверка не зависит от часов компьютера."
+          },
+          "code": "function ageOn(birth, asOf) {\n  const [by, bm, bd] = birth.split(\"-\").map(Number);\n  const [y, m, d] = asOf.split(\"-\").map(Number);\n  return y - by - (m < bm || (m === bm && d < bd) ? 1 : 0);\n}\nconsole.log(ageOn(\"2000-03-01\", \"2026-02-28\"));\nconsole.log(ageOn(\"2000-03-01\", \"2026-03-01\"));",
+          "language": "javascript",
+          "output": {
+            "tg": "25\n26",
+            "ru": "25\n26"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "2026-year солро доимӣ мекунад ва рӯзи таваллудро намесанҷад. Дар ин машқ санаҳо дурустанд, asOf пеш аз birth нест; барои 29 феврал зодрӯзро дар соли ғайрикабиса 1 март ҳисоб мекунем.",
+            "ru": "2026-year фиксирует год и игнорирует день рождения. Здесь даты корректны, asOf не раньше birth; для 29 февраля в невисокосном году считаем день рождения 1 марта."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-age-birthday-q1",
+          "question": {
+            "tg": "Чаро y-by ҳамеша синну соли дуруст нест?",
+            "ru": "Почему y-by не всегда правильный возраст?"
+          },
+          "answer": {
+            "tg": "Зодрӯз метавонад ҳоло нарасида бошад; дар ин ҳолат 1 кам мекунем.",
+            "ru": "День рождения мог ещё не наступить; тогда вычитаем 1."
+          },
+          "options": [
+            {
+              "tg": "Зодрӯзро санҷем",
+              "ru": "Проверить день рождения"
+            },
+            {
+              "tg": "Рӯз лозим нест",
+              "ru": "День не нужен"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function ageOn(birth, asOf) {\n  const [by, bm, bd] = birth.split(\"-\").map(Number);\n  const [y, m, d] = asOf.split(\"-\").map(Number);\n  return y - by - (m < bm || (m === bm && d < bd) ? 1 : 0);\n}\nconsole.log(ageOn(\"2000-03-01\", \"2026-02-28\"));\nconsole.log(ageOn(\"2000-03-01\", \"2026-03-01\"));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-date-range",
+      "title": {
+        "tg": "JavaScript: санаи аввал, охир ва фосила",
+        "ru": "JavaScript: первая, последняя дата и интервал"
+      },
+      "summary": {
+        "tg": "Аз array-и санаҳои ISO диапазон созед.",
+        "ru": "Найдите диапазон в массиве ISO-дат."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Дар ин машқ қисми YYYY-MM-DD рӯзи calendar-и UTC аст.\n2. Онро ба timestamp табдил диҳед.\n3. min/max аввалу охирро медиҳад.\n4. Фарқи миллисекундро ба 86400000 тақсим кунед.\n5. Барои [] null медиҳем.",
+            "ru": "1. В упражнении часть YYYY-MM-DD означает календарный день UTC.\n2. Преобразуйте её в timestamp.\n3. min/max находят начало и конец.\n4. Разделите разность миллисекунд на 86400000.\n5. Для [] возвращаем null."
+          },
+          "code": "function dateRangeInfo(dates) {\n  if (!dates.length) return null;\n  const days = dates.map(value => Date.parse(value.slice(0,10) + \"T00:00:00Z\"));\n  const earliest = Math.min(...days), latest = Math.max(...days);\n  return {earliest:new Date(earliest).toISOString().slice(0,10),\n    latest:new Date(latest).toISOString().slice(0,10), daysBetween:(latest-earliest)/86400000};\n}\nconsole.log(dateRangeInfo([\"2025-01-10\", \"2025-01-15T12:00:00Z\", \"2024-12-31\"]));",
+          "language": "javascript",
+          "output": {
+            "tg": "{earliest:\"2024-12-31\",latest:\"2025-01-15\",daysBetween:15}",
+            "ru": "{earliest:\"2024-12-31\",latest:\"2025-01-15\",daysBetween:15}"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Санаҳо дуруст ва array хурд мебошанд. Мо рӯзи навишташудаи ISO-ро ҳисоб мекунем, на фарқи соати timestamp-и timezone-и дигар. UTC таъсири тағйири соати тобистонаро барои ин ҳисоб бартараф мекунад.",
+            "ru": "Даты должны быть корректными, массив — небольшим. Считаем записанные календарные дни ISO, а не разницу часов timestamp с другими часовыми поясами. UTC убирает влияние перехода на летнее время в этом расчёте."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-date-range-q1",
+          "question": {
+            "tg": "Барои чӣ 86400000?",
+            "ru": "Зачем 86400000?"
+          },
+          "answer": {
+            "tg": "Дар як рӯзи UTC 24*60*60*1000 миллисекунд аст.",
+            "ru": "В сутках UTC 24*60*60*1000 миллисекунд."
+          },
+          "options": [
+            {
+              "tg": "Миллисекунди як рӯз",
+              "ru": "Миллисекунды за сутки"
+            },
+            {
+              "tg": "Як сол",
+              "ru": "Один год"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function dateRangeInfo(dates) {\n  if (!dates.length) return null;\n  const days = dates.map(value => Date.parse(value.slice(0,10) + \"T00:00:00Z\"));\n  const earliest = Math.min(...days), latest = Math.max(...days);\n  return {earliest:new Date(earliest).toISOString().slice(0,10),\n    latest:new Date(latest).toISOString().slice(0,10), daysBetween:(latest-earliest)/86400000};\n}\nconsole.log(dateRangeInfo([\"2025-01-10\", \"2025-01-15T12:00:00Z\", \"2024-12-31\"]));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-longest-streak",
+      "title": {
+        "tg": "JavaScript: рӯзҳои пайдарпай",
+        "ru": "JavaScript: последовательные дни"
+      },
+      "summary": {
+        "tg": "Дарозтарин қатори рӯзҳои пайдарпайро ёбед.",
+        "ru": "Найдите самую длинную серию последовательных дней."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Санаҳоро ба рақами рӯзи UTC табдил диҳед.\n2. Бо Set рӯзи такрориро як бор гиред.\n3. Рӯзҳоро sort кунед.\n4. Фарқ=1 бошад current++, набошад current=1.\n5. best калонтарин current-ро нигоҳ медорад.",
+            "ru": "1. Превратите даты в номера дней UTC.\n2. Через Set уберите повторные дни.\n3. Отсортируйте дни.\n4. При разности 1 увеличьте current, иначе начните с 1.\n5. best хранит максимальный current."
+          },
+          "code": "function longestStreak(dates) {\n  const days = [...new Set(dates.map(date => Date.parse(date + \"T00:00:00Z\")/86400000))].sort((a,b)=>a-b);\n  let current = 0, best = 0;\n  for (let i=0; i<days.length; i++) {\n    current = i>0 && days[i]-days[i-1]===1 ? current+1 : 1;\n    best = Math.max(best, current);\n  }\n  return best;\n}\nconsole.log(longestStreak([\"2022-12-13\",\"2022-12-10\",\"2022-12-11\",\"2022-12-12\",\"2022-12-21\"]));",
+          "language": "javascript",
+          "output": {
+            "tg": "4",
+            "ru": "4"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Рӯзи такрорӣ қатори нав нест. Пеш аз муқоиса sort лозим аст. Санаҳои дурусти YYYY-MM-DD қабул мешаванд, [] → 0. Sample-и сурат аз рост нопурра аст; ин ҷо sample-и пурраи таълимӣ дода шуд.",
+            "ru": "Повтор дня не создаёт новый день серии. Перед сравнением нужен sort. Вход — корректные YYYY-MM-DD, [] даёт 0. Sample на фото обрезан справа; здесь дан полный учебный пример."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-longest-streak-q1",
+          "question": {
+            "tg": "Чаро Set лозим аст?",
+            "ru": "Зачем Set?"
+          },
+          "answer": {
+            "tg": "Рӯзи якхела танҳо як рӯз ҳисоб мешавад; такрор best-ро зиёд намекунад.",
+            "ru": "Одинаковая дата считается одним днём; повтор не увеличивает best."
+          },
+          "options": [
+            {
+              "tg": "Такрорро мегирад",
+              "ru": "Убирает дубликаты"
+            },
+            {
+              "tg": "Рӯз илова мекунад",
+              "ru": "Добавляет дни"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function longestStreak(dates) {\n  const days = [...new Set(dates.map(date => Date.parse(date + \"T00:00:00Z\")/86400000))].sort((a,b)=>a-b);\n  let current = 0, best = 0;\n  for (let i=0; i<days.length; i++) {\n    current = i>0 && days[i]-days[i-1]===1 ? current+1 : 1;\n    best = Math.max(best, current);\n  }\n  return best;\n}\nconsole.log(longestStreak([\"2022-12-13\",\"2022-12-10\",\"2022-12-11\",\"2022-12-12\",\"2022-12-21\"]));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "js-group-by-city",
+      "title": {
+        "tg": "JavaScript: гурӯҳбандӣ аз рӯи шаҳр",
+        "ru": "JavaScript: группировка по городу"
+      },
+      "summary": {
+        "tg": "Номҳоро аз рӯи address.city ҷудо ва тартибдор кунед.",
+        "ru": "Разделите имена по address.city и упорядочьте группы."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-161"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. Map барои ҳар шаҳр array-и номҳоро нигоҳ медорад.\n2. Шаҳр нав бошад, [] созед.\n3. Номро push кунед.\n4. Шаҳрҳо ва номҳои дохилро алоҳида sort кунед.",
+            "ru": "1. Map хранит массив имён для каждого города.\n2. Для нового города создайте [].\n3. Добавьте имя через push.\n4. Отдельно отсортируйте города и имена в группах."
+          },
+          "code": "function groupByCity(users) {\n  const groups = new Map();\n  for (const user of users) {\n    const city = user.address.city;\n    if (!groups.has(city)) groups.set(city, []);\n    groups.get(city).push(user.name);\n  }\n  return [...groups].sort(([a],[b])=>a.localeCompare(b)).map(([city,names])=>({city,names:names.sort((a,b)=>a.localeCompare(b))}));\n}\nconsole.log(groupByCity([{name:\"Zara\",address:{city:\"Dushanbe\"}},{name:\"Alex\",address:{city:\"Dushanbe\"}},{name:\"Boris\",address:{city:\"Khorog\"}}]));",
+          "language": "javascript",
+          "output": {
+            "tg": "[{city:\"Dushanbe\",names:[\"Alex\",\"Zara\"]},{city:\"Khorog\",names:[\"Boris\"]}]",
+            "ru": "[{city:\"Dushanbe\",names:[\"Alex\",\"Zara\"]},{city:\"Khorog\",names:[\"Boris\"]}]"
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Шумораи user ва шаҳр якхела нест. Дар ин машқ ҳамаи object-ҳо name ва address.city доранд; пеш аз истифодаи маълумоти API shape-ро санҷед. map дар охир натиҷаи хондашаванда месозад.",
+            "ru": "Число пользователей и городов может отличаться. Здесь у каждого объекта есть name и address.city; перед использованием API-данных проверьте структуру. Завершающий map создаёт понятный результат."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "js-group-by-city-q1",
+          "question": {
+            "tg": "Key-и гурӯҳ кадом аст?",
+            "ru": "Что является ключом группы?"
+          },
+          "answer": {
+            "tg": "address.city: user-ҳои як шаҳр дар як array-и номҳо ҷамъ мешаванд.",
+            "ru": "address.city: пользователи одного города попадают в один массив имён."
+          },
+          "options": [
+            {
+              "tg": "Шаҳр",
+              "ru": "Город"
+            },
+            {
+              "tg": "Синну сол",
+              "ru": "Возраст"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "function groupByCity(users) {\n  const groups = new Map();\n  for (const user of users) {\n    const city = user.address.city;\n    if (!groups.has(city)) groups.set(city, []);\n    groups.get(city).push(user.name);\n  }\n  return [...groups].sort(([a],[b])=>a.localeCompare(b)).map(([city,names])=>({city,names:names.sort((a,b)=>a.localeCompare(b))}));\n}\nconsole.log(groupByCity([{name:\"Zara\",address:{city:\"Dushanbe\"}},{name:\"Alex\",address:{city:\"Dushanbe\"}},{name:\"Boris\",address:{city:\"Khorog\"}}]));",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    }
+  ]
+}

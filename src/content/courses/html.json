@@ -1,1 +1,286 @@
-{"courseId":"html","sources":[],"files":[],"lessons":[]}
+{
+  "courseId": "html",
+  "sources": [
+    {
+      "id": "photo-179",
+      "title": "Telegram · 179 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/179"
+    },
+    {
+      "id": "photo-180",
+      "title": "Telegram · 180 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/180"
+    },
+    {
+      "id": "photo-181",
+      "title": "Telegram · 181 · просмотренное изображение",
+      "url": "https://t.me/programmerPOdCapot/181"
+    }
+  ],
+  "files": [
+    {
+      "id": "preview-dad8b10e6ee60314",
+      "title": "Превью Telegram · 179-0.jpg",
+      "url": "/course-files/dad8b10e6ee60314011e0cf9f506694b8a7141fc52e5e0dfb28618a2de45d666.jpg",
+      "bytes": 51038,
+      "sha256": "dad8b10e6ee60314011e0cf9f506694b8a7141fc52e5e0dfb28618a2de45d666",
+      "sourceIds": [
+        "photo-179",
+        "photo-180"
+      ]
+    },
+    {
+      "id": "preview-a4195c28d26efa02",
+      "title": "Превью Telegram · 181-0.jpg",
+      "url": "/course-files/a4195c28d26efa02be24a10507f5349719fc8c5a72c08b761c993e6aeb7e9b84.jpg",
+      "bytes": 46371,
+      "sha256": "a4195c28d26efa02be24a10507f5349719fc8c5a72c08b761c993e6aeb7e9b84",
+      "sourceIds": [
+        "photo-181"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "html-user-table",
+      "title": {
+        "tg": "HTML: ҷустуҷӯ, select ва ҷадвал",
+        "ru": "HTML: поиск, select и таблица"
+      },
+      "summary": {
+        "tg": "Сохтори панели users-ро аз сурати код фаҳмед.",
+        "ru": "Разберите структуру панели пользователей по снимку кода."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-179",
+        "photo-180"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. label input ва select-ро бо ном таъмин мекунад.\n2. option интихоби all/online/offline аст.\n3. thead сарлавҳа, tbody маълумот, tr сатр аст.\n4. Барои сарлавҳа th scope=\"col\", барои маълумот td истифода мешавад.\n5. input худ search ё filter иҷро намекунад: барои он JavaScript лозим аст.",
+            "ru": "1. label задаёт имя input и select.\n2. option предлагает all/online/offline.\n3. thead содержит заголовки, tbody — данные, tr — строку.\n4. Для заголовка нужен th scope=\"col\", для данных — td.\n5. Сам input не ищет и не фильтрует: это добавляет JavaScript."
+          },
+          "code": "<label>Ҷустуҷӯ <input type=\"search\" class=\"search\"></label>\n<label>Статус <select class=\"select\">\n  <option value=\"all\">All</option>\n  <option value=\"online\">Online</option>\n  <option value=\"offline\">Offline</option>\n</select></label>\n<button type=\"button\">+ Add User</button>\n<table>\n  <caption>Users</caption>\n  <thead><tr><th scope=\"col\">Full Name</th><th scope=\"col\">Status</th></tr></thead>\n  <tbody><tr><td>Ali</td><td>Online</td></tr></tbody>\n</table>",
+          "language": "html",
+          "output": {
+            "tg": "Ҷадвал як user-ро нишон медиҳад; ҷустуҷӯ ва Add User ҳоло танҳо элементҳои HTML мебошанд.",
+            "ru": "Таблица показывает одного пользователя; поиск и Add User пока являются только элементами HTML."
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Дар сурат барои header td аст; ин ҷо ба th ислоҳ шуд. Placeholder номи доимии field нест: label лозим аст. tbody-и холӣ бе JavaScript ягон user нишон намедиҳад.",
+            "ru": "На фото заголовки записаны через td; здесь исправлено на th. Placeholder не заменяет постоянный label. Пустой tbody без JavaScript не показывает пользователей."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "html-user-table-q1",
+          "question": {
+            "tg": "thead ва tbody чӣ фарқ доранд?",
+            "ru": "Чем отличаются thead и tbody?"
+          },
+          "answer": {
+            "tg": "thead сарлавҳаҳои ҷадвал, tbody сатрҳои маълумот аст.",
+            "ru": "thead содержит заголовки таблицы, tbody — строки данных."
+          },
+          "options": [
+            {
+              "tg": "Сарлавҳа / маълумот",
+              "ru": "Заголовки / данные"
+            },
+            {
+              "tg": "Якхелаанд",
+              "ru": "Одинаковы"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "html-user-table-q2",
+          "question": {
+            "tg": "class=\"search\" ҷустуҷӯ мекунад?",
+            "ru": "Выполняет ли class=\"search\" поиск?"
+          },
+          "answer": {
+            "tg": "Не. class номи selector аст; мантиқи ҷустуҷӯро JavaScript менависад.",
+            "ru": "Нет. class задаёт имя селектора; логику поиска пишут на JavaScript."
+          },
+          "options": [
+            {
+              "tg": "Не",
+              "ru": "Нет"
+            },
+            {
+              "tg": "Ҳа",
+              "ru": "Да"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "<label>Ҷустуҷӯ <input type=\"search\" class=\"search\"></label>\n<label>Статус <select class=\"select\">\n  <option value=\"all\">All</option>\n  <option value=\"online\">Online</option>\n  <option value=\"offline\">Offline</option>\n</select></label>\n<button type=\"button\">+ Add User</button>\n<table>\n  <caption>Users</caption>\n  <thead><tr><th scope=\"col\">Full Name</th><th scope=\"col\">Status</th></tr></thead>\n  <tbody><tr><td>Ali</td><td>Online</td></tr></tbody>\n</table>",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    },
+    {
+      "id": "html-user-actions",
+      "title": {
+        "tg": "HTML: тугмаҳои Edit, Delete ва Info",
+        "ru": "HTML: кнопки Edit, Delete и Info"
+      },
+      "summary": {
+        "tg": "Менюи амалҳоро бо HTML-и равшан созед.",
+        "ru": "Создайте понятное меню действий на HTML."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "photo-181"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадам ба қадам",
+            "ru": "По шагам"
+          },
+          "body": {
+            "tg": "1. button барои амали интерактивӣ аст.\n2. type=\"button\" submit-и тасодуфии form-ро пешгирӣ мекунад.\n3. details/summary кушодану пӯшидани менюро бе JavaScript медиҳанд.\n4. Матни Edit/Delete/Info номи дастрас аст.\n5. Барои иваз ё ҳазфи user handler ва API лозиманд; дар сурат онҳо нестанд.",
+            "ru": "1. button предназначен для интерактивного действия.\n2. type=\"button\" предотвращает случайную отправку формы.\n3. details/summary открывают и закрывают меню без JavaScript.\n4. Текст Edit/Delete/Info служит доступным именем.\n5. Для изменения или удаления пользователя нужны обработчики и API; на снимке их нет."
+          },
+          "code": "<details>\n  <summary>Амалҳои Ali</summary>\n  <button type=\"button\">Edit</button>\n  <button type=\"button\">Delete</button>\n  <button type=\"button\">Info</button>\n</details>",
+          "language": "html",
+          "output": {
+            "tg": "Кушодани summary менюро нишон медиҳад; тугмаҳо ҳоло маълумотро иваз намекунанд.",
+            "ru": "Открытие summary показывает меню; кнопки пока не изменяют данные."
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Дар сурат ⋮ ва dropdown ҳаст, аммо коди toggle нишон дода нашудааст. details ин ҷо варианти содашудаи омӯзишӣ аст. Агар icon-и Edit бо матни Edit бошад, alt=\"\" барои icon-и ороишӣ мувофиқ аст.",
+            "ru": "На фото есть ⋮ и dropdown, но код переключения не показан. details здесь — упрощённый учебный вариант. Если рядом с иконкой уже есть текст Edit, для декоративной иконки подходит alt=\"\"."
+          }
+        },
+        {
+          "title": {
+            "tg": "Дар бораи манбаъ",
+            "ru": "О материале"
+          },
+          "body": {
+            "tg": "Ин шарҳи матни хондашавандаи сурати канал аст. Код ва мисолҳо барои омӯзиш сода ва ислоҳ шудаанд. Қисми берун аз кадр ё файли PDF аз ин сурат хонда нашудааст.",
+            "ru": "Это разбор читаемой части фотографии канала. Код и примеры упрощены и исправлены для обучения. Текст за пределами кадра и исходный PDF по фотографии не восстановлены."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "html-user-actions-q1",
+          "question": {
+            "tg": "Чаро type=\"button\"?",
+            "ru": "Зачем type=\"button\"?"
+          },
+          "answer": {
+            "tg": "То дохили form пахш кардан онро тасодуфан submit накунад.",
+            "ru": "Чтобы нажатие внутри form случайно не отправляло форму."
+          },
+          "options": [
+            {
+              "tg": "Submit нашавад",
+              "ru": "Не отправлять форму"
+            },
+            {
+              "tg": "Барои ранги тугма",
+              "ru": "Для цвета кнопки"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "html-user-actions-q2",
+          "question": {
+            "tg": "Тугмаи Delete худ user-ро ҳазф мекунад?",
+            "ru": "Удаляет ли сама кнопка Delete пользователя?"
+          },
+          "answer": {
+            "tg": "Не. HTML тугмаро месозад; handler ва иҷозати сервер амалро иҷро мекунанд.",
+            "ru": "Нет. HTML создаёт кнопку; обработчик и разрешения сервера выполняют действие."
+          },
+          "options": [
+            {
+              "tg": "Не",
+              "ru": "Нет"
+            },
+            {
+              "tg": "Ҳа",
+              "ru": "Да"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Мисолро худ нависед. Пеш аз иҷро натиҷаро пешгӯӣ кунед, баъд як маълумоти вурудро иваз кунед ва сабабашро фаҳмонед.",
+          "ru": "Напишите пример самостоятельно. Сначала предскажите результат, затем измените одно входное значение и объясните изменение."
+        },
+        "hint": {
+          "tg": "Аз қадамҳои дарс оғоз кунед; ҷавобро пеш аз дидани ҳалли тайёр санҷед.",
+          "ru": "Начните с шагов урока; проверьте свой ответ до просмотра решения."
+        },
+        "solution": "<details>\n  <summary>Амалҳои Ali</summary>\n  <button type=\"button\">Edit</button>\n  <button type=\"button\">Delete</button>\n  <button type=\"button\">Info</button>\n</details>",
+        "criteria": [
+          {
+            "tg": "Натиҷаи мисоли аввал мувофиқ аст",
+            "ru": "Результат первого примера совпадает"
+          },
+          {
+            "tg": "Натиҷаи вуруди дигарро бо сухан фаҳмондам",
+            "ru": "Объяснил результат другого ввода словами"
+          }
+        ]
+      }
+    }
+  ]
+}

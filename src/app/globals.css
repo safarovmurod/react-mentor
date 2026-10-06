@@ -52,6 +52,17 @@
 .telegram-material summary {cursor:pointer;font-size:12px;}
 .telegram-material details a {display:inline-block;padding:8px;color:var(--primary);}
 .telegram-materials .course-files p {font-size:14px;line-height:1.7;}
+.course-months {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:24px;}
+.course-months a {display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid var(--border);border-radius:12px;color:var(--text);min-width:0;}
+.course-months a[aria-current=page] {border-color:var(--primary);background:var(--primary-soft);}
+.course-months span,.course-month-plan p {font-size:13px;color:var(--text-muted);line-height:1.6;}
+.course-month-plan {padding:20px;margin-bottom:24px;}
+.course-month-plan summary {font-weight:600;cursor:pointer;}
+.course-month-plan ol {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;list-style:none;padding:0;margin-top:16px;}
+.course-month-plan li a {display:flex;gap:12px;align-items:baseline;padding:12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);}
+.course-month-plan li span {flex-shrink:0;color:var(--text-muted);}
+.course-month-plan li strong {min-width:0;overflow-wrap:anywhere;}
+@media(max-width:600px) {.course-month-plan ol {grid-template-columns:1fr;}.course-months a {padding:12px;}}
 @media(max-width:700px) {.telegram-material-grid {grid-template-columns:1fr;}}
 @media(max-width:1100px) {.course-grid {grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:600px) {.course-grid {grid-template-columns:1fr;}.course-card {padding:20px;}.course-filters {flex-direction:column;align-items:stretch;}.course-lesson,.course-waiting {padding:20px;}.course-route {padding:16px;}}

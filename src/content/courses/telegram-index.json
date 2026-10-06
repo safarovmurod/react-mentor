@@ -9,7 +9,11 @@
     "possibleReposts": 39,
     "photos": 24,
     "videoWidgets": 33,
-    "originalAttachmentsRead": 0
+    "originalAttachmentsRead": 0,
+    "reviewedPreviewPhotos": 23,
+    "uniquePreviewPhotos": 20,
+    "confirmedPreviewDuplicates": 3,
+    "excludedServicePhotos": 1
   },
   "materials": [
     {
@@ -727,77 +731,67 @@
       "title": "Фото · 3",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "cpp",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/3"
-      ]
+      ],
+      "downloadUrl": "/course-files/9838972985c37fe0c56dd10e866b0c7be2dc4e71cdcd50fdeaa2a490dfa99157.jpg",
+      "courseUrl": "/courses/cpp/answers"
     },
     {
       "id": "photo-4-0",
       "title": "Фото · 4",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "cpp",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/4"
-      ]
+      ],
+      "downloadUrl": "/course-files/19478196add62e26309e026e9a163d91c564c54fb718e5e0eea8c2bbba798f0e.jpg",
+      "courseUrl": "/courses/cpp/answers"
     },
     {
       "id": "photo-5-0",
       "title": "Фото · 5",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "cpp",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/5"
-      ]
+      ],
+      "downloadUrl": "/course-files/1bb9a1ddf1dc47a09c0b9321f7851d710f5842ec30084576f9a31e70c7999752.jpg",
+      "courseUrl": "/courses/cpp/answers"
     },
     {
       "id": "photo-8-0",
       "title": "Фото · 8",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "cpp",
+      "status": "reviewed-preview",
       "urls": [
-        "https://t.me/programmerPOdCapot/8"
-      ]
-    },
-    {
-      "id": "photo-16-0",
-      "title": "Фото · 16",
-      "kind": "photo",
-      "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
-      "urls": [
-        "https://t.me/programmerPOdCapot/16"
-      ]
-    },
-    {
-      "id": "photo-18-0",
-      "title": "Фото · 18",
-      "kind": "photo",
-      "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
-      "urls": [
+        "https://t.me/programmerPOdCapot/8",
+        "https://t.me/programmerPOdCapot/16",
         "https://t.me/programmerPOdCapot/18"
-      ]
+      ],
+      "downloadUrl": "/course-files/64d853040c3e738858811f99c4d7377aa31467b0156072c04f57c21b2f9a4993.jpg",
+      "courseUrl": "/courses/cpp/answers"
     },
     {
       "id": "photo-51-0",
       "title": "Фото · 51",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "cpp",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/51"
-      ]
+      ],
+      "downloadUrl": "/course-files/30f1568c05ec75e34c6af56379794fb8e60804f25a911a2f5a949895a235c614.jpg",
+      "courseUrl": "/courses/cpp/answers"
     },
     {
       "id": "photo-93-0",
@@ -805,7 +799,7 @@
       "kind": "photo",
       "sizeLabel": "",
       "suggestedTopic": "unknown",
-      "status": "unread",
+      "status": "excluded-service-screen",
       "urls": [
         "https://t.me/programmerPOdCapot/93"
       ]
@@ -815,176 +809,196 @@
       "title": "Фото · 115",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/115"
-      ]
+      ],
+      "downloadUrl": "/course-files/7e0a4050174e89d1c018f4c4a0c591c95ab5564391aa1aa5ee429eba96a625b6.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-132-0",
       "title": "Фото · 132",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/132"
-      ]
+      ],
+      "downloadUrl": "/course-files/fb677bebbfbc6e95ee341985427ba606b26f84d67807501e8859035a7d708517.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-0",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/c3715e3579e156dc650047507bac6d0bd3ebd1041fa7d7455cbc04c4a565b55a.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-1",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/59e55530493b0186460c45ae5c743c20e33ab409bdb6fe5798039d15994ceff4.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-2",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/7c7aa6767292f730188a2a76a5923b6345217e0104eb1fc802ae1597c0fdc965.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-3",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/779b3c1e418841035c9d16d7a20962c81e7cc270b8f9da48bb07bd0b123196ba.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-4",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/f5706714b61ffb9d81a443e88dd64fe8a519fec7535f87236f843ad5ca0b0523.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-5",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/f0b700145d696c7b1974f4100b94c4daef6e82e4da5f3e94b07255bf10f54ffc.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-6",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/aff5ad5e96e34ed30aebf80419e63b40f271257c3af109f2a4e69d07e6db6d77.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-7",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/38e528f557efb5294fa85e72b2d0bc996630a381ef8603ecb143f52e32c7528d.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-8",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/178b5343a333e71b182496a9c708e4fa024a95a482293616d8fe80dd174be588.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-161-9",
       "title": "Фото · 161",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/161"
-      ]
+      ],
+      "downloadUrl": "/course-files/eb35dcbb31b2c232538f249337890254c11a3e4b2623de1244b4afea556db8f4.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-171-0",
       "title": "Фото · 171",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "javascript-1",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/171"
-      ]
+      ],
+      "downloadUrl": "/course-files/e8da13fcb63c98d4ff4d236ca6ac844f70a1dfa0fd09f7716a39350b40c9e5f1.jpg",
+      "courseUrl": "/courses/javascript-1/answers"
     },
     {
       "id": "photo-179-0",
       "title": "Фото · 179",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "html",
+      "status": "reviewed-preview",
       "urls": [
-        "https://t.me/programmerPOdCapot/179"
-      ]
-    },
-    {
-      "id": "photo-180-0",
-      "title": "Фото · 180",
-      "kind": "photo",
-      "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
-      "urls": [
+        "https://t.me/programmerPOdCapot/179",
         "https://t.me/programmerPOdCapot/180"
-      ]
+      ],
+      "downloadUrl": "/course-files/dad8b10e6ee60314011e0cf9f506694b8a7141fc52e5e0dfb28618a2de45d666.jpg",
+      "courseUrl": "/courses/html/answers"
     },
     {
       "id": "photo-181-0",
       "title": "Фото · 181",
       "kind": "photo",
       "sizeLabel": "",
-      "suggestedTopic": "unknown",
-      "status": "unread",
+      "suggestedTopic": "html",
+      "status": "reviewed-preview",
       "urls": [
         "https://t.me/programmerPOdCapot/181"
-      ]
+      ],
+      "downloadUrl": "/course-files/a4195c28d26efa02be24a10507f5349719fc8c5a72c08b761c993e6aeb7e9b84.jpg",
+      "courseUrl": "/courses/html/answers"
     },
     {
       "id": "video-6-0",
