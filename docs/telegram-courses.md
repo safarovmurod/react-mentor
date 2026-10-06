@@ -1,9 +1,25 @@
 # Courses and Telegram sources
 
-The existing React library remains published. The six channel-based course
-libraries currently contain **zero imported lessons or source files**. Their
-cards and sections explicitly show “Материалы ожидаются”. No Telegram history,
-PDF, screenshot or ZIP from this channel has been read in this implementation.
+The existing React library remains published. On 2026-10-06 the public channel
+preview became reachable. Ten preview pages were collected back to the first
+visible message: 151 message widgets, 100 document references, 24 photo widgets
+and 33 video widgets. This is the public preview, not proof of the complete
+authenticated history. The original PDF, ZIP, image and video bytes remain unread.
+
+Four readable messages (#77 Sass, #84 Git fetch, #191 JSON Server, #192 Axios)
+now provide 8 reviewed lessons, 37 questions and 8 manual practice tasks in CSS,
+Git and JavaScript 2. The examples, expanded explanations and corrections are
+explicit editorial additions. Sass @import deprecation and JSON Server 0.17.4
+CLI syntax were checked against official sources. HTML, JavaScript 1 and C++
+remain empty; no PDF-based lessons have been invented. Published source files
+still total zero.
+
+/courses/materials lists original Telegram message links, search and type
+filters. 61 filename/size groups preserve all 100 document links: the 39 matching
+metadata entries are possible reposts, **not confirmed byte duplicates**. There
+are 32 PDF metadata groups, about 151 MB at the displayed sizes. Larger videos
+and ZIPs account for much of the multi-gigabyte export. Do not demand a full
+5–10 GB export as the only way to begin analysis.
 
 ## Supply the sources
 
@@ -17,9 +33,22 @@ Archive the exported directory. This task's download tool accepts files up to
 
 The Browser plugin is unavailable in this session. An open user Telegram tab
 does not grant shell/Playwright access to its authenticated browser profile.
-Direct t.me requests returned proxy CONNECT 403; t.me was added to the cloud
-configuration draft, which requires review/save/publication before relying on it.
+The public t.me preview now returns 200. Document buttons and embedded message
+pages contain Telegram message URLs rather than original download URLs.
+cdn4.telesco.pe photos and Stepik/Tailwind/Canva/YouTube links returned proxy
+CONNECT 403. Their observed hosts were added to the configuration draft,
+preserving prior rules; saving does not activate the current runtime network.
 Do not copy Telegram cookies or sessions or request passwords/OTP in chat.
+
+Collect accessible text and metadata automatically, without authentication:
+
+    python3 scripts/collect-telegram-public.py --output /tmp/NEW-public-review
+
+The output directory must be new. The collector bounds page size/count, restricts
+pagination to this channel on HTTPS t.me, preserves albums, ignores Sass @mention
+auto-links, and stops at the end of backward pagination. No originals are
+downloaded, no linked scripts executed and no lessons automatically published.
+Public links can change; keep reviewed message text in the index for provenance.
 
 ## Stage and review
 
@@ -89,6 +118,7 @@ existing authenticated paid-AI flow and token cap. No paid test calls required.
 ## Checks
 
     python3 -m unittest discover -s tests -p telegram_import_test.py
+    python3 -m unittest discover -s tests -p telegram_public_test.py
     npm run typecheck
     npm run lint
     npm run test
@@ -99,3 +129,8 @@ existing authenticated paid-AI flow and token cap. No paid test calls required.
 Run the two browser suites sequentially. Browser plugin not available; regular
 Playwright/system Chromium is used for desktop and mobile checks. Mocked source,
 Supabase or PDF fixtures are test evidence, not imported channel material.
+
+Current content checks: seven SCSS examples compiled with Sass 1.105.1; a local
+fixture verified Git fetch refspec updates task-1 without switching main; a
+temporary JSON Server 0.17.4 returned the documented /users and /users/1 data.
+These are authored example checks, not claims of reading inaccessible files.

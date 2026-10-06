@@ -54,3 +54,34 @@ test('reviewed course renderer supports lessons, quiz persistence and manual pra
   expect(state.courses.html.awards).toEqual({'lesson:fixture-intro':5,'test:fixture-question':10,'practice:fixture-intro':4});
   expect(state.completedTopics).toEqual([]);expect(state.awards).toEqual({});expect(errors).toEqual([]);
 });
+
+test('public channel index distinguishes unread attachments from reviewed message lessons',async ({page})=>{
+  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto('/courses/materials');
+  await expect(page.getByRole('heading',{name:'Материалы канала',exact:true})).toBeVisible();
+  await expect(page.getByText('151 публичных сообщений · 100 вложений', {exact:true})).toBeVisible();
+  await expect(page.getByText('Сами PDF, архивы, изображения и видео ещё не прочитаны.',{exact:false})).toBeVisible();
+  await page.getByRole('combobox',{name:'Тип материала',exact:true}).selectOption('pdf');
+  await expect(page.locator('.telegram-material')).toHaveCount(32);
+  await page.getByLabel('Поиск по названию',{exact:true}).fill('JavaScript_Essentials');
+  await expect(page.locator('.telegram-material')).toHaveCount(1);
+  await expect(page.getByRole('link',{name:'Открыть в Telegram',exact:true})).toHaveAttribute('href','https://t.me/programmerPOdCapot/87?single');
+  await expect(page.locator('.telegram-material')).toContainText('4 публикаций');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.goto('/courses/css/answers');
+  await expect(page.getByRole('heading',{name:'Sass: variable ва nesting',exact:true})).toBeVisible();
+  await page.getByLabel('Найти тему или вопрос',{exact:true}).fill('@include');
+  await expect(page.locator('.course-lesson')).toHaveCount(1);
+  const response=await page.request.post('/api/tutor',{data:{action:'ask',courseId:'css',userText:'Sass чист?',language:'tg'}});
+  const tutor=await response.json();
+  expect(tutor).toMatchObject({mode:'local',usage:{totalTokens:0}});
+  expect(tutor.reply).toContain('preprocessor');
+  expect(tutor.source.href).toContain('/courses/css/answers');
+  await page.goto('/courses/css/tests');
+  const question=page.locator('.course-question').filter({has:page.getByRole('heading',{name:'Чӣ тавр variable менависем?',exact:true})});
+  await question.getByRole('radio',{name:'Бо $',exact:true}).check();
+  await question.getByRole('button',{name:'Проверить',exact:true}).click();
+  await expect(question.getByRole('status')).toHaveText('Верно');
+  await page.reload();await expect(question.getByRole('status')).toHaveText('Верно');
+  expect(errors).toEqual([]);
+});

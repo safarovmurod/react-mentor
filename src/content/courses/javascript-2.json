@@ -1,1 +1,384 @@
-{"courseId":"javascript-2","sources":[],"files":[],"lessons":[]}
+{
+  "courseId": "javascript-2",
+  "sources": [
+    {
+      "id": "telegram-191",
+      "title": "JSON Server — матни паём",
+      "url": "https://t.me/programmerPOdCapot/191"
+    },
+    {
+      "id": "telegram-192",
+      "title": "Axios CDN — матни паём",
+      "url": "https://t.me/programmerPOdCapot/192"
+    },
+    {
+      "id": "json-server-reference",
+      "title": "JSON Server 0.17.4 — official README",
+      "url": "https://github.com/typicode/json-server/tree/v0.17.4"
+    },
+    {
+      "id": "axios-reference",
+      "title": "Axios — official README",
+      "url": "https://github.com/axios/axios/tree/v1.x"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "json-server-local-api",
+      "title": {
+        "tg": "JavaScript 2: API-и маҳаллӣ бо JSON Server",
+        "ru": "JavaScript 2: локальный API с JSON Server"
+      },
+      "summary": {
+        "tg": "Барои машқи GET API-и одӣ аз db.json созед. Ин базаи production ё авторизация нест.",
+        "ru": "Создайте простой API из db.json для тренировки GET. Это учебный инструмент; аккаунты и production-база требуют отдельного сервера."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "telegram-191",
+        "json-server-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Қадамҳо ва version",
+            "ru": "Шаги и версия"
+          },
+          "body": {
+            "tg": "Node.js лозим аст. db.json созед ва фармонро дар terminal-и папкаи ҳамон файл иҷро кунед. Паём npm install -g json-server ва --watch мегӯяд. Барои такрори дақиқи ҳамон синтаксис мисол version-и 0.17.4-ро муайян мекунад; v1 beta синтаксиси дигар дорад. Фармонро танҳо дар лоиҳаи машқи худ иҷро кунед.",
+            "ru": "Нужен Node.js. Создайте db.json и выполните команду в терминале его папки. Сообщение предлагает npm install -g json-server и --watch. Для точного повторения этого синтаксиса пример фиксирует 0.17.4; у v1 beta другой CLI. Выполняйте команду в собственном учебном проекте."
+          },
+          "code": "npx json-server@0.17.4 --watch db.json --port 3001",
+          "language": "bash",
+          "output": {
+            "tg": "Сервер дар http://localhost:3001 кор мекунад. Дар ҳамин компютер /users рӯйхати users-ро медиҳад.",
+            "ru": "Сервер работает на http://localhost:3001. На этом же компьютере /users возвращает список users."
+          }
+        },
+        {
+          "title": {
+            "tg": "db.json чӣ гуна мешавад?",
+            "ru": "Как выглядит db.json?"
+          },
+          "body": {
+            "tg": "users номи resource аст. Array объектҳоро нигоҳ медорад. id ҳар user-ро муайян мекунад. GET /users массив медиҳад, GET /users/1 объекти дорои id: 1-ро. Барои машқ танҳо маълумоти сохта истифода кунед.",
+            "ru": "users — имя ресурса. Массив содержит объекты. id идентифицирует пользователя. GET /users возвращает массив, GET /users/1 — объект с id: 1. Используйте вымышленные учебные данные."
+          },
+          "code": "{\n  \"users\": [\n    { \"id\": 1, \"name\": \"Ali\" },\n    { \"id\": 2, \"name\": \"Zebo\" }\n  ]\n}",
+          "language": "json",
+          "output": {
+            "tg": "GET /users/1 → { \"id\": 1, \"name\": \"Ali\" }.",
+            "ru": "GET /users/1 → { \"id\": 1, \"name\": \"Ali\" }."
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "JSON comment ва comma-и охирин намегирад; калидҳо бо double quote мешаванд. Агар порт банд бошад, дигар порт интихоб кунед ва URL-и frontend-ро ҳам нав кунед. localhost-и телефон худи телефон аст, на компютери шумо. JSON Server login, RLS ё синхрони аккаунтҳои ReactMentor-ро иваз намекунад.",
+            "ru": "JSON не допускает комментарии и завершающие запятые; ключи пишутся в двойных кавычках. Если порт занят, выберите другой и обновите URL фронтенда. localhost телефона означает сам телефон, а не ваш компьютер. JSON Server не заменяет вход, RLS или синхронизацию аккаунтов ReactMentor."
+          }
+        },
+        {
+          "title": {
+            "tg": "Манбаъ ва шарҳи иловагӣ",
+            "ru": "Источник и дополнительные пояснения"
+          },
+          "body": {
+            "tg": "Асос — матни паёми канал. Мисол, шарҳи қадамҳо, саволҳои васеъшуда ва ислоҳи маълумоти кӯҳна иловаи таҳрирӣ мебошанд. PDF-и замимашуда ҳоло хонда нашудааст.",
+            "ru": "Основа — текст сообщения канала. Примеры, пошаговые объяснения, расширенные ответы и исправления устаревших сведений — редакционные дополнения. Прикреплённые PDF ещё не прочитаны."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "json-server-purpose",
+          "question": {
+            "tg": "JSON Server барои чӣ лозим аст?",
+            "ru": "Для чего нужен JSON Server?"
+          },
+          "answer": {
+            "tg": "Барои API-и маҳаллии машқ аз файли JSON. Барои омӯзиши запросҳо қулай аст; маълумоти воқеии аккаунтҳоро ба он намегузорем.",
+            "ru": "Для локального учебного API из JSON-файла. Удобен для тренировки запросов; реальные данные аккаунтов туда не помещаем."
+          },
+          "options": [
+            {
+              "tg": "Входи Google",
+              "ru": "Вход Google"
+            },
+            {
+              "tg": "API-и машқ",
+              "ru": "Учебный API"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "json-server-watch",
+          "question": {
+            "tg": "--watch db.json чӣ мекунад?",
+            "ru": "Что делает --watch db.json в 0.17.4?"
+          },
+          "answer": {
+            "tg": "Файли db.json-ро истифода мекунад ва тағйироташро назорат мекунад. Номи файл бояд ба файли папкаи ҷорӣ мувофиқ бошад.",
+            "ru": "Использует db.json и следит за изменениями. Имя должно соответствовать файлу в текущей папке."
+          },
+          "options": [
+            {
+              "tg": "PDF-ро мекушояд",
+              "ru": "Открывает PDF"
+            },
+            {
+              "tg": "Файлро назорат мекунад",
+              "ru": "Следит за файлом"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "json-server-resource",
+          "question": {
+            "tg": "GET /users чӣ медиҳад?",
+            "ru": "Что возвращает GET /users?"
+          },
+          "answer": {
+            "tg": "Агар db.json калиди users бо array дошта бошад, /users ҳамон рӯйхати объектҳоро ҳамчун JSON медиҳад.",
+            "ru": "Если в db.json есть ключ users с массивом, /users возвращает этот список объектов как JSON."
+          },
+          "options": [
+            {
+              "tg": "Рӯйхати users",
+              "ru": "Список users"
+            },
+            {
+              "tg": "CSS-и саҳифа",
+              "ru": "CSS страницы"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "json-server-localhost",
+          "question": {
+            "tg": "Чаро localhost дар телефон API-и компютерро намеёбад?",
+            "ru": "Почему localhost телефона не открывает API компьютера?"
+          },
+          "answer": {
+            "tg": "localhost ҳамеша дастгоҳи ҷориро нишон медиҳад. Барои машқи одӣ браузер ва JSON Server-ро дар як компютер истифода кунед.",
+            "ru": "localhost всегда обозначает текущее устройство. Для простого упражнения используйте браузер и JSON Server на одном компьютере."
+          },
+          "options": [
+            {
+              "tg": "localhost дастгоҳи ҷорӣ аст",
+              "ru": "localhost — текущее устройство"
+            },
+            {
+              "tg": "JSON танҳо дар телефон кор мекунад",
+              "ru": "JSON работает только на телефоне"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "db.json бо users созед ва дар браузери ҳамон компютер /users ва /users/1-ро санҷед.",
+          "ru": "Создайте db.json с users и проверьте /users и /users/1 в браузере того же компьютера."
+        },
+        "hint": {
+          "tg": "Калид users ва id: 1 лозиманд. Terminal бояд кушода монад.",
+          "ru": "Нужны ключ users и id: 1. Терминал должен оставаться запущенным."
+        },
+        "solution": "{\n  \"users\": [{ \"id\": 1, \"name\": \"Ali\" }]\n}",
+        "criteria": [
+          {
+            "tg": "/users array медиҳад",
+            "ru": "/users возвращает массив"
+          },
+          {
+            "tg": "/users/1 user-и Ali медиҳад",
+            "ru": "/users/1 возвращает Ali"
+          }
+        ]
+      }
+    },
+    {
+      "id": "axios-get",
+      "title": {
+        "tg": "JavaScript 2: запрос бо Axios",
+        "ru": "JavaScript 2: запрос с Axios"
+      },
+      "summary": {
+        "tg": "Скрипти паёми канал Axios-ро ба браузер меорад. Бо axios.get маълумот гиред ва response.data-ро хонед.",
+        "ru": "Скрипт из сообщения подключает Axios в браузере. Получайте данные через axios.get и читайте response.data."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "telegram-192",
+        "axios-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Пайваст кардан ва гирифтани маълумот",
+            "ru": "Подключение и получение данных"
+          },
+          "body": {
+            "tg": "Сатри аввал китобхонаи Axios-ро бор мекунад. loadUser async аст, зеро запрос вақт мегирад. await мунтазири response мешавад; response.data body-и JSON аст. try/catch хатои сеть ё серверро мегирад. Барои мисол JSON Server-и дарси пеш дар port 3001 кор кунад.",
+            "ru": "Первая строка загружает библиотеку Axios. loadUser — async, потому что запрос требует времени. await дожидается response; response.data содержит JSON-тело. try/catch обрабатывает ошибку сети или сервера. Для примера запустите JSON Server из предыдущего урока на порту 3001."
+          },
+          "code": "<script src=\"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js\"></script>\n<script>\nasync function loadUser() {\n  try {\n    const response = await axios.get(\"http://localhost:3001/users/1\");\n    console.log(response.data.name);\n  } catch (error) {\n    console.error(\"Could not load the user\");\n  }\n}\nloadUser();\n</script>",
+          "language": "html",
+          "output": {
+            "tg": "Дар console: Ali, агар /users/1 ҳамин user-ро диҳад.",
+            "ru": "В консоли: Ali, если /users/1 возвращает этого пользователя."
+          }
+        },
+        {
+          "title": {
+            "tg": "Фарқи response ва data",
+            "ru": "Разница response и data"
+          },
+          "body": {
+            "tg": "response тамоми натиҷа аст: status, headers ва data. Барои номи user response.data.name нависед. response.name нест. GET маълумот мехонад; он аккаунт намесозад. Скрипти CDN-и манбаъ version-ро муайян намекунад; барои лоиҳаи production dependency-ро бо version-и санҷидашуда мустаҳкам кунед.",
+            "ru": "response — весь результат: status, headers и data. Для имени пользователя нужен response.data.name, а не response.name. GET читает данные; он не создаёт аккаунт. CDN-скрипт источника не фиксирует версию; в production закрепляйте проверенную версию зависимости."
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "axios is not defined: скрипт ҳоло бор нашудааст ё URL дастнорас аст; Axios бояд пеш аз коди шумо бошад. Network Error: серверро санҷед. HTTPS-сайти нашршуда набояд аз HTTP API-и маҳаллӣ маълумот гирад; ин мисол танҳо машқи маҳаллӣ аст. Кодро аз localhost-и лоиҳаи машқ иҷро кунед.",
+            "ru": "axios is not defined: скрипт не загрузился или URL недоступен; Axios должен подключаться перед вашим кодом. Network Error: проверьте сервер. Опубликованный HTTPS-сайт не должен обращаться к локальному HTTP API; это локальное упражнение. Запускайте код с localhost своего учебного проекта."
+          }
+        },
+        {
+          "title": {
+            "tg": "Манбаъ ва шарҳи иловагӣ",
+            "ru": "Источник и дополнительные пояснения"
+          },
+          "body": {
+            "tg": "Асос — матни паёми канал. Мисол, шарҳи қадамҳо, саволҳои васеъшуда ва ислоҳи маълумоти кӯҳна иловаи таҳрирӣ мебошанд. PDF-и замимашуда ҳоло хонда нашудааст.",
+            "ru": "Основа — текст сообщения канала. Примеры, пошаговые объяснения, расширенные ответы и исправления устаревших сведений — редакционные дополнения. Прикреплённые PDF ещё не прочитаны."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "axios-get-purpose",
+          "question": {
+            "tg": "axios.get чӣ мекунад?",
+            "ru": "Что делает axios.get?"
+          },
+          "answer": {
+            "tg": "HTTP GET запрос мефиристад ва Promise медиҳад. Бо await response мегирем; маълумот дар response.data аст.",
+            "ru": "Отправляет HTTP GET и возвращает Promise. Через await получаем response; данные находятся в response.data."
+          },
+          "options": [
+            {
+              "tg": "SCSS-ро компиляция мекунад",
+              "ru": "Компилирует SCSS"
+            },
+            {
+              "tg": "GET запрос",
+              "ru": "GET-запрос"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "axios-data",
+          "question": {
+            "tg": "response.data чист?",
+            "ru": "Что такое response.data?"
+          },
+          "answer": {
+            "tg": "Body-и ҷавоби сервер аст. Агар сервер {name: \"Ali\"} диҳад, response.data.name Ali мешавад.",
+            "ru": "Тело ответа сервера. Если сервер возвращает {name: \"Ali\"}, response.data.name равно Ali."
+          },
+          "options": [
+            {
+              "tg": "Body-и ҷавоб",
+              "ru": "Тело ответа"
+            },
+            {
+              "tg": "Пароли Google",
+              "ru": "Пароль Google"
+            }
+          ],
+          "correctIndex": 0
+        },
+        {
+          "id": "axios-await",
+          "question": {
+            "tg": "Чаро await лозим аст?",
+            "ru": "Зачем здесь await?"
+          },
+          "answer": {
+            "tg": "axios.get асинхронӣ аст. await дохили async мунтазири Promise мешавад; баъд data-ро мехонем.",
+            "ru": "axios.get асинхронен. await внутри async ожидает Promise; затем можно читать data."
+          },
+          "options": [
+            {
+              "tg": "API-ро ба CSS табдил медиҳад",
+              "ru": "Превращает API в CSS"
+            },
+            {
+              "tg": "Мунтазири Promise мешавад",
+              "ru": "Ожидает Promise"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "axios-catch",
+          "question": {
+            "tg": "try/catch барои чӣ?",
+            "ru": "Для чего нужен try/catch?"
+          },
+          "answer": {
+            "tg": "Барои коркарди хатои запрос. Агар сервер дастнорас бошад ё response хатогӣ бошад, catch паёми равшан нишон медиҳад.",
+            "ru": "Для обработки ошибки запроса. Если сервер недоступен или ответ ошибочный, catch позволяет показать понятное сообщение."
+          },
+          "options": [
+            {
+              "tg": "Такрори CSS",
+              "ru": "Повторение CSS"
+            },
+            {
+              "tg": "Коркарди хатои запрос",
+              "ru": "Обработка ошибки запроса"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Аз /users/1 user-ро гиред ва номи ӯро дар console нишон диҳед. Барои сервери дастнорас паём бароред.",
+          "ru": "Получите пользователя из /users/1 и покажите имя в консоли. Обработайте недоступность сервера."
+        },
+        "hint": {
+          "tg": "axios.get → await → response.data.name. Axios бояд бор шуда бошад.",
+          "ru": "axios.get → await → response.data.name. Axios должен быть загружен."
+        },
+        "solution": "async function loadUser() {\n  try {\n    const response = await axios.get(\"http://localhost:3001/users/1\");\n    console.log(response.data.name);\n  } catch {\n    console.error(\"Could not load the user\");\n  }\n}\nloadUser();",
+        "criteria": [
+          {
+            "tg": "Ном аз response.data хонда шуд",
+            "ru": "Имя читается из response.data"
+          },
+          {
+            "tg": "Хатои запрос коркард шуд",
+            "ru": "Ошибка запроса обработана"
+          }
+        ]
+      }
+    }
+  ]
+}

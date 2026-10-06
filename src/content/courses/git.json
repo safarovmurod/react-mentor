@@ -1,1 +1,187 @@
-{"courseId":"git","sources":[],"files":[],"lessons":[]}
+{
+  "courseId": "git",
+  "sources": [
+    {
+      "id": "telegram-84",
+      "title": "Git fetch — матни паём",
+      "url": "https://t.me/programmerPOdCapot/84"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "git-fetch-refspec",
+      "title": {
+        "tg": "Git: git fetch origin dev:task-1",
+        "ru": "Git: git fetch origin dev:task-1"
+      },
+      "summary": {
+        "tg": "Фармони паёми каналро қисм ба қисм хонем: гирифтани branch ва нав кардани branch-и маҳаллӣ.",
+        "ru": "Разберём команду из сообщения: получение ветки и обновление локальной ветки."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "telegram-84"
+      ],
+      "sections": [
+        {
+          "title": {
+            "tg": "Чӣ кор мекунад?",
+            "ru": "Что делает команда?"
+          },
+          "body": {
+            "tg": "git — барнома. fetch — объектҳо ва таърихи лозимаро аз remote мегирад. origin — номи remote. dev:task-1 refspec аст: branch-и dev аз origin ба branch-и маҳаллии task-1 нав карда мешавад. Ин фармон task-1-ро checkout намекунад ва branch-и ҷориро merge намекунад.",
+            "ru": "git — программа. fetch получает нужные объекты и историю из remote. origin — имя remote. dev:task-1 — refspec: ветка dev из origin обновляет локальную task-1. Команда не переключается на task-1 и не сливает её в текущую ветку."
+          },
+          "code": "git fetch origin dev:task-1",
+          "language": "bash",
+          "output": {
+            "tg": "task-1 ба commit-и гирифташуда ишора мекунад; branch-и ҷорӣ дигар намешавад.",
+            "ru": "task-1 указывает на полученный commit; текущая ветка остаётся прежней."
+          }
+        },
+        {
+          "title": {
+            "tg": "Қадамҳои равшан",
+            "ru": "Понятные шаги"
+          },
+          "body": {
+            "tg": "Аввал git remote -v ва git branch-ро бинед. Дар remote бояд dev бошад. Фармонро аз branch-и дигар, масалан main, иҷро кунед. Барои дидани натиҷа git log task-1 --oneline -3 нависед. Барои гузаштан алоҳида git switch task-1 лозим аст.",
+            "ru": "Сначала посмотрите git remote -v и git branch. В remote должна существовать dev. Выполняйте команду из другой ветки, например main. Для просмотра результата: git log task-1 --oneline -3. Для переключения нужна отдельная команда git switch task-1."
+          }
+        },
+        {
+          "title": {
+            "tg": "Хатои маъмул",
+            "ru": "Частая ошибка"
+          },
+          "body": {
+            "tg": "Агар dev вуҷуд надошта бошад, Git remote ref-ро намеёбад. Агар task-1 branch-и ҷорӣ бошад, fetch одатан аз нав кардани он рад мекунад. Агар task-1 таърихи ҷудошуда дошта бошад, навсозӣ метавонад non-fast-forward рад шавад. Пеш аз қарор таърихро бинед; ин дарс force ё reset талаб намекунад.",
+            "ru": "Если dev отсутствует, Git не найдёт remote ref. Если task-1 — текущая ветка, fetch обычно откажется обновлять её. При разошедшейся истории обновление может быть отклонено как non-fast-forward. Сначала изучите историю; для этой задачи force и reset не требуются."
+          }
+        },
+        {
+          "title": {
+            "tg": "Манбаъ ва шарҳи иловагӣ",
+            "ru": "Источник и дополнительные пояснения"
+          },
+          "body": {
+            "tg": "Асос — матни паёми канал. Мисол, шарҳи қадамҳо, саволҳои васеъшуда ва ислоҳи маълумоти кӯҳна иловаи таҳрирӣ мебошанд. PDF-и замимашуда ҳоло хонда нашудааст.",
+            "ru": "Основа — текст сообщения канала. Примеры, пошаговые объяснения, расширенные ответы и исправления устаревших сведений — редакционные дополнения. Прикреплённые PDF ещё не прочитаны."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "git-fetch-origin",
+          "question": {
+            "tg": "git fetch origin dev:task-1 чӣ кор мекунад?",
+            "ru": "Что делает git fetch origin dev:task-1?"
+          },
+          "answer": {
+            "tg": "dev-и origin-ро мегирад ва task-1-и маҳаллиро нав мекунад. Branch-и ҷорӣ худкор иваз намешавад.",
+            "ru": "Получает dev из origin и обновляет локальную task-1. Текущая ветка автоматически не меняется."
+          },
+          "options": [
+            {
+              "tg": "task-1-ро ба сервер push мекунад",
+              "ru": "Пушит task-1 на сервер"
+            },
+            {
+              "tg": "dev → task-1",
+              "ru": "dev → task-1"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "git-origin",
+          "question": {
+            "tg": "origin чист?",
+            "ru": "Что такое origin?"
+          },
+          "answer": {
+            "tg": "Номи remote аст, одатан ба repository-и аз он clone-шуда ишора мекунад. URL-ро бо git remote -v санҷед.",
+            "ru": "Имя remote, обычно указывающее на исходный клонированный репозиторий. Проверьте URL через git remote -v."
+          },
+          "options": [
+            {
+              "tg": "Забони барномасозӣ",
+              "ru": "Язык программирования"
+            },
+            {
+              "tg": "Номи remote",
+              "ru": "Имя remote"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "git-fetch-switch",
+          "question": {
+            "tg": "fetch худкор branch-ро иваз мекунад?",
+            "ru": "Переключает ли fetch текущую ветку?"
+          },
+          "answer": {
+            "tg": "Не. Барои гузаштан git switch task-1 фармони ҷудогона аст. Fetch объектҳо ва ref-ҳоро нав мекунад.",
+            "ru": "Нет. git switch task-1 — отдельная команда переключения. Fetch обновляет объекты и ссылки."
+          },
+          "options": [
+            {
+              "tg": "Ҳа",
+              "ru": "Да"
+            },
+            {
+              "tg": "Не",
+              "ru": "Нет"
+            }
+          ],
+          "correctIndex": 1
+        },
+        {
+          "id": "git-refspec",
+          "question": {
+            "tg": "dev:task-1 чӣ маъно дорад?",
+            "ru": "Что означает dev:task-1?"
+          },
+          "answer": {
+            "tg": "Қисми чап branch-и манбаи remote аст; қисми рост branch-и destination дар repository-и маҳаллӣ. Самт аз чап ба рост аст.",
+            "ru": "Слева — исходная ветка remote; справа — целевая ветка локального репозитория. Направление — слева направо."
+          },
+          "options": [
+            {
+              "tg": "Манбаъ:мақсад",
+              "ru": "Источник:назначение"
+            },
+            {
+              "tg": "Парол:email",
+              "ru": "Пароль:email"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "tg": "Дар repository-и машқ remote-и origin ва branch-и dev дошта бошед. Аз main task-1-ро бо fetch созед ва branch-и ҷориро санҷед.",
+          "ru": "В учебном репозитории должны существовать origin и dev. Из main создайте task-1 через fetch и проверьте текущую ветку."
+        },
+        "hint": {
+          "tg": "git branch --show-current пеш ва баъд як ном медиҳад.",
+          "ru": "git branch --show-current до и после показывает одно имя."
+        },
+        "solution": "git branch --show-current\ngit fetch origin dev:task-1\ngit log task-1 --oneline -3\ngit branch --show-current",
+        "criteria": [
+          {
+            "tg": "task-1 commit-и dev-ро дорад",
+            "ru": "task-1 содержит commit из dev"
+          },
+          {
+            "tg": "Branch-и ҷорӣ иваз нашуд",
+            "ru": "Текущая ветка не изменилась"
+          }
+        ]
+      }
+    }
+  ]
+}

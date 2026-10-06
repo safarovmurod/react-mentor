@@ -43,6 +43,16 @@
 .course-sources {display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;font-size:12px;color:var(--primary);}
 .course-files {padding:24px;margin-top:24px;display:flex;flex-direction:column;gap:12px;}
 .course-files a {overflow-wrap:anywhere;flex-wrap:wrap;}
+.course-material-link {margin:0 0 24px;}
+.telegram-material-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px;}
+.telegram-material {padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;overflow-wrap:anywhere;}
+.telegram-material h2 {font-size:16px;}
+.telegram-material p,.telegram-material small {font-size:12px;color:var(--text-muted);}
+.telegram-material .text-link {margin-top:auto;min-height:44px;}
+.telegram-material summary {cursor:pointer;font-size:12px;}
+.telegram-material details a {display:inline-block;padding:8px;color:var(--primary);}
+.telegram-materials .course-files p {font-size:14px;line-height:1.7;}
+@media(max-width:700px) {.telegram-material-grid {grid-template-columns:1fr;}}
 @media(max-width:1100px) {.course-grid {grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:600px) {.course-grid {grid-template-columns:1fr;}.course-card {padding:20px;}.course-filters {flex-direction:column;align-items:stretch;}.course-lesson,.course-waiting {padding:20px;}.course-route {padding:16px;}}
 

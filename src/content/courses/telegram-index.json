@@ -1,0 +1,1441 @@
+{
+  "channel": "https://t.me/programmerPOdCapot",
+  "collectedAt": "2026-10-06",
+  "scope": "public-preview",
+  "summary": {
+    "messageWidgets": 151,
+    "attachmentReferences": 100,
+    "attachmentGroups": 61,
+    "possibleReposts": 39,
+    "photos": 24,
+    "videoWidgets": 33,
+    "originalAttachmentsRead": 0
+  },
+  "materials": [
+    {
+      "id": "attachment-1",
+      "title": "Массив.docx.pdf",
+      "kind": "pdf",
+      "sizeLabel": "417.3 KB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/42"
+      ]
+    },
+    {
+      "id": "attachment-2",
+      "title": "IMG_6478.MOV",
+      "kind": "mov",
+      "sizeLabel": "775.7 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/52"
+      ]
+    },
+    {
+      "id": "attachment-3",
+      "title": "html day 15  eksamen.zip",
+      "kind": "zip",
+      "sizeLabel": "982.3 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/60"
+      ]
+    },
+    {
+      "id": "attachment-4",
+      "title": "easy.pdf",
+      "kind": "pdf",
+      "sizeLabel": "558 KB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/61"
+      ]
+    },
+    {
+      "id": "attachment-5",
+      "title": "Lecture_1.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "7 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/63?single"
+      ]
+    },
+    {
+      "id": "attachment-6",
+      "title": "Lecture_2.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "4.1 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/64?single"
+      ]
+    },
+    {
+      "id": "attachment-7",
+      "title": "Lecture_3.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "4.1 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/65?single"
+      ]
+    },
+    {
+      "id": "attachment-8",
+      "title": "Lecture_4.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "4.6 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/66?single"
+      ]
+    },
+    {
+      "id": "attachment-9",
+      "title": "Lecture_6.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "3.7 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/67"
+      ]
+    },
+    {
+      "id": "attachment-10",
+      "title": "Lecture_7.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "3.2 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/68"
+      ]
+    },
+    {
+      "id": "attachment-11",
+      "title": "Lecture_5.HMTL.pdf",
+      "kind": "pdf",
+      "sizeLabel": "2.5 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/69"
+      ]
+    },
+    {
+      "id": "attachment-12",
+      "title": "Lecture_10.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "2.4 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/70"
+      ]
+    },
+    {
+      "id": "attachment-13",
+      "title": "Lecture_13.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "2.7 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/71"
+      ]
+    },
+    {
+      "id": "attachment-14",
+      "title": "Lecture_9.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "3.7 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/72"
+      ]
+    },
+    {
+      "id": "attachment-15",
+      "title": "Lecture_14.HTML.pdf",
+      "kind": "pdf",
+      "sizeLabel": "5.4 MB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/73"
+      ]
+    },
+    {
+      "id": "attachment-16",
+      "title": "Sass intro.pdf",
+      "kind": "pdf",
+      "sizeLabel": "4.5 MB",
+      "suggestedTopic": "css",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/78?single"
+      ]
+    },
+    {
+      "id": "attachment-17",
+      "title": "Sass pro.pdf",
+      "kind": "pdf",
+      "sizeLabel": "6.2 MB",
+      "suggestedTopic": "css",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/79?single"
+      ]
+    },
+    {
+      "id": "attachment-18",
+      "title": "Tailwind.pdf",
+      "kind": "pdf",
+      "sizeLabel": "3.2 MB",
+      "suggestedTopic": "css",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/80?single"
+      ]
+    },
+    {
+      "id": "attachment-19",
+      "title": "What is Git and Github.pdf",
+      "kind": "pdf",
+      "sizeLabel": "2.5 MB",
+      "suggestedTopic": "git",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/81?single"
+      ]
+    },
+    {
+      "id": "attachment-20",
+      "title": "Repository.pdf",
+      "kind": "pdf",
+      "sizeLabel": "2 MB",
+      "suggestedTopic": "git",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/82?single"
+      ]
+    },
+    {
+      "id": "attachment-21",
+      "title": "What is Branch .pdf",
+      "kind": "pdf",
+      "sizeLabel": "2.5 MB",
+      "suggestedTopic": "git",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/83?single"
+      ]
+    },
+    {
+      "id": "attachment-22",
+      "title": "git hub lecture_20260225_060038.png",
+      "kind": "png",
+      "sizeLabel": "185.2 KB",
+      "suggestedTopic": "git",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/85"
+      ]
+    },
+    {
+      "id": "attachment-23",
+      "title": "JavaScript_Essentials_(3).pdf",
+      "kind": "pdf",
+      "sizeLabel": "14 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/87?single",
+        "https://t.me/programmerPOdCapot/105",
+        "https://t.me/programmerPOdCapot/137",
+        "https://t.me/programmerPOdCapot/146"
+      ]
+    },
+    {
+      "id": "attachment-24",
+      "title": "JavaScript_Logic_and_Functions_(7).pdf",
+      "kind": "pdf",
+      "sizeLabel": "10.6 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/88?single",
+        "https://t.me/programmerPOdCapot/106",
+        "https://t.me/programmerPOdCapot/138",
+        "https://t.me/programmerPOdCapot/147"
+      ]
+    },
+    {
+      "id": "attachment-25",
+      "title": "javascript_tables_big.pdf",
+      "kind": "pdf",
+      "sizeLabel": "28.5 KB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/89"
+      ]
+    },
+    {
+      "id": "attachment-26",
+      "title": "JS_Scope_Hoisting_TDZ_(3).pdf",
+      "kind": "pdf",
+      "sizeLabel": "10.1 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/90",
+        "https://t.me/programmerPOdCapot/107",
+        "https://t.me/programmerPOdCapot/139",
+        "https://t.me/programmerPOdCapot/148"
+      ]
+    },
+    {
+      "id": "attachment-27",
+      "title": "Scope&Hoisting.zip",
+      "kind": "zip",
+      "sizeLabel": "573.8 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/91",
+        "https://t.me/programmerPOdCapot/94",
+        "https://t.me/programmerPOdCapot/149"
+      ]
+    },
+    {
+      "id": "attachment-28",
+      "title": "javascript_scope_fixed_unicode.pdf",
+      "kind": "pdf",
+      "sizeLabel": "28.8 KB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/92"
+      ]
+    },
+    {
+      "id": "attachment-29",
+      "title": "String jS 2026.zip",
+      "kind": "zip",
+      "sizeLabel": "685.7 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/95",
+        "https://t.me/programmerPOdCapot/152"
+      ]
+    },
+    {
+      "id": "attachment-30",
+      "title": "date js.zip",
+      "kind": "zip",
+      "sizeLabel": "346.9 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/96",
+        "https://t.me/programmerPOdCapot/99?single",
+        "https://t.me/programmerPOdCapot/119?single",
+        "https://t.me/programmerPOdCapot/126?single",
+        "https://t.me/programmerPOdCapot/127?single",
+        "https://t.me/programmerPOdCapot/156",
+        "https://t.me/programmerPOdCapot/157?single"
+      ]
+    },
+    {
+      "id": "attachment-31",
+      "title": "videoplayback.mp4",
+      "kind": "mp4",
+      "sizeLabel": "31.1 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/97"
+      ]
+    },
+    {
+      "id": "attachment-32",
+      "title": "exam-3.zip",
+      "kind": "zip",
+      "sizeLabel": "3.5 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/98",
+        "https://t.me/programmerPOdCapot/134?single"
+      ]
+    },
+    {
+      "id": "attachment-33",
+      "title": "map js.zip",
+      "kind": "zip",
+      "sizeLabel": "181.7 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/100?single",
+        "https://t.me/programmerPOdCapot/128?single",
+        "https://t.me/programmerPOdCapot/158?single"
+      ]
+    },
+    {
+      "id": "attachment-34",
+      "title": "oop js.zip",
+      "kind": "zip",
+      "sizeLabel": "678.3 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/101?single",
+        "https://t.me/programmerPOdCapot/129?single",
+        "https://t.me/programmerPOdCapot/159?single"
+      ]
+    },
+    {
+      "id": "attachment-35",
+      "title": "encapsulation, inherit, polymorph part 2.zip",
+      "kind": "zip",
+      "sizeLabel": "377.6 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/102?single",
+        "https://t.me/programmerPOdCapot/130?single",
+        "https://t.me/programmerPOdCapot/160?single"
+      ]
+    },
+    {
+      "id": "attachment-36",
+      "title": "js.zip",
+      "kind": "zip",
+      "sizeLabel": "18.8 KB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/103?single"
+      ]
+    },
+    {
+      "id": "attachment-37",
+      "title": "javascript_course_fixed.pdf",
+      "kind": "pdf",
+      "sizeLabel": "68.6 KB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/104?single"
+      ]
+    },
+    {
+      "id": "attachment-38",
+      "title": "JS_Strings_and_Numbers_(2).pdf",
+      "kind": "pdf",
+      "sizeLabel": "13.1 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/108",
+        "https://t.me/programmerPOdCapot/140",
+        "https://t.me/programmerPOdCapot/150"
+      ]
+    },
+    {
+      "id": "attachment-39",
+      "title": "JS_Execution_Blueprint_(3).pdf.pdf",
+      "kind": "pdf",
+      "sizeLabel": "9.2 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/109",
+        "https://t.me/programmerPOdCapot/116?single",
+        "https://t.me/programmerPOdCapot/153"
+      ]
+    },
+    {
+      "id": "attachment-40",
+      "title": "lecture-6 2026.pdf",
+      "kind": "pdf",
+      "sizeLabel": "12.6 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/110",
+        "https://t.me/programmerPOdCapot/117?single",
+        "https://t.me/programmerPOdCapot/124",
+        "https://t.me/programmerPOdCapot/142",
+        "https://t.me/programmerPOdCapot/154"
+      ]
+    },
+    {
+      "id": "attachment-41",
+      "title": "JavaScript_Array_Methods_Masterclass_(3).pdf",
+      "kind": "pdf",
+      "sizeLabel": "13.7 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/113",
+        "https://t.me/programmerPOdCapot/118?single",
+        "https://t.me/programmerPOdCapot/125?single",
+        "https://t.me/programmerPOdCapot/131",
+        "https://t.me/programmerPOdCapot/155"
+      ]
+    },
+    {
+      "id": "attachment-42",
+      "title": "LectureNew-2.pdf",
+      "kind": "pdf",
+      "sizeLabel": "1.4 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/120",
+        "https://t.me/programmerPOdCapot/141"
+      ]
+    },
+    {
+      "id": "attachment-43",
+      "title": "задача.md",
+      "kind": "md",
+      "sizeLabel": "17.2 KB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/122",
+        "https://t.me/programmerPOdCapot/123"
+      ]
+    },
+    {
+      "id": "attachment-44",
+      "title": "vazifahoi_js_mobile_voice_tajik_teacher.html",
+      "kind": "html",
+      "sizeLabel": "86.7 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/133"
+      ]
+    },
+    {
+      "id": "attachment-45",
+      "title": "js_tasks_final_plus_exam10_fixed.html",
+      "kind": "html",
+      "sizeLabel": "40.3 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/135?single"
+      ]
+    },
+    {
+      "id": "attachment-46",
+      "title": "fix_fahmondashuda.html",
+      "kind": "html",
+      "sizeLabel": "62.1 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/136?single"
+      ]
+    },
+    {
+      "id": "attachment-47",
+      "title": "javascript_full_book_tajik.pdf",
+      "kind": "pdf",
+      "sizeLabel": "36.6 KB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/151"
+      ]
+    },
+    {
+      "id": "attachment-48",
+      "title": "2024-07-09 13-33-46.mkv",
+      "kind": "mkv",
+      "sizeLabel": "381.2 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/174?single"
+      ]
+    },
+    {
+      "id": "attachment-49",
+      "title": "2024-07-08 14-17-56.mkv",
+      "kind": "mkv",
+      "sizeLabel": "1007.7 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/175?single"
+      ]
+    },
+    {
+      "id": "attachment-50",
+      "title": "2024-07-08 15-25-20.mkv",
+      "kind": "mkv",
+      "sizeLabel": "492.6 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/176?single"
+      ]
+    },
+    {
+      "id": "attachment-51",
+      "title": "2024-07-09 12-50-44.mkv",
+      "kind": "mkv",
+      "sizeLabel": "775.5 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/177?single"
+      ]
+    },
+    {
+      "id": "attachment-52",
+      "title": "dom_methods_tajik_result.html",
+      "kind": "html",
+      "sizeLabel": "16.7 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/178"
+      ]
+    },
+    {
+      "id": "attachment-53",
+      "title": "code.png",
+      "kind": "png",
+      "sizeLabel": "2 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/182"
+      ]
+    },
+    {
+      "id": "attachment-54",
+      "title": "code1.png",
+      "kind": "png",
+      "sizeLabel": "585.5 KB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/183"
+      ]
+    },
+    {
+      "id": "attachment-55",
+      "title": "code2.png",
+      "kind": "png",
+      "sizeLabel": "1.1 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/184"
+      ]
+    },
+    {
+      "id": "attachment-56",
+      "title": "table_html_css_js.zip",
+      "kind": "zip",
+      "sizeLabel": "3.5 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/185"
+      ]
+    },
+    {
+      "id": "attachment-57",
+      "title": "node_element_html_table.zip",
+      "kind": "zip",
+      "sizeLabel": "8.9 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/186"
+      ]
+    },
+    {
+      "id": "attachment-58",
+      "title": "ChatGPT Image 16 мая 2026 г., 03_59_59.png",
+      "kind": "png",
+      "sizeLabel": "1.2 MB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/188"
+      ]
+    },
+    {
+      "id": "attachment-59",
+      "title": "JS.png",
+      "kind": "png",
+      "sizeLabel": "1.6 MB",
+      "suggestedTopic": "javascript",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/189?single"
+      ]
+    },
+    {
+      "id": "attachment-60",
+      "title": "HTML.png",
+      "kind": "png",
+      "sizeLabel": "421.3 KB",
+      "suggestedTopic": "html",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/190?single"
+      ]
+    },
+    {
+      "id": "attachment-61",
+      "title": "requests(pdf).pdf",
+      "kind": "pdf",
+      "sizeLabel": "761.8 KB",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/197"
+      ]
+    },
+    {
+      "id": "photo-3-0",
+      "title": "Фото · 3",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/3"
+      ]
+    },
+    {
+      "id": "photo-4-0",
+      "title": "Фото · 4",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/4"
+      ]
+    },
+    {
+      "id": "photo-5-0",
+      "title": "Фото · 5",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/5"
+      ]
+    },
+    {
+      "id": "photo-8-0",
+      "title": "Фото · 8",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/8"
+      ]
+    },
+    {
+      "id": "photo-16-0",
+      "title": "Фото · 16",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/16"
+      ]
+    },
+    {
+      "id": "photo-18-0",
+      "title": "Фото · 18",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/18"
+      ]
+    },
+    {
+      "id": "photo-51-0",
+      "title": "Фото · 51",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/51"
+      ]
+    },
+    {
+      "id": "photo-93-0",
+      "title": "Фото · 93",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/93"
+      ]
+    },
+    {
+      "id": "photo-115-0",
+      "title": "Фото · 115",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/115"
+      ]
+    },
+    {
+      "id": "photo-132-0",
+      "title": "Фото · 132",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/132"
+      ]
+    },
+    {
+      "id": "photo-161-0",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-1",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-2",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-3",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-4",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-5",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-6",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-7",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-8",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-161-9",
+      "title": "Фото · 161",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/161"
+      ]
+    },
+    {
+      "id": "photo-171-0",
+      "title": "Фото · 171",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/171"
+      ]
+    },
+    {
+      "id": "photo-179-0",
+      "title": "Фото · 179",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/179"
+      ]
+    },
+    {
+      "id": "photo-180-0",
+      "title": "Фото · 180",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/180"
+      ]
+    },
+    {
+      "id": "photo-181-0",
+      "title": "Фото · 181",
+      "kind": "photo",
+      "sizeLabel": "",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/181"
+      ]
+    },
+    {
+      "id": "video-6-0",
+      "title": "Видео · 6",
+      "kind": "video",
+      "sizeLabel": "44:00",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/6"
+      ]
+    },
+    {
+      "id": "video-7-0",
+      "title": "Видео · 7",
+      "kind": "video",
+      "sizeLabel": "44:00",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/7"
+      ]
+    },
+    {
+      "id": "video-9-0",
+      "title": "Видео · 9",
+      "kind": "video",
+      "sizeLabel": "1:26:08",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/9"
+      ]
+    },
+    {
+      "id": "video-11-0",
+      "title": "Видео · 11",
+      "kind": "video",
+      "sizeLabel": "1:28:09",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/11"
+      ]
+    },
+    {
+      "id": "video-12-0",
+      "title": "Видео · 12",
+      "kind": "video",
+      "sizeLabel": "1:28:09",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/12"
+      ]
+    },
+    {
+      "id": "video-13-0",
+      "title": "Видео · 13",
+      "kind": "video",
+      "sizeLabel": "1:26:08",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/13"
+      ]
+    },
+    {
+      "id": "video-14-0",
+      "title": "Видео · 14",
+      "kind": "video",
+      "sizeLabel": "12:40",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/14"
+      ]
+    },
+    {
+      "id": "video-15-0",
+      "title": "Видео · 15",
+      "kind": "video",
+      "sizeLabel": "1:28:09",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/15"
+      ]
+    },
+    {
+      "id": "video-17-0",
+      "title": "Видео · 17",
+      "kind": "video",
+      "sizeLabel": "1:26:08",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/17"
+      ]
+    },
+    {
+      "id": "video-19-0",
+      "title": "Видео · 19",
+      "kind": "video",
+      "sizeLabel": "50:36",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/19"
+      ]
+    },
+    {
+      "id": "video-20-0",
+      "title": "Видео · 20",
+      "kind": "video",
+      "sizeLabel": "50:36",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/20"
+      ]
+    },
+    {
+      "id": "video-21-0",
+      "title": "Видео · 21",
+      "kind": "video",
+      "sizeLabel": "19:13",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/21"
+      ]
+    },
+    {
+      "id": "video-23-0",
+      "title": "Видео · 23",
+      "kind": "video",
+      "sizeLabel": "26:13",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/23"
+      ]
+    },
+    {
+      "id": "video-24-0",
+      "title": "Видео · 24",
+      "kind": "video",
+      "sizeLabel": "24:37",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/24"
+      ]
+    },
+    {
+      "id": "video-25-0",
+      "title": "Видео · 25",
+      "kind": "video",
+      "sizeLabel": "44:00",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/25"
+      ]
+    },
+    {
+      "id": "video-26-0",
+      "title": "Видео · 26",
+      "kind": "video",
+      "sizeLabel": "1:28:09",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/26"
+      ]
+    },
+    {
+      "id": "video-27-0",
+      "title": "Видео · 27",
+      "kind": "video",
+      "sizeLabel": "1:26:08",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/27"
+      ]
+    },
+    {
+      "id": "video-28-0",
+      "title": "Видео · 28",
+      "kind": "video",
+      "sizeLabel": "12:40",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/28"
+      ]
+    },
+    {
+      "id": "video-29-0",
+      "title": "Видео · 29",
+      "kind": "video",
+      "sizeLabel": "50:36",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/29"
+      ]
+    },
+    {
+      "id": "video-30-0",
+      "title": "Видео · 30",
+      "kind": "video",
+      "sizeLabel": "19:13",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/30"
+      ]
+    },
+    {
+      "id": "video-31-0",
+      "title": "Видео · 31",
+      "kind": "video",
+      "sizeLabel": "26:13",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/31"
+      ]
+    },
+    {
+      "id": "video-32-0",
+      "title": "Видео · 32",
+      "kind": "video",
+      "sizeLabel": "24:37",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/32"
+      ]
+    },
+    {
+      "id": "video-33-0",
+      "title": "Видео · 33",
+      "kind": "video",
+      "sizeLabel": "25:42",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/33"
+      ]
+    },
+    {
+      "id": "video-34-0",
+      "title": "Видео · 34",
+      "kind": "video",
+      "sizeLabel": "1:05:30",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/34"
+      ]
+    },
+    {
+      "id": "video-35-0",
+      "title": "Видео · 35",
+      "kind": "video",
+      "sizeLabel": "44:17",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/35"
+      ]
+    },
+    {
+      "id": "video-36-0",
+      "title": "Видео · 36",
+      "kind": "video",
+      "sizeLabel": "14:51",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/36"
+      ]
+    },
+    {
+      "id": "video-37-0",
+      "title": "Видео · 37",
+      "kind": "video",
+      "sizeLabel": "32:28",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/37"
+      ]
+    },
+    {
+      "id": "video-38-0",
+      "title": "Видео · 38",
+      "kind": "video",
+      "sizeLabel": "51:01",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/38"
+      ]
+    },
+    {
+      "id": "video-39-0",
+      "title": "Видео · 39",
+      "kind": "video",
+      "sizeLabel": "25:42",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/39"
+      ]
+    },
+    {
+      "id": "video-40-0",
+      "title": "Видео · 40",
+      "kind": "video",
+      "sizeLabel": "35:06",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/40"
+      ]
+    },
+    {
+      "id": "video-41-0",
+      "title": "Видео · 41",
+      "kind": "video",
+      "sizeLabel": "54:18",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/41"
+      ]
+    },
+    {
+      "id": "video-44-0",
+      "title": "Видео · 44",
+      "kind": "video",
+      "sizeLabel": "12:03",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/44"
+      ]
+    },
+    {
+      "id": "video-45-0",
+      "title": "Видео · 45",
+      "kind": "video",
+      "sizeLabel": "10:23",
+      "suggestedTopic": "unknown",
+      "status": "unread",
+      "urls": [
+        "https://t.me/programmerPOdCapot/45"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "url": "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",
+      "status": "library-code-available"
+    },
+    {
+      "url": "https://stepik.org/lesson/2033477/step/7?unit=2061924",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://stepik.org/lesson/952209/step/1?unit=958548",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/play-cdn",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGV_EGjpi0/DajiBoHG2rYEoJxDg8AD9Q/view?utm_content=DAGV_EGjpi0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h708c459e8a",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGVjdrRLHo/5jLBtB4v8MVBmIuNDhfn_Q/view?utm_content=DAGVjdrRLHo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h235e5d1c86",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGY-Cztxqs/mYRv4kpEd7i4-ekFgJov0A/view?utm_content=DAGY-Cztxqs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h50da478e86",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGaOluyLCs/cltTI71FktTTBKnMqJ5snw/view?utm_content=DAGaOluyLCs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4bafa8cb43",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGqHvPnkmE/uRjOKo3WR9UgMgO7E7Ro_Q/view?utm_content=DAGqHvPnkmE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h9010bb8d24",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGqOyEDLFI/kWhWSFWVDyIHWnaXlXPi9g/view?utm_content=DAGqOyEDLFI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4649c0e4d0",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGqrEPVk7g/ybE_UEO3_U9awWtIRglB2Q/view?utm_content=DAGqrEPVk7g&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha7d770a784",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://www.canva.com/design/DAGuu02G0Z4/HGR49Guvf6QfBuzX0-epug/view?utm_content=DAGuu02G0Z4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h2c3c5835b4",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://youtu.be/1BOR8NIxiLg?si=BbaN8XT8aYkZXY-n",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://youtu.be/S-d1RBza3NU?si=OLu2LkhBBKq5E2ME",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://youtu.be/gBuuCdGvPmw?si=IEq_yaR6xoWf94mR",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://youtu.be/rh1mP02NFoM?si=2i0g6_j63jmTQZKB",
+      "status": "network-blocked"
+    },
+    {
+      "url": "https://youtu.be/z3GS5oYGq5U?si=9FN-EIVl2ttObDwC",
+      "status": "network-blocked"
+    }
+  ],
+  "reviewedMessages": [
+    {
+      "url": "https://t.me/programmerPOdCapot/77",
+      "text": "📝 SASS — САВОЛ + ҶАВОБ (СОДА)\nSass чист?\n→ CSS preprocessor, CSS-ро қавитар мекунад.\nSass барои чӣ лозим аст?\n→ Барои осон, тоза ва тез кор кардан бо CSS.\nVariable дар Sass чист?\n→ Ҷой барои нигоҳ доштани арзиш (ранг, андоза…).\nЧӣ тавр variable менависем?\n→ Бо аломати $.\nNesting чӣ медиҳад?\n→ Код тартибнок ва фаҳмотар мешавад.\nMixin чист?\n→ Блоки такроршавандаи CSS.\nMixin-ро бо чӣ истифода мебарем?\n→ Бо @include.\n@extend чӣ мекунад?\n→ Услуби як селекторро ба дигар мерос медиҳад.\nPartials чист?\n→ Файлҳои хурди Sass.\n@import барои чӣ?\n→ Барои пайваст кардани файлҳо.\nList чист?\n→ Рӯйхати арзишҳо.\n@each барои чӣ?\n→ Гузаштан аз ҳар элемент дар list.\n@for чӣ мекунад?\n→ Такрор бо ҳисоб (1,2,3…).\n@while чӣ мекунад?\n→ То рост будани шарт такрор мекунад.\n@if барои чӣ?\n→ Барои шарт (агар).\nMixins параметр дошта метавонанд?\n→ Ҳа, метавонанд.\nCSS.map файл барои чӣ?\n→ Барои ёфтани хатогиҳо (debug).\nLive Sass Compiler чӣ мекунад?\n→ SCSS-ро ба CSS табдил медиҳад.\nФарқи Sass аз CSS дар чист?\n→ Sass имкониятҳои иловагӣ дорад.\n@each бо чӣ кор мекунад?\n→ Бо list.\n@extend кай истифода мешавад?\n→ Вақте услуб яксон аст.\nNesting ба чӣ монанд аст?\n→ Ба структураи HTML.\nPartials бо чӣ оғоз мешаванд?\n→ Бо _ (underscore).\nSass кадом файлро компиляция мекунад?\n→ .scss.\nSass-ро дар куҷо менависем?\n→ Дар файли .scss"
+    },
+    {
+      "url": "https://t.me/programmerPOdCapot/84",
+      "text": "git fetch origin dev:task-1"
+    },
+    {
+      "url": "https://t.me/programmerPOdCapot/191",
+      "text": "npm install -g json-server\n\njson-server --watch db.json\n\nuse this commands  in git bush vs code !"
+    },
+    {
+      "url": "https://t.me/programmerPOdCapot/192",
+      "text": "<script src=\"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js\"></script>"
+    }
+  ]
+}

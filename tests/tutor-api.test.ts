@@ -44,6 +44,19 @@ describe('Tutor API', () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it('serves the reviewed channel message for free and leaves unreviewed course topics gated',async ()=>{
+    authMock.mockResolvedValue(null);
+    const {POST}=await import('@/app/api/tutor/route');
+    const known=await POST(request({...input,courseId:'css',userText:'Sass чист?',language:'tg',isDeep:true}));
+    expect(known.status).toBe(200);
+    const answer=await known.json();
+    expect(answer).toMatchObject({mode:'local',usage:{totalTokens:0},source:{sourceId:'telegram-77'}});
+    expect(answer.reply).toContain('$brand');expect(answer.reply).toContain('иловаи таҳрирӣ');
+    expect(fetchMock).not.toHaveBeenCalled();expect(authMock).not.toHaveBeenCalled();
+    const unknown=await POST(request({...input,courseId:'javascript-1',userText:'Scope Hoisting TDZ'}));
+    expect(unknown.status).toBe(401);expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it('reports missing configuration instead of claiming an AI answer', async () => {
     vi.stubEnv('AI_PROVIDER_KEY', '');
     const { POST } = await import('@/app/api/tutor/route');

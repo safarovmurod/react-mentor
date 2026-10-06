@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, BookOpen, CheckCircle2, Layers } from 'lucide-react';
@@ -31,6 +32,7 @@ export function CourseCatalog() {
   return <section className="course-catalog">
     <div className="course-intro"><span className="eyebrow"><Layers size={16}/>{ru?'ВАШЕ ОБУЧЕНИЕ':'YOUR LEARNING'}</span><h1>{ru?'Что будем изучать?':'What would you like to learn?'}</h1><p>{ru?'Выберите направление. Переключайтесь в любой момент — прогресс и заметки каждого курса сохраняются отдельно.':'Choose a path. Switch anytime; each course keeps its own progress and notes.'}</p></div>
     <div className="course-route panel"><BookOpen size={21}/><div><strong>{ru?'Рекомендуемый путь для веб-разработки':'Recommended web development path'}</strong><p>HTML → CSS → JavaScript 1 → JavaScript 2 → React</p><span>{ru?'Git изучайте параллельно. C++ — отдельное направление.':'Study Git alongside this path. C++ is a separate path.'}</span></div></div>
+    <p className="course-material-link"><Link href="/courses/materials" className="text-link">{ru?'Материалы Telegram-канала':'Telegram channel materials'}<ArrowRight size={16}/></Link></p>
     <div className="course-grid">{COURSE_CATALOG.map(course => {
       const count = counts?.find(item => item.id === course.id);
       return <article key={course.id} className={'panel course-card '+(selected===course.id?'course-selected':'')} data-course={course.id}>
