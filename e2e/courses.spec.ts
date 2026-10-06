@@ -104,8 +104,10 @@ test('JavaScript has one card, two month stages and source-backed daily practice
   await practice.getByText('Подсказка',{exact:true}).click();
   await practice.getByText('Пример решения',{exact:true}).click();
   await expect(practice.locator('pre')).toContainText('scores.reduce');
-  const response=await page.request.post('/api/tutor',{data:{action:'ask',courseId:'javascript-1',questionId:'js-average-score-q1',userText:'Миёнаи [80,90,100] чанд аст?',language:'tg',deep:true}});
-  expect(await response.json()).toMatchObject({mode:'local',usage:{totalTokens:0}});
+  const response=await page.request.post('/api/tutor',{data:{action:'ask',courseId:'javascript-1',questionId:'js-average-score-q1',userText:'Миёнаи [80,90,100] чанд аст?',language:'tg',isDeep:true}});
+  const answer=await response.json();
+  expect(answer).toMatchObject({mode:'local',usage:{totalTokens:0}});
+  expect(answer.reply).toContain('scores.reduce');
   await page.goto('/courses/materials');
   await page.getByRole('combobox',{name:'Тип материала',exact:true}).selectOption('photo');
   await expect(page.locator('.telegram-material')).toHaveCount(20);
