@@ -8,23 +8,18 @@ import { accountStorageKey, mergeProgress, progressSnapshot } from '@/lib/accoun
 import { useLearningStore } from '@/stores/learning-store';
 import { useAccount } from './account-provider';
 import { AccountAvatar } from './account-avatar';
+import { ACCOUNT_COPY, accountErrorKey, type AccountCopyKey } from '@/lib/account-copy';
 
 export function AccountSettings() {
   const account=useAccount();
-  const language=useLearningStore(state=>state.language);
-  const guestCopy={
-    ru:{account:'Ваш аккаунт',mode:'Гостевой режим',description:'Сейчас прогресс хранится в этом браузере. Войдите, чтобы продолжить обучение на телефоне и сохранить личный профиль.',login:'Войти · Google или email'},
-    en:{account:'Your account',mode:'Guest mode',description:'Progress is saved in this browser. Sign in to continue on your phone and keep a personal profile.',login:'Sign in · Google or email'},
-    tg:{account:'Аккаунти шумо',mode:'Ҳолати меҳмон',description:'Пешрафт ҳоло дар ҳамин браузер нигоҳ дошта мешавад. Барои идома дар телефон ва нигоҳ доштани профил ворид шавед.',login:'Воридшавӣ · Google ё email'},
-    uk:{account:'Ваш акаунт',mode:'Гостьовий режим',description:'Зараз прогрес зберігається в цьому браузері. Увійдіть, щоб продовжити навчання на телефоні та зберегти свій профіль.',login:'Увійти · Google або email'}
-  }[language];
+  const copy=ACCOUNT_COPY[useLearningStore(state=>state.language)];
 
   const [name,setName]=useState(account.profile?.displayName || '');
-  const [busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
+  const [busy,setBusy]=useState(false),[error,setError]=useState<AccountCopyKey|''>(''),[message,setMessage]=useState<AccountCopyKey|''>('');
   async function save(event:React.FormEvent) {
     event.preventDefault();setBusy(true);setError('');setMessage('');
-    try {await account.saveProfile(name);setMessage('Профиль сохранён.');}
-    catch(cause) {setError(cause instanceof Error ? cause.message:'Не удалось сохранить профиль.');} finally {setBusy(false);}
+    try {await account.saveProfile(name);setMessage('profileSaved');}
+    catch(cause) {setError(accountErrorKey(cause,'profileError'));} finally {setBusy(false);}
   }
   async function upload(file:File|undefined) {
     if (!file || !account.user || busy) return;
@@ -32,70 +27,70 @@ export function AccountSettings() {
     const client=getSupabaseBrowserClient();const userId=account.user.id;
     let path:string|undefined;
     try {
-      if (!client) throw new Error('Вход не подключён.');
+      if (!client) throw new Error(ACCOUNT_COPY.ru.loginUnavailable);
       const blob=await prepareAvatar(file);
       path=userId+'/'+crypto.randomUUID()+'.webp';
       const {error:uploadError}=await client.storage.from('react-mentor-avatars').upload(path,blob,{contentType:'image/webp',upsert:false});
-      if (uploadError) throw new Error('Не удалось загрузить фото. Попробуйте ещё раз.');
+      if (uploadError) throw new Error(ACCOUNT_COPY.ru.photoUploadRetry);
       await account.saveProfile(account.profile!.displayName,path);
       if (account.profile?.avatarPath) await client.storage.from('react-mentor-avatars').remove([account.profile.avatarPath]);
-      setMessage('Фото обновлено.');
+      setMessage('photoUploaded');
     } catch(cause) {
       // Clean up a new upload when saving its profile failed.
       if (path && client) await client.storage.from('react-mentor-avatars').remove([path]);
-      setError(cause instanceof Error ? cause.message:'Не удалось загрузить фото.');
+      setError(accountErrorKey(cause,'photoUploadError'));
     } finally {setBusy(false);}
   }
   async function removePhoto() {
     if (!account.profile?.avatarPath || busy) return;setBusy(true);setError('');
-    try {const path=account.profile.avatarPath;await account.saveProfile(account.profile.displayName,null);await getSupabaseBrowserClient()?.storage.from('react-mentor-avatars').remove([path]);setMessage('Фото удалено.');}
-    catch {setError('Не удалось удалить фото.');} finally {setBusy(false);}
+    try {const path=account.profile.avatarPath;await account.saveProfile(account.profile.displayName,null);await getSupabaseBrowserClient()?.storage.from('react-mentor-avatars').remove([path]);setMessage('photoRemoved');}
+    catch {setError('photoRemoveError');} finally {setBusy(false);}
   }
   async function importGuest() {
     if (busy) return;setError('');setMessage('');
     try {
       const stored=localStorage.getItem(accountStorageKey(null));
-      if (!stored) {setMessage('Гостевого прогресса пока нет.');return;}
+      if (!stored) {setMessage('noGuestProgress');return;}
       const guest=progressSnapshot(JSON.parse(stored).state);
       useLearningStore.setState(mergeProgress(progressSnapshot(useLearningStore.getState()),guest));
-      await account.syncNow();setMessage('Гостевой прогресс добавлен. Статус облака показан ниже.');
-    } catch {setError('Не удалось прочитать гостевой прогресс. Исходные данные сохранены.');}
+      await account.syncNow();setMessage('guestImported');
+    } catch {setError('guestImportError');}
   }
-  if (!account.user) return <section className="panel account-panel"><div className="section-heading"><h2>{guestCopy.account}</h2><span className="account-badge">{guestCopy.mode}</span></div><p>{guestCopy.description}</p><Link className="button primary" href="/login">{guestCopy.login}</Link></section>;
-  const statuses={local:'В этом браузере',syncing:'Сохраняем в облако…',synced:'Сохранено в облаке',offline:'Нет сети · изменения сохранены в браузере',error:'Облако недоступно · изменения сохранены в браузере'};
+  if (!account.user) return <section className="panel account-panel"><div className="section-heading"><h2>{copy.account}</h2><span className="account-badge">{copy.guestMode}</span></div><p>{copy.guestDescription}</p><Link className="button primary" href="/login">{copy.guestLogin}</Link></section>;
   return <>
-    <section className="panel account-panel"><div className="section-heading"><h2>Личный профиль</h2><span className="account-badge">Ваш аккаунт</span></div>
+    <section className="panel account-panel"><div className="section-heading"><h2>{copy.profile}</h2><span className="account-badge">{copy.account}</span></div>
       <div className="account-profile"><AccountAvatar/><div><strong>{account.profile?.displayName}</strong><p>{account.user.email}</p></div></div>
-      <form className="account-form profile-form" onSubmit={save}><label>Ваше имя<input autoComplete="name" required minLength={2} maxLength={60} value={name} onChange={e=>setName(e.target.value)}/></label><button className="button primary" disabled={busy || name.trim().length<2}>Сохранить имя</button></form>
-      <div className="button-row"><label className={'button subtle upload-button '+(busy ? 'is-disabled':'')}><Camera size={17}/>{busy ? 'Подождите…':'Добавить фото'}<input type="file" aria-label="Добавить фото" accept="image/jpeg,image/png,image/webp" disabled={busy} onChange={e=>{void upload(e.target.files?.[0]);e.target.value='';}}/></label>{account.profile?.avatarPath && <button className="button subtle" disabled={busy} onClick={removePhoto}>Удалить фото</button>}</div><p className="account-hint">JPEG, PNG или WebP до 5 МБ. Фото обрезается до квадрата и хранится приватно.</p>
-      {error && <p role="alert" className="error-message">{error}</p>}{message && <p role="status" className="account-success">{message}</p>}
+      <form className="account-form profile-form" onSubmit={save}><label>{copy.name}<input autoComplete="name" required minLength={2} maxLength={60} value={name} onChange={e=>setName(e.target.value)}/></label><button className="button primary" disabled={busy || name.trim().length<2}>{copy.saveName}</button></form>
+      <div className="button-row"><label className={'button subtle upload-button '+(busy ? 'is-disabled':'')}><Camera size={17}/>{busy ? copy.wait:copy.addPhoto}<input type="file" aria-label={copy.addPhoto} accept="image/jpeg,image/png,image/webp" disabled={busy} onChange={e=>{void upload(e.target.files?.[0]);e.target.value='';}}/></label>{account.profile?.avatarPath && <button className="button subtle" disabled={busy} onClick={removePhoto}>{copy.removePhoto}</button>}</div><p className="account-hint">{copy.photoHint}</p>
+      {error && <p role="alert" className="error-message">{copy[error]}</p>}{message && <p role="status" className="account-success">{copy[message]}</p>}
     </section>
-    <section className="panel account-panel"><div className="section-heading"><h2><Cloud size={19}/>Сохранение и устройства</h2><span className="account-badge" role="status">{statuses[account.syncStatus]}</span></div><p>Ваши ответы, XP, заметки, настройки и код доступны только вашему аккаунту. На другом устройстве войдите в тот же аккаунт.</p><div className="button-row"><button className="button subtle" onClick={account.syncNow} disabled={account.syncStatus==='syncing'}><RefreshCw size={16}/>Синхронизировать</button><button className="button subtle" onClick={importGuest}>Добавить прогресс гостя из этого браузера</button></div><PhoneQr/></section>
+    <section className="panel account-panel"><div className="section-heading"><h2><Cloud size={19}/>{copy.devices}</h2><span className="account-badge" role="status">{copy[account.syncStatus]}</span></div><p>{copy.deviceDescription}</p><div className="button-row"><button className="button subtle" onClick={account.syncNow} disabled={account.syncStatus==='syncing'}><RefreshCw size={16}/>{copy.sync}</button><button className="button subtle" onClick={importGuest}>{copy.importGuest}</button></div><PhoneQr/></section>
     <SecuritySettings/>
-    <section className="panel account-panel"><h2>Сессия</h2><p>Вход сохраняется на этом устройстве после закрытия браузера. Выход закроет аккаунт здесь; на других устройствах он останется открытым.</p><button className="button subtle" onClick={account.signOut}><LogOut size={17}/>Выйти из аккаунта</button></section>
+    <section className="panel account-panel"><h2>{copy.session}</h2><p>{copy.sessionDescription}</p><button className="button subtle" onClick={account.signOut}><LogOut size={17}/>{copy.logoutAccount}</button></section>
   </>;
 }
 
 function PhoneQr() {
-  const [image,setImage]=useState(''),[error,setError]=useState('');
+  const copy=ACCOUNT_COPY[useLearningStore(state=>state.language)];
+  const [image,setImage]=useState(''),[error,setError]=useState(false);
   useEffect(()=>{
     let active=true;
-    import('qrcode').then(qr=>qr.toDataURL(window.location.origin+'/login',{width:192,margin:2})).then(url=>{if (active) setImage(url);}).catch(()=>{if (active) setError('QR недоступен. Откройте этот сайт на телефоне.');});
+    import('qrcode').then(qr=>qr.toDataURL(window.location.origin+'/login',{width:192,margin:2})).then(url=>{if (active) setImage(url);}).catch(()=>{if (active) setError(true);});
     return ()=>{active=false;};
   },[]);
-  return <div className="phone-connect"><div><h3><Smartphone size={18}/>Продолжить на телефоне</h3><p>Сканируйте QR камерой, откройте сайт и войдите в тот же Google или email аккаунт. QR содержит только ссылку на сайт.</p>{error && <p role="alert">{error}</p>}</div>{image && /* Locally generated QR, no credentials. */
+  return <div className="phone-connect"><div><h3><Smartphone size={18}/>{copy.phone}</h3><p>{copy.phoneDescription}</p>{error && <p role="alert">{copy.phoneError}</p>}</div>{image && /* Locally generated QR, no credentials. */
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={image} width={192} height={192} alt="QR: открыть вход на телефоне"/>}</div>;
+    <img src={image} width={192} height={192} alt={copy.phoneAlt}/>}</div>;
 }
 
 function SecuritySettings() {
-  const account=useAccount();
+  const account=useAccount(),copy=ACCOUNT_COPY[useLearningStore(state=>state.language)];
   const [factors,setFactors]=useState<{id:string;friendly_name?:string}[]>([]),[loading,setLoading]=useState(true);
   const [enrollment,setEnrollment]=useState<{id:string;qr:string;secret:string}|null>(null);
-  const [code,setCode]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
+  const [code,setCode]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState<AccountCopyKey|''>(''),[message,setMessage]=useState<AccountCopyKey|''>('');
   useEffect(()=>{
     let active=true;const client=getSupabaseBrowserClient();
-    if (client) client.auth.mfa.listFactors().then(result=>{if (!active) return;if (result.error) setError('Не удалось проверить authenticator.');else setFactors(result.data.totp);setLoading(false);});
+    if (client) client.auth.mfa.listFactors().then(result=>{if (!active) return;if (result.error) setError('factorCheckError');else setFactors(result.data.totp);setLoading(false);});
     return ()=>{active=false;};
   },[]);
   async function enroll() {
@@ -108,27 +103,27 @@ function SecuritySettings() {
       const result=await client.auth.mfa.enroll({factorType:'totp',friendlyName:'ReactMentor',issuer:'ReactMentor'});if (result.error) throw result.error;
       const qr=result.data.totp.qr_code;
       setEnrollment({id:result.data.id,qr:qr.startsWith('data:') ? qr:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(qr),secret:result.data.totp.secret});setCode('');
-    } catch {setError('Не удалось подключить authenticator. Попробуйте позже.');} finally {setBusy(false);}
+    } catch {setError('enrollError');} finally {setBusy(false);}
   }
   async function verify(event:React.FormEvent) {
     event.preventDefault();if (!enrollment || busy) return;setBusy(true);setError('');
     try {const result=await getSupabaseBrowserClient()?.auth.mfa.challengeAndVerify({factorId:enrollment.id,code});if (!result || result.error) throw new Error();setEnrollment(null);setCode('');await account.reload();}
-    catch {setError('Код не принят. Возьмите новый код из приложения.');} finally {setBusy(false);}
+    catch {setError('verifyError');} finally {setBusy(false);}
   }
   async function cancel() {
     if (!enrollment || busy) return;setBusy(true);setError('');
     try {const result=await getSupabaseBrowserClient()?.auth.mfa.unenroll({factorId:enrollment.id});if (!result || result.error) throw new Error();setEnrollment(null);setCode('');}
-    catch {setError('Не удалось отменить подключение. Повторите попытку.');} finally {setBusy(false);}
+    catch {setError('cancelError');} finally {setBusy(false);}
   }
   async function remove(id:string) {
     if (busy) return;setBusy(true);setError('');
-    try {const result=await getSupabaseBrowserClient()?.auth.mfa.unenroll({factorId:id});if (!result || result.error) throw new Error();setFactors(items=>items.filter(f=>f.id!==id));setMessage('Authenticator отключён.');await account.reload();}
-    catch {setError('Не удалось отключить authenticator. Подтвердите вход и повторите.');} finally {setBusy(false);}
+    try {const result=await getSupabaseBrowserClient()?.auth.mfa.unenroll({factorId:id});if (!result || result.error) throw new Error();setFactors(items=>items.filter(f=>f.id!==id));setMessage('factorRemoved');await account.reload();}
+    catch {setError('factorRemoveError');} finally {setBusy(false);}
   }
-  return <section className="panel account-panel"><div className="section-heading"><h2><ShieldCheck size={19}/>Защита аккаунта</h2><span className="account-badge">{loading ? 'Проверяем…':factors.length ? 'Authenticator подключён':'Обычный вход'}</span></div><p>Дополнительная защита через приложение на телефоне. Работает без SMS: Google Authenticator, Microsoft Authenticator, 2FAS и другие.</p>
-    {loading ? null:enrollment ? <div className="mfa-enrollment"><p>1. Отсканируйте QR в приложении authenticator.<br/>2. Введите код, чтобы включить защиту.</p>{/* Sensitive enrollment QR stays in component memory only. */
+  return <section className="panel account-panel"><div className="section-heading"><h2><ShieldCheck size={19}/>{copy.security}</h2><span className="account-badge">{loading ? copy.checking:factors.length ? copy.connected:copy.ordinaryLogin}</span></div><p>{copy.securityDescription}</p>
+    {loading ? null:enrollment ? <div className="mfa-enrollment"><p>{copy.enrollScan}<br/>{copy.enrollCode}</p>{/* Sensitive enrollment QR stays in component memory only. */
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={enrollment.qr} alt="QR для приложения authenticator" width={192} height={192}/>}<details><summary>Не получается сканировать? Введите ключ вручную</summary><code className="mfa-secret">{enrollment.secret}</code></details><p className="account-hint">Сохраните доступ к приложению: коды понадобятся при следующем входе. Этот QR и ключ никому не отправляйте.</p><form className="account-form" onSubmit={verify}><label>Код из приложения<input inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required value={code} onChange={e=>setCode(e.target.value.replace(/\D/g,''))}/></label><div className="button-row"><button className="button primary" disabled={busy || code.length!==6}>Подключить защиту</button><button type="button" className="button subtle" disabled={busy} onClick={cancel}>Отмена</button></div></form></div>:factors.length ? factors.map(factor=><div className="setting-row" key={factor.id}><div><strong>{factor.friendly_name || 'Authenticator'}</strong><p>При входе потребуется код из приложения.</p></div><button className="button subtle" disabled={busy} onClick={()=>remove(factor.id)}>Отключить</button></div>):<button className="button subtle" disabled={busy} onClick={enroll}><ShieldCheck size={17}/>Подключить authenticator · QR</button>}
-    {error && <p role="alert" className="error-message">{error}</p>}{message && <p role="status" className="account-success">{message}</p>}
+      <img src={enrollment.qr} alt={copy.enrollAlt} width={192} height={192}/>}<details><summary>{copy.enrollManual}</summary><code className="mfa-secret">{enrollment.secret}</code></details><p className="account-hint">{copy.enrollHint}</p><form className="account-form" onSubmit={verify}><label>{copy.appCode}<input inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required value={code} onChange={e=>setCode(e.target.value.replace(/\D/g,''))}/></label><div className="button-row"><button className="button primary" disabled={busy || code.length!==6}>{copy.enableSecurity}</button><button type="button" className="button subtle" disabled={busy} onClick={cancel}>{copy.cancel}</button></div></form></div>:factors.length ? factors.map(factor=><div className="setting-row" key={factor.id}><div><strong>{factor.friendly_name || 'Authenticator'}</strong><p>{copy.requiredCode}</p></div><button className="button subtle" disabled={busy} onClick={()=>remove(factor.id)}>{copy.disable}</button></div>):<button className="button subtle" disabled={busy} onClick={enroll}><ShieldCheck size={17}/>{copy.enroll}</button>}
+    {error && <p role="alert" className="error-message">{copy[error]}</p>}{message && <p role="status" className="account-success">{copy[message]}</p>}
   </section>;
 }

@@ -2,11 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 import { useAppStore } from '@/stores/app-store';
-import { useLearningStore } from '@/stores/learning-store';
+import { registerStudyTimeFlush, useLearningStore } from '@/stores/learning-store';
 
 /**
  * Real Active Study Time Tracker
- * Pauses on visibilitychange (tab hidden), window blur, or when idle > 5 minutes.
+ * Pauses when the tab is hidden or idle for 5 minutes; saves unfinished batches.
  */
 export function ActivityTracker() {
   const incrementActiveSeconds = useAppStore((s) => s.incrementActiveSeconds);
@@ -19,6 +19,18 @@ export function ActivityTracker() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     lastInteractionRef.current = Date.now();
+    isDocumentVisibleRef.current = !document.hidden;
+    const storageKey = useLearningStore.persist.getOptions().name;
+    const courseId = useLearningStore.getState().selectedCourse;
+    const flush = () => {
+      const seconds = pendingSecondsRef.current;
+      pendingSecondsRef.current = 0;
+      // An old component's cleanup must never write into the next account.
+      if (seconds && useLearningStore.persist.getOptions().name === storageKey) {
+        useLearningStore.getState().addStudySeconds(seconds, courseId);
+      }
+    };
+    const unregisterFlush = registerStudyTimeFlush(flush);
 
     // Reset interaction timestamp on user activity
     const handleActivity = () => {
@@ -29,6 +41,7 @@ export function ActivityTracker() {
     const handleVisibilityChange = () => {
       isDocumentVisibleRef.current = !document.hidden;
       if (!isDocumentVisibleRef.current) {
+        flush();
         setIsIdle(true);
       }
     };
@@ -36,6 +49,7 @@ export function ActivityTracker() {
     window.addEventListener('pointermove', handleActivity, { passive: true });
     window.addEventListener('keydown', handleActivity, { passive: true });
     window.addEventListener('scroll', handleActivity, { passive: true });
+    window.addEventListener('pagehide', flush);
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Heartbeat every 1 second: counts active time if within 5-min idle window and tab visible
@@ -47,7 +61,7 @@ export function ActivityTracker() {
       if (isDocumentVisibleRef.current && idleMillis < fiveMinutes) {
         incrementActiveSeconds(1);
         pendingSecondsRef.current++;
-        if (pendingSecondsRef.current>=15) {useLearningStore.getState().addStudySeconds(pendingSecondsRef.current);pendingSecondsRef.current=0;}
+        if (pendingSecondsRef.current>=15) flush();
       } else if (idleMillis >= fiveMinutes) {
         setIsIdle(true);
       }
@@ -57,10 +71,11 @@ export function ActivityTracker() {
       window.removeEventListener('pointermove', handleActivity);
       window.removeEventListener('keydown', handleActivity);
       window.removeEventListener('scroll', handleActivity);
+      window.removeEventListener('pagehide', flush);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       clearInterval(timer);
-      // Do not write on unmount: an account switch may already have changed scope.
-      pendingSecondsRef.current=0;
+      unregisterFlush();
+      flush();
     };
   }, [incrementActiveSeconds, setIsIdle]);
 

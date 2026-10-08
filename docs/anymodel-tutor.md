@@ -23,8 +23,8 @@ The model identifier and endpoint follow the supplied AnyModel example. Live pro
 - Send only the last four chat messages (600 characters each), a question of at most 1500 characters, and at most 1200 characters of relevant course context.
 - The server uses a concise system prompt and never automatically retries paid calls.
 - Successful responses display the provider's `usage.total_tokens` when supplied; the conversation total includes successful reported calls only. It is not the remaining account balance.
-- A process-local single-request guard and a three-second cooldown discourage bursts. They reset on restart and are not an authentication system or a billing cap.
-- Both input and output consume the provider balance. Set billing/usage limits in AnyModel for the 5000-token balance. Before exposing this paid endpoint publicly, add authenticated access and durable per-user quotas; the current learning app does not have those controls.
+- A process-local single-request guard and a three-second cooldown discourage bursts. They reset on restart and are not a durable per-user billing cap. Paid provider requests require a verified Supabase account and the required MFA assurance; known local material remains available to guests.
+- Both input and output consume the provider balance. Set billing/usage limits in the actual provider account. Durable per-user quotas and billing controls remain a prerequisite for expanding paid usage; authenticated access alone does not provide those limits.
 - Official grades and XP remain deterministic and do not use AI.
 
 ## Verification

@@ -3,6 +3,26 @@ test.beforeEach(async ({page})=>{
   await page.addInitScript(()=>{if (!localStorage.getItem('react-mentor-learning-v2')) localStorage.setItem('react-mentor-learning-v2',JSON.stringify({version:2,state:{selectedCourse:'react',courseChosen:true}}));});
 });
 
+test('settings controls fit small phones in every interface language', async ({page}) => {
+  await page.goto('/settings');
+  const interfaceLanguage=page.locator('.settings-panel select').first();
+  for (const [locale,title] of [['ru','Настройки'],['en','Settings'],['tg','Танзимот'],['uk','Налаштування']] as const) {
+    await interfaceLanguage.selectOption(locale);
+    await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();
+    await expect(page.locator('html')).toHaveAttribute('lang',locale);
+    for (const width of [320,360,375,430]) {
+      await page.setViewportSize({width,height:740});
+      await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      for (const control of await page.locator('.setting-row select, .setting-row button').all()) {
+        await expect(control).toBeVisible();
+        const box=(await control.boundingBox())!;
+        expect(box.x).toBeGreaterThanOrEqual(0);
+        expect(box.x+box.width).toBeLessThanOrEqual(width);
+      }
+    }
+  }
+});
+
 test('phone header controls never overlap and the menu scrolls, traps focus and closes', async ({ page }, info) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
