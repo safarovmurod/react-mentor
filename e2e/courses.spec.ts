@@ -3,6 +3,9 @@ import { expect, test } from '@playwright/test';
 // Russian UI. Geo detection must not rewrite an existing learner's choice.
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
+    // addInitScript runs in sandboxed learner-preview iframes as well.
+    // Never access their blocked storage or weaken iframe sandboxing.
+    if (window.self !== window.top) return;
     if (!localStorage.getItem('react-mentor-learning-v2')) {
       localStorage.setItem('react-mentor-learning-v2', JSON.stringify({
         version: 2, state: { language: 'ru', contentLanguage: 'tg' },
@@ -17,15 +20,15 @@ test('course choice has one persistent active card and preserves isolated course
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto('/home');await expect(page.getByRole('heading',{name:'Что будем изучать?'})).toBeVisible();
  await expect(page.locator('.course-card')).toHaveCount(5);
- await page.getByRole('button',{name:'Выбрать HTML + CSS',exact:true}).click();
+ await page.locator('[data-course=html]').getByRole('button').click();
  await expect(page).toHaveURL('/courses/html/home?day=0');await expect(page.locator('.course-lesson h2')).toContainText('HTML + CSS');
  await page.goto('/courses');await expect(page.locator('.course-selected')).toHaveCount(1);await expect(page.locator('[data-course=html] button')).toHaveAttribute('aria-pressed','true');
  await page.reload();await expect(page.locator('[data-course=html]')).toHaveClass(/course-selected/);
  await page.screenshot({path:`/tmp/react-mentor-${testInfo.project.name}-courses.png`});
  await page.goto('/notes');await page.getByRole('button',{name:'Новая заметка',exact:true}).click();await page.getByLabel('Название',{exact:true}).fill('Моя HTML заметка');await page.getByLabel('Текст',{exact:true}).fill('Структура страницы');await page.getByRole('button',{name:'Сохранить',exact:true}).click();
- await page.goto('/courses');await page.getByRole('button',{name:'Выбрать JavaScript',exact:true}).click();await page.goto('/notes');await expect(page.getByText('Моя HTML заметка',{exact:true})).toHaveCount(0);
- await page.goto('/courses');await page.getByRole('button',{name:'Выбрать HTML + CSS',exact:true}).click();await page.goto('/notes');await expect(page.getByText('Моя HTML заметка',{exact:true})).toBeVisible();
- await page.goto('/courses');await page.getByRole('button',{name:'Выбрать React',exact:true}).click();await expect(page.getByRole('heading',{name:'Время разобраться в React.'})).toBeVisible();expect(errors).toEqual([]);
+ await page.goto('/courses');await page.locator('[data-course=javascript-1]').getByRole('button').click();await page.goto('/notes');await expect(page.getByText('Моя HTML заметка',{exact:true})).toHaveCount(0);
+ await page.goto('/courses');await page.locator('[data-course=html]').getByRole('button').click();await page.goto('/notes');await expect(page.getByText('Моя HTML заметка',{exact:true})).toBeVisible();
+ await page.goto('/courses');await page.locator('[data-course=react]').getByRole('button').click();await expect(page.getByRole('heading',{name:'Время разобраться в React.'})).toBeVisible();expect(errors).toEqual([]);
 });
 
 test('HTML + CSS Day 0 works on 320px, 360px and after refresh',async({page})=>{
@@ -87,7 +90,7 @@ test('legacy CSS lessons remain readable, but course navigation has no materials
 });
 
 test('JavaScript stages have 30 distinct days and legacy practice links remain usable',async({page})=>{
- await page.goto('/courses');await expect(page.getByRole('heading',{name:'JavaScript',exact:true})).toHaveCount(1);await page.getByRole('button',{name:'Выбрать JavaScript',exact:true}).click();await expect(page).toHaveURL('/courses/javascript-1/home?day=1');
+ await page.goto('/courses');await expect(page.getByRole('heading',{name:'JavaScript',exact:true})).toHaveCount(1);await page.locator('[data-course=javascript-1]').getByRole('button').click();await expect(page).toHaveURL('/courses/javascript-1/home?day=1');
  await page.goto('/courses/javascript-1/plan');await expect(page.locator('.day-card')).toHaveCount(31);
  await page.getByRole('link',{name:'Месяц 2 · JS2 API и приложения',exact:true}).click();await expect(page).toHaveURL('/courses/javascript-2/home?day=1');await expect(page.locator('.course-lesson h2')).toHaveText('Клиент, сервер и HTTP');
  await page.goto('/courses/javascript-1/practice#js-average-score');const practice=page.locator('#js-average-score');await practice.getByText('Пример решения',{exact:true}).click();await expect(practice.locator('pre')).toContainText('scores.reduce');
