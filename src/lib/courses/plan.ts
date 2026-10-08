@@ -34,7 +34,7 @@ export function courseDayProgress(
   let current: CourseDayItem | null = null;
   const days = plan.map(item => {
     const done = item.section === 'answers'
-      ? completedTopics.includes(item.lesson.id) && (!item.lesson.day || !item.lesson.practice || completedPractice.includes(item.lesson.id))
+      ? completedTopics.includes(item.lesson.id) && (item.lesson.day === undefined || !item.lesson.practice || completedPractice.includes(item.lesson.id))
       : item.section === 'practice'
         ? completedPractice.includes(item.lesson.id)
         : true;
