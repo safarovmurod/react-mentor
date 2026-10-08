@@ -20,14 +20,14 @@ We would evaluate Claude for explanations, exercise hints, code feedback and lea
 
 ## Current stage
 
-Existing software MVP with local automated checks; production reachability, live authentication and commercial launch readiness have not been confirmed in this environment. No user-count, revenue, funding, incorporation, accelerator membership or Claude adoption figures have been verified.
+Existing software MVP with passing local checks and GitHub CI. PR #3 was merged, and GitHub's Vercel integration reports a successful Production deployment for merge commit `9124d8d439136bebd8b09407b284058782897d7c`. Production reachability, live authentication and commercial launch readiness have not been confirmed in this environment because page requests are blocked by its proxy and live bindings are unavailable. No user-count, revenue, funding, incorporation, accelerator membership or Claude adoption figures have been verified.
 
 ## Fields requiring verification before submission
 
 | Field | State |
 |---|---|
 | Final startup name | React Mentor is current; CodeRavon is a provisional candidate awaiting collision/domain checks. |
-| Owned public website | Pending. `https://react-mentor-opal.vercel.app` appears in project docs but was not reachable through current network policy. |
+| Owned public website | Pending. Provider-reported deployment: `https://react-mentor-2vgvaokcz-safarovmurods-projects.vercel.app`; HTTP/browser access is unverified. The documented `https://react-mentor-opal.vercel.app` alias and an owned domain remain unconfirmed. |
 | Verified business email | Pending; no domain mailbox exists based on available evidence. |
 | Founder contact | Use the contact supplied privately by the founder when filling the real form; verify ownership if required. |
 | Founder name and residence | Await founder confirmation; do not infer legal identity from a GitHub username. |

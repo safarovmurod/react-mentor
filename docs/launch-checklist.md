@@ -8,7 +8,9 @@ Updated: 8 October 2026 (Asia/Dushanbe). Keep this file free of credentials and 
 - Local and remote HEAD: `65211ff661b6e0df2c1c10fcbbd5c61addff59f6` (native `git ls-remote origin HEAD`).
 - PR #2: https://github.com/safarovmurod/react-mentor/pull/2; merged before this work. Do not merge it again.
 - Public GitHub Actions page currently lists https://github.com/safarovmurod/react-mentor/actions/runs/37758083354 as completed successfully.
-- Work branch: `codex/launch-readiness-20261008`. Existing checkout is isolated; no extra worktree is needed.
+- Implementation branch: `codex/launch-readiness-20261008`; implementation commit `eb050c8ef6c49fc89fd8f8d650cc3d45e8daa3da`, verified on the remote. Existing checkout is isolated; no extra worktree is needed.
+- PR #3: https://github.com/safarovmurod/react-mentor/pull/3. Merged at 16:04:57 Asia/Dushanbe into `main` as `9124d8d439136bebd8b09407b284058782897d7c` after successful checks.
+- PR CI: https://github.com/safarovmurod/react-mentor/actions/runs/37766941045 — successful on the exact implementation commit. Post-merge main CI: https://github.com/safarovmurod/react-mentor/actions/runs/37767718159; refresh the latest main run when resuming because later documentation commits may have their own runs.
 
 ## Progress
 
@@ -30,7 +32,7 @@ Updated: 8 October 2026 (Asia/Dushanbe). Keep this file free of credentials and 
 | Final production-browser smoke | DONE | All four UI languages: meaningful public page identity, settings controls at 320/360/375/430/1280 px, real local Tutor reply and close. All seven course plans render. No console errors or page exceptions. |
 | Final desktop/mobile E2E / mock auth | DONE | 54 E2E tests and 12 mock-auth tests passed after all source changes. Mock providers remain distinct from live verification. |
 | Saved development startup | DONE | Exact saved dev command started successfully; real page and seven ready course records return HTTP 200. Development server is running in the current instance; processes will need restarting in a future task. |
-| GitHub API / branch protection / deployment metadata | BLOCKED | `gh api` returns Forbidden; CONNECT to `api.github.com` returns 403. Native Git read works; API/push rights must be tested separately. |
+| GitHub API / branch policy / metadata | DONE | Initial requests returned Forbidden; subsequent REST and GraphQL operations succeeded using existing platform authentication. PR creation, checks, merge and deployment metadata verified. Classic branch rule was null; effective `main` rules endpoint returned `[]`. No bypass/admin merge used. |
 | Claude for Startups official conditions | BLOCKED | CONNECT to official page returns 403. No current eligibility, amounts, seats, expiry or payment conditions verified. |
 | Tajikistan eligibility / founder facts | BLOCKED | Official supported-country source inaccessible; legal/company/funding facts awaiting founder reply. |
 | CodeRavon collision review | IN PROGRESS | Public GitHub search returned 0 results. Company/trademark searches remain unverified. Provisional candidate only. |
@@ -41,8 +43,9 @@ Updated: 8 October 2026 (Asia/Dushanbe). Keep this file free of credentials and 
 | Cloudflare | BLOCKED | No connector or authenticated browser session available. |
 | Supabase live RLS/Auth/storage | BLOCKED | No connector, runtime credentials or secret bindings available in this environment. Do not modify shared project blindly. |
 | Live Google/email login, MFA and database | BLOCKED | Needs configured Supabase and authorized test account/provider verification. |
-| Vercel production | BLOCKED | No Vercel connector, CLI or binding. Request to documented candidate URL is denied by proxy, not an application response. |
-| Git commit / push / PR / CI / merge | PENDING | Validate final changes, test native push, then API PR creation when access works. No repeat merge of old PR. |
+| Vercel automatic production deployment | DONE | GitHub deployment `6933827871` reports `Production`, state `success`, SHA `9124d8d439136bebd8b09407b284058782897d7c`. This is provider metadata, not a browser/live-auth check. |
+| Production reachability / Vercel direct configuration | BLOCKED | No direct Vercel binding yet. New Preview and Production page requests hit proxy CONNECT 403; no application HTTP response received. Documented `react-mentor-opal.vercel.app` alias is still unconfirmed. |
+| Git commit / push / PR / CI / merge | DONE | Native push verified; PR #3 created and merged after CI success. First push GH007 privacy failure resolved by using the owner's existing public GitHub noreply address for the new unpublished commit only; privacy protection retained. |
 | Anthropic application preparation | DONE | Source-backed draft in `startup-application.md`; unknown fields explicitly pending. Not submitted. |
 | Anthropic submission | BLOCKED | Official rules/form, eligibility, real public site, verified business email and owner facts required first. |
 | Claude Team / API credits | BLOCKED | No application approval or activated benefits observed. |
@@ -51,7 +54,7 @@ Updated: 8 October 2026 (Asia/Dushanbe). Keep this file free of credentials and 
 
 Saved `install_script` and `start_skill` in the environment configuration draft. Dependency installation completed twice; the complete saved installation script was executed successfully once. It uses `npm ci`, preserves the lockfile, checks the Node runtime and launches system Chromium through Playwright. Startup instructions include the existing checkout, managed server session, functional readiness requests, sequential browser suites and the difference between retained files and processes.
 
-The draft preserves package-manager presets and adds required public/service destinations: `api.github.com`, `claude.com`, `www.anthropic.com`, `support.claude.com`, `platform.claude.com`, `react-mentor-opal.vercel.app`, `rdap.verisign.com`, `sqveszluhdargkiqowjp.supabase.co`, `api.vercel.com`, `api.supabase.com`, `api.cloudflare.com`.
+The draft preserves package-manager presets and adds required public/service destinations: `api.github.com`, `claude.com`, `www.anthropic.com`, `support.claude.com`, `platform.claude.com`, `react-mentor-opal.vercel.app`, `rdap.verisign.com`, `sqveszluhdargkiqowjp.supabase.co`, `api.vercel.com`, `api.supabase.com`, `api.cloudflare.com`, plus observed deployment hosts listed below.
 
 Added public runtime requirements `NEXT_PUBLIC_SUPABASE_URL` (suggested existing project URL) and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. The latter must be a public anon/publishable key, not a service-role key. Added personal API credential requirements `VERCEL_TOKEN`, `SUPABASE_ACCESS_TOKEN`, `CLOUDFLARE_API_TOKEN`, each restricted to its API hostname. These declarations contain no values and do not establish access. Existing GitHub authentication was reused; no extra GitHub token was requested.
 
@@ -65,8 +68,13 @@ Local E2E country headers are simulated; they do not validate real geolocation f
 
 ## Next actionable steps
 
-1. Complete the final browser suites, verify saved dev startup instructions and test native Git push for the validated branch.
-2. Apply saved network edits in environment settings, then publish the environment; retry affected destinations only after propagation.
-3. Supply actual founder/legal/start-date/funding/team/domain facts; do not invent company registration or traction.
-4. Supply the saved personal Vercel/Supabase/Cloudflare API bindings and public Supabase variables securely in environment settings, or connect authorized integrations if available. Mail access is still needed separately. Never paste keys in chat.
-5. Verify official program rules and domain price before purchase authorization. Then verify DNS, incoming/outgoing mail, actual production/auth and eligibility before application submission.
+1. Review/save the environment draft and publish the environment; retry affected destinations only after network/value propagation. Installation, local validation and service startup are complete.
+2. Supply actual founder/legal/start-date/funding/team/domain facts; do not invent company registration or traction.
+3. Supply the saved personal Vercel/Supabase/Cloudflare API bindings and public Supabase variables securely in environment settings, or connect authorized integrations if available. Mail access is still needed separately. Never paste keys in chat.
+4. Verify official program rules and domain price before purchase authorization. Then verify DNS, incoming/outgoing mail, actual production/auth and eligibility before application submission.
+
+## Observed deployment links
+
+- Preview: https://react-mentor-git-codex-launch-rea-6956e3-safarovmurods-projects.vercel.app — provider reports Ready; proxy denied the browser/request path.
+- Production for merge `9124d8d`: https://react-mentor-2vgvaokcz-safarovmurods-projects.vercel.app — GitHub deployment status reports success; proxy denied the request path. This is a unique deployment URL, not a verified owned domain/canonical alias.
+- No domain purchased, mailbox created, test email sent, application submitted, Claude Team subscription activated or API credits granted by this task.

@@ -117,7 +117,7 @@ configure Vercel public Supabase variables before expecting live sign-in.
 
 **Санҷиш:** `npm run test`, `npm run test:e2e`, `npm run test:auth`. Сценарияҳои `e2e/locale.spec.ts` чор кишвар, cookie, интихоби дастӣ, refresh, ҳисоби кӯҳна ва fallback-и браузерро дар localhost бо header-ҳои симулятсияшуда месанҷанд. Санҷиши IP-и воқеӣ бояд дар production аз шабакаҳои воқеии ин кишварҳо анҷом дода шавад.
 
-**Барои дастрасии оммавӣ:** Vercel Preview-и ҳамин project аз Deployment Protection / Vercel Login муҳофизат шудааст. `READY` будани deployment маънои дастрасии умумиро надорад. Соҳиби project бояд домени воқеӣ ва танзимоти Deployment Protection-ро аз назар гузаронад; то он вақт санҷиши оммавии production тасдиқ нашудааст.
+**Барои дастрасии оммавӣ:** дар санҷиши қаблӣ Preview-и Vercel саҳифаи Vercel Login нишон дод. Барои deployment-и нав metadata-и `success` тасдиқ шуд, аммо дар ин муҳит proxy дархости сайтро рад кард. `READY` ё `success` маънои санҷиши дастрасии оммавӣ, live OAuth ё домени хусусиро надорад. Вазъи дақиқ ва пайвандҳо дар checklist ҳастанд.
 
 ## Launch readiness
 
