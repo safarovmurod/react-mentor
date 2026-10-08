@@ -14,13 +14,13 @@ test('public landing and policy pages open without login on desktop and small ph
     await expect(page.getByRole('heading', { name: /React ва JavaScript-ро/ })).toBeInViewport();
   }
 
-  await page.locator('.public-header').getByRole('link', { name: 'Махфият' }).click();
+  await page.locator('.public-footer').getByRole('link', { name: 'Махфият' }).click();
   await expect(page).toHaveURL(/\/privacy$/);
   await expect(page.getByRole('heading', { name: 'Махфият' })).toBeVisible();
   await expect(page.locator('.sidebar')).toHaveCount(0);
   await page.getByRole('link', { name: /React Mentor/ }).click();
 
-  await page.locator('.public-header').getByRole('link', { name: 'Қоидаҳо' }).click();
+  await page.locator('.public-footer').getByRole('link', { name: 'Қоидаҳо' }).click();
   await expect(page).toHaveURL(/\/terms$/);
   await expect(page.getByRole('heading', { name: 'Қоидаҳои истифода' })).toBeVisible();
   await expect(page.locator('.sidebar')).toHaveCount(0);
