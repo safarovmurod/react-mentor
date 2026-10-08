@@ -6,7 +6,7 @@ test('public landing and policy pages open without login on desktop and small ph
   await expect(page.getByRole('heading', { name: /Изучайте React и JavaScript/ })).toBeVisible();
   await expect(page.locator('.sidebar')).toHaveCount(0);
   await expect(page.locator('.public-feature-grid article')).toHaveCount(3);
-  await expect(page.getByRole('link', { name: /Начать обучение/ })).toHaveAttribute('href', '/login');
+  await expect(page.locator('.public-header').getByRole('link', { name: /Начать обучение/ })).toHaveAttribute('href', '/login');
 
   for (const width of [320, 360, 390, 430]) {
     await page.setViewportSize({ width, height: 740 });
