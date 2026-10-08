@@ -7,7 +7,7 @@ import learningIndex from '@/content/learning-index.json';
 import { chooseDailyQuestions, dateKey, nextReview, type StudyMode } from '@/lib/learning';
 import { accountStorageKey, emptyProgress, emptyCourseProgress, progressSnapshot, type Progress } from '@/lib/account/progress';
 import type { CourseId, ImportedCourseId } from '@/lib/courses/ids';
-import { contentLocaleFor, getManualLocale, persistManualLocale, type InterfaceLocale } from '@/lib/locale';
+import { contentLocaleFor, persistManualLocale, type InterfaceLocale } from '@/lib/locale';
 
 interface LearningState extends Progress {
   ready: boolean;
@@ -138,7 +138,7 @@ export function switchLearningAccount(userId: string | null, initialLocale?: Int
   } catch { storageError='Не удалось прочитать сохранённые данные. Не очищайте браузер.'; }
   // Apply geo only to a genuinely new profile. Saved languages always win.
   if (!hadSavedProgress && !storageError) {
-    const locale=getManualLocale() || initialLocale;
+    const locale=initialLocale;
     if (locale) progress={...progress,language:locale,contentLanguage:contentLocaleFor(locale)};
   }
   useLearningStore.persist.setOptions({name,storage:storageError ? {getItem:()=>null,setItem:()=>{},removeItem:()=>{}} : createJSONStorage(()=>localStorage)});
