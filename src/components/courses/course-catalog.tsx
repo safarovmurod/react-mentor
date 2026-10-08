@@ -15,6 +15,8 @@ export function CourseCatalog() {
   const [counts, setCounts] = useState<{id:CourseId;ready:boolean;lessons:number;files:number}[] | null>(null);
   const [failed, setFailed] = useState(false);
   const ru = language === 'ru';
+  // Old CSS-only selections remain readable; the combined HTML + CSS card is the visible course.
+  const displaySelected = selected === 'css' ? 'html' : selected;
   useEffect(() => {
     const controller = new AbortController();
     fetch('/api/courses', {signal:controller.signal}).then(async response => {
@@ -27,18 +29,17 @@ export function CourseCatalog() {
   function choose(id:CourseId) {
     useLearningStore.getState().chooseCourse(id);
     useAppStore.setState({sidebarOpen:false,tutorDrawerOpen:false,tutorQuestion:null});
-    router.push(id === 'react' ? '/home' : `/courses/${id}/home?day=1`);
+    router.push(id === 'react' ? '/home' : `/courses/${id}/home?day=${id === 'html' ? 0 : 1}`);
   }
   return <section className="course-catalog">
     <div className="course-intro"><span className="eyebrow"><Layers size={16}/>{ru?'ВАШЕ ОБУЧЕНИЕ':'YOUR LEARNING'}</span><h1>{ru?'Что будем изучать?':'What would you like to learn?'}</h1><p>{ru?'Выберите направление. Переключайтесь в любой момент — прогресс и заметки каждого курса сохраняются отдельно.':'Choose a path. Switch anytime; each course keeps its own progress and notes.'}</p></div>
     <div className="course-route panel"><BookOpen size={21}/><div><strong>{ru?'Рекомендуемый путь для веб-разработки':'Recommended web development path'}</strong><p>HTML + CSS → JavaScript 1 → JavaScript 2 → React</p><span>{ru?'Git изучайте параллельно. C++ — отдельное направление.':'Study Git alongside this path. C++ is a separate path.'}</span></div></div>
-    <p className="course-material-link"><Link href="/courses/materials" className="text-link">{ru?'Материалы Telegram-канала':'Telegram channel materials'}<ArrowRight size={16}/></Link></p>
     <div className="course-grid">{COURSE_CATALOG.filter(course=>course.id!=='javascript-2'&&course.id!=='css').map(course => {
       const javascript=course.id==='javascript-1';
       const parts=counts?.filter(item=>javascript?item.id==='javascript-1'||item.id==='javascript-2':item.id===course.id);
       const count=parts?.length?{ready:parts.some(item=>item.ready),lessons:parts.reduce((sum,item)=>sum+item.lessons,0)}:undefined;
       const name=javascript?'JavaScript':course.name;
-      const isSelected=selected===course.id||(javascript&&selected==='javascript-2');
+      const isSelected=displaySelected===course.id||(javascript&&displaySelected==='javascript-2');
       return <article key={course.id} className={'panel course-card '+(isSelected?'course-selected':'')} data-course={course.id}>
         <div className="between"><span className="course-symbol">{course.symbol}</span>{isSelected?<span className="badge"><CheckCircle2 size={14}/>{ru?'Выбрано':'Selected'}</span>:course.id==='html'?<span className="badge">{ru?'Рекомендуем начать':'Recommended start'}</span>:null}</div>
         <h2>{name}</h2><p>{javascript?(ru?'Месяц 1 — JS1: массивы, объекты и задачи. Месяц 2 — JS2: API и запросы.':'Month 1 — JS1: arrays, objects and exercises. Month 2 — JS2: APIs and requests.'):(ru?course.ru:course.en)}</p>
