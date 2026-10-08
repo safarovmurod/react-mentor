@@ -40,7 +40,7 @@ function ReadingQuestion({ question, index, topic }: { question: AnswerQuestion;
     </div>
   </details>;
 }
-function AnswerContent({ question, language, contentLanguage }: { question: SourceAnswerQuestion; language: 'ru' | 'en'; contentLanguage: 'tg' | 'ru' | 'en' }) {
+function AnswerContent({ question, language, contentLanguage }: { question: SourceAnswerQuestion; language: 'ru' | 'en' | 'tg' | 'uk'; contentLanguage: 'tg' | 'ru' | 'en' }) {
   const copy = COPY[language];
   const translate = (value: string) => tr(value, contentLanguage);
   return <div className="answer-content-block">
