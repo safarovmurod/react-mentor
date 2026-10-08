@@ -7,6 +7,7 @@ import learningIndex from '@/content/learning-index.json';
 import { chooseDailyQuestions, dateKey, nextReview, type StudyMode } from '@/lib/learning';
 import { accountStorageKey, emptyProgress, emptyCourseProgress, progressSnapshot, type Progress } from '@/lib/account/progress';
 import type { CourseId, ImportedCourseId } from '@/lib/courses/ids';
+import { contentLocaleFor, getManualLocale, persistManualLocale, type InterfaceLocale } from '@/lib/locale';
 
 interface LearningState extends Progress {
   ready: boolean;
@@ -32,7 +33,10 @@ interface LearningState extends Progress {
 
 export const useLearningStore = create<LearningState>()(persist((set, get) => ({
   ...emptyProgress(), ready:false, storageError:'',
-  setPreferences(values) { set({...values,preferenceClock:{...get().preferenceClock,...Object.fromEntries(Object.keys(values).map(key=>[key,Date.now()]))}}); },
+  setPreferences(values) {
+    if (values.language) persistManualLocale(values.language);
+    set({...values,preferenceClock:{...get().preferenceClock,...Object.fromEntries(Object.keys(values).map(key=>[key,Date.now()]))}});
+  },
   ensureDailySet(month, today = dateKey()) {
     const key = `${today}-${month}`;
     const current = get();
@@ -126,12 +130,17 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
 
 // Read the target cache BEFORE writing. A reset must never overwrite another
 // account's cache; guest data remains under its original key and is not imported.
-export function switchLearningAccount(userId: string | null) {
-  const name=accountStorageKey(userId); let progress=emptyProgress(); let storageError='';
+export function switchLearningAccount(userId: string | null, initialLocale?: InterfaceLocale) {
+  const name=accountStorageKey(userId); let progress=emptyProgress(); let storageError=''; let hadSavedProgress=false;
   try {
     const cached=localStorage.getItem(name);
-    if (cached) progress=progressSnapshot(JSON.parse(cached).state);
+    if (cached) { progress=progressSnapshot(JSON.parse(cached).state);hadSavedProgress=true; }
   } catch { storageError='Не удалось прочитать сохранённые данные. Не очищайте браузер.'; }
+  // Apply geo only to a genuinely new profile. Saved languages always win.
+  if (!hadSavedProgress && !storageError) {
+    const locale=getManualLocale() || initialLocale;
+    if (locale) progress={...progress,language:locale,contentLanguage:contentLocaleFor(locale)};
+  }
   useLearningStore.persist.setOptions({name,storage:storageError ? {getItem:()=>null,setItem:()=>{},removeItem:()=>{}} : createJSONStorage(()=>localStorage)});
   useLearningStore.setState({...progress,ready:true,storageError});
 }
