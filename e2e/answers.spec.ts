@@ -5,7 +5,7 @@ test('answers library filters, searches, exports and preserves reading progress 
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/answers');
-  await expect(page.getByRole('heading', { name: 'Ответы', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ответы и интервью', exact: true })).toBeVisible();
   await expect(page.locator('.answer-topic-card')).toHaveCount(18);
   await expect(page.locator('.answers-intro')).toContainText('462');
   await page.locator('.answers-source-filters').getByRole('link', { name: 'Тесты', exact: true }).click();
@@ -61,7 +61,7 @@ test('merged answers preserve old reading marks and notes and open from their ot
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/answers');
-  await expect(page.getByRole('heading', { name: 'Ответы', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ответы и интервью', exact: true })).toBeVisible();
   await page.evaluate(() => {
     const key = 'react-mentor-learning-v2';
     const stored = JSON.parse(localStorage.getItem(key)!);

@@ -1,208 +1,72 @@
 'use client';
-import { Fragment, useState } from 'react';
-import {
-  ArrowDownToLine, ArrowUpFromLine, Atom, Boxes, Braces, CircleCheck, Database,
-  GraduationCap, Globe, House, ImagePlus, Images, Info, Lightbulb, Pencil, Search,
-  TableOfContents, Trash2, type LucideIcon,
-} from 'lucide-react';
+import { useState, useSyncExternalStore } from 'react';
+import Link from 'next/link';
+import { CheckCircle2, Code2, Lightbulb } from 'lucide-react';
+import { LabCodeBlock, copyText } from './lab-code-block';
 import { useLearningStore } from '@/stores/learning-store';
 import { COPY } from '@/lib/i18n';
-import { PageHeading } from '@/components/learning/page-heading';
-import {
-  LAB_COMPARE, LAB_INTRO, LAB_LESSONS, LAB_OPS, LAB_PRACTICE_NOTE,
-  type LabManager, LabMode, LabOpId, LabScope, LabText,
-} from '@/content/state-api-lab';
-import { LabCodeBlock } from './lab-code-block';
+interface SourceBlock {path:string;code:string;place?:string;practiceCode?:string;origin:string;}
+interface SourceLesson {title:string;intro:string;blocks:SourceBlock[];memory?:string;steps?:{title:string;text:{tg:string;ru:string};code?:string}[];concepts?:{name:string;origin:string;why:{tg:string;ru:string};missing:{tg:string;ru:string}}[];}
+export interface LocalGlobalData {operations:{id:string;title:string}[];local:Record<string,Record<string,SourceLesson>>;global:Record<string,Record<string,SourceLesson>>;}
+const managers=[['redux','Redux Toolkit'],['zustand','Zustand'],['jotai','Jotai']] as const;
+const hints:Record<string,string>={setup:'Создайте store/atom и подключите к компоненту.',get:'Загрузите данные; покажите loading/error/empty.',post:'Добавьте элемент: Local — новый массив; Global — POST и обновление списка.',put:'Найдите элемент по id; Local — map, Global — PUT и обновление.',delete:'Удалите по id: Local — filter, Global — DELETE.',info:'Получите id из URL и найдите нужную запись; проверьте F5.',search:'Нормализуйте строку и используйте filter/includes.',pagination:'slice((page - 1) * pageSize, page * pageSize); сбросьте page после фильтра.',checkbox:'Измените только isCompleted выбранного элемента; остальные поля сохраните.','add-img':'Local — временный URL файла; Global — FormData и загрузка.','delete-img':'Удалите выбранное изображение; освободите временный object URL.'};
+export function StateApiLab({data}:{data:LocalGlobalData}) {
+ const stored=useLearningStore(state=>state.drafts['rzj-ui']);
+ const saveUi=useLearningStore(state=>state.saveDraft);
+ const [copyStatus,setCopyStatus]=useState('');
+ const fragment=useSyncExternalStore(subscribeLabHash,readLabHash,()=> '');
+ const ui=readLabUi(stored,data);
+ const [urlScope,urlManager,urlOp]=fragment.split('/');
+ if((urlScope==='local'||urlScope==='global')&&managers.some(([id])=>id===urlManager)&&data.operations.some(item=>item.id===urlOp)){ui.scope=urlScope;ui.manager=urlManager;ui.op=urlOp;}
+ const {scope,manager,op,practice}=ui;
+ const updateUi=(patch:Partial<LabUi>)=>{setCopyStatus('');saveUi('rzj-ui',JSON.stringify({...ui,...patch}));if(window.location.hash){window.history.replaceState(null,'',window.location.pathname+window.location.search);window.dispatchEvent(new HashChangeEvent('hashchange'));}};
+ const setScope=(value:'local'|'global')=>updateUi({scope:value});
+ const setManager=(value:string)=>updateUi({manager:value});
+ const setOp=(value:string)=>updateUi({op:value});
+ const setPractice=(value:boolean)=>updateUi({practice:value});
+ const fileKey=`${scope}-${manager}-${op}`;
+ const hidden=ui.hidden[fileKey] || [];
+ const hideFile=(path:string)=>updateUi({hidden:{...ui.hidden,[fileKey]:[...hidden,path]}});
 
-const OP_ICONS: Record<LabOpId, LucideIcon> = {
-  setup: Braces,
-  get: ArrowDownToLine,
-  post: ArrowUpFromLine,
-  put: Pencil,
-  delete: Trash2,
-  info: Info,
-  search: Search,
-  pagination: TableOfContents,
-  'add-img': ImagePlus,
-  'delete-img': Images,
-};
-
-const MANAGERS: { id: LabManager; label: string; icon: LucideIcon }[] = [
-  { id: 'redux', label: 'Redux', icon: Boxes },
-  { id: 'zustand', label: 'Zustand', icon: Database },
-  { id: 'jotai', label: 'Jotai', icon: Atom },
-];
-
-const MODE_LABEL: Record<LabMode, string> = { local: 'Local', redux: 'Redux', zustand: 'Zustand', jotai: 'Jotai' };
-
-const UI = {
-  ru: {
-    practice: 'Практика', scopeLabel: 'Local или Global', managerLabel: 'State manager', opsLabel: 'Операции',
-    what: 'Что делает?', flowLabel: 'Как идёт запрос', files: 'Какие файлы участвуют?', steps: 'Шаги',
-    code: 'Полный код', practiceCode: 'Практика — напиши сам', practiceOn: 'подсказки по шагам',
-    why: 'Почему работает?', result: 'Что получится',
-  },
-  en: {
-    practice: 'Practice', scopeLabel: 'Local or Global', managerLabel: 'State manager', opsLabel: 'Operations',
-    what: 'What does it do?', flowLabel: 'Request flow', files: 'Which files are involved?', steps: 'Steps',
-    code: 'Full code', practiceCode: 'Practice — write it yourself', practiceOn: 'step hints',
-    why: 'Why it works', result: 'Result',
-  },
-};
-
-function FlowChain({ items }: { items: string[] }) {
-  return (
-    <div className="lab-flow">
-      {items.map((item, index) => (
-        <Fragment key={index}>
-          {index > 0 && <i aria-hidden="true">→</i>}
-          <span>{item}</span>
-        </Fragment>
-      ))}
-    </div>
-  );
+ const copy=COPY[useLearningStore(state=>state.language)];
+ const contentLanguage=useLearningStore(state=>state.contentLanguage);
+ const localText=(value:{tg:string;ru:string})=>contentLanguage==='tg'?value.tg:value.ru;
+ const lesson=data[scope][manager][op];
+ return <><div className="page-heading"><div><span className="eyebrow">React · Local / Global</span><h1>R.Z.J/PACTICE</h1><p>Одна операция, три библиотеки. Сначала пойми связь файлов, затем напиши сам.</p></div><label className={'lab-practice-toggle '+(practice?'is-on':'')}><input type="checkbox" checked={practice} onChange={e=>setPractice(e.target.checked)}/><Code2 size={16}/>Практика</label></div>
+ <div className="lab-compare"><section className="panel lab-compare-card"><h2>Local</h2><p>Данные меняются в памяти приложения. Redux, Zustand и Jotai могут хранить локальный state. Это само по себе не сохраняет данные после перезагрузки.</p></section><section className="panel lab-compare-card"><h2>Global + API</h2><p>Общий state доступен компонентам; сервер хранит данные. Global не означает «автоматически в облаке»: запросы, ошибки и обновление списка пишутся отдельно.</p></section></div>
+ <div className="tabs" role="tablist" aria-label="Local или Global">{(['local','global'] as const).map(s=><button role="tab" aria-selected={scope===s} key={s} onClick={()=>setScope(s)}>{s==='local'?'Local':'Global'}</button>)}</div>
+ <div className="tabs" role="tablist" aria-label="State manager">{managers.map(([id,label])=><button role="tab" key={id} aria-selected={manager===id} onClick={()=>setManager(id)}>{label}</button>)}</div>
+ <div className="tabs lab-operations" role="tablist" aria-label="Операции">{data.operations.map(operation=><button role="tab" key={operation.id} aria-selected={op===operation.id} onClick={()=>setOp(operation.id)}>{operation.title}</button>)}</div>
+ <article className="panel lab-lesson" key={`${scope}-${manager}-${op}`}><div className="between lab-lesson-head"><h2>{lesson.title}</h2><span className="badge">{scope==='local'?'Local':'Global'} · {managers.find(([id])=>id===manager)?.[1]}</span></div><p lang="tg">{lesson.intro}</p><aside className="lesson-connections"><h3>Путь действия</h3><p>Кнопка/форма → handler → store/atom → {scope==='global'?'HTTP запрос → сервер → загрузка актуального списка':'новое состояние'} → компонент → отображение.</p><p><Lightbulb size={15}/> {hints[op]}</p></aside>
+ {lesson.steps&&<details><summary>Шаги и связь с кодом</summary><ol className="flow-steps">{lesson.steps.map((step,index)=><li key={index}><span>{index+1}</span><div><strong>{step.title}</strong><p>{localText(step.text)}</p>{step.code&&<code>{step.code}</code>}</div></li>)}</ol></details>}
+ <div className="lab-code-heading"><h3>{practice?'Практика — напиши сам':'Полный код'}</h3></div>
+ <div className="button-row"><button className="button subtle" onClick={async()=>setCopyStatus(await copyText(lesson.blocks.filter(block=>!hidden.includes(block.path)).map(block=>'// '+block.path+'\n'+(practice?(useLearningStore.getState().drafts[`rzj-${scope}-${manager}-${op}-${lesson.blocks.indexOf(block)}`] || '// '+hints[op]):block.code)).join('\n\n'))?'Код скопирован':'Выделите код и скопируйте вручную')}>Скопировать все файлы</button>{hidden.length>0&&<button className="button subtle" onClick={()=>updateUi({hidden:{...ui.hidden,[fileKey]:[]}})}>Показать все файлы ({hidden.length})</button>}{copyStatus&&<span role="status">{copyStatus}</span>}</div>
+ {lesson.blocks.filter(block=>!hidden.includes(block.path)).map((block,index)=><section className="lab-block" key={block.path+index}><div className="between"><p className="lab-block-note">{block.place}</p><button className="text-button" onClick={()=>hideFile(block.path)}>Скрыть файл</button></div>{practice?<><LabExercise id={`rzj-${scope}-${manager}-${op}-${lesson.blocks.indexOf(block)}`} path={block.path}/><LabCodeBlock path={block.path} lang={block.path.endsWith('.tsx')?'tsx':'ts'} code={`// ${block.path}\n// Шаг 1: ${hints[op]}\n// Напишите реализацию, затем сравните с решением.`} copyLabel={copy.copy} copiedLabel={copy.copied}/><details className="code-disclosure"><summary>Сравнить с решением</summary><LabCodeBlock path={block.path} lang="tsx" code={block.code} copyLabel={copy.copy} copiedLabel={copy.copied}/></details></>:<LabCodeBlock path={block.path} lang={block.path.endsWith('.tsx')?'tsx':'ts'} code={block.code} copyLabel={copy.copy} copiedLabel={copy.copied}/>}</section>)}
+ <p className="lab-result"><CheckCircle2 size={16}/>Проверьте действие, отсутствие нужного id, пустой список и сохранение других полей.</p>{lesson.memory&&<p className="callout">{lesson.memory}</p>}
+ {lesson.concepts&&<details><summary>Почему работает каждая часть</summary><div className="concept-grid">{lesson.concepts.map((concept,index)=><section key={index}><h3>{concept.name}</h3><p>{localText(concept.why)}</p><p>{localText(concept.missing)}</p></section>)}</div></details>}
+ <details><summary>Как выбрать библиотеку и хранение</summary><p>useState — состояние одного компонента; Context — общий доступ через Provider; Redux Toolkit — actions/reducers; Zustand — store и selectors; Jotai — атомы. TanStack Query отвечает за серверный кэш, загрузку, ошибки и invalidation. Они решают разные задачи; не дублируйте один источник данных во всех хранилищах.</p><p>Смена Local/Global или библиотеки сохраняет выбранную операцию. Примеры из HTML показаны как учебный код и не отправляют запросы внешнему API.</p><Link href="/practice?month=2">Практика React</Link></details>
+ <div className="course-sources"><a href="https://redux-toolkit.js.org/tutorials/quick-start" target="_blank" rel="noreferrer">Redux Toolkit</a><a href="https://zustand.docs.pmnd.rs/getting-started/introduction" target="_blank" rel="noreferrer">Zustand</a><a href="https://jotai.org/docs" target="_blank" rel="noreferrer">Jotai</a><span>Источник примеров: Practice-Local-Global.html</span></div></article></>;
 }
 
-// State & API Lab: одна операция — четыре способа (Local / Redux / Zustand / Jotai) на одной странице.
-export function StateApiLab() {
-  const language = useLearningStore(state => state.language);
-  const contentLanguage = useLearningStore(state => state.contentLanguage);
-  const copy = COPY[language];
-  const ui = UI[language];
-  const L = (text: LabText) => (contentLanguage === 'tg' ? text.tg : text.ru);
-
-  // op и manager хранятся отдельно: при переключении Local ↔ Global операция сохраняется.
-  const [scope, setScope] = useState<LabScope>('local');
-  const [manager, setManager] = useState<LabManager>('redux');
-  const [op, setOp] = useState<LabOpId>('setup');
-  const [practice, setPractice] = useState(false);
-
-  const mode: LabMode = scope === 'local' ? 'local' : manager;
-  const lesson = LAB_LESSONS[mode][op];
-  const OpIcon = OP_ICONS[op];
-
-  return (
-    <>
-      <PageHeading title="State & API Lab" subtitle={L(LAB_INTRO)} back="/home">
-        <label className={'lab-practice-toggle' + (practice ? ' is-on' : '')} title={ui.practiceOn}>
-          <input type="checkbox" checked={practice} onChange={event => setPractice(event.target.checked)} />
-          <GraduationCap size={16} />
-          <span>{ui.practice}</span>
-        </label>
-      </PageHeading>
-
-      <div className="lab-compare">
-        <section className="panel lab-compare-card">
-          <h2><House size={17} /> Local</h2>
-          <p>{L(LAB_COMPARE.local.text)}</p>
-          <span className="lab-compare-example">{L(LAB_COMPARE.local.example)}</span>
-        </section>
-        <section className="panel lab-compare-card">
-          <h2><Globe size={17} /> Global</h2>
-          <p>{L(LAB_COMPARE.global.text)}</p>
-          <span className="lab-compare-example">{L(LAB_COMPARE.global.example)}</span>
-        </section>
-      </div>
-
-      <div className="tabs" role="tablist" aria-label={ui.scopeLabel}>
-        <button type="button" role="tab" aria-selected={scope === 'local'} onClick={() => setScope('local')}>
-          <House size={16} />Local
-        </button>
-        <button type="button" role="tab" aria-selected={scope === 'global'} onClick={() => setScope('global')}>
-          <Globe size={16} />Global
-        </button>
-      </div>
-
-      {scope === 'global' && (
-        <div className="tabs lab-manager-tabs" role="tablist" aria-label={ui.managerLabel}>
-          {MANAGERS.map(item => {
-            const Icon = item.icon;
-            return (
-              <button type="button" key={item.id} role="tab" aria-selected={manager === item.id} onClick={() => setManager(item.id)}>
-                <Icon size={16} />{item.label}
-              </button>
-            );
-          })}
-        </div>
-      )}
-
-      <div className="tabs" role="tablist" aria-label={ui.opsLabel}>
-        {LAB_OPS.map(item => {
-          const Icon = OP_ICONS[item.id];
-          return (
-            <button type="button" key={item.id} role="tab" aria-selected={op === item.id} onClick={() => setOp(item.id)}>
-              <Icon size={15} />{item.label}
-            </button>
-          );
-        })}
-      </div>
-
-      <article className="panel lab-lesson">
-        <header className="lab-lesson-head">
-          <h2><OpIcon size={18} /> {lesson.title} <span className="badge">{MODE_LABEL[mode]}</span></h2>
-          <FlowChain items={lesson.flow} />
-        </header>
-
-        <div className="lab-top-grid">
-          <section>
-            <h3>{ui.what}</h3>
-            <p>{L(lesson.intro)}</p>
-          </section>
-          <section>
-            <h3>{ui.files}</h3>
-            <FlowChain items={lesson.files} />
-            <p className="muted small lab-relation">{L(lesson.relationNote)}</p>
-          </section>
-        </div>
-
-        <h3 className="lab-subheading">{ui.steps}</h3>
-        <ol className="flow-steps">
-          {lesson.steps.map((step, index) => (
-            <li key={index}>
-              <span>{index + 1}</span>
-              <div>
-                <strong>{step.title}</strong>
-                <p>{L(step.text)}</p>
-                {step.code && <code>{step.code}</code>}
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        <div className="between lab-code-heading">
-          <h3>{practice ? ui.practiceCode : ui.code}</h3>
-          {practice && <span className="badge"><Lightbulb size={13} />{ui.practiceOn}</span>}
-        </div>
-        {practice && <p className="callout lab-practice-note">{L(LAB_PRACTICE_NOTE)}</p>}
-        {lesson.blocks.map((block, index) => (
-          <section className="lab-block" key={index}>
-            <p className="lab-block-note">{L(block.note)}</p>
-            <LabCodeBlock
-              path={block.path}
-              lang={block.lang}
-              code={practice ? block.practiceCode : block.code}
-              copyLabel={copy.copy}
-              copiedLabel={copy.copied}
-            />
-          </section>
-        ))}
-
-        <p className="lab-result"><CircleCheck size={15} /><span><strong>{ui.result}:</strong> {L(lesson.result)}</span></p>
-
-        <h3 className="lab-subheading">{ui.why}</h3>
-        <div className="concept-grid">
-          {lesson.concepts.map((concept, index) => (
-            <section key={index}>
-              <h3>{concept.name}</h3>
-              <span className="lab-concept-origin">{concept.origin}</span>
-              <p>{L(concept.why)}</p>
-              <p className="lab-concept-missing">{L(concept.missing)}</p>
-            </section>
-          ))}
-        </div>
-
-        <p className="lab-memory"><Lightbulb size={15} /><span>{L(lesson.memory)}</span></p>
-      </article>
-    </>
-  );
+function LabExercise({id,path}:{id:string;path:string}) {
+ const code=useLearningStore(state=>state.drafts[id] || '');
+ const saveDraft=useLearningStore(state=>state.saveDraft);
+ return <><label htmlFor={id}>Ваш код · {path}</label><textarea id={id} className="practice-editor" rows={10} spellCheck={false} value={code} onChange={event=>saveDraft(id,event.target.value)} placeholder="Напишите реализацию этого файла. Код сохранится в прогрессе React."/><p className="muted small">Сравните реализацию с решением ниже; запросы из учебного редактора не выполняются.</p></>;
 }
+
+interface LabUi {scope:'local'|'global';manager:string;op:string;practice:boolean;hidden:Record<string,string[]>;}
+function readLabUi(value:string|undefined,data:LocalGlobalData):LabUi {
+ const fallback:LabUi={scope:'local',manager:'redux',op:'post',practice:false,hidden:{}};
+ try {
+  const parsed:unknown=JSON.parse(value || 'null');
+  if(!parsed || typeof parsed!=='object')return fallback;
+  const obj=parsed as Partial<LabUi>;
+  if((obj.scope!=='local'&&obj.scope!=='global')||!managers.some(([id])=>id===obj.manager)||!data.operations.some(item=>item.id===obj.op))return fallback;
+  const hidden:Record<string,string[]>={};
+  if(obj.hidden&&typeof obj.hidden==='object')for(const [key,list] of Object.entries(obj.hidden))if(Array.isArray(list)&&list.every(item=>typeof item==='string'))hidden[key]=list;
+  return {...fallback,scope:obj.scope,manager:obj.manager!,op:obj.op!,practice:obj.practice===true,hidden};
+ }catch{return fallback;}
+}
+
+const subscribeLabHash=(notify:()=>void)=>{window.addEventListener('hashchange',notify);return ()=>window.removeEventListener('hashchange',notify);};
+const readLabHash=()=>{try{return decodeURIComponent(window.location.hash.slice(1));}catch{return '';}};

@@ -1,8 +1,7 @@
 'use client';
-
 import Link from 'next/link';
-import { useDeferredValue, useEffect, useState } from 'react';
-import { ArrowRight, BookOpen, Download, FileText, Layers } from 'lucide-react';
+import { useDeferredValue, useEffect, useState, useSyncExternalStore } from 'react';
+import { ArrowRight, BookOpen, CheckCircle2, Layers } from 'lucide-react';
 import { courseName } from '@/content/courses/catalog';
 import { courseContentSchema, courseText, type CourseContent, type CourseLesson } from '@/lib/courses/schema';
 import type { ImportedCourseId } from '@/lib/courses/ids';
@@ -14,87 +13,66 @@ import { useAppStore } from '@/stores/app-store';
 import { courseDayProgress, courseMonthPlan } from '@/lib/courses/plan';
 
 const empty = emptyCourseProgress();
-export function CourseWorkspace({courseId, section}:{courseId:ImportedCourseId;section:string}) {
-  const state = useLearningStore();
+const subscribeHash=(notify:()=>void)=>{window.addEventListener('hashchange',notify);return ()=>window.removeEventListener('hashchange',notify);};
+const readHash=()=>{try{return decodeURIComponent(window.location.hash.slice(1));}catch{return '';}};
+export function CourseWorkspace({courseId,section,initialContent,day:requestedDay}:{courseId:ImportedCourseId;section:string;initialContent?:CourseContent;day?:number}) {
+  const state=useLearningStore(), ru=state.language==='ru', copy=COPY[state.language];
+  const progress=state.courses[courseId] || empty;
+  const legacyId=useSyncExternalStore(subscribeHash,readHash,()=> '');
+  const [content,setContent]=useState<CourseContent|null>(initialContent || null);
+  const [error,setError]=useState(false), [retry,setRetry]=useState(0), [query,setQuery]=useState(''), [limit,setLimit]=useState(18);
+  const deferredQuery=useDeferredValue(query.trim().toLowerCase());
   const {selectedCourse,courseChosen,chooseCourse}=state;
-  const progress = state.courses[courseId] || empty;
-  const copy = COPY[state.language], ru = state.language === 'ru';
-  const [content, setContent] = useState<CourseContent | null>(null);
-  const [error, setError] = useState(false), [retry, setRetry] = useState(0);
-  const [query, setQuery] = useState(''), [level, setLevel] = useState('all'), [limit, setLimit] = useState(24);
-  const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase());
-  useEffect(() => {
-    if (selectedCourse !== courseId || !courseChosen) {
-      useAppStore.setState({tutorDrawerOpen:false,tutorQuestion:null,sidebarOpen:false});
-      chooseCourse(courseId);
-    }
-  }, [courseId, selectedCourse, courseChosen, chooseCourse]);
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch('/api/courses/' + courseId, {signal:controller.signal}).then(async response => {
-      if (!response.ok) throw new Error('Unavailable');
-      const data = courseContentSchema.parse(await response.json());
-      if (!controller.signal.aborted) {setContent(data);setError(false);}
-    }).catch(() => {if (!controller.signal.aborted) setError(true);});
-    return () => controller.abort();
-  }, [courseId, retry]);
-  const titles:Record<string,string> = {home:copy.home,plan:copy.plan,answers:copy.answers,practice:copy.practice,tests:copy.tests,interview:copy.interview,revision:copy.revision,'weak-topics':copy.weak};
-  let lessons = (content?.lessons || []).filter(lesson =>
-    (level === 'all' || lesson.level === level) &&
-    (!deferredQuery || [lesson.title,lesson.summary,...lesson.questions.flatMap(question=>[question.question,question.answer])]
-      .some(text=>courseText(text,state.contentLanguage).toLocaleLowerCase().includes(deferredQuery))));
-  if (section === 'practice') lessons = lessons.filter(lesson=>lesson.practice);
-  if (section === 'weak-topics') lessons = lessons.filter(lesson=>Object.values(progress.answers).some(answer=>answer.topicId===lesson.id&&!answer.correct));
-  if (section === 'revision') lessons = lessons.filter(lesson=>Object.values(progress.reviews).some(review=>review.topicId===lesson.id&&review.due<=dateKey()));
-  const dailyLessons = lessons.filter(lesson=>!progress.completedTopics.includes(lesson.id)).slice(0,1);
-  const visible = (section === 'home' ? dailyLessons : lessons).slice(0,limit);
-  const dayProgress = content ? courseDayProgress(courseMonthPlan(content.lessons), progress.completedTopics, progress.completedPractice) : null;
-  const current = dayProgress?.current || null;
-  const nextAfterCurrent = current ? dayProgress!.days.find(item=>item.day>current.day&&item.section==='answers') || null : null;
-  const sectionLabel = (value:'answers'|'practice'|'tests') => value==='answers'?(ru?'Изучить':'Study'):value==='practice'?copy.practice:copy.tests;
+  useEffect(()=>{if(selectedCourse!==courseId||!courseChosen){chooseCourse(courseId);useAppStore.setState({sidebarOpen:false,tutorDrawerOpen:false,tutorQuestion:null});}},[courseId,selectedCourse,courseChosen,chooseCourse]);
+  useEffect(()=>{
+    if(initialContent) return;
+    const controller=new AbortController();
+    fetch('/api/courses/'+courseId,{signal:controller.signal}).then(async response=>{if(!response.ok)throw Error('Unavailable'); const value=courseContentSchema.parse(await response.json());if(!controller.signal.aborted){setContent(value);setError(false);}}).catch(()=>{if(!controller.signal.aborted)setError(true);});
+    return ()=>controller.abort();
+  },[courseId,retry,initialContent]);
+  const plan=courseMonthPlan(content?.lessons || []);
+  const statuses=courseDayProgress(plan,progress.completedTopics,progress.completedPractice);
+  const remembered=Number(progress.drafts['selected-day']);
+  const day=requestedDay!==undefined?requestedDay:(remembered>=1&&remembered<=30?remembered:statuses.current?.day || 1);
+  const item=plan.find(item=>item.day===day), lesson=(legacyId?content?.lessons.find(lesson=>lesson.id===legacyId):null)||item?.lesson;
+  const text=(value:CourseLesson['title'])=>courseText(value,state.contentLanguage);
+  const href=(target:string,targetDay=day)=>`/courses/${courseId}/${target}?day=${targetDay}`;
+  const saveCourseDraft=state.saveCourseDraft;
+  useEffect(()=>{if(day>=0&&day<=30&&progress.drafts['selected-day']!==String(day))saveCourseDraft(courseId,'selected-day',String(day));},[courseId,day,progress.drafts,saveCourseDraft]);
+  const library=(content?.lessons || []).filter(item=>!deferredQuery||[text(item.title),text(item.summary),...item.questions.flatMap(q=>[text(q.question),text(q.answer)]),...item.sections.map(s=>text(s.body))].join(' ').toLowerCase().includes(deferredQuery));
+  const titles:Record<string,string>={home:copy.home,plan:copy.plan,practice:copy.practice,tests:ru?'Тесты и интервью':'Tests & interview',interview:ru?'Тесты и интервью':'Tests & interview',answers:ru?'Ответы и интервью':'Answers & interview'};
   return <section className="course-workspace">
     <Link href="/courses" className="back-link"><Layers size={16}/>{ru?'Все курсы':'All courses'}</Link>
-    <div className="page-heading"><div><span className="eyebrow">{courseName(courseId)}</span><h1>{titles[section]}</h1><p>{ru?'Материалы, практика и прогресс этого курса.':'This course’s materials, practice and progress.'}</p></div></div>
-    {(courseId==='javascript-1'||courseId==='javascript-2')&&<nav className="course-months" aria-label={ru?'Месяцы JavaScript':'JavaScript months'}>{(['javascript-1','javascript-2'] as const).map((id,index)=><Link key={id} href={`/courses/${id}/${section}`} aria-current={courseId===id?'page':undefined}><strong>{ru?'Месяц':'Month'} {index+1} · JS{index+1}</strong><span>{index===0?(ru?'Массивы, объекты и задачи':'Arrays, objects and exercises'):(ru?'API и запросы':'APIs and requests')}</span></Link>)}</nav>}
-    <p className="course-material-link"><Link href="/courses/materials" className="text-link">{ru?'Исходные материалы канала':'Original channel materials'}<ArrowRight size={16}/></Link></p>
-    {error ? <div className="panel empty-state"><p role="alert">{ru?'Не удалось загрузить материалы. Проверьте интернет.':'Could not load materials. Check your connection.'}</p><button className="button subtle" onClick={()=>{setError(false);setRetry(value=>value+1);}}>{ru?'Повторить':'Retry'}</button></div>
-    : !content ? <p role="status">{copy.loading}</p>
-    : !content.lessons.length ? <div className="panel course-waiting"><FileText size={32}/><h2>{ru?'Материалы ожидаются':'Waiting for materials'}</h2><p>{ru?'Уроки этого курса ещё не добавлены. После обработки материалов канала здесь появятся разборы, ответы, тесты и практика.':'Lessons have not been added yet. Channel materials will provide explanations, answers, quizzes and practice.'}</p><Link href="/courses" className="button primary">{ru?'Выбрать доступный курс':'Choose an available course'}<ArrowRight size={17}/></Link><Link href="/notes" className="text-link">{ru?'Открыть заметки этого курса':'Open this course’s notes'}</Link></div>
-    : <>
-      {section==='home' && <div className="course-route panel"><BookOpen size={22}/><div>
-        <strong>{progress.completedTopics.length} / {content.lessons.length} {copy.topics.toLowerCase()}{current?` · ${ru?'День':'Day'} ${current.day}`:''}</strong>
-        {current ? <p>{ru?'Сегодня по плану':'Today’s plan'}: {sectionLabel(current.section)} — {courseText(current.lesson.title,state.contentLanguage)}{nextAfterCurrent ? `. ${ru?'Дальше':'Next'}: ${ru?'День':'Day'} ${nextAfterCurrent.day} — ${courseText(nextAfterCurrent.lesson.title,state.contentLanguage)}` : ''}</p>
-          : <p>{ru?'Все 30 дней плана завершены. Повторяйте вопросы и практику.':'All 30 plan days are complete. Keep reviewing questions and practice.'}</p>}
-        <div className="button-row">{current && <Link className="button primary" href={`/courses/${courseId}/${current.section}#${current.lesson.id}`}>{ru?'Продолжить обучение':'Continue learning'}<ArrowRight size={16}/></Link>}<Link className="text-link" href={`/courses/${courseId}/plan`}>{ru?'План на 30 дней':'30-day plan'}<ArrowRight size={16}/></Link><Link className="text-link" href={`/courses/${courseId}/practice`}>{copy.practice}<ArrowRight size={16}/></Link></div>
-      </div></div>}
-      {section==='plan'&&<details className="panel course-month-plan" open><summary>{ru?'План на 30 дней':'30-day plan'}</summary><p>{current?`${ru?'Вы на Дне':'You are on Day'} ${current.day}: ${sectionLabel(current.section)} — ${courseText(current.lesson.title,state.contentLanguage)}. ${ru?'Готовые дни отмечены, уровни показывают постепенное усложнение.':'Completed days are marked, levels show the gradual difficulty ramp.'}`:`${ru?'Все дни завершены.':'All days are complete.'}`}</p><ol>{dayProgress!.days.map(item=><li key={item.day} className={'day-'+item.status}><Link href={`/courses/${courseId}/${item.section}#${item.lesson.id}`}><span>{ru?'День':'Day'} {item.day}</span><strong>{sectionLabel(item.section)}: {courseText(item.lesson.title,state.contentLanguage)}</strong><em>{item.section==='answers'?item.lesson.level==='beginner'?(ru?'база':'base'):(ru?'сложнее':'harder'):''}{item.status==='current'?` · ${ru?'сейчас':'now'}`:''}</em></Link></li>)}</ol></details>}
-      <div className="course-filters"><label>{copy.search}<input value={query} onChange={event=>{setQuery(event.target.value);setLimit(24);}}/></label><label>{ru?'Сложность':'Level'}<select value={level} onChange={event=>{setLevel(event.target.value);setLimit(24);}}><option value="all">{copy.all}</option><option value="beginner">{ru?'Начальный':'Beginner'}</option><option value="intermediate">{ru?'Продолжение':'Intermediate'}</option></select></label></div>
-      {!visible.length && <div className="panel empty-state"><p>{section==='revision'?(ru?'Повторение пока не требуется.':'No reviews due yet.'):section==='weak-topics'?(ru?'Пока нет ответов, которые нужно разобрать повторно.':'No answers to revisit yet.'):section==='home'?(ru?'Все темы отмечены изученными. Можно перейти к повторению.':'All topics are marked as studied. Continue with review.'):copy.empty}</p></div>}
-      <div className="course-lessons">{visible.map(lesson=><article className="panel course-lesson" id={lesson.id} key={lesson.id}>
-        <h2>{courseText(lesson.title,state.contentLanguage)}</h2><p>{courseText(lesson.summary,state.contentLanguage)}</p>
-        {['home','plan','answers'].includes(section) && <>
-          {lesson.sections.map((part,index)=><details key={index} open={index===0}><summary>{courseText(part.title,state.contentLanguage)}</summary><p className="preserve-lines">{courseText(part.body,state.contentLanguage)}</p>{part.code && <pre><code>{part.code}</code></pre>}{part.output && <p className="preserve-lines"><strong>{ru?'Результат: ':'Result: '}</strong>{courseText(part.output,state.contentLanguage)}</p>}</details>)}
-          {lesson.questions.map(question=><details key={question.id}><summary>{courseText(question.question,state.contentLanguage)}</summary><p className="preserve-lines">{courseText(question.answer,state.contentLanguage)}</p></details>)}
-          <button className="button subtle" disabled={progress.completedTopics.includes(lesson.id)} onClick={()=>state.completeCourseLesson(courseId,lesson.id)}>{progress.completedTopics.includes(lesson.id)?copy.completed:copy.markLearned}</button>
-          {(() => { const index = content.lessons.findIndex(item=>item.id===lesson.id); const next = content.lessons[index+1]; return next ? <Link className="text-link" href={`/courses/${courseId}/answers#${next.id}`}>{ru?'Следующий урок':'Next lesson'}: {courseText(next.title,state.contentLanguage)}<ArrowRight size={15}/></Link> : null; })()}
-        </>}
-        {['tests','interview','revision','weak-topics'].includes(section) && lesson.questions.map(question=><CourseQuestion key={question.id} courseId={courseId} lesson={lesson} question={question} mode={section==='tests'?'test':section==='interview'?'interview':'revision'}/>)}
-        {section==='practice' && lesson.practice && <CoursePractice courseId={courseId} lesson={lesson}/>}
-        <div className="course-sources">{lesson.sourceIds.map(id=>{const source=content.sources.find(item=>item.id===id)!;return <a key={id} href={source.url} target="_blank" rel="noreferrer">{copy.source}: {source.title}{source.page?' · '+source.page:''}</a>;})}</div>
-      </article>)}</div>
-      {lessons.length>limit && section!=='home' && <button className="button subtle" onClick={()=>setLimit(value=>value+24)}>{ru?'Показать ещё':'Show more'}</button>}
+    <div className="page-heading"><div><span className="eyebrow">{courseName(courseId)} · {ru?'1 месяц':'1 month'}</span><h1>{titles[section]}</h1><p>{section==='plan'?(ru?'Выберите день. Изучите тему, выполните практику и проверьте себя.':'Choose a day, study its topic, practice and check your understanding.'):(ru?'Один день — один понятный шаг. Продолжаем предыдущую работу.':'One day, one clear step. Build on your previous work.')}</p></div></div>
+    {(courseId==='javascript-1'||courseId==='javascript-2')&&<nav className="course-months" aria-label="Месяцы JavaScript">{(['javascript-1','javascript-2'] as const).map((id,index)=><Link key={id} href={`/courses/${id}/home?day=1`} aria-current={id===courseId?'page':undefined}><strong>Месяц {index+1} · JS{index+1}</strong><span>{index===0?'Основы и браузер':'API и приложения'}</span></Link>)}</nav>}
+    {error?<div className="panel"><p role="alert">Не удалось загрузить курс.</p><button className="button subtle" onClick={()=>{setError(false);setRetry(n=>n+1);}}>Повторить</button></div>:!content?<p role="status">{copy.loading}</p>:<>
+      {section==='plan'?<>
+        <div className="panel learning-overview"><BookOpen size={22}/><div><h2>{ru?'От первого файла до проекта':'From your first file to a project'}</h2><p>{statuses.days.filter(d=>d.status==='done').length} / {plan.length} дней завершено · теория + практика каждый день</p><div className="progress-track"><span style={{width:`${statuses.days.filter(d=>d.status==='done').length/Math.max(1,plan.length)*100}%`}}/></div></div></div>
+        <div className="day-card-grid"><Link href={href('home',0)} className={'panel day-card '+(day===0?'is-current':'')}><span className="eyebrow">День 0</span><h2>Подготовка</h2><p>Редактор, файлы и первый запуск.</p><span className="text-link">Начать с нуля <ArrowRight size={15}/></span></Link>{statuses.days.map(entry=><Link prefetch={false} key={entry.day} href={href('home',entry.day)} className={'panel day-card '+(day===entry.day?'is-current':'')+(entry.status==='done'?' is-done':'')} aria-current={day===entry.day?'step':undefined}>
+          <div className="between"><span className="eyebrow">День {entry.day}</span>{entry.status==='done'?<CheckCircle2 size={18}/>:<span className="badge">{entry.day<16?'База':'Применение'}</span>}</div><h2>{text(entry.lesson.title)}</h2><p>{text(entry.lesson.summary)}</p><span className="text-link">Открыть мой день <ArrowRight size={15}/></span>
+        </Link>)}</div>
+      </>:section==='answers'?<><label className="course-search">{copy.search}<input value={query} onChange={e=>{setQuery(e.target.value);setLimit(18);}}/></label><div className="panel"><h2>Вопрос → понятный ответ → пример</h2><p>Единая библиотека подготовки к интервью. Здесь же сохранены исходные материалы курса.</p></div>{library.slice(0,limit).map(item=><article className="panel course-lesson" id={item.id} key={item.id}><h2>{text(item.title)}</h2>{item.questions.map(question=><details key={question.id}><summary>{text(question.question)}</summary><p className="preserve-lines">{text(question.answer)}</p></details>)}<Link className="text-link" href={href('tests',item.day||1)}>Проверить себя <ArrowRight size={15}/></Link></article>)}{library.length>limit&&<button className="button subtle" onClick={()=>setLimit(n=>n+18)}>Показать ещё</button>}</>:<>
+        <nav className="day-strip" aria-label="Выбор дня"><Link href={href(section,0)} aria-current={day===0?'step':undefined}>0</Link>{plan.map(entry=><Link prefetch={false} key={entry.day} href={href(section,entry.day)} aria-current={day===entry.day?'step':undefined} aria-label={`День ${entry.day}`}>{entry.day}</Link>)}</nav>
+        <div className="between day-context"><span className="badge">День {day} · {lesson?text(lesson.title):'Подготовка'}</span><Link className="text-link" href={href('plan')}>Учебный план <ArrowRight size={15}/></Link></div>
+        {day===0?<article className="panel course-lesson"><h2>Сначала подготовим рабочее место</h2><ol className="lesson-checklist"><li>Откройте редактор кода и браузер.</li><li>Создайте отдельную папку учебного проекта. Не меняйте основной проект во время упражнения.</li><li>{courseId==='cpp'?'Установите C++ компилятор и создайте main.cpp. Примеры со string, vector и unique_ptr требуют соответствующих заголовков.':courseId==='git'?'Создайте отдельный учебный репозиторий. Команды удаления и публикации выполняйте только после проверки.':'Создайте index.html. Для JS подключите файл через script type="module"; примеры async выполняйте внутри async функции.'}</li><li>Каждый день сохраняйте результат предыдущего урока и добавляйте новый шаг.</li></ol><Link className="button primary" href={href('home',1)}>Перейти к дню 1 <ArrowRight size={16}/></Link></article>:lesson?<article className="panel course-lesson" id={lesson.id} key={lesson.id}>
+          <h2>{text(lesson.title)}</h2><p>{text(lesson.summary)}</p>
+          {section==='home'&&<>{lesson.sections.map((part,index)=><section className="day-explanation" key={index}><h3>{text(part.title)}</h3><p className="preserve-lines">{text(part.body)}</p>{part.code&&<pre><code>{part.code}</code></pre>}</section>)}{lesson.prerequisiteDays?.length?<aside className="lesson-connections"><h3>Как связано с прошлыми днями</h3><p>Добавьте новый шаг к результату этих уроков. Старые функции должны продолжать работать.</p>{lesson.prerequisiteDays.map(previous=>{const p=plan.find(d=>d.day===previous);return p?<Link key={previous} href={href('home',previous)}>День {previous} — {text(p.lesson.title)}</Link>:null;})}</aside>:null}<div className="button-row"><button className="button subtle" disabled={progress.completedTopics.includes(lesson.id)} onClick={()=>state.completeCourseLesson(courseId,lesson.id)}>{progress.completedTopics.includes(lesson.id)?copy.completed:copy.markLearned}</button><Link className="button primary" href={href('practice')}>Практика этого дня <ArrowRight size={16}/></Link><Link className="text-link" href={href('tests')}>Тесты и интервью</Link></div></>}
+          {section==='practice'&&lesson.practice&&<><Link className="text-link" href={href('home')}>Вернуться к объяснению</Link><CoursePractice courseId={courseId} lesson={lesson}/></>}
+          {['tests','interview'].includes(section)&&<><section><h3>1. Тесты</h3><p>Выберите ответ и посмотрите объяснение.</p>{lesson.questions.map(question=><CourseQuestion key={'test'+question.id} courseId={courseId} lesson={lesson} question={question} mode="test"/>)}</section><section className="interview-block"><h3>2. Интервью</h3><p>Объясните своими словами, затем сравните с ответом.</p>{lesson.questions.map(question=><CourseQuestion key={'interview'+question.id} courseId={courseId} lesson={lesson} question={question} mode="interview"/>)}</section></>}
+          <div className="course-sources">{lesson.sourceIds.map(id=>{const source=content.sources.find(s=>s.id===id);return source?<a key={id} href={source.url} target="_blank" rel="noreferrer">{copy.source}: {source.title}</a>:null;})}</div>
+          {day<plan.length&&<Link className="text-link next-day" href={href('home',day+1)}>Следующий день: {day+1} <ArrowRight size={16}/></Link>}
+        </article>:<p role="alert">Этот день отсутствует в плане. Выберите доступный день.</p>}
+      </>}
     </>}
-    {content && content.files.length>0 && <section className="panel course-files"><h2>{copy.files}</h2>{content.files.map(file=><a className="text-link" key={file.id} href={file.url} download={file.title}><Download size={17}/>{file.title}<small>{(file.bytes/1024/1024).toFixed(1)} MB</small></a>)}</section>}
   </section>;
 }
-
 function CourseQuestion({courseId,lesson,question,mode}:{courseId:ImportedCourseId;lesson:CourseLesson;question:CourseLesson['questions'][number];mode:'test'|'interview'|'revision'}) {
   const state=useLearningStore(), copy=COPY[state.language], test=mode==='test';
   const saved=state.courses[courseId]?.answers[dateKey()+':'+mode+':'+question.id];
   const [choice,setChoice]=useState<number | null>(null), [answer,setAnswer]=useState('');
   const text=(value:CourseLesson['title'])=>courseText(value,state.contentLanguage);
   return <div className="course-question"><h3>{text(question.question)}</h3>
-    {test ? <><div className="course-options">{question.options.map((option,index)=><label key={index}><input type="radio" name={courseId+question.id} checked={saved?saved.answer===String(index):choice===index} disabled={!!saved} onChange={()=>setChoice(index)}/>{text(option)}</label>)}</div><button className="button primary" disabled={!!saved||choice===null} onClick={()=>state.recordCourseAnswer(courseId,{id:question.id,topicId:lesson.id},'test',choice===question.correctIndex,String(choice))}>{copy.check}</button></>
+    {test ? <><div className="course-options">{question.options.map((option,index)=><label key={index}><input type="radio" name={courseId+mode+question.id} checked={saved?saved.answer===String(index):choice===index} disabled={!!saved} onChange={()=>setChoice(index)}/>{text(option)}</label>)}</div><button className="button primary" disabled={!!saved||choice===null} onClick={()=>state.recordCourseAnswer(courseId,{id:question.id,topicId:lesson.id},'test',choice===question.correctIndex,String(choice))}>{copy.check}</button></>
     : <><label>{copy.yourAnswer}<textarea rows={4} value={saved?.answer ?? answer} disabled={!!saved} onChange={event=>setAnswer(event.target.value)}/></label><details><summary>{copy.showAnswer}</summary><p className="preserve-lines">{text(question.answer)}</p><p>{copy.selfCheck}</p><div className="button-row">{[true,false].map(correct=><button key={String(correct)} className="button subtle" disabled={!!saved||!answer.trim()} onClick={()=>state.recordCourseAnswer(courseId,{id:question.id,topicId:lesson.id},mode,correct,answer.trim())}>{correct?copy.remembered:copy.forgotten}</button>)}</div></details></>}
     {saved && <p role="status">{saved.correct?copy.correct:copy.incorrect}</p>}
     {test && saved && <p className="preserve-lines">{text(question.answer)}</p>}
@@ -104,6 +82,8 @@ function CourseQuestion({courseId,lesson,question,mode}:{courseId:ImportedCourse
 function CoursePractice({courseId,lesson}:{courseId:ImportedCourseId;lesson:CourseLesson}) {
   const state=useLearningStore(), copy=COPY[state.language], practice=lesson.practice!;
   const [checks,setChecks]=useState<number[]>([]);
+  const code=state.courses[courseId]?.drafts[lesson.id] ?? '';
+  const [preview,setPreview]=useState<string | null>(null);
   const completed=state.courses[courseId]?.completedPractice.includes(lesson.id);
-  return <div className="course-question"><p className="preserve-lines">{courseText(practice.task,state.contentLanguage)}</p><details><summary>{copy.hint}</summary><p>{courseText(practice.hint,state.contentLanguage)}</p></details><details><summary>{copy.solution}</summary><pre><code>{practice.solution}</code></pre></details><p>{copy.manualHint}</p>{practice.criteria.map((criterion,index)=><label className="course-criterion" key={index}><input type="checkbox" checked={!!completed||checks.includes(index)} disabled={completed} onChange={event=>setChecks(event.target.checked?[...checks,index]:checks.filter(value=>value!==index))}/>{courseText(criterion,state.contentLanguage)}</label>)}<button className="button subtle" disabled={completed||checks.length!==practice.criteria.length} onClick={()=>state.completeCoursePractice(courseId,lesson.id)}>{completed?copy.completed:copy.manual}</button></div>;
+  return <div className="course-question"><p className="preserve-lines">{courseText(practice.task,state.contentLanguage)}</p><details><summary>{copy.hint}</summary><p>{courseText(practice.hint,state.contentLanguage)}</p></details><details><summary>{copy.solution}</summary><pre><code>{practice.solution}</code></pre></details><label htmlFor={lesson.id+'-code'}>Ваш код</label><textarea id={lesson.id+'-code'} className="practice-editor" rows={12} value={code} onChange={event=>state.saveCourseDraft(courseId,lesson.id,event.target.value)} spellCheck={false}/>{courseId==='html'&&<><button className="button subtle" disabled={!code.trim()} onClick={()=>setPreview(code)}>Показать HTML + CSS</button>{preview!==null&&<iframe title="Результат вашего HTML + CSS" className="html-preview" sandbox="" srcDoc={preview}/>}</>}<p>{copy.manualHint}</p>{practice.criteria.map((criterion,index)=><label className="course-criterion" key={index}><input type="checkbox" checked={!!completed||checks.includes(index)} disabled={completed} onChange={event=>setChecks(event.target.checked?[...checks,index]:checks.filter(value=>value!==index))}/>{courseText(criterion,state.contentLanguage)}</label>)}<button className="button subtle" disabled={completed||checks.length!==practice.criteria.length} onClick={()=>state.completeCoursePractice(courseId,lesson.id)}>{completed?copy.completed:copy.manual}</button></div>;
 }

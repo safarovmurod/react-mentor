@@ -31,7 +31,7 @@ function highlightLine(raw: string) {
   return highlightPart(raw);
 }
 
-async function copyText(text: string) {
+export async function copyText(text: string) {
   try {
     await navigator.clipboard.writeText(text);
     return true;

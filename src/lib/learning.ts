@@ -16,7 +16,7 @@ export function nextReview(record: ReviewRecord | undefined, questionId: string,
   return { questionId, topicId, repetitions, due: dateKey(date) };
 }
 
-export function chooseDailyQuestions(questions: LearningQuestion[], month: number, limit: number, studied: string[], reviews: ReviewRecord[], today: string) {
+export function chooseDailyQuestions(questions: (Pick<LearningQuestion, 'id' | 'month'> & {options:readonly unknown[]})[], month: number, limit: number, studied: string[], reviews: ReviewRecord[], today: string) {
   const available = questions.filter(question => question.month === month && question.options.length > 0);
   const dueIds = reviews.filter(item => item.due <= today).map(item => item.questionId);
   const due = available.filter(question => dueIds.includes(question.id));

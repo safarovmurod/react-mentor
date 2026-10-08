@@ -28,8 +28,13 @@ it('daily plans point to available topics and include practice and quizzes',asyn
   for (const id of ['javascript-1','javascript-2'] as const) {
     const content=await loadCourseContent(id),plan=courseMonthPlan(content.lessons);
     expect(plan).toHaveLength(30);
-    expect(plan.some(day=>day.section==='practice')).toBe(true);
-    expect(plan.some(day=>day.section==='tests')).toBe(true);
+    if(content.lessons.some(lesson=>lesson.day)) {
+      expect(new Set(plan.map(day=>day.lesson.id)).size).toBe(30);
+      expect(plan.every(day=>day.lesson.practice&&day.lesson.questions.length>0)).toBe(true);
+    } else {
+      expect(plan.some(day=>day.section==='practice')).toBe(true);
+      expect(plan.some(day=>day.section==='tests')).toBe(true);
+    }
     for (const day of plan) expect(content.lessons).toContain(day.lesson);
   }
   expect(courseMonthPlan([])).toEqual([]);

@@ -2,7 +2,8 @@
 
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { QUIZ_QUESTIONS, type LearningQuestion } from '@/content/course';
+import type { LearningQuestion } from '@/content/course';
+import learningIndex from '@/content/learning-index.json';
 import { chooseDailyQuestions, dateKey, nextReview, type StudyMode } from '@/lib/learning';
 import { accountStorageKey, emptyProgress, emptyCourseProgress, progressSnapshot, type Progress } from '@/lib/account/progress';
 import type { CourseId, ImportedCourseId } from '@/lib/courses/ids';
@@ -26,6 +27,7 @@ interface LearningState extends Progress {
   saveCourseNote: (courseId:ImportedCourseId, note:{id:string;title:string;content:string}) => void;
   deleteCourseNote: (courseId:ImportedCourseId, id:string) => void;
   completeCoursePractice: (courseId:ImportedCourseId, lessonId:string) => void;
+  saveCourseDraft: (courseId:ImportedCourseId, id:string, code:string) => void;
 }
 
 export const useLearningStore = create<LearningState>()(persist((set, get) => ({
@@ -35,7 +37,7 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
     const key = `${today}-${month}`;
     const current = get();
     if (current.dailySets[key]) return current.dailySets[key];
-    const ids = chooseDailyQuestions(QUIZ_QUESTIONS, month, current.dailyLimit, current.studied, Object.values(current.reviews), today);
+    const ids = chooseDailyQuestions(learningIndex.questions, month, current.dailyLimit, current.studied, Object.values(current.reviews), today);
     set({dailySets:{...current.dailySets,[key]:ids}});
     return ids;
   },
@@ -79,6 +81,10 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
   },
   chooseCourse(selectedCourse) {
     set({selectedCourse,courseChosen:true,preferenceClock:{...get().preferenceClock,selectedCourse:Date.now(),courseChosen:Date.now()}});
+  },
+  saveCourseDraft(courseId,id,code) {
+    const courses=get().courses,progress=courses[courseId] || emptyCourseProgress();
+    set({courses:{...courses,[courseId]:{...progress,drafts:{...progress.drafts,[id]:code},draftClock:{...progress.draftClock,[id]:Date.now()}}}});
   },
   completeCourseLesson(courseId, lessonId) {
     const courses=get().courses, progress=courses[courseId] || emptyCourseProgress();

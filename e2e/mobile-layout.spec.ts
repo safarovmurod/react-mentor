@@ -38,8 +38,8 @@ test('phone header controls never overlap and the menu scrolls, traps focus and 
   await page.keyboard.press('Escape');await expect(drawer).toBeHidden();await expect(menu).toBeFocused();
   expect(await page.evaluate(()=>document.body.style.overflow)).toBe('');
   await menu.click();await page.locator('.sidebar-overlay').click({position:{x:350,y:100}});await expect(menu).toHaveAttribute('aria-expanded','false');
-  await menu.click();await page.getByRole('dialog').getByRole('link',{name:'Ответы',exact:true}).click();
-  await expect(page).toHaveURL('/answers');await expect(page.getByRole('heading',{name:'Ответы',exact:true})).toBeVisible();
+  await menu.click();await page.getByRole('dialog').getByRole('link',{name:'Ответы и интервью',exact:true}).click();
+  await expect(page).toHaveURL('/answers');await expect(page.getByRole('heading',{name:'Ответы и интервью',exact:true})).toBeVisible();
   await expect(page.locator('.sidebar')).toHaveAttribute('inert','');
   expect(errors).toEqual([]);
 });

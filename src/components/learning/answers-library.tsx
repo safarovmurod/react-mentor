@@ -29,11 +29,11 @@ export function AnswersLibrary(props: Props) {
     return '/answers' + (params.size ? '?' + params.toString() : '');
   }
   return <>
-    <PageHeading title={copy.answers} subtitle={ru ? 'Все ответы из трёх файлов: объяснения, примеры и механика React.' : 'Answers from all three files: explanations, examples and React mechanics.'}>
+    <PageHeading title={language==='ru'?'Ответы и интервью':'Answers & interview'} subtitle={ru ? 'Вопросы интервью, понятные ответы и примеры кода. Учитесь объяснять решение своими словами.' : 'Answers from all three files: explanations, examples and React mechanics.'}>
       <a className="button subtle" href="/answers/export" download><Download size={17}/>{ru ? 'Скачать общий HTML' : 'Download combined HTML'}</a>
     </PageHeading>
     <section className="panel answers-recommendation">
-      <div><span className="badge"><BookOpen size={14}/>{copy.recommended}</span><h2>React · Deep understanding</h2><p>{ru ? 'Начните с глубокого разбора: сначала поймите механизм, затем прочитайте ответ и проверьте себя в тесте.' : 'Start with the deep explanation: understand the mechanism, read the answer, then check yourself in a test.'}</p><span className="source-line">react_deep_understanding.html · 79 {ru ? 'тем' : 'topics'} · {deepAnswers} {copy.questionsOf}</span></div>
+      <div><span className="badge"><BookOpen size={14}/>{copy.recommended}</span><h2>Как готовиться к интервью</h2><p>{ru ? 'Сначала поймите тему, затем прочитайте ответ, объясните его своими словами и проверьте себя.' : 'Start with the deep explanation: understand the mechanism, read the answer, then check yourself in a test.'}</p><span className="source-line">react_deep_understanding.html · 79 {ru ? 'тем' : 'topics'} · {deepAnswers} {copy.questionsOf}</span></div>
       <Link className="button primary" href="/answers/deep-1">{ru ? 'Начать читать' : 'Start reading'}<ArrowRight size={17}/></Link>
     </section>
     <div className="answers-intro"><span>{totalAnswers} {ru ? 'вопроса без повторов' : 'questions without duplicates'} · 3 {ru ? 'источника' : 'sources'}</span><span><CheckCircle2 size={15}/>{learnedCount} {copy.learned.toLowerCase()} · 0 {ru ? 'токенов' : 'tokens'}</span></div>

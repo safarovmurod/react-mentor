@@ -5,6 +5,8 @@ export interface CoursePlanDay { day: number; lesson: CourseLesson; section: 'an
 // Every day uses an actual published topic; review days do not invent new lessons.
 export function courseMonthPlan(lessons: CourseLesson[]): CoursePlanDay[] {
   if (!lessons.length) return [];
+  const scheduled = lessons.filter(lesson => lesson.day !== undefined).sort((a,b) => a.day! - b.day!);
+  if (scheduled.length) return scheduled.map(lesson => ({day:lesson.day!,lesson,section:'answers'}));
   return Array.from({length:30},(_,index)=>{
     const learning=index<lessons.length;
     const offset=index-lessons.length;
@@ -32,7 +34,7 @@ export function courseDayProgress(
   let current: CourseDayItem | null = null;
   const days = plan.map(item => {
     const done = item.section === 'answers'
-      ? completedTopics.includes(item.lesson.id)
+      ? completedTopics.includes(item.lesson.id) && (!item.lesson.day || !item.lesson.practice || completedPractice.includes(item.lesson.id))
       : item.section === 'practice'
         ? completedPractice.includes(item.lesson.id)
         : true;

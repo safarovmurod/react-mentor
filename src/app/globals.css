@@ -955,3 +955,39 @@ select { cursor: pointer; }
 }
 @media (max-width:359px) {.brand-icon {display:none;}}
 @media (prefers-reduced-motion:reduce) {.sidebar {transition:none;}}
+
+/* A clear, connected learning path. */
+.course-card.course-selected{border:2px solid var(--primary);background:var(--primary-soft);box-shadow:0 0 0 3px #5145ef12}
+.course-selected .badge{color:#4338ca;background:#e0e7ff}
+.day-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-block:24px}
+.day-card{display:flex;flex-direction:column;gap:12px;color:inherit;min-width:0;transition:border-color .15s,box-shadow .15s}
+.day-card h2{font-size:18px;line-height:1.4;margin:0}
+.day-card p{font-size:14px;line-height:1.6;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.day-card .text-link{margin-top:auto}
+.day-card.is-current,.day-card[aria-current=step]{border:2px solid #5145ef;background:var(--primary-soft)}
+.day-card.is-done .eyebrow{color:#087f75}
+.day-strip{display:flex;gap:6px;overflow-x:auto;padding:8px 2px 14px;margin-bottom:16px;scrollbar-width:thin}
+.day-strip a{display:grid;place-items:center;flex:0 0 38px;height:38px;border:1px solid var(--border,#dbe3ee);border-radius:10px;color:inherit;background:var(--card);font-weight:600}
+.day-strip a[aria-current=step]{background:#5145ef;border-color:#5145ef;color:#fff}
+.day-context{gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.learning-overview{display:flex;gap:16px;align-items:flex-start}
+.learning-overview>div{flex:1;min-width:0}
+.day-explanation{margin-block:24px}
+.day-explanation h3{margin-bottom:12px}
+.lesson-connections{border-left:3px solid #5145ef;background:var(--primary-soft);padding:16px;border-radius:0 12px 12px 0;margin-block:24px}
+.lesson-connections a{display:block;margin-block:8px;color:#4338ca}
+.lesson-connections p,.lesson-connections li{line-height:1.65}
+.interview-block{border-top:1px solid var(--border,#dbe3ee);padding-top:24px;margin-top:32px}
+.assessment-block{margin-block:28px}
+.course-search{display:block;margin-bottom:20px}
+.practice-editor{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:14px;width:100%;font-family:var(--font-jetbrains),monospace;margin-block:12px;resize:vertical;line-height:1.7;min-height:220px}
+.html-preview{width:100%;min-height:300px;border:1px solid var(--border,#dbe3ee);border-radius:12px;background:white;margin-block:16px}
+.course-lesson pre{max-width:100%;overflow:auto;white-space:pre}
+.course-lesson,.dashboard-main,.course-column{min-width:0}
+.next-day{margin-top:24px}.lesson-checklist li{margin-block:12px;line-height:1.7}
+.lab-operations{overflow-x:auto;flex-wrap:nowrap!important;max-width:100%}.lab-operations button{flex-shrink:0}
+@media(max-width:1100px){.day-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.day-card-grid{grid-template-columns:1fr;gap:12px}.day-card{padding:18px}.day-context .badge{white-space:normal}.course-lesson .button-row{align-items:stretch;flex-direction:column}.day-explanation{margin-block:18px}.lesson-connections{padding:12px}.course-lesson h2{font-size:22px}.assessment-block{margin-block:20px}}
+@media(prefers-reduced-motion:reduce){.day-card{transition:none}}
+
+.course-search input{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font:inherit}
