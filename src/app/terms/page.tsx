@@ -1,3 +1,13 @@
 import Link from 'next/link';
-export const metadata = {title:'Қоидаҳои истифода | React Mentor'};
-export default function TermsPage(){return <main className="public-policy"><Link href="/">← React Mentor</Link><h1>Қоидаҳои истифода</h1><p>React Mentor платформаи омӯзишӣ аст. Машқҳо, тестҳо ва ҷавобҳои AI кӯмаки таълимӣ мебошанд, на кафолати сертификат ё корёбӣ.</p><h2>Истифодаи аккаунт</h2><p>Маълумоти воридшавиро махфӣ нигоҳ доред ва ба маълумоти корбарони дигар беиҷозат дастрасӣ нагиред.</p><h2>Имкониятҳои ихтиёрӣ</h2><p>AI-и онлайн ва ҳамоҳангсозии абрӣ аз конфигуратсияи сервер ва провайдерҳо вобастаанд; дар ҳолати танзим нашудан онҳо дастнорас мешаванд.</p><h2>Шартҳои ниҳоӣ</h2><p>Пеш аз истифодаи тиҷоратӣ шартҳои ҳуқуқии пурра, тамоси оператор ва қонунҳои дахлдор бояд тасдиқ шаванд.</p></main>}
+import { getRequestLocale } from '@/lib/request-locale';
+import { PUBLIC_COPY } from '@/lib/public-copy';
+
+export default async function TermsPage() {
+  const copy=PUBLIC_COPY[await getRequestLocale()].terms;
+  return <main className="public-policy">
+    <Link href="/">← React Mentor</Link>
+    <h1>{copy.title}</h1><p>{copy.introduction}</p>
+    {copy.sections.map(section=><section key={section.title}><h2>{section.title}</h2><p>{section.text}</p></section>)}
+    <p><strong>{copy.notice}</strong></p>
+  </main>;
+}
