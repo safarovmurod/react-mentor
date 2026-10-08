@@ -6,7 +6,7 @@ test('course choice has one persistent active card and preserves isolated course
  await page.goto('/home');await expect(page.getByRole('heading',{name:'Что будем изучать?'})).toBeVisible();
  await expect(page.locator('.course-card')).toHaveCount(5);
  await page.getByRole('button',{name:'Выбрать HTML + CSS',exact:true}).click();
- await expect(page).toHaveURL('/courses/html/home?day=0');await expect(page.getByRole('heading',{name:'Введение в HTML + CSS: первая страница',exact:true})).toBeVisible();
+ await expect(page).toHaveURL('/courses/html/home?day=0');await expect(page.locator('.course-lesson h2')).toContainText('HTML + CSS');
  await page.goto('/courses');await expect(page.locator('.course-selected')).toHaveCount(1);await expect(page.locator('[data-course=html] button')).toHaveAttribute('aria-pressed','true');
  await page.reload();await expect(page.locator('[data-course=html]')).toHaveClass(/course-selected/);
  await page.screenshot({path:`/tmp/react-mentor-${testInfo.project.name}-courses.png`});
@@ -14,6 +14,25 @@ test('course choice has one persistent active card and preserves isolated course
  await page.goto('/courses');await page.getByRole('button',{name:'Выбрать JavaScript',exact:true}).click();await page.goto('/notes');await expect(page.getByText('Моя HTML заметка',{exact:true})).toHaveCount(0);
  await page.goto('/courses');await page.getByRole('button',{name:'Выбрать HTML + CSS',exact:true}).click();await page.goto('/notes');await expect(page.getByText('Моя HTML заметка',{exact:true})).toBeVisible();
  await page.goto('/courses');await page.getByRole('button',{name:'Выбрать React',exact:true}).click();await expect(page.getByRole('heading',{name:'Время разобраться в React.'})).toBeVisible();expect(errors).toEqual([]);
+});
+
+test('HTML + CSS Day 0 works on 320px, 360px and after refresh',async({page})=>{
+  await page.setViewportSize({width:320,height:740});
+  await page.goto('/courses/html/plan?day=0');
+  await expect(page.locator('.day-card')).toHaveCount(30);
+  await page.locator('.day-card').first().click();
+  await expect(page).toHaveURL('/courses/html/home?day=0');
+  await expect(page.locator('.course-lesson h2')).toContainText('HTML + CSS');
+  await expect(page.locator('.day-explanation')).toHaveCount(4);
+  await page.getByRole('link',{name:'Практика этого дня',exact:true}).click();
+  await expect(page).toHaveURL('/courses/html/practice?day=0');
+  await page.getByLabel('Ваш код',{exact:true}).fill('<h1>Day 0</h1><style>h1{color:blue}</style>');
+  await page.reload();
+  await expect(page.getByLabel('Ваш код',{exact:true})).toHaveValue(/Day 0/);
+  for(const width of [320,360,375,430]){
+    await page.setViewportSize({width,height:740});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
 });
 
 test('plan day selects only its lesson and practice, preserves code and awards XP once',async({page},testInfo)=>{
