@@ -6,12 +6,12 @@ test('public landing and policy pages open without login on desktop and small ph
   await expect(page.getByRole('heading', { name: /Изучайте React и JavaScript/ })).toBeVisible();
   await expect(page.locator('.sidebar')).toHaveCount(0);
   await expect(page.locator('.public-feature-grid article')).toHaveCount(3);
-  await expect(page.getByRole('link', { name: /Оғози омӯзиш/ })).toHaveAttribute('href', '/login');
+  await expect(page.getByRole('link', { name: /Начать обучение/ })).toHaveAttribute('href', '/login');
 
   for (const width of [320, 360, 390, 430]) {
     await page.setViewportSize({ width, height: 740 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    await expect(page.getByRole('heading', { name: /React ва JavaScript-ро/ })).toBeInViewport();
+    await expect(page.getByRole('heading', { name: /Изучайте React и JavaScript/ })).toBeInViewport();
   }
 
   await page.locator('.public-footer').getByRole('link', { name: 'Конфиденциальность' }).click();
