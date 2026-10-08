@@ -104,3 +104,24 @@ test('React day and practice match and retired routes lead to the learning plan'
  await page.goto('/revision');await expect(page).toHaveURL('/plan');await page.goto('/weak-topics');await expect(page).toHaveURL('/plan');await expect(page.locator('.sidebar')).not.toContainText('Повторение');await expect(page.locator('.sidebar')).not.toContainText('Сложные темы');
  const labels=await page.locator('.sidebar nav .nav-item span').allTextContents();expect(labels.indexOf('Учебный план')).toBeLessThan(labels.indexOf('Мой день'));
 });
+
+test('React practice menu restores original source examples without hiding other practice', async ({ page }) => {
+  await page.goto('/courses');
+  await page.locator('[data-course=react]').getByRole('button').click();
+  await expect(page).toHaveURL(/\/home$/);
+  const mobileMenu=page.getByRole('button',{name:'Открыть меню'});
+  if(await mobileMenu.isVisible()) await mobileMenu.click();
+  await page.locator('.sidebar nav').getByRole('link',{name:'Практика',exact:true}).click();
+  await expect(page).toHaveURL(/\/practice\?month=2&tab=source$/);
+  await expect(page.locator('.month-tabs .active')).toHaveText('Месяц 2');
+  await expect(page.getByRole('tab',{name:'Код из вашего HTML'})).toHaveAttribute('aria-selected','true');
+  await expect(page.locator('.source-intro')).toContainText('Файлҳои асосии Redux');
+  await expect(page.locator('.source-intro')).toContainText('counterSlice.ts');
+  const groups=await page.locator('.filters select').first().locator('option').allTextContents();
+  expect(groups).toEqual(expect.arrayContaining(['Redux','Zustand','Jotai']));
+  await page.reload();
+  await expect(page.getByRole('tab',{name:'Код из вашего HTML'})).toHaveAttribute('aria-selected','true');
+  await expect(page.locator('.source-intro h2')).toHaveText('Файлҳои асосии Redux');
+  await page.getByRole('tab',{name:'Темы',exact:true}).click();
+  await expect(page.locator('.topic-grid')).toBeVisible();
+});
