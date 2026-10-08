@@ -11,6 +11,14 @@ import { AccountAvatar } from './account-avatar';
 
 export function AccountSettings() {
   const account=useAccount();
+  const language=useLearningStore(state=>state.language);
+  const guestCopy={
+    ru:{account:'Ваш аккаунт',mode:'Гостевой режим',description:'Сейчас прогресс хранится в этом браузере. Войдите, чтобы продолжить обучение на телефоне и сохранить личный профиль.',login:'Войти · Google или email'},
+    en:{account:'Your account',mode:'Guest mode',description:'Progress is saved in this browser. Sign in to continue on your phone and keep a personal profile.',login:'Sign in · Google or email'},
+    tg:{account:'Аккаунти шумо',mode:'Ҳолати меҳмон',description:'Пешрафт ҳоло дар ҳамин браузер нигоҳ дошта мешавад. Барои идома дар телефон ва нигоҳ доштани профил ворид шавед.',login:'Воридшавӣ · Google ё email'},
+    uk:{account:'Ваш акаунт',mode:'Гостьовий режим',description:'Зараз прогрес зберігається в цьому браузері. Увійдіть, щоб продовжити навчання на телефоні та зберегти свій профіль.',login:'Увійти · Google або email'}
+  }[language];
+
   const [name,setName]=useState(account.profile?.displayName || '');
   const [busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
   async function save(event:React.FormEvent) {
@@ -53,7 +61,7 @@ export function AccountSettings() {
       await account.syncNow();setMessage('Гостевой прогресс добавлен. Статус облака показан ниже.');
     } catch {setError('Не удалось прочитать гостевой прогресс. Исходные данные сохранены.');}
   }
-  if (!account.user) return <section className="panel account-panel"><div className="section-heading"><h2>Ваш аккаунт</h2><span className="account-badge">Гостевой режим</span></div><p>Сейчас прогресс хранится в этом браузере. Войдите, чтобы продолжить обучение на телефоне и сохранить личный профиль.</p><Link className="button primary" href="/login">Войти · Google или email</Link></section>;
+  if (!account.user) return <section className="panel account-panel"><div className="section-heading"><h2>{guestCopy.account}</h2><span className="account-badge">{guestCopy.mode}</span></div><p>{guestCopy.description}</p><Link className="button primary" href="/login">{guestCopy.login}</Link></section>;
   const statuses={local:'В этом браузере',syncing:'Сохраняем в облако…',synced:'Сохранено в облаке',offline:'Нет сети · изменения сохранены в браузере',error:'Облако недоступно · изменения сохранены в браузере'};
   return <>
     <section className="panel account-panel"><div className="section-heading"><h2>Личный профиль</h2><span className="account-badge">Ваш аккаунт</span></div>
