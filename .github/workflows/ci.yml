@@ -9,14 +9,14 @@ on:
 jobs:
   validate:
     name: Lint, Typecheck, Test and Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: 'npm'
@@ -35,3 +35,12 @@ jobs:
 
       - name: Next.js Production Build
         run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Playwright Desktop and Mobile E2E
+        run: npm run test:e2e
+
+      - name: Playwright Mock Auth Regression
+        run: npm run test:auth

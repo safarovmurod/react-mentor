@@ -18,6 +18,8 @@ export function AccountShell({children}:{children:React.ReactNode}) {
   const tutorOpen=useAppStore(state=>state.tutorDrawerOpen);
   const [tutorMounted,setTutorMounted]=useState(false);
   if(tutorOpen&&!tutorMounted)setTutorMounted(true);
+  // Public pages must remain readable without Supabase, guest mode or login.
+  if (pathname==='/' || pathname==='/privacy' || pathname==='/terms') return <>{children}</>;
   if (account.loading) return <div className="account-screen"><p role="status">Открываем ReactMentor…</p></div>;
   if (account.restoreFailed) return <div className="account-screen"><section className="auth-card"><h1>Восстанавливаем ваш вход</h1><p role="alert">{account.error}</p><button className="button primary" onClick={account.reload}>Повторить</button></section></div>;
   if (account.needsMfa) return <MfaChallengeScreen/>;

@@ -4,9 +4,12 @@ import { Atom, Mail, ShieldCheck } from 'lucide-react';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { useAccount } from './account-provider';
 import { authErrorMessage } from '@/lib/account/auth-errors';
+import { useLearningStore } from '@/stores/learning-store';
+import { AUTH_COPY } from '@/lib/auth-copy';
 
 export function AuthScreen() {
   const account=useAccount();
+  const language=useLearningStore(state=>state.language), copy=AUTH_COPY[language];
   const [mode,setMode]=useState<'login'|'signup'|'reset'>('login');
   const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[name,setName]=useState('');
   const [busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
@@ -17,7 +20,7 @@ export function AuthScreen() {
     try {
       const {error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin+'/auth/callback',queryParams:{prompt:'select_account'}}});
       if (error) throw error;
-    } catch {setError('Google вход недоступен. Попробуйте email или повторите позже.');setBusy(false);}
+    } catch {setError(copy.googleError);setBusy(false);}
   }
   async function submit(event:React.FormEvent) {
     event.preventDefault();const client=getSupabaseBrowserClient();if (!client || busy) return;
@@ -25,45 +28,46 @@ export function AuthScreen() {
     try {
       if (mode==='reset') {
         const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+'/auth/callback?recovery=1'});if (error) throw error;
-        setMessage('Если этот адрес зарегистрирован, ссылка для сброса пароля придёт на email.');
+        setMessage(copy.resetSent);
       } else if (mode==='signup') {
         const {data,error}=await client.auth.signUp({email,password,options:{data:{full_name:name.trim()},emailRedirectTo:window.location.origin+'/auth/callback'}});if (error) throw error;
-        if (!data.session) setMessage('Проверьте email и подтвердите адрес. Затем войдите в аккаунт.');
+        if (!data.session) setMessage(copy.confirmEmail);
       } else {
         const {error}=await client.auth.signInWithPassword({email,password});if (error) throw error;
       }
     } catch (cause) {setError(authErrorMessage(cause,mode));}
     finally {setBusy(false);}
   }
-  const title=mode==='signup' ? 'Начнём учиться вместе':mode==='reset' ? 'Восстановить доступ':'Ваш путь в React';
-  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><p className="eyebrow">REACTMENTOR</p><h1>{title}</h1><p>Личный прогресс, заметки и практика — на компьютере и телефоне.</p>
-    {!account.configured && <section className="auth-unavailable"><p role="status">Вход и регистрация пока не подключены. Курс и ответы доступны без аккаунта; для AI нужен аккаунт.</p><button className="button primary" onClick={continueAsGuest}>Продолжить как гость</button></section>}
-    <div className="google-option"><button className="button primary google-button" onClick={google} disabled={busy || !account.configured}><span className="google-mark" aria-hidden="true">G</span><span>Продолжить с Google</span></button><span className="recommend-tag">Рекомендуем</span></div>
-    <div className="auth-divider">или через email</div>
+  const title=mode==='signup' ? copy.signupTitle:mode==='reset' ? copy.resetTitle:copy.loginTitle;
+  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><p className="eyebrow">REACTMENTOR</p><h1>{title}</h1><p>{copy.intro}</p>
+    {!account.configured && <section className="auth-unavailable"><p role="status">{copy.unavailable}</p><button className="button primary" onClick={continueAsGuest}>{copy.guest}</button></section>}
+    <div className="google-option"><button className="button primary google-button" onClick={google} disabled={busy || !account.configured}><span className="google-mark" aria-hidden="true">G</span><span>{copy.google}</span></button><span className="recommend-tag">{copy.recommended}</span></div>
+    <div className="auth-divider">{copy.orEmail}</div>
     <form className="account-form" onSubmit={submit}>
-      <fieldset className="account-fields" disabled={busy || !account.configured} aria-label={mode==='signup'?'Регистрация через email':'Вход через email'}>
-      {mode==='signup' && <label>Ваше имя<input autoComplete="name" value={name} onChange={e=>setName(e.target.value)} required minLength={2} maxLength={60}/></label>}
+      <fieldset className="account-fields" disabled={busy || !account.configured} aria-label={mode==='signup'?copy.signUp:copy.signIn}>
+      {mode==='signup' && <label>{copy.name}<input autoComplete="name" value={name} onChange={e=>setName(e.target.value)} required minLength={2} maxLength={60}/></label>}
       <label>Email<input type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} required maxLength={254}/></label>
-      {mode!=='reset' && <label>Пароль<input type="password" autoComplete={mode==='signup' ? 'new-password':'current-password'} value={password} onChange={e=>setPassword(e.target.value)} required minLength={mode==='signup' ? 8:1} maxLength={128}/></label>}
-      <button className="button subtle" disabled={busy || !account.configured}><Mail size={17}/>{busy ? 'Подождите…':mode==='signup' ? 'Создать аккаунт':mode==='reset' ? 'Отправить ссылку':'Войти с email'}</button>
+      {mode!=='reset' && <label>{copy.password}<input type="password" autoComplete={mode==='signup' ? 'new-password':'current-password'} value={password} onChange={e=>setPassword(e.target.value)} required minLength={mode==='signup' ? 8:1} maxLength={128}/></label>}
+      <button className="button subtle" disabled={busy || !account.configured}><Mail size={17}/>{busy ? copy.saveWait:mode==='signup' ? copy.signUp:mode==='reset' ? copy.sendLink:copy.signIn}</button>
       </fieldset>
     </form>
     {(error || account.error) && <p role="alert" className="error-message">{error || account.error}</p>}{message && <p role="status" className="account-success">{message}</p>}
-    <div className="auth-links"><button onClick={()=>{setMode(mode==='signup' ? 'login':'signup');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='signup' ? 'Уже есть аккаунт? Войти':'Создать аккаунт'}</button><button onClick={()=>{setMode(mode==='reset' ? 'login':'reset');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='reset' ? 'Назад ко входу':'Забыли пароль?'}</button></div>
-    {!account.user && account.configured && <button className="guest-button" onClick={continueAsGuest} disabled={busy}>Продолжить как гость</button>}
-    <p className="auth-security"><ShieldCheck size={15}/>Google или email · бесплатный аккаунт</p>
+    <div className="auth-links"><button onClick={()=>{setMode(mode==='signup' ? 'login':'signup');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='signup' ? copy.existing:copy.createAccount}</button><button onClick={()=>{setMode(mode==='reset' ? 'login':'reset');setError('');setMessage('');setPassword('');}} disabled={busy}>{mode==='reset' ? copy.backToLogin:copy.forgot}</button></div>
+    {!account.user && account.configured && <button className="guest-button" onClick={continueAsGuest} disabled={busy}>{copy.guest}</button>}
+    <p className="auth-security"><ShieldCheck size={15}/>{copy.security}</p>
   </section></div>;
 }
 
 export function FirstProfileScreen() {
   const account=useAccount();
+  const copy=AUTH_COPY[useLearningStore(state=>state.language)];
   const [name,setName]=useState(String(account.user?.user_metadata?.full_name || '').slice(0,60));
   const [busy,setBusy]=useState(false),[error,setError]=useState('');
   async function submit(event:React.FormEvent) {
     event.preventDefault();setBusy(true);setError('');
-    try {await account.saveProfile(name);} catch(cause) {setError(cause instanceof Error ? cause.message:'Не удалось сохранить имя.');} finally {setBusy(false);}
+    try {await account.saveProfile(name);} catch(cause) {setError(cause instanceof Error ? cause.message:copy.nameError);} finally {setBusy(false);}
   }
-  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><h1>Как вас называть?</h1><p>Имя будет в вашем профиле. Изменить его и добавить фото можно в настройках.</p><form className="account-form" onSubmit={submit}><label>Ваше имя<input autoFocus autoComplete="name" value={name} onChange={e=>setName(e.target.value)} minLength={2} maxLength={60} required/></label><button className="button primary" disabled={busy || name.trim().length<2}>{busy ? 'Сохраняем…':'Начать обучение'}</button></form>{error && <p role="alert" className="error-message">{error}</p>}<button className="guest-button" onClick={account.signOut} disabled={busy}>Выйти</button></section></div>;
+  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><h1>{copy.firstNameTitle}</h1><p>{copy.firstNameDescription}</p><form className="account-form" onSubmit={submit}><label>{copy.name}<input autoFocus autoComplete="name" value={name} onChange={e=>setName(e.target.value)} minLength={2} maxLength={60} required/></label><button className="button primary" disabled={busy || name.trim().length<2}>{busy ? copy.saveWait:copy.firstNameStart}</button></form>{error && <p role="alert" className="error-message">{error}</p>}<button className="guest-button" onClick={account.signOut} disabled={busy}>{copy.logout}</button></section></div>;
 }
 
 export function MfaChallengeScreen() {

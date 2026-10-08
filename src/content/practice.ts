@@ -165,7 +165,7 @@ export function exercisesForTopic(topic:LearningTopic, contentLanguage:ContentLa
   hint:tr(topic.explanation[0]?.text||trace,lang),criteria,files:topic.month===3?['app/page.tsx','app/layout.tsx']:['src/pages/PracticePage.tsx','src/App.tsx'],
  }));
 }
-export function createProjectPrompt(ids:string[], language:'ru'|'en') {
+export function createProjectPrompt(ids:string[], language:'ru'|'en'|'tg'|'uk') {
  const topics=ids.map(id=>getTopic(id)).filter((topic):topic is LearningTopic=>Boolean(topic));
  if(topics.length<1||topics.length>5||new Set(topics.map(topic=>topic.month)).size!==1)throw new Error('Choose 1–5 topics from one month.');
  const month=topics[0].month;

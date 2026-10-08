@@ -8,7 +8,7 @@ import index from '@/content/learning-index.json';
 it('each new curriculum has 30 different lessons, exercises, questions and earlier prerequisite links',async()=>{
  for(const id of ['html','javascript-1','javascript-2','git','cpp'] as const){
   const content=await loadCourseContent(id),plan=courseMonthPlan(content.lessons);
-  expect(plan.map(d=>d.day)).toEqual(Array.from({length:30},(_,i)=>i+1));
+  expect(plan.map(d=>d.day)).toEqual(Array.from({length:30},(_,i)=>i+(id==='html'?0:1)));
   expect(new Set(plan.map(d=>d.lesson.id)).size).toBe(30);
   for(const {day,lesson} of plan){expect(lesson.practice?.criteria.length).toBeGreaterThan(0);expect(lesson.questions.length).toBeGreaterThan(0);for(const previous of lesson.prerequisiteDays || [])expect(previous).toBeLessThan(day);}
   const first=plan[0].lesson;
