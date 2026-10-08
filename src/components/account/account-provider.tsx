@@ -9,7 +9,7 @@ import { switchLearningAccount } from '@/stores/learning-store';
 import { useAppStore } from '@/stores/app-store';
 import { dateKey } from '@/lib/learning';
 import { useLearningStore } from '@/stores/learning-store';
-import type { InterfaceLocale } from '@/lib/locale';
+import { getManualLocale, type InterfaceLocale } from '@/lib/locale';
 
 export interface AccountProfile {displayName:string;avatarPath:string|null;avatarUrl:string|null;}
 interface AccountContext {
@@ -51,7 +51,7 @@ export function AccountProvider({children,initialLocale='ru'}:{children:React.Re
         const required=assurance.nextLevel==='aal2' && assurance.currentLevel!=='aal2';
         setNeedsMfa(required);
         if (required) return;
-        if (scope.current!==next.user.id) {switchLearningAccount(next.user.id,initialLocale);scope.current=next.user.id;}
+        if (scope.current!==next.user.id) {switchLearningAccount(next.user.id,getManualLocale() || initialLocale);scope.current=next.user.id;}
         const {data,error:profileError}=await client.from('react_mentor_profiles').select('display_name,avatar_path').eq('user_id',next.user.id).abortSignal(AbortSignal.timeout(15000)).maybeSingle();
         if (run!==generation.current) return;
         if (profileError) throw new Error('Не удалось загрузить профиль. Проверьте подключение и настройку базы.');
@@ -66,7 +66,7 @@ export function AccountProvider({children,initialLocale='ru'}:{children:React.Re
         coordinator.current=startAccountSync(client,next.user.id,setSyncStatus);
       } else {
         setNeedsMfa(false);setSyncStatus('local');setRecovery(false);
-        switchLearningAccount(null,initialLocale);scope.current=null;
+        switchLearningAccount(null,getManualLocale() || initialLocale);scope.current=null;
         setGuest(!isSupabaseConfigured || sessionStorage.getItem('react-mentor-guest')==='true');
       }
       useAppStore.setState({activeSecondsToday:useLearningStore.getState().studySeconds[dateKey()] || 0});
