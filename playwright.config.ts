@@ -14,6 +14,8 @@ export default defineConfig({
   reporter: 'list',
   use: {
     baseURL: 'http://127.0.0.1:3100',
+    // Old regression flows use the Russian UI; new locale tests override this per request.
+    extraHTTPHeaders: {'x-vercel-ip-country':'RU'},
     launchOptions: { executablePath: systemChromium },
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
