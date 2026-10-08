@@ -9,6 +9,18 @@ import { accountStorageKey, emptyProgress, emptyCourseProgress, progressSnapshot
 import type { CourseId, ImportedCourseId } from '@/lib/courses/ids';
 import { contentLocaleFor, persistManualLocale, type InterfaceLocale } from '@/lib/locale';
 
+const studyTimeFlushes = new Set<() => void>();
+
+/** Flush the mounted timer before its account or course scope changes. */
+export function registerStudyTimeFlush(flush: () => void) {
+  studyTimeFlushes.add(flush);
+  return () => { studyTimeFlushes.delete(flush); };
+}
+
+function flushPendingStudyTime() {
+  for (const flush of [...studyTimeFlushes]) flush();
+}
+
 interface LearningState extends Progress {
   ready: boolean;
   storageError: string;
@@ -21,7 +33,7 @@ interface LearningState extends Progress {
   saveDraft: (id: string, code: string) => void;
   saveNote: (note: {id:string;title:string;content:string}) => void;
   deleteNote: (id:string) => void;
-  addStudySeconds: (seconds:number) => void;
+  addStudySeconds: (seconds:number, courseId?:CourseId) => void;
   chooseCourse: (courseId:CourseId) => void;
   completeCourseLesson: (courseId:ImportedCourseId, lessonId:string) => void;
   recordCourseAnswer: (courseId:ImportedCourseId, question:{id:string;topicId:string}, mode:StudyMode, correct:boolean, answer:string) => void;
@@ -75,8 +87,8 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
   saveDraft(id, code) { set({drafts:{...get().drafts,[id]:code},draftClock:{...get().draftClock,[id]:Date.now()}}); },
   saveNote(note) { set({notes:[note,...get().notes.filter(item=>item.id!==note.id)],noteClock:{...get().noteClock,[note.id]:Date.now()}}); },
   deleteNote(id) { set({notes:get().notes.filter(item=>item.id!==id),deletedNotes:{...get().deletedNotes,[id]:Date.now()}}); },
-  addStudySeconds(seconds) {
-    const today=dateKey(), state=get(), course=state.selectedCourse, updates={studySeconds:{...state.studySeconds,[today]:(state.studySeconds[today] || 0)+seconds}};
+  addStudySeconds(seconds, courseId) {
+    const today=dateKey(), state=get(), course=courseId || state.selectedCourse, updates={studySeconds:{...state.studySeconds,[today]:(state.studySeconds[today] || 0)+seconds}};
     if (course==='react') set(updates);
     else {
       const progress=state.courses[course] || emptyCourseProgress();
@@ -84,6 +96,7 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
     }
   },
   chooseCourse(selectedCourse) {
+    if (selectedCourse !== get().selectedCourse) flushPendingStudyTime();
     set({selectedCourse,courseChosen:true,preferenceClock:{...get().preferenceClock,selectedCourse:Date.now(),courseChosen:Date.now()}});
   },
   saveCourseDraft(courseId,id,code) {
@@ -128,9 +141,11 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
   },
 }));
 
-// Read the target cache BEFORE writing. A reset must never overwrite another
+// Flush the current scope, then read the target cache BEFORE resetting it.
+// A reset must never overwrite another
 // account's cache; guest data remains under its original key and is not imported.
 export function switchLearningAccount(userId: string | null, initialLocale?: InterfaceLocale) {
+  flushPendingStudyTime();
   const name=accountStorageKey(userId); let progress=emptyProgress(); let storageError=''; let hadSavedProgress=false;
   try {
     const cached=localStorage.getItem(name);

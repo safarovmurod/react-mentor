@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useLearningStore } from '@/stores/learning-store';
 import { isDeepFollowUp, type TutorSource } from '@/lib/tutor/shared';
 import { useAccount } from '@/components/account/account-provider';
+import { LEARNING_UI_COPY, tutorErrorKey, type TutorErrorKey } from '@/lib/learning-ui-copy';
 
 interface ChatMsg {
   id: string;
@@ -16,9 +17,14 @@ interface ChatMsg {
   mode?: 'local' | 'online';
   tokens?: number;
   error?: boolean;
+  errorKey?: TutorErrorKey;
   source?: TutorSource;
   followUp?: boolean;
   subject?: string;
+}
+
+class TutorRequestError extends Error {
+  constructor(readonly key: TutorErrorKey) { super(key); }
 }
 
 export function TutorDrawer() {
@@ -28,10 +34,13 @@ export function TutorDrawer() {
   const selectedQuestion = useAppStore(state => state.tutorQuestion);
   const setSelectedQuestion = useAppStore(state => state.setTutorQuestion);
   const language = useLearningStore(state => state.contentLanguage);
+  const uiLanguage = useLearningStore(state => state.language);
+  const ui = LEARNING_UI_COPY[uiLanguage];
+  const prompts = LEARNING_UI_COPY[language];
   const courseId = useLearningStore(state => state.selectedCourse);
   const [messages, setMessages] = useState<ChatMsg[]>([{
     id: 'welcome', sender: 'assistant',
-    text: 'Салом! Аввал ҷавобро аз саволу ҷавобҳои лоиҳа меёбем: ройгон, бе токен. Барои саволи дар лоиҳа набуда AI истифода мешавад — бо аккаунти Google ё email ворид шавед.',
+    text: '',
   }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -79,7 +88,7 @@ export function TutorDrawer() {
     if (deep && !lastQuestion && !selectedQuestion) return;
     sending.current = true;
     setLoading(true);
-    const text = deep ? 'Саволи пешинаро қадам ба қадам чуқуртар фаҳмон.' : input.trim();
+    const text = deep ? prompts.promptDeep : input.trim();
     const query = followUp ? selectedQuestion?.text || lastQuestion?.text || text : text;
     const questionId = followUp ? selectedQuestion?.id || lastReply?.source?.questionId
       : selectedQuestion?.text === text ? selectedQuestion.id : undefined;
@@ -101,8 +110,8 @@ export function TutorDrawer() {
         signal: AbortSignal.timeout(50000),
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : 'AI дастнорас аст.');
-      if (typeof data.reply !== 'string' || !data.reply.trim()) throw new Error('Ҷавоб холӣ аст. Баъдтар кӯшиш кунед.');
+      if (!response.ok) throw new TutorRequestError(tutorErrorKey(response.status, data.error));
+      if (typeof data.reply !== 'string' || !data.reply.trim()) throw new TutorRequestError('tutorEmpty');
       setMessages(previous => [...previous, {
         id: crypto.randomUUID(), sender: 'assistant', text: data.reply,
         mode: data.mode === 'online' ? 'online' : 'local',
@@ -113,8 +122,7 @@ export function TutorDrawer() {
     } catch (caught) {
       setMessages(previous => [...previous, {
         id: crypto.randomUUID(), sender: 'assistant', error: true,
-        text: caught instanceof Error && caught.name !== 'TimeoutError'
-          ? caught.message : 'Пайвастшавӣ қатъ шуд ё AI дер ҷавоб дод. Баъдтар кӯшиш кунед.',
+        text: '', errorKey: caught instanceof TutorRequestError ? caught.key : 'tutorConnection',
       }]);
     } finally {
       sending.current = false;
@@ -127,30 +135,30 @@ export function TutorDrawer() {
   return <div className="tutor-backdrop" onClick={() => setOpen(false)}>
     <aside className="tutor-panel" role="dialog" aria-modal="true" aria-labelledby="tutor-title" ref={dialog} onClick={event => event.stopPropagation()}>
       <div className="tutor-heading">
-        <div><h2 id="tutor-title"><Sparkles size={19}/> AI Tutor</h2><p>Аввал маводи лоиҳа · AI барои саволҳои нав</p></div>
-        <button className="icon-button" onClick={() => setOpen(false)} aria-label="Пӯшидани Tutor"><X size={20}/></button>
+        <div><h2 id="tutor-title"><Sparkles size={19}/> AI Tutor</h2><p>{ui.tutorIntro}</p></div>
+        <button className="icon-button" onClick={() => setOpen(false)} aria-label={ui.tutorClose}><X size={20}/></button>
       </div>
       <div className="tutor-messages" aria-live="polite" aria-relevant="additions" ref={messageList}>
         {messages.map(message => <div key={message.id} className={'tutor-message ' + message.sender + (message.error ? ' tutor-error' : '')}>
-          {message.mode && <span className="tutor-source">{message.mode === 'online' ? 'AI · AnyModel' : message.source ? 'Маводи лоиҳа' : 'Локалӣ'}{message.tokens !== undefined ? ' · ' + message.tokens + ' токен' : ''}</span>}
-          <p>{message.text}</p>
-          {message.source && <Link className="tutor-source" href={message.source.href || '/lesson/' + encodeURIComponent(message.source.topicId)} onClick={()=>setOpen(false)}>Манбаъ: {message.source.title} · {message.source.sourceId}</Link>}
+          {message.mode && <span className="tutor-source">{message.mode === 'online' ? 'AI · AnyModel' : message.source ? ui.tutorMaterial : ui.tutorLocal}{message.tokens !== undefined ? ' · ' + message.tokens + ' ' + ui.tokens : ''}</span>}
+          <p>{message.id === 'welcome' ? ui.tutorWelcome : message.errorKey ? ui[message.errorKey] : message.text}</p>
+          {message.source && <Link className="tutor-source" href={message.source.href || '/lesson/' + encodeURIComponent(message.source.topicId)} onClick={()=>setOpen(false)}>{ui.source} {message.source.title} · {message.source.sourceId}</Link>}
         </div>)}
-        {loading && <p role="status" className="tutor-loading">Ментор ҷавоб тайёр мекунад…</p>}
+        {loading && <p role="status" className="tutor-loading">{ui.tutorLoading}</p>}
       </div>
       <div className="tutor-composer">
-        {!account.user && <div className="tutor-signin"><p>Маводи дарсҳо — ройгон. Барои истифодаи AI аввал бо Google ё email ворид шавед.</p><Link className="button subtle" href="/login" onClick={()=>setOpen(false)}>Воридшавӣ / регистрация</Link></div>}
+        {!account.user && <div className="tutor-signin"><p>{ui.tutorSignIn}</p><Link className="button subtle" href="/login" onClick={()=>setOpen(false)}>{ui.tutorLogin}</Link></div>}
         <div className="tutor-shortcuts">
-          <button className="button subtle" disabled={loading} onClick={() => setInput(courseId==='react'?'useState чиба даркорай?':'Мавзӯи аввалро чуқур фаҳмон.')}>{courseId==='react'?'useState?':'Мавзӯи курс'}</button>
-          <button className="button subtle" disabled={loading || (!selectedQuestion && !messages.some(message => message.sender === 'user' && !message.followUp))} onClick={() => send(true)}><Layers size={15}/>Чуқур фаҳмон</button>
+          <button className="button subtle" disabled={loading} onClick={() => setInput(courseId==='react'?prompts.promptReact:prompts.promptTopic)}>{courseId==='react'?'useState?':ui.tutorTopic}</button>
+          <button className="button subtle" disabled={loading || (!selectedQuestion && !messages.some(message => message.sender === 'user' && !message.followUp))} onClick={() => send(true)}><Layers size={15}/>{ui.tutorDeep}</button>
         </div>
         <form onSubmit={event => { event.preventDefault(); void send(); }}>
-          <label className="sr-only" htmlFor="tutor-input">Савол ба Tutor</label>
+          <label className="sr-only" htmlFor="tutor-input">{ui.tutorQuestion}</label>
           <textarea id="tutor-input" ref={inputRef} value={input} maxLength={1500} rows={3} disabled={loading}
-            onChange={event => setInput(event.target.value)} placeholder="Савол ё кодатро навис…"/>
-          <button className="button primary" type="submit" disabled={loading || !input.trim()} aria-label="Фиристодан"><Send size={17}/>Фиристодан</button>
+            onChange={event => setInput(event.target.value)} placeholder={ui.tutorPlaceholder}/>
+          <button className="button primary" type="submit" disabled={loading || !input.trim()} aria-label={ui.tutorSend}><Send size={17}/>{ui.tutorSend}</button>
         </form>
-        <p className="tutor-footnote">{tokens > 0 ? 'Дар ин суҳбат сарф шуд: ' + tokens + ' токен. ' : ''}AI метавонад хато кунад; кодро санҷед.</p>
+        <p className="tutor-footnote">{tokens > 0 ? ui.tutorSpent + ' ' + tokens + ' ' + ui.tokens + '. ' : ''}{ui.tutorCaution}</p>
       </div>
     </aside>
   </div>;
