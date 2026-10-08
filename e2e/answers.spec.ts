@@ -1,4 +1,16 @@
 import { expect, test } from '@playwright/test';
+// Legacy regressions exercise accounts that already saved Tajik lesson text with
+// Russian UI. Geo detection must not rewrite an existing learner's choice.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('react-mentor-learning-v2')) {
+      localStorage.setItem('react-mentor-learning-v2', JSON.stringify({
+        version: 2, state: { language: 'ru', contentLanguage: 'tg' },
+      }));
+    }
+  });
+});
+
 import quiz from '../src/content/imported/quiz.json';
 
 test('answers library filters, searches, exports and preserves reading progress and notes', async ({ page }, testInfo) => {
