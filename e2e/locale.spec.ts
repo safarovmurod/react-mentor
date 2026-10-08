@@ -25,6 +25,13 @@ for (const item of expected) {
   });
 }
 
+test('Cloudflare visitor country wins over Vercel proxy IP country',async({page})=>{
+  await page.setExtraHTTPHeaders({'x-vercel-ip-country':'US','cf-ipcountry':'UA'});
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveAttribute('lang','uk');
+  await expect(page.getByRole('heading',{name:/Вивчайте React і JavaScript/})).toBeVisible();
+});
+
 test('manual preference survives refresh, navigation and country changes',async({page})=>{
   await page.setExtraHTTPHeaders({'x-vercel-ip-country':'UA'});
   await page.goto('/settings');
