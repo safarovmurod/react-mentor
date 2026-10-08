@@ -19,7 +19,7 @@ const CATALOG_UI:Record<'ru'|'en'|'tg'|'uk',CatalogCopy>={
     route:'Рекомендуемый путь для веб-разработки',routeNote:'Git изучайте параллельно. C++ — отдельное направление.',selected:'Выбрано',recommended:'Рекомендуем начать',
     jsDescription:'Месяц 1 — JS1: массивы, объекты и задачи. Месяц 2 — JS2: API и запросы.',
     after:'После ',alongside:'Параллельно основному курсу',fromZero:'Можно начать с нуля',ready:count=>`${count} тем · можно учиться`,
-    wait:'Материалы ожидаются',unavailable:'Статус материалов недоступен',checking:'Проверяем материалы…',choose:'Выбрать курс',continue:'Продолжить курс',descriptions:{}
+    wait:'Материалы ожидаются',unavailable:'Статус материалов недоступен',checking:'Проверяем материалы…',choose:'Выбрать',continue:'Продолжить курс',descriptions:{}
   },
   en:{
     eyebrow:'YOUR LEARNING',title:'What would you like to learn?',intro:'Choose a path. Switch anytime; each course keeps its own progress and notes.',
