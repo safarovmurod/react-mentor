@@ -30,7 +30,7 @@ test('homepage renders local fonts without external font requests', async ({ pag
   await page.goto('/');
   await expect(page).toHaveURL(/\/$/);
   await expect(page).toHaveTitle(/ReactMentor/);
-  await expect(page.getByRole('heading', { name: /React ва JavaScript-ро/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Изучайте React и JavaScript/ })).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
   const fontState = await page.evaluate(() => ({
     loadedFamilies: [...document.fonts].filter(font => font.status === 'loaded').map(font => font.family.replaceAll('"', '')),
