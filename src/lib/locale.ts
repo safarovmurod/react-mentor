@@ -37,11 +37,14 @@ export function localeFromAcceptLanguage(value: string | null | undefined): Inte
 
 export function negotiateLocale(input: {
   country?: string | null;
+  cloudflareCountry?: string | null;
   acceptLanguage?: string | null;
   savedLocale?: string | null;
 }): InterfaceLocale {
   if (isInterfaceLocale(input.savedLocale)) return input.savedLocale;
-  const country = input.country?.trim().toUpperCase() || '';
+  // When Cloudflare proxies a domain, Vercel sees the proxy's country.
+  // Prefer Cloudflare's visitor country when it provides one.
+  const country = (input.cloudflareCountry?.trim() || input.country?.trim() || '').toUpperCase();
   if (Object.hasOwn(countryLocales, country)) return countryLocales[country];
   return localeFromAcceptLanguage(input.acceptLanguage);
 }
