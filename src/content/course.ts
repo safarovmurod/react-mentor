@@ -137,4 +137,4 @@ export const CURRICULUM = roadmapSource.map(month => ({
 
 export function getTopic(id: string) { return LEARNING_TOPICS.find(topic => topic.id === id); }
 export function questionsForTopic(id: string) { return ALL_QUESTIONS.filter(question => question.topicId === id); }
-export function topicTitle(topic: LearningTopic, language: 'ru' | 'en') { return language === 'ru' ? topic.titleRu : topic.title; }
+export function topicTitle(topic: LearningTopic, language: 'ru' | 'en' | 'tg' | 'uk') { return language === 'ru' ? topic.titleRu : topic.title; }
