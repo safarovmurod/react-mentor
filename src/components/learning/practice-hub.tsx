@@ -11,10 +11,10 @@ import { tr } from '@/lib/translate';
 import { PageHeading } from './page-heading';
 import { PracticeWorkspace } from './practice-workspace';
 const SourcePractice=dynamic(()=>import('./source-practice').then(module=>module.SourcePractice));
-export function PracticeHub({initialMonth,initialTopic,initialDay}:{initialMonth?:number;initialTopic?:string;initialDay?:number}) {
- const state=useLearningStore();const copy=COPY[state.language];const [month,setMonth]=useState(initialMonth||getTopic(initialTopic||'')?.month||state.activeMonth);
+export function PracticeHub({initialMonth,initialTopic,initialDay,initialTab}:{initialMonth?:number;initialTopic?:string;initialDay?:number;initialTab?:'source'}) {
+ const state=useLearningStore();const copy=COPY[state.language];const [month,setMonth]=useState(initialTab==='source'?2:initialMonth||getTopic(initialTopic||'')?.month||state.activeMonth);
  const [topicId,setTopicId]=useState(initialTopic||'');const [exerciseIndex,setExerciseIndex]=useState(0);
- const [selected,setSelected]=useState<string[]>([]);const [query,setQuery]=useState('');const [tab,setTab]=useState('topics');
+ const [selected,setSelected]=useState<string[]>([]);const [query,setQuery]=useState('');const [tab,setTab]=useState(initialTab==='source'?'source':'topics');
  const [prompt,setPrompt]=useState('');const [copied,setCopied]=useState(false);const [copyError,setCopyError]=useState('');
  const topic=getTopic(topicId);const exercises=topic?exercisesForTopic(topic,state.contentLanguage):[];const topics=LEARNING_TOPICS.filter(item=>item.month===month&&topicTitle(item,state.language).toLowerCase().includes(query.toLowerCase()));
  function changeMonth(value:number){setMonth(value);state.setPreferences({activeMonth:value});setTopicId('');setExerciseIndex(0);setSelected([]);setPrompt('');setTab('topics');}
