@@ -12,6 +12,8 @@ import { useLearningStore } from '@/stores/learning-store';
 export function AccountShell({children}:{children:React.ReactNode}) {
   const account=useAccount();const pathname=usePathname();
   const course=useLearningStore(state=>state.selectedCourse);
+  // Public marketing and policy routes must not require a login or guest choice.
+  if (pathname==='/' || pathname==='/privacy' || pathname==='/terms') return <>{children}</>;
   if (account.loading) return <div className="account-screen"><p role="status">Открываем ReactMentor…</p></div>;
   if (account.restoreFailed) return <div className="account-screen"><section className="auth-card"><h1>Восстанавливаем ваш вход</h1><p role="alert">{account.error}</p><button className="button primary" onClick={account.reload}>Повторить</button></section></div>;
   if (account.needsMfa) return <MfaChallengeScreen/>;
