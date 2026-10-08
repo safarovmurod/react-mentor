@@ -59,16 +59,20 @@ test('existing stored account/browser language wins over first-visit geolocation
   await expect(page.locator('.language-link')).toHaveText('EN');
 });
 
-test('unknown countries honor Accept-Language and fall back to English',async({page})=>{
-  await page.setExtraHTTPHeaders({'x-vercel-ip-country':'DE','accept-language':'de-DE,de;q=0.9,uk-UA;q=0.7,en;q=0.6'});
-  await page.goto('/');
-  await expect(page.locator('html')).toHaveAttribute('lang','uk');
-  await expect(page.getByRole('heading',{name:/Вивчайте React і JavaScript/})).toBeVisible();
+test('unknown-country initial HTTP requests honor Accept-Language and English fallback',async({request})=>{
+  // Use explicit request headers; device profiles can override Accept-Language
+  // on browser navigation. This checks the actual Next.js server response.
+  const ukrainian=await request.get('/',{headers:{
+    'x-vercel-ip-country':'DE',
+    'accept-language':'de-DE,de;q=0.9,uk-UA;q=0.7,en;q=0.6',
+  }});
+  expect(ukrainian.ok()).toBe(true);
+  expect(await ukrainian.text()).toContain('<html lang="uk"');
 
-  // Treat the next country as a fresh visitor, not the same saved guest profile.
-  await page.evaluate(() => localStorage.clear());
-  await page.setExtraHTTPHeaders({'x-vercel-ip-country':'JP','accept-language':'ja-JP,ko-KR;q=0.8'});
-  await page.goto('/');
-  await expect(page.locator('html')).toHaveAttribute('lang','en');
-  await expect(page.getByRole('heading',{name:/Learn React and JavaScript/})).toBeVisible();
+  const english=await request.get('/',{headers:{
+    'x-vercel-ip-country':'JP',
+    'accept-language':'ja-JP,ko-KR;q=0.8',
+  }});
+  expect(english.ok()).toBe(true);
+  expect(await english.text()).toContain('<html lang="en"');
 });
