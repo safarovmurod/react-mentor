@@ -46,6 +46,13 @@ export function negotiateLocale(input: {
   return localeFromAcceptLanguage(input.acceptLanguage);
 }
 
+export function getManualLocale(): InterfaceLocale | null {
+  if (typeof document === 'undefined') return null;
+  const found = document.cookie.split(';').map(part => part.trim()).find(part => part.startsWith(LOCALE_COOKIE + '='));
+  const value = found?.slice(LOCALE_COOKIE.length + 1) || null;
+  return isInterfaceLocale(value) ? value : null;
+}
+
 export function persistManualLocale(locale: InterfaceLocale) {
   if (typeof document === 'undefined') return;
   const secure = window.location.protocol === 'https:' ? '; Secure' : '';
