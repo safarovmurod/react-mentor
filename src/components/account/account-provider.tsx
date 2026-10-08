@@ -9,6 +9,7 @@ import { switchLearningAccount } from '@/stores/learning-store';
 import { useAppStore } from '@/stores/app-store';
 import { dateKey } from '@/lib/learning';
 import { useLearningStore } from '@/stores/learning-store';
+import type { InterfaceLocale } from '@/lib/locale';
 
 export interface AccountProfile {displayName:string;avatarPath:string|null;avatarUrl:string|null;}
 interface AccountContext {
@@ -20,7 +21,7 @@ interface AccountContext {
 const Context=createContext<AccountContext|null>(null);
 export function useAccount() {const context=useContext(Context);if (!context) throw new Error('AccountProvider required');return context;}
 
-export function AccountProvider({children}:{children:React.ReactNode}) {
+export function AccountProvider({children,initialLocale='ru'}:{children:React.ReactNode;initialLocale?:InterfaceLocale}) {
   const [session,setSession]=useState<Session|null>(null);
   const [loading,setLoading]=useState(true), [profile,setProfile]=useState<AccountProfile|null>(null);
   const [guest,setGuest]=useState(false), [error,setError]=useState(''), [needsMfa,setNeedsMfa]=useState(false);
@@ -50,7 +51,7 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
         const required=assurance.nextLevel==='aal2' && assurance.currentLevel!=='aal2';
         setNeedsMfa(required);
         if (required) return;
-        if (scope.current!==next.user.id) {switchLearningAccount(next.user.id);scope.current=next.user.id;}
+        if (scope.current!==next.user.id) {switchLearningAccount(next.user.id,initialLocale);scope.current=next.user.id;}
         const {data,error:profileError}=await client.from('react_mentor_profiles').select('display_name,avatar_path').eq('user_id',next.user.id).abortSignal(AbortSignal.timeout(15000)).maybeSingle();
         if (run!==generation.current) return;
         if (profileError) throw new Error('Не удалось загрузить профиль. Проверьте подключение и настройку базы.');
@@ -65,7 +66,7 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
         coordinator.current=startAccountSync(client,next.user.id,setSyncStatus);
       } else {
         setNeedsMfa(false);setSyncStatus('local');setRecovery(false);
-        switchLearningAccount(null);scope.current=null;
+        switchLearningAccount(null,initialLocale);scope.current=null;
         setGuest(!isSupabaseConfigured || sessionStorage.getItem('react-mentor-guest')==='true');
       }
       useAppStore.setState({activeSecondsToday:useLearningStore.getState().studySeconds[dateKey()] || 0});
@@ -75,7 +76,7 @@ export function AccountProvider({children}:{children:React.ReactNode}) {
       setError(isAuthRetryableFetchError(cause) ? 'Не удалось проверить подключение. Сохранённый вход восстановится, когда появится интернет.':cause instanceof Error ? cause.message:'Не удалось открыть аккаунт.');
     }}
     finally {if (run===generation.current) setLoading(false);}
-  },[]);
+  },[initialLocale]);
 
   const reload=useCallback(async ()=>{
     const client=getSupabaseBrowserClient();
