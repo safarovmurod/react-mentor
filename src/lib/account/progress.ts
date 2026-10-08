@@ -15,7 +15,7 @@ export const studyProgressSchema = z.object({
 export type CourseProgress = z.infer<typeof studyProgressSchema>;
 export const emptyCourseProgress = (): CourseProgress => studyProgressSchema.parse({});
 export const progressSchema = studyProgressSchema.extend({
-  language:z.enum(['ru','en']).default('ru'), contentLanguage:z.enum(['tg','ru','en']).default('tg'),
+  language:z.enum(['ru','en','tg','uk']).default('ru'), contentLanguage:z.enum(['tg','ru','en']).default('tg'),
   dailyLimit:z.union([z.literal(5),z.literal(10),z.literal(15)]).default(10), activeMonth:z.number().int().min(1).max(3).default(1), theme:z.enum(['light','dark']).default('light'),
   selectedCourse:z.enum(COURSE_IDS).default('react'), courseChosen:z.boolean().default(false),
   courses:z.partialRecord(z.enum(COURSE_IDS).exclude(['react']), studyProgressSchema).default({}), preferenceClock:clock,
