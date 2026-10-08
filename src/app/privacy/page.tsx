@@ -1,3 +1,13 @@
 import Link from 'next/link';
-export const metadata = {title:'Махфият | React Mentor'};
-export default function PrivacyPage(){return <main className="public-policy"><Link href="/">← React Mentor</Link><h1>Махфият</h1><p>React Mentor барои омӯзиши барномасозӣ истифода мешавад. Пешрафти меҳмон дар браузер, ва пешрафти аккаунт дар Supabase (агар танзим шуда бошад) нигоҳ дошта мешавад.</p><h2>Маълумоти аккаунт</h2><p>Почтаи электронӣ, профил, ёддоштҳо, ҷавобҳо ва пешрафти омӯзишӣ метавонанд коркард шаванд. Ҳамоҳангсозии абрӣ танҳо бо аккаунти фаъол кор мекунад.</p><h2>AI Tutor</h2><p>Ҷавобҳои аз маводи худи платформа гирифташуда бе провайдер кор мекунанд. Барои саволҳои берун аз мавод, танҳо ҳангоми фаъол будани AI-и онлайн матни савол ва контексти зарурӣ ба провайдер фиристода мешавад.</p><h2>Назорати маълумот</h2><p>Маълумоти меҳмонро аз браузер идора кардан мумкин аст. Барои маълумоти аккаунт танзимоти аккаунт истифода мешаванд.</p><p><strong>Пеш аз оғози ҷамъоварии маълумоти оммавӣ:</strong> оператор бояд тамоси воқеӣ, муҳлати нигоҳдорӣ, тартиби ҳазфи маълумот ва ҳуҷҷати ниҳоии ҳуқуқиро тасдиқ кунад. Ин саҳифа ҳоло шарҳи ибтидоист.</p></main>}
+import { getRequestLocale } from '@/lib/request-locale';
+import { PUBLIC_COPY } from '@/lib/public-copy';
+
+export default async function PrivacyPage() {
+  const copy=PUBLIC_COPY[await getRequestLocale()].privacy;
+  return <main className="public-policy">
+    <Link href="/">← React Mentor</Link>
+    <h1>{copy.title}</h1><p>{copy.introduction}</p>
+    {copy.sections.map(section=><section key={section.title}><h2>{section.title}</h2><p>{section.text}</p></section>)}
+    <p><strong>{copy.notice}</strong></p>
+  </main>;
+}
