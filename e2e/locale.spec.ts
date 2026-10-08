@@ -58,6 +58,8 @@ test('unknown countries honor Accept-Language and fall back to English',async({p
   await expect(page.locator('html')).toHaveAttribute('lang','uk');
   await expect(page.getByRole('heading',{name:/Вивчайте React і JavaScript/})).toBeVisible();
 
+  // Treat the next country as a fresh visitor, not the same saved guest profile.
+  await page.evaluate(() => localStorage.clear());
   await page.setExtraHTTPHeaders({'x-vercel-ip-country':'JP','accept-language':'ja-JP,ko-KR;q=0.8'});
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('lang','en');
