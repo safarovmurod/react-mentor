@@ -115,3 +115,26 @@ Google/email sign-in, private profiles, device sync and authenticator QR setup:
 [docs/accounts-setup.md](docs/accounts-setup.md). Supports a shared Supabase Free
 project using separate ReactMentor tables. Apply its standalone migration and
 configure Vercel public Supabase variables before expecting live sign-in.
+
+
+## 🌍 Автоинтихоби забон аз рӯйи кишвар (аввалин воридшавӣ)
+
+Сервер дар **дархости аввал** кишвари меҳмонро муайян мекунад ва саҳифаро бо забони мувофиқ намоиш медиҳад:
+
+| Country | Interface |
+|---|---|
+| Russia (\`RU\`) | Русский (\`ru\`) |
+| Ukraine (\`UA\`) | Українська (\`uk\`) |
+| United States (\`US\`) | English (\`en\`) |
+| Tajikistan (\`TJ\`) | Тоҷикӣ (\`tg\`) |
+| Дигар кишварҳо | Бо \`Accept-Language\`, агар дастгирӣ шавад; вагарна \`en\` |
+
+**Тартиб:** интихоби дастии нигоҳдошташуда > кишвари меҳмон аз Cloudflare \`CF-IPCountry\` > кишвари IP аз Vercel \`x-vercel-ip-country\` > \`Accept-Language\` > English. Иваз кардани забон аз **Settings** дар cookie \`react-mentor-locale\` ва прогресси аккаунт/браузер нигоҳ дошта мешавад. Забон/прогресси қаблан интихобшударо муҳоҷирати кишвар аз нав нанависад.
+
+**Агар Cloudflare Proxy фаъол бошад:** барои гирифтани кишвари *меҳмони воқеӣ*, дар Cloudflare → **Network → IP Geolocation → On** ё **Rules → Transform Rules → Managed Transforms → Add visitor location headers**-ро фаъол кунед. Дар акси ҳол Vercel метавонад танҳо IP-и Cloudflare-ро бинад. Қисми \`CF-IPCountry\` худкор аз IP дар тарафи Cloudflare ҳисоб мешавад, дар браузер иҷозати Location ё API-и пулакӣ лозим нест.
+
+**Маҳдудиятҳо:** геолокатсияи IP метавонад ҳангоми VPN, прокси ё роутерҳо нодуруст бошад; корбар ҳамеша метавонад забонро дастӣ иваз кунад. **Интерфейси украинӣ** мавҷуд аст, аммо матнҳои ҳамаи дарсҳо ҳанӯз тарҷумаи украинӣ надоранд: забони дарсро дар Settings (\`en\`, \`ru\` ё \`tg\`) алоҳида интихоб кардан мумкин.
+
+**Санҷиш:** \`npm run test\`, \`npm run test:e2e\`, \`npm run test:auth\`. Сценарияҳои \`e2e/locale.spec.ts\` чор кишвар, cookie, интихоби дастӣ, refresh, ҳисоби кӯҳна ва fallback-и браузерро дар localhost бо header-ҳои симулятсияшуда месанҷанд. Санҷиши IP-и воқеӣ бояд дар production аз шабакаҳои воқеии ин кишварҳо анҷом дода шавад.
+
+**Барои дастрасии оммавӣ:** Vercel Preview-и ҳамин project аз Deployment Protection / Vercel Login муҳофизат шудааст. \`READY\` будани deployment маънои дастрасии умумиро надорад. Соҳиби project бояд домени воқеӣ ва танзимоти Deployment Protection-ро аз назар гузаронад; то он вақт санҷиши оммавии production тасдиқ нашудааст.
