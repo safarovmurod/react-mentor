@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Code2, Layers } from 'lucide-react';
 import { useLearningStore } from '@/stores/learning-store';
 import { LEARNING_TOPICS } from '@/content/course';
@@ -12,17 +12,44 @@ const labels = {
   uk: { back:'Усі курси', duration:'Два місяці', title:'React · окремий курс', intro:'Два місяці React. Спочатку оберіть місяць, потім день у навчальному плані. Лише обраний день відкриється у «Мій день».', choose:'Оберіть місяць', plan:'Відкрити навчальний план', month:'Місяць', first:'Основи React', firstDetail:'Компоненти, JSX, props, hooks, маршрутизація', second:'Стан і застосунки', secondDetail:'Context, Redux, Zustand, Jotai, форми та запити', own:'Практика з вашого HTML', ownDetail:'Оригінальна Practice-Local-Global: Redux, Zustand, Jotai, Local/Global та ваш код.', all:'Відкрити всю практику', learn:'Вправи уроків', note:'Next.js — окремий курс, не третій місяць React.' },
 } as const;
 
+const practiceStorageKey = 'react-mentor-state-practice-v1';
+function restorePracticeFrame(frame: HTMLIFrameElement | null) {
+  let saved: unknown = null;
+  try {
+    const value = localStorage.getItem(practiceStorageKey);
+    if (value) saved = JSON.parse(value);
+  } catch { /* Browsers can disable local storage. */ }
+  frame?.contentWindow?.postMessage({type:'reactmentor-practice-restore',state:saved},'*');
+}
+
 export function ReactPracticeLibrary({preview=false}:{preview?:boolean}) {
+  const frame=useRef<HTMLIFrameElement>(null);
   const language=useLearningStore(state=>state.language);
   const month=useLearningStore(state=>state.activeMonth)===2?2:1;
   const course=useLearningStore(state=>state.selectedCourse);
   const chooseCourse=useLearningStore(state=>state.chooseCourse);
   useEffect(()=>{if(course!=='react')chooseCourse('react');},[course,chooseCourse]);
+  useEffect(()=>{
+    function onPracticeMessage(event: MessageEvent) {
+      if(event.source!==frame.current?.contentWindow) return;
+      if(event.data?.type==='reactmentor-practice-ready') {restorePracticeFrame(frame.current);return;}
+      if(event.data?.type!=='reactmentor-practice-save')return;
+      const saved=event.data.state;
+      if(!saved||!['local','global'].includes(saved.mode)||!['redux','zustand','jotai'].includes(saved.manager)||
+          !['setup','post','put','delete','info','search','pagination','checkbox','add-img','delete-img'].includes(saved.op))return;
+      try {
+        const json=JSON.stringify(saved);
+        if(json.length<4000)localStorage.setItem(practiceStorageKey,json);
+      } catch { /* Saving preferences must not prevent practice. */ }
+    }
+    window.addEventListener('message',onPracticeMessage);
+    return()=>window.removeEventListener('message',onPracticeMessage);
+  },[]);
   const ui=labels[language];
   return <section className="react-library">
     <div className="section-heading"><div><h2>{ui.own}</h2><p>{ui.ownDetail}</p></div></div>
     <div className="button-row"><Link className="button subtle" href={`/practice?month=${month}`}><Code2 size={17}/>{ui.learn}</Link><a className="button subtle" href="/practice-local-global.html" target="_blank" rel="noopener noreferrer"><ArrowRight size={17}/>{ui.all}</a></div>
-    <iframe className={preview?'state-practice-frame in-landing':'state-practice-frame'} title="Practice Local / Global · Redux, Zustand, Jotai" src="/practice-local-global.html" loading="eager" sandbox="allow-scripts" allow="clipboard-write"/>
+    <iframe className={preview?'state-practice-frame in-landing':'state-practice-frame'} ref={frame} onLoad={()=>restorePracticeFrame(frame.current)} title="Practice Local / Global · Redux, Zustand, Jotai" src="/practice-local-global.html" loading="eager" sandbox="allow-scripts" allow="clipboard-write"/>
   </section>;
 }
 
