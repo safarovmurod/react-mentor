@@ -12,7 +12,7 @@ import { PageHeading } from './page-heading';
 import { PracticeWorkspace } from './practice-workspace';
 const SourcePractice=dynamic(()=>import('./source-practice').then(module=>module.SourcePractice));
 export function PracticeHub({initialMonth,initialTopic,initialDay}:{initialMonth?:number;initialTopic?:string;initialDay?:number}) {
- const state=useLearningStore();const copy=COPY[state.language];const [month,setMonth]=useState(initialMonth||getTopic(initialTopic||'')?.month||state.activeMonth);
+ const state=useLearningStore();const copy=COPY[state.language];const [month,setMonth]=useState(initialMonth===2||getTopic(initialTopic||'')?.month===2||state.activeMonth===2&&!initialMonth?2:1);
  const [topicId,setTopicId]=useState(initialTopic||'');const [exerciseIndex,setExerciseIndex]=useState(0);
  const [selected,setSelected]=useState<string[]>([]);const [query,setQuery]=useState('');const [tab,setTab]=useState('topics');
  const [prompt,setPrompt]=useState('');const [copied,setCopied]=useState(false);const [copyError,setCopyError]=useState('');
@@ -21,7 +21,7 @@ export function PracticeHub({initialMonth,initialTopic,initialDay}:{initialMonth
  function selectTopic(id:string){setTopicId(id);setExerciseIndex(0);setTab('topics');}
  async function copyPrompt(){try{await navigator.clipboard.writeText(prompt);setCopied(true);setCopyError('');}catch{setCopyError(state.language==='ru'?'Выделите текст и скопируйте вручную.':'Select the text and copy it manually.');}}
  return <><PageHeading title={copy.practice} back={initialDay?`/home?month=${month}&day=${initialDay}`:topic?'/lesson/'+topic.id:'/plan/'+month} subtitle={copy.month+' '+month+(initialDay?' · День '+initialDay:'')}/>
- <div className="month-tabs">{[1,2,3].map(value=><button className={value===month?'active':''} key={value} onClick={()=>changeMonth(value)}>{copy.month} {value}</button>)}</div>
+ <div className="month-tabs">{[1,2].map(value=><button className={value===month?'active':''} key={value} onClick={()=>changeMonth(value)}>{copy.month} {value}</button>)}</div>
  <div className="tabs" role="tablist" aria-label={copy.practice}><button role="tab" aria-selected={tab==='topics'} onClick={()=>setTab('topics')}><Code2 size={17}/>{copy.topics}</button><button role="tab" aria-selected={tab==='project'} onClick={()=>setTab('project')}><Layers size={17}/>{copy.project}</button>{month===1&&<button role="tab" aria-selected={tab==='functions'} onClick={()=>{setTab('functions');setExerciseIndex(0);}}>{state.language==='ru'?'Функции: тесты':'Functions: tests'}</button>}{month===2&&<button role="tab" aria-selected={tab==='source'} onClick={()=>setTab('source')}>{state.language==='ru'?'Код из вашего HTML':'Code from your HTML'}</button>}</div>
  {tab==='source'&&month===2&&<SourcePractice/>}
  {tab==='functions'&&month===1&&<><div className="exercise-tabs">{FUNCTION_LABS.map((exercise,index)=><button key={exercise.id} className={index===exerciseIndex?'active':''} onClick={()=>setExerciseIndex(index)}>{index+1}. {tr(exercise.title,state.contentLanguage)}</button>)}</div><PracticeWorkspace key={FUNCTION_LABS[exerciseIndex].id} exercise={FUNCTION_LABS[exerciseIndex]}/></>}

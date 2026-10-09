@@ -11,7 +11,7 @@ export function MonthCards({compact=false}:{compact?:boolean}) {
   const activeMonth=useLearningStore(state=>state.activeMonth);
   const setPreferences=useLearningStore(state=>state.setPreferences);
   const copy=COPY[language];
-  return <div className={compact?'month-stack':'month-grid'}>{MONTHS.map((month,index)=>{
+  return <div className={compact?'month-stack':'month-grid'}>{MONTHS.filter(month=>month.id<=2).map((month,index)=>{
     const topics=LEARNING_TOPICS.filter(topic=>topic.month===month.id);
     const count=topics.filter(topic=>completed.includes(topic.id)).length;
     const Icon=icons[index];
