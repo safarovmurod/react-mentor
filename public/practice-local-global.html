@@ -189,6 +189,9 @@
     'delete-img': 'Local: image: "". Global: delete request ба image id.'
   };
   const storageKey = 'state-practice-v3';
+  // Sandboxed embedding cannot access the site's localStorage. The parent page
+  // may relay only this practice UI state through a deliberately narrow channel.
+  let parentRestored = window.parent === window;
   let state = { mode: 'local', manager: 'redux', op: 'post', practice: false, hint: false, hidden: {} };
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
@@ -209,6 +212,9 @@
   function save() {
     try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (error) { /* skip */ }
     try { history.replaceState(null, '', '#' + state.mode + '/' + state.manager + '/' + state.op); } catch (error) { /* skip */ }
+    if (window.parent !== window && parentRestored) {
+      window.parent.postMessage({ type: 'reactmentor-practice-save', state }, '*');
+    }
   }
   function changeManager(manager) { state.manager=manager; ensureVisible(); render(); }
   function changeMode(mode) { state.mode=mode; ensureVisible(); render(); }
@@ -346,6 +352,25 @@
       setTimeout(()=>{btn.textContent=old;btn.disabled=false;},950);
     } catch(error) {btn.textContent='Нусха нашуд';setTimeout(()=>{btn.textContent='Нусха';},1600);}
   }
+  window.addEventListener('message', (event) => {
+    if (event.source !== window.parent || event.data?.type !== 'reactmentor-practice-restore') return;
+    const saved=event.data.state;
+    if (saved && ['local','global'].includes(saved.mode) &&
+        Object.prototype.hasOwnProperty.call(managers,saved.manager) &&
+        DATA.operations.some(op=>op.id===saved.op)) {
+      const hidden={};
+      if (saved.hidden && typeof saved.hidden==='object') {
+        for (const mode of ['local','global']) for (const manager of Object.keys(managers)) {
+          const key=mode+':'+manager;
+          if (Array.isArray(saved.hidden[key])) hidden[key]=saved.hidden[key].filter(id=>DATA.operations.some(op=>op.id===id));
+        }
+      }
+      state={...state, mode:saved.mode, manager:saved.manager, op:saved.op,
+        practice:saved.practice===true, hint:saved.hint===true, hidden};
+    }
+    parentRestored=true;
+    render();
+  });
   document.querySelectorAll('[data-manager]').forEach(btn=>btn.addEventListener('click',()=>changeManager(btn.dataset.manager)));
   document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>changeMode(btn.dataset.mode)));
   byId('practice-check').addEventListener('change',e=>{state.practice=e.target.checked;render();});
@@ -361,6 +386,7 @@
     }
   });
   render();
+  if (window.parent !== window) window.parent.postMessage({type:'reactmentor-practice-ready'},'*');
 })();
 </script>
 </body>
