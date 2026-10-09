@@ -67,7 +67,7 @@ export function CourseCatalog() {
   function choose(id:CourseId) {
     useLearningStore.getState().chooseCourse(id);
     useAppStore.setState({sidebarOpen:false,tutorDrawerOpen:false,tutorQuestion:null});
-    router.push(id === 'react' ? '/home' : `/courses/${id}/home?day=${id === 'html' ? 0 : 1}`);
+    router.push(id === 'react' ? '/courses/react' : `/courses/${id}/plan`);
   }
   return <section className="course-catalog">
     <div className="course-intro"><span className="eyebrow"><Layers size={16}/>{labels.eyebrow}</span><h1>{labels.title}</h1><p>{labels.intro}</p></div>
