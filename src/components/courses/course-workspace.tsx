@@ -68,7 +68,7 @@ export function CourseWorkspace({courseId,section,initialContent,day:requestedDa
   return <section className="course-workspace">
     <Link href="/courses" className="back-link"><Layers size={16}/>{ui.allCourses}</Link>
     <div className="page-heading"><div><span className="eyebrow">{courseName(courseId)} · {ui.oneMonth}</span><h1>{titles[section]}</h1><p>{section==='plan'?ui.planIntro:ui.dayIntro}</p></div></div>
-    {(courseId==='javascript-1'||courseId==='javascript-2')&&<nav className="course-months" aria-label={ui.jsMonths}>{(['javascript-1','javascript-2'] as const).map((id,index)=><Link key={id} href={`/courses/${id}/plan` aria-current={id===courseId?'page':undefined}><strong>{ui.month} {index+1} · JS{index+1}</strong><span>{index===0?ui.jsBasics:ui.jsApps}</span></Link>)}</nav>}
+    {(courseId==='javascript-1'||courseId==='javascript-2')&&<nav className="course-months" aria-label={ui.jsMonths}>{(['javascript-1','javascript-2'] as const).map((id,index)=><Link key={id} href={`/courses/${id}/plan`} aria-current={id===courseId?'page':undefined}><strong>{ui.month} {index+1} · JS{index+1}</strong><span>{index===0?ui.jsBasics:ui.jsApps}</span></Link>)}</nav>}
     {error?<div className="panel"><p role="alert">{ui.courseUnavailable}</p><button className="button subtle" onClick={()=>{setError(false);setRetry(n=>n+1);}}>{ui.retry}</button></div>:!content?<p role="status">{copy.loading}</p>:<>
       {state.contentLanguage!=='ru'&&courseId!=='html'&&(section==='plan'||day===0&&section!=='answers')
         ?<p role="note">{ui.preparationFallback}</p>
