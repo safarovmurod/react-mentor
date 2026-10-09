@@ -5,9 +5,13 @@ import { expect, it } from 'vitest';
 
 it('preserves every original Redux/Zustand/Jotai Local and Global example from the uploaded HTML', () => {
   const html=readFileSync(path.join(process.cwd(),'public/practice-local-global.html'),'utf8');
-  const match=html.match(/<script id="DATA" type="application\\/json">([\\s\\S]*?)<\\/script>/);
-  expect(match).not.toBeNull();
-  const data=JSON.parse(match![1]) as {
+  const dataTag='<script id="DATA" type="application/json">';
+  const dataStart=html.indexOf(dataTag);
+  expect(dataStart).toBeGreaterThanOrEqual(0);
+  const contentStart=dataStart+dataTag.length;
+  const contentEnd=html.indexOf('</script>',contentStart);
+  expect(contentEnd).toBeGreaterThan(contentStart);
+  const data=JSON.parse(html.slice(contentStart,contentEnd)) as {
     operations:{id:string}[];
     local:Record<string,Record<string,{blocks:{path:string;code:string}[]}>>;
     global:Record<string,Record<string,{blocks:{path:string;code:string}[]}>>;
