@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Code2, Layers } from 'lucide-react';
 import { useLearningStore } from '@/stores/learning-store';
 import { LEARNING_TOPICS } from '@/content/course';
@@ -14,6 +15,9 @@ const labels = {
 export function ReactPracticeLibrary({preview=false}:{preview?:boolean}) {
   const language=useLearningStore(state=>state.language);
   const month=useLearningStore(state=>state.activeMonth)===2?2:1;
+  const course=useLearningStore(state=>state.selectedCourse);
+  const chooseCourse=useLearningStore(state=>state.chooseCourse);
+  useEffect(()=>{if(course!=='react')chooseCourse('react');},[course,chooseCourse]);
   const ui=labels[language];
   return <section className="react-library">
     <div className="section-heading"><div><h2>{ui.own}</h2><p>{ui.ownDetail}</p></div></div>
