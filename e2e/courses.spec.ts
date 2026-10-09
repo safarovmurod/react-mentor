@@ -128,6 +128,8 @@ test('React selection shows both months and complete Local/Global state practice
  await expect(page.locator('.day-strip')).toHaveCount(0);
  await expect(page.locator('.react-day-content .section-heading h2')).toContainText('День 1');
  await expect(page.locator('.react-day-content .course-lesson').first()).toContainText('Context');
+ const menu=page.getByRole('button',{name:'Открыть меню'});
+ if(await menu.isVisible()) await menu.click();
  await page.locator('.sidebar nav').getByRole('link',{name:'Практика',exact:true}).click();
  await expect(page).toHaveURL('/courses/react/practice-library');
  await expect(page.frameLocator('.state-practice-frame').locator('#mgr-redux')).toBeVisible();
@@ -155,7 +157,7 @@ test('React My Day is empty until a day was selected in the plan',async({page})=
  await expect(page.getByRole('heading',{name:'Выбор дня'})).toBeVisible();
  await expect(page.locator('.course-lesson')).toHaveCount(1);
  await expect(page.locator('.react-day-content')).not.toContainText('Зачем нужен React');
- await page.getByRole('link',{name:'Учебный план'}).first().click();
+ await page.locator('.dashboard-heading a[href="/plan/1"]').click();
  await expect(page).toHaveURL('/plan/1');
  await page.locator('.day-card-grid .day-card').nth(1).click();
  await expect(page).toHaveURL('/home?month=1&day=1');
