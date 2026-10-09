@@ -10,6 +10,7 @@ const loaders = {
   cpp: () => import('@/content/courses/cpp.json'),
   'javascript-1': () => import('@/content/courses/javascript-1.json'),
   'javascript-2': () => import('@/content/courses/javascript-2.json'),
+  nextjs: () => import('@/content/courses/nextjs'),
 };
 const contentCache=new Map<ImportedCourseId,Promise<CourseContent>>();
 export function loadCourseContent(id: ImportedCourseId) {
