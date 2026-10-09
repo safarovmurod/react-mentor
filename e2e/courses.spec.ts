@@ -117,6 +117,9 @@ test('React selection shows both months and complete Local/Global state practice
  await frame.locator('#mode-global').click();
  await expect(frame.locator('#breadcrumb')).toContainText('Jotai');
  await expect(frame.locator('#position')).toContainText('Global');
+ await page.reload();
+ await expect(page.frameLocator('.state-practice-frame').locator('#breadcrumb')).toContainText('Jotai');
+ await expect(page.frameLocator('.state-practice-frame').locator('#position')).toContainText('Global');
  await page.locator('.react-month-option').nth(1).click();
  await expect(page).toHaveURL('/plan/2');
  await expect(page.locator('.day-card')).toHaveCount(31);
