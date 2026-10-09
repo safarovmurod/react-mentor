@@ -947,3 +947,27 @@ select { cursor: pointer; }
 .public-cta{flex-direction:column;align-items:flex-start;padding:24px;}
 .public-footer{margin-top:55px;align-items:flex-start;flex-direction:column;gap:12px;}
 }
+
+
+/* React onboarding: course → month → plan → selected day. */
+.react-entry{min-width:0}
+.react-entry .page-heading{margin-top:20px}
+.react-entry-title{display:flex;align-items:center;gap:10px;font-size:19px;margin:28px 0 16px}
+.react-month-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.react-month-option{display:flex;flex-direction:column;gap:9px;text-decoration:none;color:inherit;min-width:0;transition:box-shadow .15s,border-color .15s}
+.react-month-option h3{font-size:20px;margin:0}
+.react-month-option p{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0}
+.react-month-option .react-month-stat{color:var(--text-muted);font-size:13px;margin-top:auto;padding-top:10px}
+.react-month-option .progress-track{margin-block:3px 10px}
+.react-month-option strong{color:var(--primary);font-size:14px;display:flex;align-items:center;gap:8px}
+.react-month-option:hover,.react-month-option:focus-visible{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.react-next-note{display:flex;gap:8px;align-items:center;margin:18px 0 30px;font-size:13px;color:var(--text-muted)}
+.react-next-note svg{flex:none}
+.react-library{margin-top:24px;min-width:0}
+.react-library>.section-heading{margin-bottom:16px}
+.react-library>.section-heading p{font-size:14px;color:var(--text-muted);line-height:1.65;margin:7px 0 0}
+.react-library>.button-row{margin-bottom:16px;flex-wrap:wrap}
+.state-practice-frame{width:100%;min-height:930px;display:block;border:1px solid var(--border);background:white;border-radius:14px}
+.state-practice-frame.in-landing{min-height:970px}
+@media(max-width:700px){.react-month-grid{grid-template-columns:1fr}.react-entry-title{font-size:17px}.state-practice-frame,.state-practice-frame.in-landing{min-height:780px}.react-library>.button-row{flex-direction:column;align-items:stretch}.react-library .button-row .button{justify-content:center}}
+@media(prefers-reduced-motion:reduce){.react-month-option{transition:none}}
