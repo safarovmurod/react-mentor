@@ -4,7 +4,7 @@ import { LEARNING_TOPICS } from '@/content/course';
 
 export async function GET() {
   const courses = await Promise.all(COURSE_CATALOG.map(async course => {
-    if (course.id === 'react') return {id:course.id, ready:true, lessons:LEARNING_TOPICS.length, files:0};
+    if (course.id === 'react') return {id:course.id, ready:true, lessons:LEARNING_TOPICS.filter(topic=>topic.month<=2).length, files:0};
     const content = await loadCourseContent(course.id);
     return {id:course.id, ready:content.lessons.length > 0, lessons:content.lessons.filter(lesson => lesson.day !== undefined).length || content.lessons.length, files:content.files.length};
   }));
