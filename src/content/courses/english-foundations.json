@@ -1,0 +1,238 @@
+{
+  "courseId": "english-foundations",
+  "sources": [
+    {
+      "id": "english-foundations-reference",
+      "title": "British Council LearnEnglish — A1 speaking",
+      "url": "https://learnenglish.britishcouncil.org/skills/speaking/a1-speaking"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "english-foundations-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: представиться по-английски",
+        "tg": "Рӯзи 1: худро ба англисӣ шинос кардан",
+        "en": "Day 1: introduce yourself in English"
+      },
+      "summary": {
+        "ru": "Первый из двух начальных уроков: составьте короткое представление с I am и вопросом What is your name? Используйте вымышленное имя; произношение автоматически не оценивается.",
+        "tg": "Аввалин ду дарси ибтидоӣ: бо I am шиносоии кӯтоҳ ва саволи What is your name? созед. Номи сохта истифода баред; талаффуз худкор баҳогузорӣ намешавад.",
+        "en": "The first of two beginner lessons: write a short introduction using I am and the question What is your name? Use a fictional name; pronunciation is not automatically assessed."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "english-foundations-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "I am означает «я являюсь»; в знакомстве I am Lina — «Я Лина». Сокращение I’m равно I am. My name is Lina — ещё один вариант. Вопрос What is your name? спрашивает имя. В английском I всегда пишется с большой буквы. Для практики не нужны настоящее имя, адрес, возраст или телефон.",
+            "tg": "I am маънои «ман ҳастам»-ро дорад; дар шиносоӣ I am Lina — «Ман Лина ҳастам». I’m шакли кӯтоҳи I am аст. My name is Lina роҳи дигар аст. What is your name? номро мепурсад. Дар англисӣ I ҳамеша калон навишта мешавад. Номи воқеӣ, суроға, синну сол ё телефон лозим нест.",
+            "en": "Use I am to introduce yourself: I am Lina. I’m is the short form of I am. My name is Lina is another option. What is your name? asks for a name. Always capitalize I in English. Practice needs no real name, address, age or phone number."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Вымышленный диалог:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nСмысл: приветствие, имя, вопрос, вежливый ответ. Nice to meet you — «приятно познакомиться».",
+            "tg": "Гуфтугӯи сохта:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nМаъно: салом, ном, савол ва ҷавоби боадабона. Nice to meet you — «аз шиносоӣ шодам».",
+            "en": "Fictional dialogue:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nThe sequence is a greeting, a name, a question and a polite reply. Use fictional names."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "english-foundations-day-01-q01",
+          "question": {
+            "ru": "Как правильно представиться?",
+            "tg": "Худро чӣ гуна дуруст шинос кардан мумкин аст?",
+            "en": "Which introduction is correct?"
+          },
+          "answer": {
+            "ru": "I am Sam.",
+            "tg": "I am Sam.",
+            "en": "I am Sam."
+          },
+          "options": [
+            {
+              "ru": "I is Sam.",
+              "tg": "I is Sam.",
+              "en": "I is Sam."
+            },
+            {
+              "ru": "I am Sam.",
+              "tg": "I am Sam.",
+              "en": "I am Sam."
+            },
+            {
+              "ru": "I are Sam.",
+              "tg": "I are Sam.",
+              "en": "I are Sam."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Придумайте два вымышленных имени.\n2. Напишите диалог из четырёх реплик по-английски: приветствие, представление, вопрос об имени и вежливый ответ.\n3. Используйте I am или I’m, сохранив заглавную I.\n4. Под диалогом кратко объясните смысл на удобном языке; не вводите личные данные.",
+          "tg": "1. Ду номи сохта интихоб кунед.\n2. Гуфтугӯи чорсатраи англисӣ нависед: салом, шиносоӣ, саволи ном ва ҷавоби боадабона.\n3. I am ё I’m-ро бо I-и калон истифода баред.\n4. Маъноро бо забони қулай шарҳ диҳед; маълумоти шахсӣ нанависед.",
+          "en": "1. Invent two names.\n2. Write four English dialogue lines: greeting, introduction, name question and polite reply.\n3. Use I am or I’m and capitalize I.\n4. Explain the meaning in a language you know; include no personal data."
+        },
+        "hint": {
+          "ru": "Допустимы I am Sam и I’m Sam. Ошибка — I is Sam.",
+          "tg": "I am Sam ва I’m Sam дурустанд. I is Sam нодуруст аст.",
+          "en": "Both I am Sam and I’m Sam are valid. I is Sam is incorrect."
+        },
+        "solution": "Вымышленный диалог:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nСмысл: приветствие, имя, вопрос, вежливый ответ. Nice to meet you — «приятно познакомиться».",
+        "referenceAnswer": {
+          "ru": "Вымышленный диалог:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nСмысл: приветствие, имя, вопрос, вежливый ответ. Nice to meet you — «приятно познакомиться».",
+          "tg": "Гуфтугӯи сохта:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nМаъно: салом, ном, савол ва ҷавоби боадабона. Nice to meet you — «аз шиносоӣ шодам».",
+          "en": "Fictional dialogue:\nA: Hello. My name is Lina. What is your name?\nB: Hi. I am Sam.\nA: Nice to meet you, Sam.\nB: Nice to meet you, too.\nThe sequence is a greeting, a name, a question and a polite reply. Use fictional names."
+        },
+        "criteria": [
+          {
+            "ru": "Есть понятное приветствие и представление с вымышленным именем.",
+            "tg": "Салом ва шиносоӣ бо номи сохта ҳаст.",
+            "en": "There is a greeting and introduction using a fictional name."
+          },
+          {
+            "ru": "Вопрос What is your name? и ответ согласованы.",
+            "tg": "Саволи What is your name? ва ҷавоб мувофиқанд.",
+            "en": "What is your name? and its answer fit together."
+          },
+          {
+            "ru": "I пишется с большой буквы; смысл объяснён.",
+            "tg": "I калон навишта шудааст ва маъно шарҳ ёфтааст.",
+            "en": "I is capitalized and the meaning is explained."
+          }
+        ]
+      }
+    },
+    {
+      "id": "english-foundations-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: простая просьба и уточнение",
+        "tg": "Рӯзи 2: дархости оддӣ ва равшанкунӣ",
+        "en": "Day 2: a simple request and clarification"
+      },
+      "summary": {
+        "ru": "Продолжите знакомство короткой просьбой с please и уточнением, если не поняли. Напишите безопасный учебный диалог: это не тест уровня CEFR и не сертификат владения языком.",
+        "tg": "Шиносоиро бо дархости кӯтоҳи please ва саволи равшанкунанда идома диҳед. Гуфтугӯи бехатари омӯзишӣ нависед: ин санҷиши CEFR ё шаҳодатномаи забондонӣ нест.",
+        "en": "Continue with a short request using please and clarification when something is unclear. Write a safe practice dialogue: this is not a CEFR assessment or language certificate."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "english-foundations-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Can you help me, please? — вежливая просьба о помощи. Could you repeat that, please? — просьба повторить. Thank you — благодарность. В вопросе Can you…? глагол после you остаётся в начальной форме: help, не helps. Лучше попросить уточнение, чем притворяться, что всё поняли.",
+            "tg": "Can you help me, please? дархости боадабонаи кумак аст. Could you repeat that, please? такрорро мепурсад. Thank you миннатдорӣ аст. Дар Can you…? феъли баъди you шакли асосӣ дорад: help, на helps. Равшанкунӣ пурсидан аз вонамуд кардани фаҳмиш беҳтар аст.",
+            "en": "Can you help me, please? asks politely for help. Could you repeat that, please? asks someone to say it again. Thank you expresses thanks. In Can you…?, use the base verb: help, not helps. Ask for clarification rather than pretending to understand."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nПеревод просьбы: «Помогите мне, пожалуйста». Диалог учебный, реальных контактов и адресов нет.",
+            "tg": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nМаънои дархост: «Лутфан ба ман кумак кунед». Гуфтугӯ омӯзишӣ ва бе тамос ё суроғаи воқеӣ аст.",
+            "en": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nThe dialogue includes a request, a clarification and thanks, with no personal information."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "english-foundations-day-02-q01",
+          "question": {
+            "ru": "Какая фраза просит повторить?",
+            "tg": "Кадом ҷумла такрорро мепурсад?",
+            "en": "Which phrase asks for repetition?"
+          },
+          "answer": {
+            "ru": "Could you repeat that, please?",
+            "tg": "Could you repeat that, please?",
+            "en": "Could you repeat that, please?"
+          },
+          "options": [
+            {
+              "ru": "Thank you.",
+              "tg": "Thank you.",
+              "en": "Thank you."
+            },
+            {
+              "ru": "Could you repeat that, please?",
+              "tg": "Could you repeat that, please?",
+              "en": "Could you repeat that, please?"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Напишите просьбу о помощи с Can you и please.\n2. Добавьте ответ с простым действием, например открыть книгу.\n3. Попросите повторить и завершите благодарностью.\n4. Объясните разницу между просьбой и благодарностью; проверьте форму help.",
+          "tg": "1. Дархости кумакро бо Can you ва please нависед.\n2. Ҷавоб бо амали оддӣ, масалан кушодани китоб, илова кунед.\n3. Такрор пурсед ва бо миннатдорӣ тамом кунед.\n4. Фарқи дархост ва миннатдориро шарҳ дода, шакли help-ро санҷед.",
+          "en": "1. Write a help request using Can you and please.\n2. Add a reply with a simple action, such as opening a book.\n3. Ask for repetition and end with thanks.\n4. Explain the difference between a request and thanks, and check the form help."
+        },
+        "hint": {
+          "ru": "Can you help…?, не Can you helps…? Формулировки могут отличаться, если смысл и грамматика верны.",
+          "tg": "Can you help…?, на Can you helps…? Ҷумла метавонад дигар бошад, агар маъно ва дастур дуруст бошанд.",
+          "en": "Use Can you help…?, not Can you helps…? Wording may differ if meaning and grammar remain correct."
+        },
+        "solution": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nПеревод просьбы: «Помогите мне, пожалуйста». Диалог учебный, реальных контактов и адресов нет.",
+        "referenceAnswer": {
+          "ru": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nПеревод просьбы: «Помогите мне, пожалуйста». Диалог учебный, реальных контактов и адресов нет.",
+          "tg": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nМаънои дархост: «Лутфан ба ман кумак кунед». Гуфтугӯ омӯзишӣ ва бе тамос ё суроғаи воқеӣ аст.",
+          "en": "A: Can you help me, please?\nB: Yes. Open the book.\nA: Could you repeat that, please?\nB: Open the book, please.\nA: Thank you.\nB: You’re welcome.\nThe dialogue includes a request, a clarification and thanks, with no personal information."
+        },
+        "criteria": [
+          {
+            "ru": "Есть грамматически понятная просьба и ответ.",
+            "tg": "Дархост ва ҷавоби фаҳмои дастурӣ ҳастанд.",
+            "en": "A grammatically understandable request and reply are included."
+          },
+          {
+            "ru": "Есть просьба повторить, а не выдуманное понимание.",
+            "tg": "Такрор пурсида шудааст, на фаҳмиши сохта.",
+            "en": "The speaker asks for repetition instead of pretending to understand."
+          },
+          {
+            "ru": "Диалог содержит благодарность и не содержит личных данных.",
+            "tg": "Гуфтугӯ миннатдорӣ дорад ва маълумоти шахсӣ надорад.",
+            "en": "The dialogue includes thanks and no personal information."
+          }
+        ]
+      }
+    }
+  ]
+}

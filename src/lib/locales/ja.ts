@@ -1,0 +1,82 @@
+/** Japanese interface copy. Authored course content has its own language setting. */
+export const JAPANESE_COPY = {
+  home:'今日の学習', plan:'学習プラン', practice:'演習', tests:'テスト', interview:'面接対策', revision:'復習', weak:'苦手なトピック', notes:'ノート', answers:'解説', settings:'設定',
+  back:'戻る', month:'月', week:'週', open:'開く', start:'始める', continue:'続ける', learn:'学ぶ', questions:'問題', topics:'トピック', all:'すべて', questionsOf:'問',
+  today:'今日', daily:'今日の問題', dailyText:'まず解説を学び、同じ問題で理解を確認しましょう。',
+  learnStep:'解説を学ぶ', testStep:'テストを受ける', interviewStep:'自分の言葉で説明する', recommended:'おすすめ',
+  lesson:'解説', code:'コード', flow:'仕組み', question:'問題', answer:'解答', showAnswer:'解答を表示', hideAnswer:'解答を隠す',
+  next:'次へ', previous:'前へ', finish:'完了する', learned:'学習済み', markLearned:'読んで理解した', check:'確認する',
+  correct:'正解', incorrect:'復習が必要です', result:'結果', retry:'最初に戻る', yourAnswer:'あなたの解答', compare:'解答と比較する',
+  selfCheck:'自己評価：解説と回答の意味を比較してください。', remembered:'説明できた', forgotten:'復習が必要',
+  search:'トピックや問題を検索', group:'グループ', source:'出典', empty:'条件に一致する問題はありません。',
+  complete:'学習済みにする', completed:'学習済み', selectMonth:'月を選択', selectTopic:'トピックを選択',
+  task:'課題', hint:'ヒント', solution:'解答例', reset:'コードをリセット', save:'保存', saved:'保存済み',
+  local:'ローカル状態', global:'共有状態', files:'ファイルとコード', project:'選択したトピックのプロジェクト', selectFive:'同じ月から1〜5個のトピックを選択',
+  generate:'課題を作成', copy:'コピー', copied:'コピーしました', criteria:'確認項目', manual:'プロジェクトの自己確認',
+  manualHint:'自分のプロジェクトで各項目を確認してください。これは手動の確認です。', run:'関数をテスト', loading:'読み込み中…',
+  noAttempts:'まだ回答がありません。今日の問題から始めましょう。', reviewDue:'復習しましょう', allTopics:'すべてのトピック',
+  settingsSubtitle:'言語・学習量・保存', interfaceLanguage:'表示言語', learningLanguage:'教材の言語',
+  tajik:'教材はタジク語・ロシア語・英語に対応しています。日本語の教材翻訳はまだありません。', questionsPerDay:'1日の問題数', limitHint:'次の新しい問題セットから適用されます。今日のセットは変わりません。',
+  theme:'外観', light:'ライト', dark:'ダーク', storage:'保存', storageHint:'進捗はこのブラウザーに保存されます。ファイルにバックアップを出力できます。', export:'進捗をエクスポート',
+  newNote:'新しいノート', title:'タイトル', text:'本文', cancel:'キャンセル', delete:'削除', edit:'編集',
+  progress:'完了したトピック', readCount:'学習した問題', totalXP:'合計XP', course:'3か月のコース',
+  group1:'基礎とフック', group2:'状態と設計', group3:'実践と面接対策', readyForTest:'解説を学習できます', sessionDone:'セット完了', practiceCount:'5つの課題',
+  prompt:'Stitch用プロンプト', openLesson:'解説を開く', noCloud:'このブラウザーのみ', select:'選択', selected:'選択済み',
+};
+
+export const JAPANESE_LEARNING_COPY = {
+  testsInterview:'テストと面接対策', answersInterview:'解説と面接対策', assessmentIntro:'知識を確認してから、自分の言葉で解決方法を説明しましょう。',
+  tests:'テスト', interview:'面接対策', allCourses:'すべてのコース', oneMonth:'1か月', planIntro:'日を選び、トピックを学んで演習し、理解を確認しましょう。',
+  dayIntro:'1日にひとつの明確なステップ。前の学習を積み重ねます。', jsMonths:'JavaScriptの月別学習', month:'月', jsBasics:'基礎とブラウザー', jsApps:'APIとアプリケーション',
+  courseUnavailable:'コースを読み込めませんでした。', retry:'再試行', firstFile:'最初のファイルからプロジェクトへ', completedDays:'日完了 · 毎日の解説と演習',
+  day:'日目', startZero:'基礎から始める', current:'現在', basics:'基礎', harder:'応用', openDay:'今日の学習を開く',
+  answersFlow:'問題 → わかりやすい解説 → 例', answersIntro:'面接対策の解説ライブラリーです。問題を開いて解説を学び、演習で理解を確認しましょう。',
+  checkYourself:'理解を確認', showMore:'さらに表示', chooseDay:'学習日を選択', preparation:'準備', studyPlan:'学習プラン', goDayOne:'1日目へ',
+  connections:'これまでの学習とのつながり', connectionsIntro:'これまでの成果に新しい機能を加えましょう。既存の機能が引き続き動くことも確認してください。',
+  dayPractice:'この日の演習', backExplanation:'解説に戻る', testIntro:'解答を選び、解説を読みましょう。', interviewIntro:'自分の言葉で説明してから、解答と比較しましょう。',
+  nextDay:'次の学習日：', missingDay:'この日は学習プランにありません。利用できる日を選んでください。', yourCode:'あなたのコード', showHtml:'HTML + CSSをプレビュー', htmlResult:'HTML + CSSの実行結果',
+  preparationFallback:'準備の教材は現在ロシア語のみです。', contentFallback:'選択した教材言語に未翻訳の内容はロシア語で表示されます。',
+  tutorWelcome:'こんにちは！まず教材から回答を探します。無料でトークンは使いません。新しい質問へのAI回答にはGoogleまたはメールでログインしてください。',
+  tutorIntro:'まず教材から回答 · 新しい質問はAIへ', tutorClose:'チューターを閉じる', tutorMaterial:'教材', tutorLocal:'ローカル', tokens:'トークン', source:'出典：',
+  tutorLoading:'回答を準備しています…', tutorSignIn:'教材は無料です。AIを使うにはGoogleまたはメールでログインしてください。', tutorLogin:'ログイン・登録', tutorTopic:'コースのトピック', tutorDeep:'詳しく説明して',
+  tutorQuestion:'チューターへの質問', tutorPlaceholder:'質問やコードを入力…', tutorSend:'送信', tutorSpent:'この会話で使用：', tutorCaution:'AIは間違えることがあります。コードを確認してください。',
+  tutorUnavailable:'AIは現在利用できません。後でもう一度お試しください。', tutorEmpty:'回答が空です。後でもう一度お試しください。', tutorConnection:'接続が切れたか、回答がタイムアウトしました。再試行してください。',
+  tutorInvalid:'質問や会話履歴が不正か、長すぎます。', tutorSignInRequired:'AIへの質問にはGoogleまたはメールでログインしてください。', tutorAuthUnavailable:'ログインは未設定です。設定後にAIを利用できます。',
+  tutorUnconfigured:'サーバーにAIキーが設定されていません。教材をご利用ください。', tutorBusy:'AIに問い合わせ中です。しばらくお待ちください。', tutorRejected:'AIキーまたはモデルへのアクセスが拒否されました。サーバー設定を確認してください。',
+  tutorQuota:'AnyModelの利用上限またはトークンが不足しています。プロバイダーのアカウントを確認してください。', tutorUnreadable:'AIから読み取れる回答が返りませんでした。再試行してください。',
+  promptReact:'useStateは何に使いますか？', promptTopic:'コースの最初のトピックを詳しく説明してください。', promptDeep:'前の質問について、手順を追って詳しく説明してください。',
+};
+
+export const JAPANESE_AUTH_COPY = {
+  signupTitle:'一緒に学びましょう', resetTitle:'アカウントを復旧', loginTitle:'学びの続きを始めましょう', intro:'進捗・ノート・演習をパソコンでもスマートフォンでも。',
+  unavailable:'ログインと登録はまだ設定されていません。教材と解説はアカウントなしでも利用できます。AIにはアカウントが必要です。',
+  guest:'ゲストとして続ける', google:'Googleで続ける', recommended:'おすすめ', orEmail:'またはメールで', name:'お名前', password:'パスワード',
+  creating:'作成中…', saveWait:'お待ちください…', signUp:'アカウントを作成', sendLink:'リンクを送信', signIn:'メールでログイン', existing:'アカウントをお持ちですか？ログイン',
+  createAccount:'アカウントを作成', forgot:'パスワードを忘れた場合', backToLogin:'ログインに戻る', security:'Googleまたはメール · 無料アカウント',
+  googleError:'Googleログインを利用できません。メールを使うか、後でもう一度お試しください。', resetSent:'登録済みのメールアドレスには、パスワード再設定リンクが送信されます。', confirmEmail:'メールのリンクでアドレスを確認してからログインしてください。',
+  firstNameTitle:'お名前を教えてください', firstNameDescription:'プロフィールに表示する名前です。設定で名前や写真を変更できます。', firstNameStart:'学習を始める', logout:'ログアウト', nameError:'名前を保存できませんでした。',
+};
+
+export const JAPANESE_ACCOUNT_COPY = {
+  account:'アカウント', guestMode:'ゲストモード', guestDescription:'進捗はこのブラウザーに保存されます。スマートフォンでも学習を続けるにはログインしてください。', guestLogin:'Googleまたはメールでログイン',
+  profile:'プロフィール', name:'お名前', saveName:'名前を保存', wait:'お待ちください…', addPhoto:'写真を追加', removePhoto:'写真を削除', photoHint:'5MB以下のJPEG・PNG・WebP。正方形に切り抜き、非公開で保存します。',
+  profileSaved:'プロフィールを保存しました。', profileError:'プロフィールを保存できませんでした。', profileRetry:'プロフィールを保存できませんでした。再試行してください。', nameError:'名前を保存できませんでした。', nameInvalid:'名前は2〜60文字で入力してください。', photoInvalid:'無効な写真です。', loginUnavailable:'ログインは設定されていません。', photoUploaded:'写真を更新しました。', photoUploadError:'写真をアップロードできませんでした。', photoUploadRetry:'写真をアップロードできませんでした。再試行してください。', photoRemoved:'写真を削除しました。', photoRemoveError:'写真を削除できませんでした。', photoFormat:'5MB以下のJPEG・PNG・WebP。', photoSize:'画像が大きすぎます。', photoProcess:'写真を処理できませんでした。',
+  devices:'保存とデバイス', deviceDescription:'回答・XP・ノート・設定・コードは自分のアカウントでのみ利用できます。別のデバイスでは同じアカウントでログインしてください。', sync:'今すぐ同期', importGuest:'このブラウザーのゲスト進捗を取り込む', noGuestProgress:'ゲストの進捗はまだありません。', guestImported:'ゲストの進捗を追加しました。クラウドの状態は下に表示されます。', guestImportError:'ゲストの進捗を読み込めませんでした。元のデータは保持されています。',
+  local:'このブラウザー内', syncing:'クラウドに保存中…', synced:'クラウドに保存済み', offline:'オフライン · 変更はブラウザーに保存済み', error:'クラウド利用不可 · 変更はブラウザーに保存済み',
+  phone:'スマートフォンで続ける', phoneDescription:'カメラでQRコードを読み取り、サイトを開いて同じGoogleまたはメールアカウントでログインしてください。QRコードにはサイトのリンクだけが含まれます。', phoneAlt:'スマートフォンのログイン画面を開くQRコード', phoneError:'QRコードを利用できません。スマートフォンでこのサイトを開いてください。',
+  security:'アカウントの保護', checking:'確認中…', connected:'認証アプリを接続済み', ordinaryLogin:'通常のログイン', securityDescription:'スマートフォンの認証アプリで保護を強化できます。SMSは不要です。Google Authenticator、Microsoft Authenticator、2FASなどが利用できます。', enrollScan:'1. 認証アプリでQRコードを読み取ります。', enrollCode:'2. コードを入力して保護を有効にします。', enrollAlt:'認証アプリ用QRコード', enrollManual:'読み取れない場合はキーを手入力', enrollHint:'次のログインにもアプリのコードが必要です。アプリへのアクセスを保持し、このQRコードやキーを他人と共有しないでください。', appCode:'アプリのコード', enableSecurity:'保護を有効にする', cancel:'キャンセル', requiredCode:'ログイン時にアプリのコードが必要です。', disable:'接続を解除', enroll:'認証アプリを接続 · QR', factorCheckError:'認証アプリを確認できませんでした。', enrollError:'認証アプリを接続できませんでした。後で再試行してください。', verifyError:'コードが受け付けられませんでした。アプリで新しいコードを確認してください。', cancelError:'設定をキャンセルできませんでした。再試行してください。', factorRemoved:'認証アプリの接続を解除しました。', factorRemoveError:'認証アプリを解除できませんでした。ログインを確認して再試行してください。',
+  session:'セッション', sessionDescription:'ブラウザーを閉じてもこのデバイスではログイン状態が続きます。ログアウトすると、このデバイスのセッションだけが終了します。', logout:'ログアウト', logoutAccount:'アカウントからログアウト',
+  challengeTitle:'ログインを確認', challengeDescription:'Google Authenticator、Microsoft Authenticatorなどのアプリに表示される6桁を入力してください。', challengeCode:'認証コード', confirm:'確認', challengeError:'コードを確認できませんでした。アプリで新しいコードを取得してください。',
+  newPassword:'新しいパスワード', recoveryDescription:'保存後、新しいパスワードでログインしてください。', repeatPassword:'パスワードを再入力', savePassword:'パスワードを保存', passwordMismatch:'パスワードが一致しません。', recoveryError:'パスワードを変更できませんでした。復旧を再度リクエストしてください。',
+  opening:'DevAtlasを開いています…', restoring:'ログイン状態を復元中', openFailed:'アカウントを開けませんでした', openError:'アカウントを開けませんでした。', retry:'再試行', assuranceError:'アカウントの保護を確認できませんでした。', profileLoadError:'プロフィールを読み込めませんでした。接続とデータベースの設定を確認してください。', connectionError:'接続を確認できませんでした。オンラインになると保存済みログインが復元されます。', restoreError:'保存済みログインを一時的に利用できません。インターネットに接続すると自動的に復元されます。', sessionExpired:'セッションが期限切れです。再度ログインしてください。', sessionChanged:'セッションが変更されました。アカウントを開き直してください。', accountUnverified:'アカウントを確認できませんでした。再度ログインしてください。', loginIncomplete:'ログインが完了していません。Googleまたはメールで再試行してください。', logoutError:'ログアウトできませんでした。再試行してください。',
+  emailUnconfirmed:'メールのリンクでアドレスを確認してからログインしてください。', invalidCredentials:'ログインできませんでした。メールアドレスとパスワードを確認してください。', signupDisabled:'現在、新規登録を受け付けていません。後で試すか、既存のアカウントでログインしてください。', weakPassword:'パスワードが簡単すぎます。英字と数字を含む8文字以上にしてください。', emailInvalid:'メールアドレスが受け付けられませんでした。入力を確認してください。', emailLimit:'メール送信の上限に達しました。後で再試行してください。', requestLimit:'試行回数が多すぎます。しばらく待ってから再試行してください。', loginError:'ログインできませんでした。メールアドレス、パスワード、メールの確認状態を確認してください。', requestError:'リクエストを送信できませんでした。入力を確認して後で再試行してください。',
+};
+
+export const JAPANESE_PUBLIC_COPY = {
+  privacyLabel:'プライバシー', termsLabel:'利用規約', start:'学習を始める', eyebrow:'学びとスキルのプラットフォーム', heroLead:'新しい興味を', heroEmphasis:'役立つスキルへ', heroEnd:'一歩ずつ。',
+  heroDescription:'プログラミング、デザイン、ビジネス、マーケティングから学ぶ分野を選びましょう。DevAtlasは、わかりやすいレッスン、実践課題、進捗管理をひとつにまとめた学習プラットフォームです。', seePlatform:'プラットフォームを見る', heroNote:'ゲストでも学習できます。クラウド同期とオンラインAIにはサーバーの設定が必要です。',
+  featuresTitle:'理解して、作って、確かめる', features:[{title:'段階的なレッスン',description:'分野を選び、わかりやすい学習プランに沿って新しいテーマを学びます。'},{title:'課題とプロジェクト',description:'学んだことを実践し、成果を確認して進捗を記録します。'},{title:'任意のAIチューター',description:'教材はAPIなしで利用可能です。オンラインAIは別途設定が必要です。'}],
+  ctaTitle:'最初の演習を始めましょう', ctaDescription:'利用可能なレッスンと演習から始められます。', ctaLink:'レッスンへ', title:'DevAtlas — 実践を通じてスキルを学ぶ', description:'レッスンと実践課題で、プログラミング、デザイン、ビジネス、マーケティングのスキルを学びましょう。',
+  privacy:{title:'プライバシー', introduction:'DevAtlasは教育プラットフォームです。ゲストの進捗はブラウザーに、アカウント情報は設定済みのSupabaseに保存されます。', sections:[{title:'アカウント情報',text:'メールアドレス、プロフィール、ノート、回答、学習進捗を処理する場合があります。クラウド同期には有効なアカウントが必要です。'},{title:'AIチューター',text:'教材の解説は外部プロバイダーなしで利用できます。設定済みオンラインAIを使う際は、質問と必要な文脈がプロバイダーに送信される場合があります。'},{title:'データの管理',text:'ゲストのデータはブラウザーで管理できます。アカウント情報はアカウント設定で管理してください。'}], notice:'これは暫定的な説明です。公開前に運営者は連絡先、保存期間、正式な法的文書を確定する必要があります。'},
+  terms:{title:'利用規約', introduction:'DevAtlasは学習用プラットフォームです。演習、テスト、AIの支援は資格取得や就職を保証しません。', sections:[{title:'アカウント',text:'認証情報を秘密にし、他人のデータに不正にアクセスしないでください。'},{title:'任意の機能',text:'オンラインAIとクラウド同期は、サーバーの設定と外部プロバイダーに依存します。'}], notice:'商用利用前に、正式な規約と運営者情報について法的確認が必要です。'},
+};

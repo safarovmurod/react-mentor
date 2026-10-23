@@ -1,0 +1,238 @@
+{
+  "courseId": "digital-literacy",
+  "sources": [
+    {
+      "id": "digital-literacy-reference",
+      "title": "U.S. Federal Trade Commission — Protecting Kids Online",
+      "url": "https://consumer.ftc.gov/identity-theft-and-online-security/protecting-kids-online"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "digital-literacy-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: безопасный учебный профиль",
+        "tg": "Рӯзи 1: профили бехатари омӯзишӣ",
+        "en": "Day 1: a safe practice profile"
+      },
+      "summary": {
+        "ru": "Два вводных дня цифровой грамотности начинаются с границы между публичным и личным. Создайте только вымышленный профиль на бумаге: регистрация и ввод настоящих данных не нужны.",
+        "tg": "Ду рӯзи муқаддимавии саводи рақамӣ аз фарқи оммавӣ ва шахсӣ оғоз мешавад. Танҳо профили сохтаро дар коғаз созед: сабт ва маълумоти воқеӣ лозим нест.",
+        "en": "Two introductory digital-literacy days begin with the boundary between public and private. Create only a fictional profile on paper: no registration or real personal data is needed."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "digital-literacy-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Опубликованную информацию могут сохранить и переслать. Не размещайте домашний адрес, школу, точное местоположение, документы, телефон или пароли. Безопасный учебный псевдоним не должен раскрывать полное имя и дату рождения. Если ребёнок сомневается в запросе данных или столкнулся с неприятным сообщением, нужно обратиться к доверенному взрослому, а не продолжать общение самостоятельно.",
+            "tg": "Маълумоти нашршударо нигоҳ доштану фиристодан мумкин аст. Суроғаи хона, мактаб, ҷойи дақиқ, ҳуҷҷат, телефон ё рамзро нагузоред. Номи омӯзишӣ набояд номи пурра ё рӯзи таваллудро фош кунад. Агар кӯдак ба дархости маълумот шубҳа кунад ё паёми нохуш гирад, ба калонсоли боэътимод муроҷиат кунад, на муоширатро танҳо идома диҳад.",
+            "en": "Published information can be saved and forwarded. Do not post home addresses, school, exact location, documents, phone numbers or passwords. A practice nickname should not reveal a full name or birth date. A child unsure about a data request or receiving an upsetting message should ask a trusted adult rather than continue alone."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Вымышленный профиль: псевдоним CloudFox; интересы — рисование и головоломки; аватар — собственный рисунок. Не публикуем: адрес, школу, телефон, дату рождения. Если сайт просит фото документа ради игры, не загружаем его и обсуждаем запрос с доверенным взрослым. Не создаём настоящий аккаунт для выполнения этого задания.",
+            "tg": "Профили сохта: лақаб CloudFox; шавқ — расмкашӣ ва муаммо; аватар — расми худ. Нашр намекунем: суроға, мактаб, телефон, рӯзи таваллуд. Агар сомона барои бозӣ акси ҳуҷҷат пурсад, намефиристем ва бо калонсоли боэътимод маслиҳат мекунем. Барои ин машқ ҳисоби воқеӣ намесозем.",
+            "en": "Fictional profile: nickname CloudFox; interests — drawing and puzzles; avatar — an original drawing. Keep address, school, phone and birth date private. If a game asks for a document photo, do not upload it; discuss the request with a trusted adult. Do not create a real account for this exercise."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "digital-literacy-day-01-q01",
+          "question": {
+            "ru": "Что безопаснее для учебного профиля?",
+            "tg": "Барои профили омӯзишӣ чӣ бехатартар аст?",
+            "en": "Which is safer for a practice profile?"
+          },
+          "answer": {
+            "ru": "Вымышленный псевдоним без даты рождения.",
+            "tg": "Лақаби сохта бе рӯзи таваллуд.",
+            "en": "A fictional nickname without a birth date."
+          },
+          "options": [
+            {
+              "ru": "Домашний адрес.",
+              "tg": "Суроғаи хона.",
+              "en": "Home address."
+            },
+            {
+              "ru": "Вымышленный псевдоним без даты рождения.",
+              "tg": "Лақаби сохта бе рӯзи таваллуд.",
+              "en": "A fictional nickname without a birth date."
+            },
+            {
+              "ru": "Фото документа.",
+              "tg": "Акси ҳуҷҷат.",
+              "en": "A document photo."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Придумайте псевдоним, не связанный с вашим настоящим именем.\n2. Напишите два безопасных вымышленных интереса.\n3. Перечислите четыре вида данных, которые не нужно публиковать.\n4. Опишите, к кому обратиться при подозрительном запросе. Не вводите настоящие пароли или контакты.",
+          "tg": "1. Лақаби ба номи воқеии шумо новобаста созед.\n2. Ду шавқи бехатари сохта нависед.\n3. Чор навъи маълумоти нашрнашавандаро номбар кунед.\n4. Ҳангоми дархости шубҳанок ба кӣ муроҷиат мекунед, гӯед. Рамз ё тамоси воқеӣ нанависед.",
+          "en": "1. Invent a nickname unrelated to your real name.\n2. Write two safe fictional interests.\n3. List four kinds of information to keep private.\n4. State whom to ask about a suspicious request. Enter no real passwords or contact details."
+        },
+        "hint": {
+          "ru": "В ответе нужны названия категорий данных, а не их реальные значения.",
+          "tg": "Дар ҷавоб номи навъи маълумот лозим аст, на қимати воқеии он.",
+          "en": "List information categories, not their actual values."
+        },
+        "solution": "Вымышленный профиль: псевдоним CloudFox; интересы — рисование и головоломки; аватар — собственный рисунок. Не публикуем: адрес, школу, телефон, дату рождения. Если сайт просит фото документа ради игры, не загружаем его и обсуждаем запрос с доверенным взрослым. Не создаём настоящий аккаунт для выполнения этого задания.",
+        "referenceAnswer": {
+          "ru": "Вымышленный профиль: псевдоним CloudFox; интересы — рисование и головоломки; аватар — собственный рисунок. Не публикуем: адрес, школу, телефон, дату рождения. Если сайт просит фото документа ради игры, не загружаем его и обсуждаем запрос с доверенным взрослым. Не создаём настоящий аккаунт для выполнения этого задания.",
+          "tg": "Профили сохта: лақаб CloudFox; шавқ — расмкашӣ ва муаммо; аватар — расми худ. Нашр намекунем: суроға, мактаб, телефон, рӯзи таваллуд. Агар сомона барои бозӣ акси ҳуҷҷат пурсад, намефиристем ва бо калонсоли боэътимод маслиҳат мекунем. Барои ин машқ ҳисоби воқеӣ намесозем.",
+          "en": "Fictional profile: nickname CloudFox; interests — drawing and puzzles; avatar — an original drawing. Keep address, school, phone and birth date private. If a game asks for a document photo, do not upload it; discuss the request with a trusted adult. Do not create a real account for this exercise."
+        },
+        "criteria": [
+          {
+            "ru": "Профиль полностью вымышленный.",
+            "tg": "Профил пурра сохта аст.",
+            "en": "The profile is entirely fictional."
+          },
+          {
+            "ru": "Названы минимум четыре категории личных данных.",
+            "tg": "Камаш чор навъи маълумоти шахсӣ номбар шудаанд.",
+            "en": "At least four personal-data categories are named."
+          },
+          {
+            "ru": "Есть безопасный шаг обращения за помощью без настоящей регистрации.",
+            "tg": "Қадами бехатари кумак бе сабти воқеӣ ҳаст.",
+            "en": "A safe help-seeking step is included without registering."
+          }
+        ]
+      }
+    },
+    {
+      "id": "digital-literacy-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: подозрительное сообщение",
+        "tg": "Рӯзи 2: паёми шубҳанок",
+        "en": "Day 2: a suspicious message"
+      },
+      "summary": {
+        "ru": "Разберите вымышленное сообщение с давлением и просьбой о коде. Выберите безопасную проверку через известный канал; для задания нельзя переходить по подозрительным ссылкам или отправлять коды.",
+        "tg": "Паёми сохтаи фишоровар ва дархости рамзро таҳлил кунед. Санҷиши бехатар аз канали маълум интихоб кунед; дар машқ пайванди шубҳанокро накушоед ва рамз нафиристед.",
+        "en": "Analyze a fictional pressure message asking for a code. Choose safe verification through a known channel; never follow suspicious links or send codes for this exercise."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "digital-literacy-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Срочность, необычная просьба и требование секрета — повод остановиться. Логотип и имя отправителя не доказывают подлинность. Не передавайте пароли и одноразовые коды, даже если сообщение обещает приз. Откройте известное приложение самостоятельно или обратитесь в поддержку по проверенному контакту. Не вступайте в спор с отправителем. Детям стоит показать сообщение доверенному взрослому.",
+            "tg": "Шитоб, дархости ғайриодӣ ва талаб кардани сир сабаби таваққуфанд. Нишон ва номи фиристанда ҳаққониятро исбот намекунанд. Рамз ё коди яккаратаро ҳатто барои туҳфа нафиристед. Барномаи маълумро худ кушоед ё аз тамоси санҷида кумак пурсед. Бо фиристанда баҳс накунед. Кӯдакон паёмро ба калонсоли боэътимод нишон диҳанд.",
+            "en": "Urgency, an unusual request and a demand for a secret are reasons to stop. A logo and sender name do not prove authenticity. Never share passwords or one-time codes, even for a promised prize. Open the known app yourself or use a verified support contact. Do not argue with the sender. Children should show the message to a trusted adult."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Вымышленное сообщение: «Ваш приз исчезнет через 5 минут. Пришлите код входа». Признаки риска: давление временем и запрос секрета. Действие: не отвечать и не отправлять код; проверить уведомления в самостоятельно открытом официальном приложении. Если код уже отправлен, обратиться к доверенному взрослому или официальной поддержке и следовать процедуре защиты аккаунта.",
+            "tg": "Паёми сохта: «Туҳфа баъди 5 дақиқа гум мешавад. Коди вурудро фиристед». Аломатҳо: фишори вақт ва талаби сир. Амал: ҷавобу код нафиристед; огоҳиро дар барномаи расмии мустақил кушодашуда санҷед. Агар код фиристода шуд, ба калонсоли боэътимод ё дастгирии расмӣ муроҷиат карда, тартиби ҳифзи ҳисобро иҷро кунед.",
+            "en": "Fictional message: “Your prize expires in 5 minutes. Send your login code.” Risks: time pressure and a secret request. Action: do not reply or send the code; check notifications in the official app opened independently. If a code was already shared, ask a trusted adult or official support and follow account-protection procedures."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "digital-literacy-day-02-q01",
+          "question": {
+            "ru": "Нужно ли отправить одноразовый код ради приза?",
+            "tg": "Оё барои туҳфа коди яккарата фиристодан лозим аст?",
+            "en": "Should you send a one-time code to claim a prize?"
+          },
+          "answer": {
+            "ru": "Нет, код нужно сохранить в тайне и проверить запрос отдельно.",
+            "tg": "Не, кодро махфӣ нигоҳ дошта, дархостро алоҳида санҷед.",
+            "en": "No, keep it secret and verify the request independently."
+          },
+          "options": [
+            {
+              "ru": "Нет, код нужно сохранить в тайне и проверить запрос отдельно.",
+              "tg": "Не, кодро махфӣ нигоҳ дошта, дархостро алоҳида санҷед.",
+              "en": "No, keep it secret and verify the request independently."
+            },
+            {
+              "ru": "Да, если есть логотип.",
+              "tg": "Бале, агар нишон дошта бошад.",
+              "en": "Yes, if the message has a logo."
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Прочитайте вымышленное сообщение из примера.\n2. Назовите два признака риска.\n3. Запишите безопасные действия без ответа отправителю и без передачи кода.\n4. Укажите путь помощи, если секрет уже раскрыт. Не воспроизводите реальные коды.",
+          "tg": "1. Паёми сохтаи мисолро хонед.\n2. Ду аломати хатарро номбар кунед.\n3. Амалҳои бехатарро бе ҷавоб ва фиристодани код нависед.\n4. Роҳи кумакро баъди фош шудани сир гӯед. Коди воқеӣ нанависед.",
+          "en": "1. Read the fictional example message.\n2. Identify two warning signs.\n3. Write safe steps without replying or sending a code.\n4. State how to get help if a secret was already shared. Include no actual codes."
+        },
+        "hint": {
+          "ru": "Для проверки используйте отдельно известное приложение, а не контакт из подозрительного сообщения.",
+          "tg": "Барои санҷиш барномаи аз пеш маълумро истифода баред, на тамоси дар паёми шубҳанок бударо.",
+          "en": "Verify through an independently known app, not contact details in the suspicious message."
+        },
+        "solution": "Вымышленное сообщение: «Ваш приз исчезнет через 5 минут. Пришлите код входа». Признаки риска: давление временем и запрос секрета. Действие: не отвечать и не отправлять код; проверить уведомления в самостоятельно открытом официальном приложении. Если код уже отправлен, обратиться к доверенному взрослому или официальной поддержке и следовать процедуре защиты аккаунта.",
+        "referenceAnswer": {
+          "ru": "Вымышленное сообщение: «Ваш приз исчезнет через 5 минут. Пришлите код входа». Признаки риска: давление временем и запрос секрета. Действие: не отвечать и не отправлять код; проверить уведомления в самостоятельно открытом официальном приложении. Если код уже отправлен, обратиться к доверенному взрослому или официальной поддержке и следовать процедуре защиты аккаунта.",
+          "tg": "Паёми сохта: «Туҳфа баъди 5 дақиқа гум мешавад. Коди вурудро фиристед». Аломатҳо: фишори вақт ва талаби сир. Амал: ҷавобу код нафиристед; огоҳиро дар барномаи расмии мустақил кушодашуда санҷед. Агар код фиристода шуд, ба калонсоли боэътимод ё дастгирии расмӣ муроҷиат карда, тартиби ҳифзи ҳисобро иҷро кунед.",
+          "en": "Fictional message: “Your prize expires in 5 minutes. Send your login code.” Risks: time pressure and a secret request. Action: do not reply or send the code; check notifications in the official app opened independently. If a code was already shared, ask a trusted adult or official support and follow account-protection procedures."
+        },
+        "criteria": [
+          {
+            "ru": "Найдены давление временем и запрос секрета.",
+            "tg": "Фишори вақт ва талаби сир ёфт шудаанд.",
+            "en": "Time pressure and a secret request are identified."
+          },
+          {
+            "ru": "План не требует клика, ответа или отправки кода.",
+            "tg": "Нақша пахш, ҷавоб ё фиристодани кодро талаб намекунад.",
+            "en": "The plan requires no click, reply or code sharing."
+          },
+          {
+            "ru": "Указаны проверенный канал и помощь при раскрытии секрета.",
+            "tg": "Канали санҷида ва кумак баъди фошшавӣ гуфта шудаанд.",
+            "en": "A verified channel and help after disclosure are stated."
+          }
+        ]
+      }
+    }
+  ]
+}

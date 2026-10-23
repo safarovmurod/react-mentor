@@ -240,9 +240,24 @@
     "id": "s5-5-children",
     "title": "5. `children`",
     "chapter": "1. React Fundamentals",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Даъваткунанда ду Card месозад",
+      "React мазмунро ба children медиҳад",
+      "Card ҳамон мазмунро дар section нишон медиҳад"
+    ],
+    "explanation": [
+      {
+        "title": "children: таркиби ҷузъҳо",
+        "text": "children мазмунест, ки байни теги кушода ва пӯшидаи ҷузъ дода мешавад. Card сохтори умумиро муайян мекунад, вале сарлавҳа ё тугмаро аз даъваткунанда мегирад. Ин аз props-и оддӣ фарқ надорад: React мазмунро дар props.children медиҳад. children-ро мустақим дар JSX ҷойгир кунед; онро ҳамчун функсия даъват накунед, агар шартномаи махсус надошта бошед."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Мисолро дар App.tsx гузоред. Ду корт бояд матни гуногун дошта бошанд, вале як намуди section. Матни корти аввалро иваз кунед: дуюм тағйир наёбад. Баъд Card-и бе children-ро санҷед: section-и холӣ иҷозат аст."
+      }
+    ],
+    "code": [
+      "import type { ReactNode } from 'react';\nfunction Card({ children }: { children?: ReactNode }) {\n  return <section className=\"card\">{children}</section>;\n}\nexport default function App() {\n  return <main>\n    <Card><h2>React</h2><p>First lesson</p></Card>\n    <Card><h2>Practice</h2><button type=\"button\">Start</button></Card>\n  </main>;\n}"
+    ],
     "questions": [
       {
         "question": "`props.children` чист?",
@@ -427,9 +442,24 @@
     "id": "s9-9-state-vs-rendering",
     "title": "9. State vs Rendering",
     "chapter": "2. Rendering & Reconciliation",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Пахш handler-ро даъват мекунад",
+      "setCount навсозиро дархост мекунад",
+      "React қимати навро намоиш медиҳад"
+    ],
+    "explanation": [
+      {
+        "title": "State сабаби намоиши нав аст",
+        "text": "Тағйирёбандаи оддӣ байни намоишҳо хотираи ҷузъ нест ва тағйири он React-ро огоҳ намекунад. useState қиматро нигоҳ медорад; setter намоиши навро дархост мекунад. Дар handler count акси намоиши ҳозира аст, на қимате, ки фавран пас аз setter иваз шавад. Барои ҳисоб аз қимати пешина навсозии функсионалӣ истифода баред."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Аввал 0 мебинед. Се бор +1 пахш кунед: 3. +2 аз 3 бояд 5 диҳад, чун ду навсозии функсионалӣ пайдарпай ҳисоб мешаванд. Барои ин useEffect лозим нест; натиҷа мустақим аз state нишон дода мешавад."
+      }
+    ],
+    "code": [
+      "import { useState } from 'react';\nexport default function App() {\n  const [count, setCount] = useState(0);\n  function addTwo() {\n    setCount(value => value + 1);\n    setCount(value => value + 1);\n  }\n  return <main><p>{count}</p>\n    <button onClick={() => setCount(value => value + 1)}>+1</button>\n    <button onClick={addTwo}>+2</button>\n  </main>;\n}"
+    ],
     "questions": [
       {
         "question": "Чаро variable-и оддӣ барои data-и UI мувофиқ нест?",
@@ -720,9 +750,24 @@
     "id": "s15-15-custom-hooks",
     "title": "15. Custom Hooks",
     "chapter": "4. Hooks Mental Model",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Ҳар Counter useCounter-ро даъват мекунад",
+      "Ҳук state ва амалро бармегардонад",
+      "Пахш танҳо як намунаи state-ро нав мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "Ҳуки шахсӣ мантиқро такрор истифода мебарад",
+        "text": "Ҳуки шахсӣ функсияест бо номи use, ки ҳукҳои дигарро дар сатҳи боло даъват мекунад. Он мантиқро тақсим мекунад, на худи state-ро: ду даъвати useCounter ду ҳолати мустақил доранд. Ҳукро дар шарт ё handler даъват накунед. Қимат ва амалҳоро баргардонед, то ҷузъ намоишро худаш муайян кунад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Ду ҳисобкунакро кушоед: ҳар ду 0. Дар аввал ду бор зиёд кунед: аввал 2, дуюм 0 мемонад. Reset танҳо ҳамон ҳисобкунакро ба initial бармегардонад. Агар ҳар ду бояд як state дошта бошанд, state-ро ба parent бардоред; ҳуки шахсӣ худкор ин корро намекунад."
+      }
+    ],
+    "code": [
+      "import { useState } from 'react';\nfunction useCounter(initial = 0) {\n  const [count, setCount] = useState(initial);\n  return { count, increment: () => setCount(value => value + 1), reset: () => setCount(initial) };\n}\nfunction Counter() {\n  const { count, increment, reset } = useCounter();\n  return <section><p>{count}</p><button onClick={increment}>+1</button><button onClick={reset}>Reset</button></section>;\n}\nexport default function App() { return <main><Counter /><Counter /></main>; }"
+    ],
     "questions": [
       {
         "question": "Custom hook чист?",
@@ -922,9 +967,24 @@
     "id": "s19-19-effect-problems",
     "title": "19. Effect Problems",
     "chapter": "5. `useEffect`",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Effect месозад interval",
+      "Timer қимати пешинаро зиёд мекунад",
+      "Cleanup interval-ро қатъ мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "Effect-и даврзанандаро пешгирӣ кунед",
+        "text": "Агар effect state-ро иваз кунад ва ҳамин state вобастагии он бошад, effect метавонад худро боз оғоз кунад. Барои timer аз қимати пешина навсозии функсионалӣ истифода баред ва timer-ро дар cleanup қатъ кунед. Вобастагии лозимро танҳо барои хомӯш кардани огоҳӣ нагиред: вобастагӣ аз маълумоти воқеан хондашуда меояд. Ҳисоби оддии UI одатан effect намехоҳад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Timer аз 0 зиёд мешавад. Ҳангоми unmount timer бояд қатъ шавад. Дар Strict Mode-и development setup ва cleanup-и иловагӣ метавонад дида шавад; ин сабаби тоза накардани timer нест. setSeconds(seconds + 1)-ро бе таҳлили вобастагӣ истифода набаред: он метавонад акси кӯҳнаро бихонад."
+      }
+    ],
+    "code": [
+      "import { useEffect, useState } from 'react';\nexport default function Timer() {\n  const [seconds, setSeconds] = useState(0);\n  useEffect(() => {\n    const id = setInterval(() => setSeconds(value => value + 1), 1000);\n    return () => clearInterval(id);\n  }, []);\n  return <p>Elapsed: {seconds}</p>;\n}"
+    ],
     "questions": [
       {
         "question": "Infinite effect loop чист?",
@@ -957,9 +1017,24 @@
     "id": "s20-20-lifecycle",
     "title": "20. Lifecycle",
     "chapter": "6. Lifecycle Thinking",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "App ҷузъи Child-ро нишон медиҳад",
+      "Тугма Child-ро аз дарахт мегирад",
+      "React cleanup-ро иҷро мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "Пайвастшавӣ ва хориҷшавии ҷузъ",
+        "text": "Mount ворид шудани ҷузъ ба дарахти UI аст; update намоиши нав дар ҳамон ҷой, unmount хориҷшавӣ аст. React пеш аз хориҷшавӣ cleanup-и effect-ро иҷро мекунад. Ҳар effect давраи setup/cleanup-и худро дорад. State-и ҷузъи хориҷшуда ҳангоми аз нав mount кардан аз initial оғоз мешавад; онро бо CSS пинҳон кардан ҳамон unmount нест."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Console-ро кушоед. Hide бояд Child-ро аз DOM гирад ва cleanup нишон диҳад. Show setup-и нав медиҳад. Strict Mode метавонад дар development setup/cleanup-ро иловатан санҷад; тартибро таҳлил кунед, на шумораи log-ро ҳамчун қонуни production қабул кунед."
+      }
+    ],
+    "code": [
+      "import { useEffect, useState } from 'react';\nfunction Child() {\n  useEffect(() => {\n    console.log('Child setup');\n    return () => console.log('Child cleanup');\n  }, []);\n  return <p>Child is mounted</p>;\n}\nexport default function App() {\n  const [visible, setVisible] = useState(true);\n  return <main><button onClick={() => setVisible(value => !value)}>{visible ? 'Hide' : 'Show'}</button>{visible && <Child />}</main>;\n}"
+    ],
     "questions": [
       {
         "question": "Mount чист?",
@@ -1002,9 +1077,24 @@
     "id": "s21-21-debugging",
     "title": "21. Debugging",
     "chapter": "6. Lifecycle Thinking",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Пахшро як бор иҷро кунед",
+      "Log-и handler ва effect-ро ҷудо бинед",
+      "Натиҷаи UI-ро бо интизорӣ муқоиса кунед"
+    ],
+    "explanation": [
+      {
+        "title": "Хаторо аз далел ҷудо кунед",
+        "text": "Аввал қадами такрори хато, натиҷаи интизорӣ ва воқеиро нависед. Render, effect ва handler як чиз нестанд: log-и render маънои request ё пахши такрориро надорад. Барои дархости такрорӣ Network, вобастагии effect, remount ва key-ро санҷед. Strict Mode-ро ҳамчун ҳалли пинҳонкунандаи хато хомӯш накунед."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Тугмаро як бор пахш кунед: рақам якто зиёд шавад. Console мегӯяд кадом handler иҷро шуд ва effect кадом қимати count-ро дид. Тести дуюм: reset ба 0. Агар log дар development бештар бошад, қимати ниҳоии UI ва сабаби ҳар марҳиларо санҷед."
+      }
+    ],
+    "code": [
+      "import { useEffect, useState } from 'react';\nexport default function App() {\n  const [count, setCount] = useState(0);\n  console.log('render snapshot', count);\n  useEffect(() => { console.log('effect sees', count); }, [count]);\n  function increment() {\n    console.log('increment handler');\n    setCount(value => value + 1);\n  }\n  return <main><p>{count}</p><button onClick={increment}>+1</button><button onClick={() => setCount(0)}>Reset</button></main>;\n}"
+    ],
     "questions": [
       {
         "question": "Component API request-ро чанд бор мекунад. Аввал чӣ сабабҳоро месанҷӣ?",
@@ -1089,9 +1179,24 @@
     "id": "s23-23-dom-access",
     "title": "23. DOM Access",
     "chapter": "7. `useRef`",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "React input-ро ба DOM мегузорад",
+      "ref.current гиреҳро мегирад",
+      "Handler focus-ро даъват мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "Дастрасии DOM тавассути ref",
+        "text": "React баъди commit гиреҳи input-ро ба ref.current мегузорад. Барои focus ин истинодро дар handler хонед, на дар render. То mount ё баъди unmount ref.current метавонад null бошад, бинобар ин санҷиши null лозим аст. Барои иваз кардани матни UI state истифода баред; DOM-ро мустақим тағйир надиҳед, агар React онро идора кунад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Focus input-ро пахш кунед: курсор бояд дар майдони бо label пайвастшуда бошад. Матн нависед ва боз focus кунед: матн гум нашавад. Набудани ref-ро бо ?. коркард кунед; барои focus useEffect-и ҳар render лозим нест."
+      }
+    ],
+    "code": [
+      "import { useRef } from 'react';\nexport default function App() {\n  const inputRef = useRef<HTMLInputElement>(null);\n  return <main>\n    <label htmlFor=\"name\">Name</label>\n    <input id=\"name\" ref={inputRef} />\n    <button onClick={() => inputRef.current?.focus()}>Focus input</button>\n  </main>;\n}"
+    ],
     "questions": [
       {
         "question": "React `ref`-ро ба DOM element чӣ хел мепайвандад?",
@@ -1176,9 +1281,24 @@
     "id": "s25-25-usestate-vs-usereducer",
     "title": "25. `useState` vs `useReducer`",
     "chapter": "8. `useReducer`",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Тугма action мефиристад",
+      "Reducer гузаришро ҳисоб мекунад",
+      "State-и нав намоиш мешавад"
+    ],
+    "explanation": [
+      {
+        "title": "State ё reducer аз рӯи гузаришҳо",
+        "text": "Барои қимати мустақили оддӣ useState кифоя аст. Агар як амал чанд майдони вобастаро нав кунад ва қоидаҳо зиёд шаванд, reducer гузаришро дар функсияи соф ҷамъ мекунад. Reducer state-и ҳозира ва action гирифта, state-и нав медиҳад; side effect ва мутация дар он набошанд. Танҳо барои калон кардани код reducer насозед."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "start ҳолатро running мекунад ва қадамро 0 мемонад. next танҳо ҳангоми running қадамро зиёд мекунад. reset ба idle ва 0 бармегардонад. Қоидаҳои reducer-ро бе браузер низ бо state ва action санҷидан мумкин аст."
+      }
+    ],
+    "code": [
+      "import { useReducer } from 'react';\ntype State = { status: 'idle' | 'running'; step: number };\ntype Action = { type: 'start' | 'next' | 'reset' };\nconst initial: State = { status: 'idle', step: 0 };\nexport function reducer(state: State, action: Action): State {\n  switch (action.type) {\n    case 'start': return { status: 'running', step: 0 };\n    case 'next': return state.status === 'running' ? { ...state, step: state.step + 1 } : state;\n    case 'reset': return initial;\n    default: return state;\n  }\n}\nexport default function App() {\n  const [state, dispatch] = useReducer(reducer, initial);\n  return <main><p>{state.status}: {state.step}</p>{(['start', 'next', 'reset'] as const).map(type => <button key={type} onClick={() => dispatch({ type })}>{type}</button>)}</main>;\n}"
+    ],
     "questions": [
       {
         "question": "Кай `useState` басанда аст?",
@@ -1253,9 +1373,24 @@
     "id": "s27-27-reactmemo",
     "title": "27. `React.memo`",
     "chapter": "9. Memoization & Performance",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Parent count-ро нав мекунад",
+      "label ҳамон сатр мемонад",
+      "memo метавонад render-и Label-ро гузарад"
+    ],
+    "explanation": [
+      {
+        "title": "memo: ҳудуди муносибсозӣ",
+        "text": "memo метавонад намоиши аз parent омадаро гузарад, агар props тағйир накарда бошанд. Ин кафолати иҷро нест ва state ё context-и худи ҷузъро манъ намекунад. Props одатан бо Object.is муқоиса мешаванд; объекти нав reference-и нав дорад. Аввал рафтори дурустро созед, баъд бо Profiler зарурати memo-ро санҷед."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Count-ро зиёд кунед: UI-и count тағйир меёбад ва label доимӣ мемонад. Бо Profiler намоиши Label-ро муқоиса кунед; log-ҳои Strict Mode ченаки дақиқи суръат нестанд. label-ро ба state пайваст карда иваз кунед: матн ҳатман нав шавад."
+      }
+    ],
+    "code": [
+      "import { memo, useState } from 'react';\nconst Label = memo(function Label({ label }: { label: string }) {\n  return <p>{label}</p>;\n});\nexport default function App() {\n  const [count, setCount] = useState(0);\n  return <main><Label label=\"Study progress\" /><p>{count}</p><button onClick={() => setCount(value => value + 1)}>Count</button></main>;\n}"
+    ],
     "questions": [
       {
         "question": "`React.memo` чӣ кор мекунад?",
@@ -1283,9 +1418,24 @@
     "id": "s28-28-usememo",
     "title": "28. `useMemo`",
     "chapter": "9. Memoization & Performance",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Input query-ро нав мекунад",
+      "Вобастагии query тағйир меёбад",
+      "Filter рӯйхати мувофиқро ҳисоб мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "useMemo натиҷаро нигоҳ медорад",
+        "text": "useMemo натиҷаи ҳисоби софро то тағйири вобастагиҳо нигоҳ медорад. Ҳисоб дар render аст ва side effect надошта бошад. Ҳама қиматҳои реактивии хондашударо дар вобастагӣ гузоред. Кеш набояд шарти дурустии барнома бошад: бе useMemo ҳам натиҷа дуруст монад. Барои рӯйхати хурд filter бе memo одатан кофист."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "react нависед: React Basics монад. Фосилаи ду тараф ва ҳарфҳои калон натиҷаро иваз накунанд. Матни номавҷуд рӯйхати холӣ диҳад. Агар useMemo-ро бо filter-и оддӣ иваз кунед, рафтор бояд ҳамон бошад."
+      }
+    ],
+    "code": [
+      "import { useMemo, useState } from 'react';\nconst lessons = [{ id: 1, title: 'React Basics' }, { id: 2, title: 'TypeScript' }];\nexport default function App() {\n  const [query, setQuery] = useState('');\n  const filtered = useMemo(() => {\n    const search = query.trim().toLowerCase();\n    return lessons.filter(lesson => lesson.title.toLowerCase().includes(search));\n  }, [query]);\n  return <main><label>Search <input value={query} onChange={event => setQuery(event.target.value)} /></label>\n    <ul>{filtered.map(lesson => <li key={lesson.id}>{lesson.title}</li>)}</ul>\n  </main>;\n}"
+    ],
     "questions": [
       {
         "question": "`useMemo` чӣ кор мекунад?",
@@ -1318,9 +1468,24 @@
     "id": "s29-29-usecallback",
     "title": "29. `useCallback`",
     "chapter": "9. Memoization & Performance",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "App callback-ро муайян мекунад",
+      "Button онро ҳамчун onClick мегирад",
+      "Танҳо пахш функсияро иҷро мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "useCallback reference-и функсияро нигоҳ медорад",
+        "text": "useCallback функсияро иҷро намекунад: reference-и онро то тағйири вобастагӣ нигоҳ медорад. Ин ҳангоми додан ба ҷузъи memo ё истифода дар вобастагӣ метавонад муфид бошад. Қимати кӯҳнаро барои reference-и устувор пинҳон накунед. Агар амал аз state-и пешина ҳисоб шавад, setter-и функсионалӣ метавонад вобастагии count-ро нолозим кунад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Дар render-и аввал count 0 аст: useCallback худкор зиёд намекунад. Ҳар пахш +1 диҳад. Parent note-ро тағйир диҳед: callback бе хондани note кор мекунад. Ин намуна зарурати муносибсозиро исбот намекунад; фоидаи онро чен кунед."
+      }
+    ],
+    "code": [
+      "import { memo, useCallback, useState } from 'react';\nconst IncrementButton = memo(function IncrementButton({ onIncrement }: { onIncrement: () => void }) {\n  return <button onClick={onIncrement}>+1</button>;\n});\nexport default function App() {\n  const [count, setCount] = useState(0);\n  const [note, setNote] = useState('');\n  const increment = useCallback(() => setCount(value => value + 1), []);\n  return <main><p>{count}</p><IncrementButton onIncrement={increment} />\n    <label>Note <input value={note} onChange={event => setNote(event.target.value)} /></label>\n  </main>;\n}"
+    ],
     "questions": [
       {
         "question": "`useCallback` чӣ кор мекунад?",
@@ -1353,9 +1518,24 @@
     "id": "s30-30-performance-reasoning",
     "title": "30. Performance Reasoning",
     "chapter": "9. Memoization & Performance",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Ҳамон рӯйхатро бор кунед",
+      "Query-ро бо як сенария иваз кунед",
+      "actualDuration-ро бо ҳамон шароит муқоиса кунед"
+    ],
+    "explanation": [
+      {
+        "title": "Аввал чен кунед, баъд муносиб созед",
+        "text": "Сустии намоён метавонад аз шабака, JavaScript, расм ё render бошад. Аввал вазифаи суст ва шароити ченкуниро муайян кунед. Profiler вақти render-и React-ро нишон медиҳад, на тамоми вақти боркунии саҳифаро. Як тағйир диҳед, ҳамон сенарияро пешу баъд муқоиса кунед ва санҷиши дурустиро нигоҳ доред."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Profiler-ро дар development санҷед ва натиҷаро танҳо ҳамчун ченаки ҳамин муҳит номбар кунед. Се query-и яксонро пешу баъд иҷро кунед. Аввал дурустии рӯйхатро санҷед; баъд маълум кунед, ки тағйири вақт аз садои ченак зиёд аст ё не. Рақами сохта ё кафолати суръат нанависед."
+      }
+    ],
+    "code": [
+      "import { Profiler, useState } from 'react';\nconst items = Array.from({ length: 500 }, (_, index) => ({ id: index, title: 'Lesson ' + index }));\nexport default function App() {\n  const [query, setQuery] = useState('');\n  const visible = items.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));\n  return <main><label>Search <input value={query} onChange={event => setQuery(event.target.value)} /></label>\n    <Profiler id=\"lesson-list\" onRender={(id, phase, actualDuration) => console.log({ id, phase, actualDuration })}>\n      <ul>{visible.map(item => <li key={item.id}>{item.title}</li>)}</ul>\n    </Profiler>\n  </main>;\n}"
+    ],
     "questions": [
       {
         "question": "Чӣ хел мефаҳмем app воқеан performance problem дорад?",
@@ -1383,9 +1563,24 @@
     "id": "s31-31-spa-vs-mpa",
     "title": "31. SPA vs MPA",
     "chapter": "10. Routing",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Link ба /about пахш мешавад",
+      "Router route-ро интихоб мекунад",
+      "Қисми UI бе ҳуҷҷати нав иваз мешавад"
+    ],
+    "explanation": [
+      {
+        "title": "SPA ва гузариши пурраи саҳифа",
+        "text": "Дар SPA router метавонад URL ва қисмати UI-ро бе боркунии ҳуҷҷати нав иваз кунад. Дар MPA сервер барои ҳар гузариш ҳуҷҷати нав медиҳад. Ин аз сохтори сайт ва сервер вобаста аст, на танҳо library. Link-и React Router гузариши дохилиро идора мекунад; a одатан navigation-и браузер аст. Барои кушодани URL-и дохилӣ баъди F5 сервер низ бояд масири дурустро диҳад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Намунаро дар React бо react-router насбшуда иҷро кунед. Link ва пайванди a ҳар ду /about-ро нишон медиҳанд, вале Network фарқи document navigation-ро нишон медиҳад. F5-и /about-ро алоҳида санҷед. BrowserRouter-ро дубора нагузоред, агар template аллакай онро дорад."
+      }
+    ],
+    "code": [
+      "import { BrowserRouter, Link, Route, Routes } from 'react-router';\nexport default function App() {\n  return <BrowserRouter><nav><Link to=\"/\">Home</Link>{' '}<Link to=\"/about\">About via router</Link>{' '}<a href=\"/about\">About via browser</a></nav>\n    <Routes><Route path=\"/\" element={<h1>Home</h1>} /><Route path=\"/about\" element={<h1>About</h1>} /></Routes>\n  </BrowserRouter>;\n}"
+    ],
     "questions": [
       {
         "question": "SPA чист?",
@@ -1475,9 +1670,24 @@
     "id": "s33-33-dynamic-routing",
     "title": "33. Dynamic Routing",
     "chapter": "10. Routing",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "URL /products/2 кушода мешавад",
+      "useParams id-и сатри 2-ро медиҳад",
+      "ID санҷида шуда, маҳсулот ёфт мешавад"
+    ],
+    "explanation": [
+      {
+        "title": "Параметри URL воридот аст",
+        "text": "Route-и /products/:id қисми id-ро аз URL мегирад. useParams онро ҳамчун сатр ё undefined медиҳад; онро адади тайёр ё маълумоти боэътимод нагиред. ID-ро санҷида, ҳолати номаълумро нишон диҳед. Параметр танҳо интихобро муайян мекунад, на иҷозати дидани маълумоти шахсӣ; сервер authorization-ро алоҳида месанҷад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "/products/1 ва /products/2 ду номи гуногун диҳанд. /products/abc ва /products/99 паёми равшани нодуруст ё ёфтнашударо диҳанд, на crash. Додаҳои мисол маҳаллӣ ҳастанд; ин GET ба API нест."
+      }
+    ],
+    "code": [
+      "import { BrowserRouter, Link, Route, Routes, useParams } from 'react-router';\nconst products = [{ id: 1, name: 'Notebook' }, { id: 2, name: 'Pencil' }];\nfunction ProductPage() {\n  const { id } = useParams();\n  if (!id || !/^[1-9]\\d*$/.test(id)) return <p>Invalid product ID</p>;\n  const number = Number(id);\n  const product = Number.isSafeInteger(number) ? products.find(item => item.id === number) : undefined;\n  return product ? <h1>{product.name}</h1> : <p>Product not found</p>;\n}\nexport default function App() {\n  return <BrowserRouter><nav><Link to=\"/products/1\">Notebook</Link>{' '}<Link to=\"/products/2\">Pencil</Link></nav>\n    <Routes><Route path=\"/products/:id\" element={<ProductPage />} /><Route path=\"*\" element={<p>Select a product</p>} /></Routes>\n  </BrowserRouter>;\n}"
+    ],
     "questions": [
       {
         "question": "Route parameter чист?",
@@ -1675,9 +1885,24 @@
     "id": "s37-37-context-vs-state-management",
     "title": "37. Context vs State Management",
     "chapter": "11. Context API",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Provider theme ва setTheme медиҳад",
+      "Toolbar value-ро бо useContext мехонад",
+      "Пахш state-и provider-ро нав мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "Context роҳ аст, на тамоми идоракунӣ",
+        "text": "Context value-ро ба ҷузъҳои дохили provider медиҳад ва props-и миёнаро кам мекунад. Худи state метавонад дар useState ё reducer бошад; Context қоидаи навсозӣ, кеши сервер ё санҷиши иҷозатро худ намесозад. Ҳангоми тағйири value истеъмолкунандагон метавонанд нав шаванд. Агар state танҳо ба як ҷузъ лозим бошад, онро бе зарурат умумӣ накунед."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Theme-ро иваз кунед: ду истеъмолкунанда як қимат бинанд. useTheme берун аз provider бояд хатои равшан диҳад, на қимати сохтаи login. Барои modal-и танҳо як ҷузъ useState-и маҳаллӣ ҳанӯз роҳи содатар аст."
+      }
+    ],
+    "code": [
+      "import { createContext, useContext, useState } from 'react';\ntype ThemeValue = { theme: 'light' | 'dark'; toggle: () => void };\nconst ThemeContext = createContext<ThemeValue | null>(null);\nfunction useTheme() {\n  const value = useContext(ThemeContext);\n  if (!value) throw new Error('ThemeProvider is required');\n  return value;\n}\nfunction Toolbar() {\n  const { theme, toggle } = useTheme();\n  return <button onClick={toggle}>Theme: {theme}</button>;\n}\nfunction Preview() { return <p>Preview: {useTheme().theme}</p>; }\nexport default function App() {\n  const [theme, setTheme] = useState<'light' | 'dark'>('light');\n  return <ThemeContext.Provider value={{ theme, toggle: () => setTheme(value => value === 'light' ? 'dark' : 'light') }}>\n    <Toolbar /><Preview />\n  </ThemeContext.Provider>;\n}"
+    ],
     "questions": [
       {
         "question": "Чаро Context ва state management як чиз нестанд?",
@@ -1787,9 +2012,24 @@
     "id": "s39-39-zustand-architecture",
     "title": "39. Zustand Architecture",
     "chapter": "12. Zustand",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Counter селектори count-ро мехонад",
+      "Тугма increment-ро даъват мекунад",
+      "Store count-и нав медиҳад"
+    ],
+    "explanation": [
+      {
+        "title": "Zustand: интихоб ва амалҳои store",
+        "text": "Store-и умумӣ танҳо state-и воқеан муштаракро нигоҳ дорад. UI селектор истифода бурда, қисми лозимро мехонад; input-и як форма ҳатман store намехоҳад. Амалҳо қоидаи навсозиро дар як ҷой нигоҳ медоранд ва объекту массивро бе мутация иваз мекунанд. Store-и браузер далели иҷозати сервер ё обунаи пардохтшуда нест."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Бо Zustand-и насбшуда мисолро иҷро кунед. Ҳар ду Counter як count нишон диҳанд; пахши яке ҳар дуро нав кунад. Reset ба 0. Барои аз нав боркунии браузер ҳифз ҳоло илова нашудааст: нигоҳдории доимиро сохта эълон накунед."
+      }
+    ],
+    "code": [
+      "import { create } from 'zustand';\ntype CounterStore = { count: number; increment: () => void; reset: () => void };\nconst useCounterStore = create<CounterStore>(set => ({\n  count: 0,\n  increment: () => set(state => ({ count: state.count + 1 })),\n  reset: () => set({ count: 0 }),\n}));\nfunction Counter() {\n  const count = useCounterStore(state => state.count);\n  const increment = useCounterStore(state => state.increment);\n  return <button onClick={increment}>Shared count: {count}</button>;\n}\nexport default function App() {\n  const reset = useCounterStore(state => state.reset);\n  return <main><Counter /><Counter /><button onClick={reset}>Reset</button></main>;\n}"
+    ],
     "questions": [
       {
         "question": "Чӣ хел мефаҳмем state бояд дар Zustand бошад?",
@@ -2105,9 +2345,24 @@
     "id": "s45-45-local-global-server-url-state",
     "title": "45. Local / Global / Server / URL State",
     "chapter": "15. State Architecture",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Input query-ро дар URL менависад",
+      "Router query-и навро медиҳад",
+      "Note алоҳида дар useState мемонад"
+    ],
+    "explanation": [
+      {
+        "title": "Барои ҳар state соҳиби дуруст интихоб кунед",
+        "text": "Local state барои намуди як қисми UI аст, мисли note ё modal. State-и муштарак байни ҷузъҳои дур зиндагӣ мекунад. Маълумоти сервер манбаи берунии худ ва қоидаи тозашавӣ дорад; нусхаи онро ҳақиқати доимии браузер нагиред. URL state барои филтр ё саҳифаи пайвандшаванда аст. Мисоли зер танҳо local ва URL-ро воқеан месозад; маълумоти сервер ё store-и умумии сохта надорад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Query нависед: URL q-ро гирад. URL-ро нусха карда, F5 кунед: q бимонад, note-и маҳаллӣ reset шавад. Дар шарҳи худ theme-и умумӣ ва каталоги сервериро ба соҳибони мувофиқ таъин кунед, вале онҳоро дар ин мисол иҷрошуда нагӯед."
+      }
+    ],
+    "code": [
+      "import { useState } from 'react';\nimport { BrowserRouter, useSearchParams } from 'react-router';\nfunction SearchPage() {\n  const [params, setParams] = useSearchParams();\n  const [note, setNote] = useState('');\n  const query = params.get('q') ?? '';\n  function updateQuery(value: string) {\n    const next = new URLSearchParams(params);\n    if (value) next.set('q', value); else next.delete('q');\n    setParams(next);\n  }\n  return <main><label>Shareable search <input value={query} onChange={event => updateQuery(event.target.value)} /></label>\n    <label>Temporary note <input value={note} onChange={event => setNote(event.target.value)} /></label>\n    <p>Current query: {query}</p>\n  </main>;\n}\nexport default function App() { return <BrowserRouter><SearchPage /></BrowserRouter>; }"
+    ],
     "questions": [
       {
         "question": "Local State чист?",
@@ -2220,9 +2475,24 @@
     "id": "s46-46-архитектурная-задача",
     "title": "46. Архитектурная задача",
     "chapter": "15. State Architecture",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "Catalog onAdd-ро даъват мекунад",
+      "Parent массиви нав месозад",
+      "Cart ҳамон state-ро ҳамчун props мегирад"
+    ],
+    "explanation": [
+      {
+        "title": "Меъморӣ аз як рафтори воқеӣ оғоз мешавад",
+        "text": "Аввал амали корбар, дода ва соҳиби онро муайян кунед. Агар ду ҷузъи ҳамсоя як рӯйхатро мехонанд ё иваз мекунанд, state-ро ба parent-и наздик бардоред. Амалро ҳамчун callback диҳед; нусхаҳои мустақили як ҳақиқат насозед. Library-и умумӣ танҳо вақте лозим аст, ки мушкили воқеии мубодила ё қоидаи мураккаб вуҷуд дорад."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Add notebook-ро ду бор пахш кунед: як ID танҳо як бор ба рӯйхат дарояд. Remove танҳо ҳамон ID-ро гирад. Parent соҳиби yagona cart аст; Catalog ва Cart нусхаи дохилии рӯйхат надоранд. Ин намуна пардохт ё захираи серверӣ нест."
+      }
+    ],
+    "code": [
+      "import { useState } from 'react';\ntype Product = { id: number; name: string };\nconst notebook: Product = { id: 1, name: 'Notebook' };\nfunction Catalog({ onAdd }: { onAdd: (product: Product) => void }) {\n  return <button onClick={() => onAdd(notebook)}>Add notebook</button>;\n}\nfunction Cart({ items, onRemove }: { items: Product[]; onRemove: (id: number) => void }) {\n  return <ul>{items.map(item => <li key={item.id}>{item.name}<button onClick={() => onRemove(item.id)}>Remove</button></li>)}</ul>;\n}\nexport default function App() {\n  const [items, setItems] = useState<Product[]>([]);\n  function add(product: Product) { setItems(previous => previous.some(item => item.id === product.id) ? previous : [...previous, product]); }\n  function remove(id: number) { setItems(previous => previous.filter(item => item.id !== id)); }\n  return <main><Catalog onAdd={add} /><Cart items={items} onRemove={remove} /></main>;\n}"
+    ],
     "questions": [
       {
         "question": "`isModalOpen`-ро куҷо нигоҳ медорӣ ва барои чӣ?",
@@ -2401,9 +2671,24 @@
     "id": "s49-49-tanstack-query-vs-redux",
     "title": "49. TanStack Query vs Redux",
     "chapter": "16. TanStack Query / Server State",
-    "flow": [],
-    "explanation": [],
-    "code": [],
+    "flow": [
+      "useQuery fixture-ро бо key мехонад",
+      "Redux танҳо favorites-ро нигоҳ медорад",
+      "Пахш favorites-ро бе нусхаи query нав мекунад"
+    ],
+    "explanation": [
+      {
+        "title": "Кеши сервер ва state-и мизоҷро ҷудо кунед",
+        "text": "TanStack Query query-ро бо key, ҳолати loading/error ва қоидаи кеш идора мекунад. Redux метавонад раванди муштараки state-и мизоҷро идора кунад; маҷбур нестед ҳар query-ро ба Redux нусха кунед. RTK Query низ барои додаҳои сервер асбоб медиҳад: интихоб аз ниёзи барнома вобаста аст. Мисоли зер кешро бо fixture-и маҳаллӣ нишон медиҳад, на сервери воқеӣ ё иҷозати дастрасӣ."
+      },
+      {
+        "title": "Мисолро иҷро ва санҷед",
+        "text": "Намуна @tanstack/react-query, @reduxjs/toolkit ва react-redux мехоҳад. Рӯйхатро баъди loading бинед ва Favorite-ро пахш кунед: интихоб иваз шавад. Query data ба slice нусха намешавад. Барои API-и воқеӣ queryFn-ро танҳо бо endpoint-и маълум ва санҷида иваз кунед; fixture-ро backend-и воқеӣ нагӯед."
+      }
+    ],
+    "code": [
+      "import { configureStore, createSlice, type PayloadAction } from '@reduxjs/toolkit';\nimport { Provider, useDispatch, useSelector } from 'react-redux';\nimport { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';\nconst favorites = createSlice({\n  name: 'favorites', initialState: [] as number[],\n  reducers: { toggle(state, action: PayloadAction<number>) {\n    const id = action.payload;\n    return state.includes(id) ? state.filter(value => value !== id) : [...state, id];\n  } },\n});\nconst store = configureStore({ reducer: { favorites: favorites.reducer } });\ntype RootState = ReturnType<typeof store.getState>;\nconst queryClient = new QueryClient();\nconst demoProducts = [{ id: 1, name: 'Notebook' }, { id: 2, name: 'Pencil' }];\nfunction Products() {\n  const { data, isPending, error } = useQuery({ queryKey: ['demo-products'], queryFn: async () => demoProducts });\n  const selected = useSelector((state: RootState) => state.favorites);\n  const dispatch = useDispatch();\n  if (isPending) return <p>Loading local example...</p>;\n  if (error) return <p role=\"alert\">Example could not load</p>;\n  return <ul>{data.map(product => <li key={product.id}>{product.name}\n    <button aria-pressed={selected.includes(product.id)} onClick={() => dispatch(favorites.actions.toggle(product.id))}>Favorite</button>\n  </li>)}</ul>;\n}\nexport default function App() {\n  return <Provider store={store}><QueryClientProvider client={queryClient}><Products /></QueryClientProvider></Provider>;\n}"
+    ],
     "questions": [
       {
         "question": "Чаро TanStack Query ва Redux проблемаи гуногун ҳал мекунанд?",

@@ -12,10 +12,13 @@ import { useAppStore } from '@/stores/app-store';
 
 vi.mock('@/components/account/account-provider', () => ({ useAccount: () => ({ user: null }) }));
 vi.mock('@/lib/supabase/client', () => ({ getSupabaseBrowserClient: () => null }));
+vi.mock('@/components/learning/code-editor', () => ({ CodeEditor: ({label,value,onChange}:{label:string;value:string;onChange:(value:string)=>void}) => <textarea aria-label={label} value={value} onChange={event=>onChange(event.target.value)}/> }));
 vi.mock('@/components/learning/study-session', () => ({ StudySession: () => <div data-testid="study-session" /> }));
 vi.mock('@/components/learning/session-hub', () => ({ SessionHub: () => <div data-testid="session-hub" /> }));
 
 const locales = [
+  { locale:'ja',heading:'テストと面接対策',tests:'テスト',interview:'面接対策',answers:'解説と面接対策',code:'あなたのコード',preview:'HTML + CSSをプレビュー',result:'HTML + CSSの実行結果',send:'送信',close:'チューターを閉じる',question:'チューターへの質問',login:'ログイン・登録',loadError:'コースを読み込めませんでした。',retry:'再試行',aiError:'AIへの質問にはGoogleまたはメールでログインしてください。'},
+  { locale:'ko',heading:'테스트와 면접 준비',tests:'테스트',interview:'면접 준비',answers:'해설과 면접 준비',code:'내 코드',preview:'HTML + CSS 미리 보기',result:'HTML + CSS 실행 결과',send:'보내기',close:'튜터 닫기',question:'튜터에게 질문',login:'로그인 / 가입',loadError:'강좌를 불러오지 못했습니다.',retry:'다시 시도',aiError:'AI에 질문하려면 Google 또는 이메일로 로그인하세요.'},
   { locale: 'ru', heading: 'Тесты и интервью', tests: 'Тесты', interview: 'Интервью', answers: 'Ответы и интервью',
     code: 'Ваш код', preview: 'Показать HTML + CSS', result: 'Результат вашего HTML + CSS',
     send: 'Отправить', close: 'Закрыть Tutor', question: 'Вопрос к Tutor', login: 'Вход / регистрация',
@@ -36,7 +39,7 @@ const locales = [
 const text = (ru: string) => ({ ru, tg: 'Тоҷикӣ: ' + ru, en: 'English: ' + ru });
 const content: CourseContent = {
   courseId: 'html', sources: [{ id: 'source-1', title: 'Source', url: 'https://example.com/course' }], files: [],
-  lessons: [{ id: 'lesson-1', day: 0, title: text('Русский урок'), summary: text('Описание урока'), level: 'beginner', sourceIds: ['source-1'],
+  lessons: [{ id: 'lesson-1', day: 1, title: text('Русский урок'), summary: text('Описание урока'), level: 'beginner', sourceIds: ['source-1'],
     sections: [{ title: text('Объяснение'), body: text('Авторский текст') }],
     questions: [{ id: 'question-1', question: text('Вопрос курса'), answer: text('Ответ курса'), options: [text('Да'), text('Нет')], correctIndex: 0 }],
     practice: { task: text('Русское задание'), hint: text('Подсказка курса'), solution: '<h1>Hello</h1>', criteria: [text('Заголовок виден')] } }],
@@ -65,12 +68,14 @@ describe.each(locales)('$locale learning interface', labels => {
   });
 
   it('localizes practice controls while preserving authored material and saved code', () => {
-    render(<CourseWorkspace courseId="html" section="practice" initialContent={content} day={0} />);
+    render(<CourseWorkspace courseId="html" section="practice" initialContent={content} day={1} />);
     expect(screen.getByRole('heading', { name: 'Русский урок' })).toBeVisible();
     expect(screen.getByText('Русское задание')).toBeVisible();
     fireEvent.change(screen.getByLabelText(labels.code), { target: { value: '<h1>Saved work</h1>' } });
     fireEvent.click(screen.getByRole('button', { name: labels.preview }));
-    expect(screen.getByTitle(labels.result)).toHaveAttribute('srcdoc', '<h1>Saved work</h1>');
+    const preview = screen.getByTitle(labels.result).getAttribute('srcdoc');
+    expect(preview).toContain('<h1>Saved work</h1>');
+    expect(preview).toContain("connect-src 'none'");
     expect(screen.getByTitle(labels.result)).toHaveAttribute('sandbox', '');
     expect(useLearningStore.getState().courses.html?.drafts['lesson-1']).toBe('<h1>Saved work</h1>');
     expect(useLearningStore.getState().contentLanguage).toBe('ru');
@@ -79,7 +84,7 @@ describe.each(locales)('$locale learning interface', labels => {
   it('localizes course loading failures and successfully retries', async () => {
     const fetcher = vi.fn().mockRejectedValueOnce(new TypeError('offline')).mockResolvedValueOnce({ ok: true, json: async () => content });
     vi.stubGlobal('fetch', fetcher);
-    render(<CourseWorkspace courseId="html" section="practice" day={0} />);
+    render(<CourseWorkspace courseId="html" section="practice" day={1} />);
     expect(await screen.findByRole('alert')).toHaveTextContent(labels.loadError);
     fireEvent.click(screen.getByRole('button', { name: labels.retry }));
     await screen.findByLabelText(labels.code);
@@ -109,7 +114,7 @@ describe.each(locales)('$locale learning interface', labels => {
   it('uses the interface language for a lesson Tutor button and keeps its Tajik question context', () => {
     useLearningStore.setState({ contentLanguage: 'tg' });
     const question = ALL_QUESTIONS[0];
-    const deepLabels = { ru: 'Объясни подробнее', en: 'Explain more', tg: 'Чуқур фаҳмон', uk: 'Поясни докладніше' };
+    const deepLabels = { ru: 'Объясни подробнее', en: 'Explain more', tg: 'Чуқур фаҳмон', uk: 'Поясни докладніше', ja:'詳しく説明して', ko:'더 자세히 설명해 주세요' };
     render(<QuestionAnswer question={question} />);
     expect(screen.getByText(question.answer)).toBeVisible();
     const button = screen.getByRole('button', { name: deepLabels[labels.locale] });
@@ -120,7 +125,7 @@ describe.each(locales)('$locale learning interface', labels => {
 });
 
 it('reacts to interface locale changes without discarding the practice draft or changing content', () => {
-  render(<CourseWorkspace courseId="html" section="practice" initialContent={content} day={0} />);
+  render(<CourseWorkspace courseId="html" section="practice" initialContent={content} day={1} />);
   fireEvent.change(screen.getByLabelText('Ваш код'), { target: { value: '<h1>Keep me</h1>' } });
   act(() => useLearningStore.getState().setPreferences({ language: 'uk' }));
   expect(screen.getByRole('button', { name: 'Показати HTML + CSS' })).toBeVisible();
@@ -133,18 +138,18 @@ it('clearly identifies Russian fallback for an untranslated English lesson in a 
   useLearningStore.setState({ language: 'uk', contentLanguage: 'en' });
   const untranslated = structuredClone(content);
   delete untranslated.lessons[0].title.en;
-  render(<CourseWorkspace courseId="html" section="home" initialContent={untranslated} day={0} />);
+  render(<CourseWorkspace courseId="html" section="home" initialContent={untranslated} day={1} />);
   expect(screen.getByRole('heading', { name: 'Русский урок' })).toBeVisible();
   expect(screen.getByRole('note')).toHaveTextContent('Деякі матеріали не перекладені обраною мовою навчання та показані російською.');
   expect(useLearningStore.getState().contentLanguage).toBe('en');
 });
 
-it('keeps the existing Russian-only preparation text and identifies its language', () => {
-  useLearningStore.setState({ language: 'en', contentLanguage: 'tg', selectedCourse: 'css' });
-  render(<CourseWorkspace courseId="css" section="home" initialContent={{ ...content, courseId: 'css' }} day={0} />);
-  expect(screen.getByRole('heading', { name: 'Введение в CSS' })).toHaveAttribute('lang', 'ru');
-  expect(screen.getByRole('note')).toHaveTextContent('The preparation material is currently available only in Russian.');
-  expect(screen.getByRole('link', { name: 'Go to day 1' })).toHaveAttribute('href', '/courses/css/home?day=1');
+it('opens the localized first day instead of a separate day-zero preparation', () => {
+  useLearningStore.setState({ language:'en',contentLanguage:'tg',selectedCourse:'css' });
+  render(<CourseWorkspace courseId="css" section="home" initialContent={{...content,courseId:'css'}} day={1}/>);
+  expect(screen.getByRole('heading',{name:'Тоҷикӣ: Русский урок'})).toBeVisible();
+  expect(screen.queryByRole('heading',{name:'Введение в CSS'})).not.toBeInTheDocument();
+  expect(screen.getByRole('link',{name:'Day 1'})).toHaveAttribute('href','/courses/css/home?day=1');
 });
 
 it('updates Tutor chrome and prior errors when locale changes, preserving successful replies and history', async () => {

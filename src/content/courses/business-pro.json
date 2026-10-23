@@ -1,0 +1,354 @@
+{
+  "courseId": "business-pro",
+  "sources": [
+    {
+      "id": "business-pro-reference",
+      "title": "U.S. Small Business Administration — Plan your business",
+      "url": "https://www.sba.gov/business-guide/plan-your-business"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "business-pro-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: бизнес-гипотеза и честное предложение",
+        "tg": "Рӯзи 1: тахмини тиҷорат ва пешниҳоди рост",
+        "en": "Day 1: a business hypothesis and an honest offer"
+      },
+      "summary": {
+        "ru": "Начните трёхдневный прикладной кейс Pro для вымышленной услуги: клиент, проблема, предложение и проверка спроса без реальной оплаты. Это практикум, а не MBA, инвестиционная или юридическая консультация.",
+        "tg": "Кейси амалии серӯзаи Pro-ро барои хидмати сохта оғоз кунед: муштарӣ, мушкил, пешниҳод ва санҷиши талабот бе пардохти воқеӣ. Ин машқ аст, на MBA ё машварати сармоягузорӣ ва ҳуқуқӣ.",
+        "en": "Begin a three-day applied Pro case for a fictional service: customer, problem, offer and a demand check without real payments. This is a practicum, not an MBA, investment or legal advice."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "business-pro-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Кейс: небольшие кружки хотят поддерживать единое актуальное расписание. Предлагается ручная подготовка карточки расписания за учебные 20 единиц в неделю. Пока неизвестны спрос, стоимость труда и частота правок. Формулируйте проверяемую гипотезу и альтернативное объяснение. Нельзя выдавать вымышленное портфолио, отзывы, дефицит мест или гарантии результата за реальные. Для учебного задания не запускайте продажу и не собирайте данные клиентов.",
+            "tg": "Кейс: маҳфилҳои хурд ҷадвали ягонаи нав мехоҳанд. Омодасозии дастии корти ҷадвал ба 20 воҳиди омӯзишӣ дар ҳафта пешниҳод мешавад. Талабот, арзиши меҳнат ва басомади ислоҳ номаълуманд. Тахмини санҷишшаванда ва шарҳи дигар созед. Портфел, тақриз, камбуди ҷой ё кафолати сохтаро воқеӣ нишон надиҳед. Барои машқ фурӯш ё ҷамъоварии додаи муштарӣ накунед.",
+            "en": "Case: small clubs need one up-to-date timetable. A manual timetable-card service is proposed at 20 practice units per week. Demand, labor cost and revision frequency are unknown. Define a testable hypothesis and an alternative explanation. Never present fictional portfolios, reviews, scarcity or guarantees as real. Do not launch sales or collect customer information for this exercise."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Гипотеза: организатор, еженедельно исправляющий три копии расписания, предпочтет один согласованный файл. Предложение: «Подготовим одну карточку по вашему обезличенному шаблону; один раунд правок входит в учебную цену 20». Ограничение: проверка времени остаётся за организатором. Проверка спроса: сценарный разговор о прошлой работе и необязывающая оценка предложения; согласие в разговоре не считается оплаченной продажей.\n\nВопросы: «Как прошло последнее обновление расписания?», «Где возникли исправления или повторы?», «Чем вы пользовались вместо единого файла?». Неизвестны готовность платить и стоимость правок. Альтернативное объяснение интереса: собеседник просто вежлив. Ни контактных данных, ни денег не запрашиваем.",
+            "tg": "Тахмин: ташкилкунандае, ки ҳар ҳафта се нусхаро ислоҳ мекунад, як файли мувофиқро афзал медонад. Пешниҳод: «Як корт аз қолаби беном омода мекунем; як даври ислоҳ ба нархи омӯзишии 20 дохил аст». Маҳдудият: тасдиқи вақт ба ташкилкунанда мемонад. Санҷиш: суҳбат дар бораи кори гузашта ва арзёбии беуҳдадорӣ; розигии гуфторӣ фурӯши пардохтшуда нест.\n\nСаволҳо: «Навсозии охирини ҷадвал чӣ гуна гузашт?», «Ислоҳ ё такрор дар куҷо шуд?», «Ба ҷойи файли ягона чӣ истифода бурдед?». Омодагӣ ба пардохт ва арзиши ислоҳ номаълуманд. Шарҳи дигари шавқ: ҳамсуҳбат танҳо боадаб аст. Тамос ё пул намепурсем.",
+            "en": "Hypothesis: an organizer updating three timetable copies weekly would prefer one consistent file. Offer: “We prepare one card from an anonymized template; one revision round is included in the practice price of 20.” Limit: the organizer remains responsible for verifying times. Demand check: discuss past work and a nonbinding offer response; verbal interest is not a paid sale.\n\nQuestions: “How did the last timetable update go?”, “Where did corrections or duplication arise?”, “What did you use instead of one file?”. Willingness to pay and revision cost remain unknown. Alternative explanation: the person is being polite. Ask for neither contacts nor money."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "business-pro-day-01-q01",
+          "question": {
+            "ru": "Что подтверждает необязывающий интерес в разговоре?",
+            "tg": "Шавқи беуҳдадорӣ дар суҳбат чиро исбот мекунад?",
+            "en": "What does nonbinding interest in a conversation establish?"
+          },
+          "answer": {
+            "ru": "Только сигнал для дальнейшей проверки, не продажу.",
+            "tg": "Танҳо аломат барои санҷиши дигар, на фурӯш.",
+            "en": "Only a signal for further investigation, not a sale."
+          },
+          "options": [
+            {
+              "ru": "Гарантированный поток оплаченных заказов.",
+              "tg": "Ҷараёни кафолатноки фармоиши пардохтшуда.",
+              "en": "A guaranteed stream of paid orders."
+            },
+            {
+              "ru": "Только сигнал для дальнейшей проверки, не продажу.",
+              "tg": "Танҳо аломат барои санҷиши дигар, на фурӯш.",
+              "en": "Only a signal for further investigation, not a sale."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Составьте карточку кейса: клиент, задача, текущая альтернатива и предложение.\n2. Запишите две неизвестные предпосылки и альтернативное объяснение интереса.\n3. Напишите прозрачное предложение с ценой, объёмом и ограничением.\n4. Подготовьте три нейтральных вопроса о прошлом опыте; не просите оплату или реальные контакты.",
+          "tg": "1. Корти кейс созед: муштарӣ, вазифа, роҳи ҳозира ва пешниҳод.\n2. Ду шарти номаълум ва шарҳи дигари шавқро нависед.\n3. Пешниҳоди равшан бо нарх, ҳаҷм ва маҳдудият созед.\n4. Се саволи бетарафи таҷрибаи гузашта омода кунед; пардохт ё тамоси воқеӣ напурсед.",
+          "en": "1. Create a case card: customer, task, current alternative and offer.\n2. State two unknown assumptions and an alternative explanation of interest.\n3. Write a transparent offer including price, scope and a limitation.\n4. Prepare three neutral questions about past behavior; request no payments or actual contacts."
+        },
+        "hint": {
+          "ru": "Спросите о последнем изменении расписания, а не «вам ведь нужна наша услуга?».",
+          "tg": "Дар бораи тағйири охирини ҷадвал пурсед, на «хидмати мо ба шумо лозим аст, дуруст?».",
+          "en": "Ask about the last timetable update, not “you need our service, right?”."
+        },
+        "solution": "Гипотеза: организатор, еженедельно исправляющий три копии расписания, предпочтет один согласованный файл. Предложение: «Подготовим одну карточку по вашему обезличенному шаблону; один раунд правок входит в учебную цену 20». Ограничение: проверка времени остаётся за организатором. Проверка спроса: сценарный разговор о прошлой работе и необязывающая оценка предложения; согласие в разговоре не считается оплаченной продажей.\n\nВопросы: «Как прошло последнее обновление расписания?», «Где возникли исправления или повторы?», «Чем вы пользовались вместо единого файла?». Неизвестны готовность платить и стоимость правок. Альтернативное объяснение интереса: собеседник просто вежлив. Ни контактных данных, ни денег не запрашиваем.",
+        "referenceAnswer": {
+          "ru": "Гипотеза: организатор, еженедельно исправляющий три копии расписания, предпочтет один согласованный файл. Предложение: «Подготовим одну карточку по вашему обезличенному шаблону; один раунд правок входит в учебную цену 20». Ограничение: проверка времени остаётся за организатором. Проверка спроса: сценарный разговор о прошлой работе и необязывающая оценка предложения; согласие в разговоре не считается оплаченной продажей.\n\nВопросы: «Как прошло последнее обновление расписания?», «Где возникли исправления или повторы?», «Чем вы пользовались вместо единого файла?». Неизвестны готовность платить и стоимость правок. Альтернативное объяснение интереса: собеседник просто вежлив. Ни контактных данных, ни денег не запрашиваем.",
+          "tg": "Тахмин: ташкилкунандае, ки ҳар ҳафта се нусхаро ислоҳ мекунад, як файли мувофиқро афзал медонад. Пешниҳод: «Як корт аз қолаби беном омода мекунем; як даври ислоҳ ба нархи омӯзишии 20 дохил аст». Маҳдудият: тасдиқи вақт ба ташкилкунанда мемонад. Санҷиш: суҳбат дар бораи кори гузашта ва арзёбии беуҳдадорӣ; розигии гуфторӣ фурӯши пардохтшуда нест.\n\nСаволҳо: «Навсозии охирини ҷадвал чӣ гуна гузашт?», «Ислоҳ ё такрор дар куҷо шуд?», «Ба ҷойи файли ягона чӣ истифода бурдед?». Омодагӣ ба пардохт ва арзиши ислоҳ номаълуманд. Шарҳи дигари шавқ: ҳамсуҳбат танҳо боадаб аст. Тамос ё пул намепурсем.",
+          "en": "Hypothesis: an organizer updating three timetable copies weekly would prefer one consistent file. Offer: “We prepare one card from an anonymized template; one revision round is included in the practice price of 20.” Limit: the organizer remains responsible for verifying times. Demand check: discuss past work and a nonbinding offer response; verbal interest is not a paid sale.\n\nQuestions: “How did the last timetable update go?”, “Where did corrections or duplication arise?”, “What did you use instead of one file?”. Willingness to pay and revision cost remain unknown. Alternative explanation: the person is being polite. Ask for neither contacts nor money."
+        },
+        "criteria": [
+          {
+            "ru": "Задача, альтернатива и две неизвестные предпосылки названы.",
+            "tg": "Вазифа, роҳи дигар ва ду шарти номаълум гуфта шудаанд.",
+            "en": "Task, alternative and two unknown assumptions are stated."
+          },
+          {
+            "ru": "Цена и объём прозрачны без ложных обещаний.",
+            "tg": "Нарх ва ҳаҷм бе ваъдаи бардурӯғ равшананд.",
+            "en": "Price and scope are transparent without false promises."
+          },
+          {
+            "ru": "Три вопроса нейтральны, реальные деньги и контакты не собираются.",
+            "tg": "Се савол бетарафанд; пул ва тамоси воқеӣ ҷамъ намешаванд.",
+            "en": "Three questions are neutral; no real money or contacts are collected."
+          }
+        ]
+      }
+    },
+    {
+      "id": "business-pro-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: экономика заказа и чувствительность",
+        "tg": "Рӯзи 2: иқтисоди фармоиш ва ҳассосият",
+        "en": "Day 2: unit economics and sensitivity"
+      },
+      "summary": {
+        "ru": "Продолжите кейс расчётом вклада одного заказа и точки покрытия учебных фиксированных затрат. Проверьте чувствительность к стоимости труда; не называйте модель точным прогнозом прибыли.",
+        "tg": "Кейсро бо ҳисоби саҳми фармоиш ва пӯшиши хароҷоти доимии омӯзишӣ идома диҳед. Таъсири арзиши меҳнатро санҷед; моделро пешгӯии дақиқи фоида нагӯед.",
+        "en": "Continue the case by calculating contribution per order and coverage of practice fixed costs. Test sensitivity to labor cost; do not call the model an exact profit forecast."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "business-pro-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Вклад заказа = цена минус переменные затраты. Включите труд, если он растёт с заказами, иначе работа выглядит искусственно бесплатной. При положительном вкладе число заказов для покрытия фиксированных затрат = затраты / вклад, округлённое вверх. Отрицательный или нулевой вклад нельзя исправить просто большим объёмом. Реальная модель дополнительно учитывает налоги, возвраты, комиссии, сроки оплаты и спрос.",
+            "tg": "Саҳми фармоиш нарх минус хароҷоти тағйирёбанда аст. Агар меҳнат бо фармоиш зиёд шавад, онро дохил кунед, вагарна кор сохта ройгон менамояд. Бо саҳми мусбат шумораи пӯшиш = хароҷоти доимӣ / саҳм, ба боло гирд карда мешавад. Саҳми сифр ё манфиро танҳо ҳаҷми зиёд ислоҳ намекунад. Модели воқеӣ андоз, баргардонӣ, ҳаққи хизмат, муҳлати пардохт ва талаботро ҳам мегирад.",
+            "en": "Contribution per order equals price minus variable costs. Include labor that scales with orders so work does not appear artificially free. With positive contribution, orders needed to cover fixed costs = fixed costs / contribution, rounded up. Zero or negative contribution cannot be fixed by volume alone. Real models also need taxes, refunds, fees, payment timing and demand."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Учебная цена 20. На заказ: труд 8, материалы 2, комиссия 1; вклад = 20 − 11 = 9. Фиксированные затраты за период 90; покрытие при 10 заказах. Если труд вырастет до 11, переменные затраты 14, вклад 6 и нужно 15 заказов. Если труд 18, вклад −1: каждый заказ ухудшает модель. Всё в условных единицах; реальный спрос не доказан.\n\nОграничения: в расчёте нет налогов, возвратов и стоимости привлечения клиента. Следующее решение: проверить фактическое время изготовления на обезличенном учебном заказе, прежде чем выбирать цену и обещать срок. При отрицательном вкладе пересмотреть объём, процесс или цену, а не просто наращивать продажи.",
+            "tg": "Нархи омӯзишӣ 20. Барои фармоиш: меҳнат 8, мавод 2, ҳаққи хизмат 1; саҳм = 20 − 11 = 9. Хароҷоти доимии давра 90; бо 10 фармоиш пӯшида мешавад. Агар меҳнат 11 шавад, тағйирёбанда 14, саҳм 6 ва 15 фармоиш лозим. Агар меҳнат 18 бошад, саҳм −1: ҳар фармоиш моделро бад мекунад. Ҳама воҳидҳо шартӣ; талаботи воқеӣ исбот нашудааст.\n\nМаҳдудиятҳо: андоз, баргардонӣ ва арзиши ҷалби муштарӣ дохил нестанд. Қарори дигар: пеш аз нарху муҳлат вақти воқеии тайёриро дар фармоиши беноми омӯзишӣ санҷидан. Бо саҳми манфӣ ҳаҷм, раванд ё нархро бозбинӣ кунед, на танҳо фурӯшро зиёд.",
+            "en": "Practice price 20. Per order: labor 8, materials 2, fee 1; contribution = 20 − 11 = 9. Fixed costs for the period are 90, covered at 10 orders. If labor rises to 11, variable costs become 14, contribution 6, and 15 orders are needed. At labor 18, contribution is −1: each order worsens the model. All units are fictional; actual demand is unproven.\n\nLimitations: taxes, refunds and customer-acquisition costs are omitted. Next decision: measure actual production time on an anonymized practice order before setting price and promising deadlines. With negative contribution, revisit scope, process or price rather than simply increasing sales."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "business-pro-day-02-q01",
+          "question": {
+            "ru": "При вкладе 6 и фиксированных затратах 90 сколько заказов нужно для покрытия?",
+            "tg": "Бо саҳми 6 ва хароҷоти доимии 90 чанд фармоиш барои пӯшиш лозим?",
+            "en": "At contribution 6 and fixed costs 90, how many orders cover the costs?"
+          },
+          "answer": {
+            "ru": "15",
+            "tg": "15",
+            "en": "15"
+          },
+          "options": [
+            {
+              "ru": "6",
+              "tg": "6",
+              "en": "6"
+            },
+            {
+              "ru": "10",
+              "tg": "10",
+              "en": "10"
+            },
+            {
+              "ru": "15",
+              "tg": "15",
+              "en": "15"
+            }
+          ],
+          "correctIndex": 2
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Составьте таблицу цены и трёх переменных затрат из примера.\n2. Посчитайте вклад и объём покрытия для труда 8 и 11.\n3. Проверьте труд 18 и объясните, почему увеличение продаж не помогает.\n4. Назовите три отсутствующих фактора и решение, которое нужно проверить перед реальным запуском.",
+          "tg": "1. Ҷадвали нарх ва се хароҷоти тағйирёбандаи мисолро созед.\n2. Саҳм ва шумораи пӯшишро барои меҳнати 8 ва 11 ҳисоб кунед.\n3. Меҳнати 18-ро санҷида, чаро фурӯши зиёд ёрӣ намедиҳад, фаҳмонед.\n4. Се омили набуда ва қарори пеш аз оғози воқеӣ санҷиданиро гӯед.",
+          "en": "1. Tabulate the example price and three variable costs.\n2. Calculate contribution and coverage volume for labor 8 and 11.\n3. Check labor 18 and explain why more sales do not help.\n4. Name three omitted factors and a decision to test before a real launch."
+        },
+        "hint": {
+          "ru": "Не делите на отрицательный вклад как на нормальную точку покрытия: сначала исправьте экономику заказа.",
+          "tg": "Саҳми манфиро нуқтаи одии пӯшиш нагиред: аввал иқтисоди фармоишро ислоҳ кунед.",
+          "en": "Do not treat division by negative contribution as normal break-even: fix unit economics first."
+        },
+        "solution": "Учебная цена 20. На заказ: труд 8, материалы 2, комиссия 1; вклад = 20 − 11 = 9. Фиксированные затраты за период 90; покрытие при 10 заказах. Если труд вырастет до 11, переменные затраты 14, вклад 6 и нужно 15 заказов. Если труд 18, вклад −1: каждый заказ ухудшает модель. Всё в условных единицах; реальный спрос не доказан.\n\nОграничения: в расчёте нет налогов, возвратов и стоимости привлечения клиента. Следующее решение: проверить фактическое время изготовления на обезличенном учебном заказе, прежде чем выбирать цену и обещать срок. При отрицательном вкладе пересмотреть объём, процесс или цену, а не просто наращивать продажи.",
+        "referenceAnswer": {
+          "ru": "Учебная цена 20. На заказ: труд 8, материалы 2, комиссия 1; вклад = 20 − 11 = 9. Фиксированные затраты за период 90; покрытие при 10 заказах. Если труд вырастет до 11, переменные затраты 14, вклад 6 и нужно 15 заказов. Если труд 18, вклад −1: каждый заказ ухудшает модель. Всё в условных единицах; реальный спрос не доказан.\n\nОграничения: в расчёте нет налогов, возвратов и стоимости привлечения клиента. Следующее решение: проверить фактическое время изготовления на обезличенном учебном заказе, прежде чем выбирать цену и обещать срок. При отрицательном вкладе пересмотреть объём, процесс или цену, а не просто наращивать продажи.",
+          "tg": "Нархи омӯзишӣ 20. Барои фармоиш: меҳнат 8, мавод 2, ҳаққи хизмат 1; саҳм = 20 − 11 = 9. Хароҷоти доимии давра 90; бо 10 фармоиш пӯшида мешавад. Агар меҳнат 11 шавад, тағйирёбанда 14, саҳм 6 ва 15 фармоиш лозим. Агар меҳнат 18 бошад, саҳм −1: ҳар фармоиш моделро бад мекунад. Ҳама воҳидҳо шартӣ; талаботи воқеӣ исбот нашудааст.\n\nМаҳдудиятҳо: андоз, баргардонӣ ва арзиши ҷалби муштарӣ дохил нестанд. Қарори дигар: пеш аз нарху муҳлат вақти воқеии тайёриро дар фармоиши беноми омӯзишӣ санҷидан. Бо саҳми манфӣ ҳаҷм, раванд ё нархро бозбинӣ кунед, на танҳо фурӯшро зиёд.",
+          "en": "Practice price 20. Per order: labor 8, materials 2, fee 1; contribution = 20 − 11 = 9. Fixed costs for the period are 90, covered at 10 orders. If labor rises to 11, variable costs become 14, contribution 6, and 15 orders are needed. At labor 18, contribution is −1: each order worsens the model. All units are fictional; actual demand is unproven.\n\nLimitations: taxes, refunds and customer-acquisition costs are omitted. Next decision: measure actual production time on an anonymized practice order before setting price and promising deadlines. With negative contribution, revisit scope, process or price rather than simply increasing sales."
+        },
+        "criteria": [
+          {
+            "ru": "Вклад 9 и 6, объём покрытия 10 и 15 рассчитаны верно.",
+            "tg": "Саҳмҳои 9 ва 6, шумораҳои пӯшиши 10 ва 15 дурустанд.",
+            "en": "Contributions 9 and 6 and coverage volumes 10 and 15 are correct."
+          },
+          {
+            "ru": "Отрицательный вклад −1 объяснён без обещания роста прибыли.",
+            "tg": "Саҳми манфии −1 бе ваъдаи афзоиши фоида шарҳ ёфтааст.",
+            "en": "Negative contribution −1 is explained without profit-growth promises."
+          },
+          {
+            "ru": "Три ограничения и следующее проверяемое решение указаны.",
+            "tg": "Се маҳдудият ва қарори санҷишшавандаи дигар ҳастанд.",
+            "en": "Three limitations and a next testable decision are stated."
+          }
+        ]
+      }
+    },
+    {
+      "id": "business-pro-day-03",
+      "day": 3,
+      "prerequisiteDays": [
+        2
+      ],
+      "title": {
+        "ru": "День 3: эксперимент и решение без манипуляций",
+        "tg": "Рӯзи 3: озмоиш ва қарор бе фиреб",
+        "en": "Day 3: an experiment and a non-manipulative decision"
+      },
+      "summary": {
+        "ru": "Завершите кейс планом честного сравнения двух сообщений. Посчитайте учебные конверсии, определите защитную метрику и примите ограниченное решение, не заявляя статистическую победу без анализа.",
+        "tg": "Кейсро бо нақшаи муқоисаи одилонаи ду паём тамом кунед. Табдилҳои омӯзиширо ҳисоб карда, ченаки муҳофизатӣ ва қарори маҳдуд созед; бе таҳлил ғалабаи оморӣ нагӯед.",
+        "en": "Complete the case with a fair comparison of two messages. Calculate practice conversion rates, define a guardrail and make a limited decision without claiming statistical victory without analysis."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "business-pro-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "До эксперимента выберите одну главную метрику и условие остановки при вреде. Изменяйте один существенный элемент, сохраняя сопоставимые аудитории и периоды. Укажите число наблюдений и не останавливайте тест только при первом удобном результате. Нельзя использовать ложный таймер, скрытую плату, фальшивые отзывы или согласие по умолчанию. Персональные данные и реальные платежи в учебном эксперименте не собираются.",
+            "tg": "Пеш аз озмоиш як ченаки асосӣ ва шарти қатъ ҳангоми зарарро интихоб кунед. Як унсури муҳимро бо аудитория ва давраи монанд иваз кунед. Шумораи мушоҳидаро гӯед ва бо аввалин натиҷаи қулай қатъ накунед. Таймери бардурӯғ, ҳаққи пинҳон, тақризи сохта ё розигии пешакӣ манъ аст. Дар озмоиши омӯзишӣ додаи шахсӣ ва пардохти воқеӣ ҷамъ намешавад.",
+            "en": "Before testing, choose one primary metric and a harm-related stopping rule. Change one important element while keeping audiences and periods comparable. Report observation counts and do not stop at the first convenient result. Avoid fake timers, hidden fees, fabricated reviews or default consent. Collect no personal information or real payments in this practice experiment."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Учебные данные: сообщение A — 100 посещений, 12 необязывающих откликов; B — 100 посещений, 15 откликов. Доли 12% и 15%, разница 3 процентных пункта, относительное изменение 25%. Это не доказательство надёжного преимущества на малой выборке. Главная метрика — доля понятных откликов; защитная — жалобы на непонятную цену. Решение: уточнить предложение и запланировать более полную проверку, не объявлять рост продаж.\n\nРазница сообщений: A говорит «Карточка расписания», B уточняет «Единый файл и один раунд правок за 20»; цена и условия одинаковы. Проверка должна идти в сопоставимый заранее выбранный период с заданным объёмом, а не до удобного числа. Правило защиты: при жалобе на скрытую цену или непонятное согласие остановить показ и исправить сообщение. Реальных экспериментов не проводили.",
+            "tg": "Додаҳои омӯзишӣ: A — 100 меҳмон, 12 посухи беуҳдадорӣ; B — 100 меҳмон, 15 посух. Ҳиссаҳо 12% ва 15%, фарқ 3 банди фоизӣ, тағйири нисбӣ 25%. Намунаи хурд бартарии устуворро исбот намекунад. Ченаки асосӣ ҳиссаи посухи фаҳмо; муҳофизатӣ шикояти нархи норавшан. Қарор: пешниҳодро равшан карда, санҷиши пурратар нақша кардан, на афзоиши фурӯш эълон кардан.\n\nФарқи паёмҳо: A «Корти ҷадвал», B «Як файл ва як даври ислоҳ ба 20» мегӯяд; нарху шарт яксонанд. Санҷиш дар давраи пешакӣ ва ҳаҷми муайян гузарад, на то адади қулай. Муҳофизат: ҳангоми шикояти нархи пинҳон ё розигии норавшан намоишро қатъу паёмро ислоҳ кунед. Озмоиши воқеӣ нашуд.",
+            "en": "Fictional data: message A — 100 visits, 12 nonbinding responses; B — 100 visits, 15 responses. Rates are 12% and 15%, a 3-percentage-point difference and 25% relative increase. This small sample does not establish reliable superiority. Primary metric: informed-response rate; guardrail: complaints about unclear pricing. Decision: clarify the offer and plan stronger verification, not announce increased sales.\n\nMessage difference: A says “Timetable card”; B specifies “One file and one revision round for 20”; price and terms stay equal. Use a preselected comparable period and observation target, not a convenient stopping point. Guardrail: stop display and fix the message if hidden pricing or unclear consent is reported. No real experiment was run."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "business-pro-day-03-q01",
+          "question": {
+            "ru": "Чем является разница между 12% и 15%?",
+            "tg": "Фарқи 12% ва 15% чист?",
+            "en": "What is the difference between 12% and 15%?"
+          },
+          "answer": {
+            "ru": "3 процентных пункта, или 25% относительного роста.",
+            "tg": "3 банди фоизӣ ё 25% афзоиши нисбӣ.",
+            "en": "3 percentage points, or 25% relative growth."
+          },
+          "options": [
+            {
+              "ru": "3 процентных пункта, или 25% относительного роста.",
+              "tg": "3 банди фоизӣ ё 25% афзоиши нисбӣ.",
+              "en": "3 percentage points, or 25% relative growth."
+            },
+            {
+              "ru": "25 процентных пунктов.",
+              "tg": "25 банди фоизӣ.",
+              "en": "25 percentage points."
+            },
+            {
+              "ru": "Гарантированная прибыль 3%.",
+              "tg": "Фоидаи кафолатноки 3%.",
+              "en": "Guaranteed profit of 3%."
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Напишите гипотезу и одну разницу между сообщениями A и B.\n2. Вычислите 12/100 и 15/100, разницу в процентных пунктах и относительное изменение.\n3. Задайте главную метрику, защитную метрику и правило остановки при вреде.\n4. Сформулируйте решение с ограничением выборки и запретом ложных отзывов, таймеров и скрытых условий.",
+          "tg": "1. Тахмин ва як фарқи паёмҳои A ва B-ро нависед.\n2. 12/100 ва 15/100, фарқи банди фоизӣ ва тағйири нисбиро ҳисоб кунед.\n3. Ченаки асосӣ, муҳофизатӣ ва шарти қатъи зарарро муайян кунед.\n4. Қарорро бо маҳдудияти намуна ва манъи тақриз, таймер ва шарти пинҳонии бардурӯғ созед.",
+          "en": "1. Write a hypothesis and one difference between messages A and B.\n2. Calculate 12/100 and 15/100, the percentage-point gap and relative change.\n3. Define primary and guardrail metrics and a harm-related stop rule.\n4. State a decision acknowledging sample limits and prohibiting fake reviews, timers and hidden terms."
+        },
+        "hint": {
+          "ru": "Разница 15% − 12% = 3 процентных пункта; (15 − 12)/12 × 100 = 25% относительного изменения.",
+          "tg": "Фарқ 15% − 12% = 3 банди фоизӣ; (15 − 12)/12 × 100 = 25% тағйири нисбӣ.",
+          "en": "15% − 12% = 3 percentage points; (15 − 12)/12 × 100 = 25% relative change."
+        },
+        "solution": "Учебные данные: сообщение A — 100 посещений, 12 необязывающих откликов; B — 100 посещений, 15 откликов. Доли 12% и 15%, разница 3 процентных пункта, относительное изменение 25%. Это не доказательство надёжного преимущества на малой выборке. Главная метрика — доля понятных откликов; защитная — жалобы на непонятную цену. Решение: уточнить предложение и запланировать более полную проверку, не объявлять рост продаж.\n\nРазница сообщений: A говорит «Карточка расписания», B уточняет «Единый файл и один раунд правок за 20»; цена и условия одинаковы. Проверка должна идти в сопоставимый заранее выбранный период с заданным объёмом, а не до удобного числа. Правило защиты: при жалобе на скрытую цену или непонятное согласие остановить показ и исправить сообщение. Реальных экспериментов не проводили.",
+        "referenceAnswer": {
+          "ru": "Учебные данные: сообщение A — 100 посещений, 12 необязывающих откликов; B — 100 посещений, 15 откликов. Доли 12% и 15%, разница 3 процентных пункта, относительное изменение 25%. Это не доказательство надёжного преимущества на малой выборке. Главная метрика — доля понятных откликов; защитная — жалобы на непонятную цену. Решение: уточнить предложение и запланировать более полную проверку, не объявлять рост продаж.\n\nРазница сообщений: A говорит «Карточка расписания», B уточняет «Единый файл и один раунд правок за 20»; цена и условия одинаковы. Проверка должна идти в сопоставимый заранее выбранный период с заданным объёмом, а не до удобного числа. Правило защиты: при жалобе на скрытую цену или непонятное согласие остановить показ и исправить сообщение. Реальных экспериментов не проводили.",
+          "tg": "Додаҳои омӯзишӣ: A — 100 меҳмон, 12 посухи беуҳдадорӣ; B — 100 меҳмон, 15 посух. Ҳиссаҳо 12% ва 15%, фарқ 3 банди фоизӣ, тағйири нисбӣ 25%. Намунаи хурд бартарии устуворро исбот намекунад. Ченаки асосӣ ҳиссаи посухи фаҳмо; муҳофизатӣ шикояти нархи норавшан. Қарор: пешниҳодро равшан карда, санҷиши пурратар нақша кардан, на афзоиши фурӯш эълон кардан.\n\nФарқи паёмҳо: A «Корти ҷадвал», B «Як файл ва як даври ислоҳ ба 20» мегӯяд; нарху шарт яксонанд. Санҷиш дар давраи пешакӣ ва ҳаҷми муайян гузарад, на то адади қулай. Муҳофизат: ҳангоми шикояти нархи пинҳон ё розигии норавшан намоишро қатъу паёмро ислоҳ кунед. Озмоиши воқеӣ нашуд.",
+          "en": "Fictional data: message A — 100 visits, 12 nonbinding responses; B — 100 visits, 15 responses. Rates are 12% and 15%, a 3-percentage-point difference and 25% relative increase. This small sample does not establish reliable superiority. Primary metric: informed-response rate; guardrail: complaints about unclear pricing. Decision: clarify the offer and plan stronger verification, not announce increased sales.\n\nMessage difference: A says “Timetable card”; B specifies “One file and one revision round for 20”; price and terms stay equal. Use a preselected comparable period and observation target, not a convenient stopping point. Guardrail: stop display and fix the message if hidden pricing or unclear consent is reported. No real experiment was run."
+        },
+        "criteria": [
+          {
+            "ru": "Доли 12% и 15%, разница 3 п.п. и относительное изменение 25% верны.",
+            "tg": "Ҳиссаҳои 12% ва 15%, фарқи 3 б.ф. ва тағйири 25% дурустанд.",
+            "en": "Rates 12% and 15%, a 3-point gap and 25% relative change are correct."
+          },
+          {
+            "ru": "Есть главная и защитная метрики с правилом остановки.",
+            "tg": "Ченаки асосӣ ва муҳофизатӣ бо шарти қатъ ҳастанд.",
+            "en": "Primary and guardrail metrics and a stop rule are defined."
+          },
+          {
+            "ru": "Решение не выдаёт малую выборку за доказанную прибыль и не использует манипуляции.",
+            "tg": "Қарор намунаи хурдро фоидаи исботшуда намегӯяд ва фиреб надорад.",
+            "en": "The decision claims no proven profit from a small sample and uses no manipulation."
+          }
+        ]
+      }
+    }
+  ]
+}

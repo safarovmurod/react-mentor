@@ -1,0 +1,409 @@
+{
+  "courseId": "architecture-expert",
+  "sources": [
+    {
+      "id": "original-premium",
+      "title": "DevAtlas original exercises and source review",
+      "url": "https://github.com/safarovmurod/react-mentor"
+    },
+    {
+      "id": "node-docs",
+      "title": "Node.js official documentation — standard APIs",
+      "url": "https://nodejs.org/api/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "architecture-expert-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Отказы: deadline, повторы и идемпотентность",
+        "tg": "Нокомиҳо: deadline, такрор ва идемпотентӣ",
+        "en": "Failures: deadlines, retries and idempotency"
+      },
+      "summary": {
+        "ru": "День 1 из 3 опубликованных. Отказы: deadline, повторы и идемпотентность. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 1 аз 3 рӯзи нашршуда. Нокомиҳо: deadline, такрор ва идемпотентӣ. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 1 of 3 published days. Failures: deadlines, retries and idempotency. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "Повтор может исправить временный отказ или усилить перегрузку. Перед повтором нужны классификация ошибки, общий deadline и гарантия отсутствия двойного эффекта. HTTP POST сам по себе не идемпотентен; idempotency key полезен только вместе с серверным хранением и дедупликацией. Не интерпретируйте тайм-аут как доказательство, что запись не произошла. Исполняемый пример — детерминированная политика количества попыток, а не полный сетевой клиент.",
+            "tg": "Такрор метавонад нокомии муваққатиро ислоҳ кунад ё изофабориро зиёд созад. Пеш аз такрор навъи хато, deadline-и умумӣ ва кафолати набудани таъсири дубора лозиманд. HTTP POST худ аз худ идемпотент нест; idempotency key танҳо бо нигоҳдорӣ ва пешгирии дубораи серверӣ фоида дорад. Тайм-аутро далели иҷро нашудани навишт ҳисоб накунед. Мисоли иҷрошаванда сиёсати муайяни кӯшишҳо аст, на муштарии пурраи шабака.",
+            "en": "Retries can recover transient failures or amplify overload. Before retrying, classify the failure, impose an overall deadline and ensure no duplicate side effect. HTTP POST is not inherently idempotent; an idempotency key requires server-side storage and deduplication. A timeout does not prove a write never happened. The runnable example is a deterministic attempt policy, not a complete network client."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport function retryPlan({ attempt, transient, idempotent }) {\n  if (!Number.isInteger(attempt) || attempt < 1) throw new TypeError(\"Invalid attempt\");\n  if (transient !== true || idempotent !== true || attempt >= 3) return { retry: false, delayMs: 0 };\n  return { retry: true, delayMs: Math.min(100 * (2 ** (attempt - 1)), 1000) };\n}\nconsole.log(JSON.stringify([\n  retryPlan({ attempt: 1, transient: true, idempotent: true }),\n  retryPlan({ attempt: 1, transient: true, idempotent: false }),\n  retryPlan({ attempt: 3, transient: true, idempotent: true }),\n]));\nassert.deepEqual(retryPlan({ attempt: 2, transient: true, idempotent: true }), { retry: true, delayMs: 200 });\nassert.equal(retryPlan({ attempt: 1, transient: false, idempotent: true }).retry, false);\nassert.throws(() => retryPlan({ attempt: 0, transient: true, idempotent: true }), TypeError);\nassert.equal(retryPlan({ attempt: 1, transient: true, idempotent: false }).retry, false);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "[{\"retry\":true,\"delayMs\":100},{\"retry\":false,\"delayMs\":0},{\"retry\":false,\"delayMs\":0}]",
+            "tg": "[{\"retry\":true,\"delayMs\":100},{\"retry\":false,\"delayMs\":0},{\"retry\":false,\"delayMs\":0}]",
+            "en": "[{\"retry\":true,\"delayMs\":100},{\"retry\":false,\"delayMs\":0},{\"retry\":false,\"delayMs\":0}]"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Напишите ADR для операции создания платной подписки при медленном провайдере. Укажите deadline, максимум попыток, доказательство идемпотентности, обработку неизвестного результата, ограничение очереди и метрики. Приложите тесты retryPlan: attempt=0/1/2/3, постоянная ошибка и неидемпотентная операция. Отдельно перечислите, что учебный код не реализует.",
+            "tg": "Барои сохтани обунаи пулакӣ ҳангоми сустии провайдер ADR нависед. deadline, ҳадди кӯшиш, далели идемпотентӣ, натиҷаи номаълум, ҳудуди навбат ва метрикаҳоро нишон диҳед. Тестҳои retryPlan: attempt=0/1/2/3, хатои доимӣ ва амали ғайриидемпотентро илова кунед. Алоҳида нависед, ки рамзи омӯзишӣ чиро иҷро намекунад.",
+            "en": "Write an ADR for subscription creation when the payment provider is slow. Specify deadlines, attempt limits, evidence of idempotency, unknown-result reconciliation, queue limits and metrics. Include retryPlan tests for attempt=0/1/2/3, permanent failure and non-idempotent operations. List what the teaching code does not implement."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "architecture-expert-day-01-q",
+          "question": {
+            "ru": "Доказывает ли тайм-аут, что платёж не прошёл?",
+            "tg": "Оё тайм-аут исбот мекунад, ки пардохт иҷро нашуд?",
+            "en": "Does a timeout prove a payment did not happen?"
+          },
+          "answer": {
+            "ru": "Нет: результат нужно согласовать с провайдером по безопасному ключу",
+            "tg": "Не: натиҷаро бо провайдер аз рӯйи калиди бехатар мувофиқ кардан лозим аст",
+            "en": "No: reconcile the outcome with the provider using a safe key"
+          },
+          "options": [
+            {
+              "ru": "Да: можно сразу списать повторно",
+              "tg": "Ҳа: фавран дубора маблағ гирифтан мумкин аст",
+              "en": "Yes: immediately charge again"
+            },
+            {
+              "ru": "Нет: результат нужно согласовать с провайдером по безопасному ключу",
+              "tg": "Не: натиҷаро бо провайдер аз рӯйи калиди бехатар мувофиқ кардан лозим аст",
+              "en": "No: reconcile the outcome with the provider using a safe key"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "Напишите ADR для операции создания платной подписки при медленном провайдере. Укажите deadline, максимум попыток, доказательство идемпотентности, обработку неизвестного результата, ограничение очереди и метрики. Приложите тесты retryPlan: attempt=0/1/2/3, постоянная ошибка и неидемпотентная операция. Отдельно перечислите, что учебный код не реализует.",
+          "tg": "Барои сохтани обунаи пулакӣ ҳангоми сустии провайдер ADR нависед. deadline, ҳадди кӯшиш, далели идемпотентӣ, натиҷаи номаълум, ҳудуди навбат ва метрикаҳоро нишон диҳед. Тестҳои retryPlan: attempt=0/1/2/3, хатои доимӣ ва амали ғайриидемпотентро илова кунед. Алоҳида нависед, ки рамзи омӯзишӣ чиро иҷро намекунад.",
+          "en": "Write an ADR for subscription creation when the payment provider is slow. Specify deadlines, attempt limits, evidence of idempotency, unknown-result reconciliation, queue limits and metrics. Include retryPlan tests for attempt=0/1/2/3, permanent failure and non-idempotent operations. List what the teaching code does not implement."
+        },
+        "hint": {
+          "ru": "Сначала решите, можно ли безопасно повторять; только потом выбирайте задержку.",
+          "tg": "Аввал бехатарии такрорро муайян кунед, баъд таъхирро интихоб намоед.",
+          "en": "Decide whether retrying is safe before choosing a delay."
+        },
+        "solution": "Решение ADR: общий бюджет запроса 3 секунды, максимум 3 попытки только для временного отказа и операции с доказанной идемпотентностью. Каждая попытка получает остаток общего deadline; backoff 100/200 мс плюс ограниченный jitter в production. После тайм-аута оплаты статус неизвестен: сначала запросить результат по idempotency key, не списывать повторно. Очередь ограничена; при перегрузке возвращаем 429/503 с понятным retry hint, сохраняем черновик клиента. Метрики: длительность, число попыток, тайм-ауты и глубина очереди без содержимого платежей. Приведённая функция планирует задержки, но сама не реализует deadline, jitter или проверку платёжного результата.",
+        "referenceAnswer": {
+          "ru": "Решение ADR: общий бюджет запроса 3 секунды, максимум 3 попытки только для временного отказа и операции с доказанной идемпотентностью. Каждая попытка получает остаток общего deadline; backoff 100/200 мс плюс ограниченный jitter в production. После тайм-аута оплаты статус неизвестен: сначала запросить результат по idempotency key, не списывать повторно. Очередь ограничена; при перегрузке возвращаем 429/503 с понятным retry hint, сохраняем черновик клиента. Метрики: длительность, число попыток, тайм-ауты и глубина очереди без содержимого платежей. Приведённая функция планирует задержки, но сама не реализует deadline, jitter или проверку платёжного результата.",
+          "tg": "Қарори ADR: буҷети умумии дархост 3 сония, ҳадди аксар 3 кӯшиш танҳо барои радкунии муваққатӣ ва амали бо идемпотентии исботшуда. Ҳар кӯшиш боқимондаи deadline-ро мегирад; backoff 100/200 мс ва jitter-и маҳдуд дар production. Баъди тайм-аути пардохт ҳолат номаълум аст: аввал натиҷаро аз рӯйи idempotency key пурсед, дубора маблағ накашед. Навбат маҳдуд аст; дар изофаборӣ 429/503 бо шарҳи такрор медиҳем ва сиёҳнависи муштариро нигоҳ медорем. Метрикаҳо: давомнокӣ, шумораи кӯшишҳо, тайм-аут ва чуқурии навбат, бе маълумоти пардохт. Функсия танҳо таъхирро нақша мекунад, на deadline, jitter ё санҷиши натиҷаи пардохтро.",
+          "en": "ADR: use a three-second total request budget and at most three attempts, only for transient failures on demonstrably idempotent operations. Each attempt receives the remaining deadline; use 100/200 ms backoff plus bounded production jitter. A payment timeout leaves the outcome unknown: first reconcile by idempotency key rather than charge again. Bound the queue; return 429/503 with a clear retry hint under overload and preserve the client draft. Measure latency, attempts, timeouts and queue depth without payment contents. This function plans delays; it does not itself implement deadlines, jitter or payment reconciliation."
+        },
+        "criteria": [
+          {
+            "ru": "ADR явно запрещает повторное списание при неизвестном исходе.",
+            "tg": "ADR ҳангоми натиҷаи номаълум гирифтани дубораи маблағро ошкор манъ мекунад.",
+            "en": "ADR explicitly prevents duplicate charging when the outcome is unknown."
+          },
+          {
+            "ru": "Указаны общий бюджет, ограничения нагрузки и наблюдаемые признаки отказа.",
+            "tg": "Буҷети умумӣ, ҳудуди бор ва нишонаҳои мушоҳидашавандаи нокомӣ навишта шудаанд.",
+            "en": "Total budget, load bounds and observable failure signals are specified."
+          },
+          {
+            "ru": "Тесты политики действительно падают при разрешении неидемпотентного повтора.",
+            "tg": "Тестҳои сиёсат ҳангоми иҷозати такрори ғайриидемпотент воқеан намегузаранд.",
+            "en": "Policy tests fail if a non-idempotent retry is allowed."
+          }
+        ]
+      }
+    },
+    {
+      "id": "architecture-expert-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Граница доверия и платные права доступа",
+        "tg": "Сарҳади эътимод ва ҳуқуқи дастрасии пулакӣ",
+        "en": "Trust boundaries and paid entitlements"
+      },
+      "summary": {
+        "ru": "День 2 из 3 опубликованных. Граница доверия и платные права доступа. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 2 аз 3 рӯзи нашршуда. Сарҳади эътимод ва ҳуқуқи дастрасии пулакӣ. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 2 of 3 published days. Trust boundaries and paid entitlements. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "Наличие красивой кнопки Pro не является авторизацией. Отделите доказательство личности, подтверждённую серверную подписку и политику курса. Исполняемый пример получает уже доверенные principal/entitlement; если принять эти объекты из JSON клиента, защита исчезнет. Проверяйте совпадение владельца, срок по серверным часам и допустимые уровни. Для файлов и API защита нужна отдельно от интерфейса.",
+            "tg": "Тугмаи зебои Pro иҷозати дастрасӣ нест. Далели шахсият, обунаи тасдиқшудаи сервер ва сиёсати курсро ҷудо кунед. Мисоли иҷрошаванда principal/entitlement-и аллакай боэътимод мегирад; агар онҳоро аз JSON-и муштарӣ қабул кунед, ҳифз нест мешавад. Мутобиқати соҳиб, муҳлат аз соати сервер ва сатҳҳои иҷозатдодаро санҷед. Барои файлу API ҳифз аз интерфейс ҷудо лозим аст.",
+            "en": "A polished Pro button is not authorization. Separate identity evidence, server-verified subscriptions and course policy. The runnable example receives already trusted principal/entitlement objects; accepting these from client JSON would remove the protection. Check ownership, expiry against server time and recognized tiers. Files and APIs need protection independently of the UI."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport function decidePaidAccess({ principal, entitlement, requiredTier, now }) {\n  if (!principal || typeof principal.userId !== \"string\" || !principal.userId) return 401;\n  const ranks = { pro: 1, expert: 2 };\n  if (!Object.hasOwn(ranks, requiredTier) || !Number.isFinite(now)) return 403;\n  if (!entitlement || entitlement.userId !== principal.userId || !Object.hasOwn(ranks, entitlement.tier)) return 403;\n  const expiry = Date.parse(entitlement.expiresAt);\n  if (!Number.isFinite(expiry) || expiry <= now) return 403;\n  return ranks[entitlement.tier] >= ranks[requiredTier] ? 200 : 403;\n}\nconst now = Date.parse(\"2030-01-01T00:00:00Z\");\nconst principal = { userId: \"user-a\" };\nconst entitlement = { userId: \"user-a\", tier: \"pro\", expiresAt: \"2030-02-01T00:00:00Z\" };\nconsole.log(decidePaidAccess({ principal, entitlement, requiredTier: \"pro\", now }));\nconsole.log(decidePaidAccess({ principal, entitlement, requiredTier: \"expert\", now }));\nconsole.log(decidePaidAccess({ principal: null, entitlement, requiredTier: \"pro\", now }));\nassert.equal(decidePaidAccess({ principal, entitlement: { ...entitlement, userId: \"user-b\" }, requiredTier: \"pro\", now }), 403);\nassert.equal(decidePaidAccess({ principal, entitlement: { ...entitlement, expiresAt: \"2029-01-01T00:00:00Z\" }, requiredTier: \"pro\", now }), 403);\nassert.equal(decidePaidAccess({ principal, entitlement, requiredTier: \"__proto__\", now }), 403);\nassert.equal(decidePaidAccess({ principal, entitlement, requiredTier: \"expert\", now }), 403);\nassert.equal(decidePaidAccess({ principal: null, entitlement, requiredTier: \"pro\", now }), 401);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "200\n403\n401",
+            "tg": "200\n403\n401",
+            "en": "200\n403\n401"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Составьте схему доверия браузер → API → auth → entitlement → урок. Напишите ADR с поведением при отказе провайдера и истечении подписки. Добавьте матрицу гостя, Beginner, Pro, Expert и чужого пользователя. Приложите отрицательные тесты для подменённого plan, чужого userId, просроченной записи и прямого URL файла.",
+            "tg": "Нақшаи эътимоди браузер → API → auth → entitlement → дарсро созед. ADR бо рафтор ҳангоми нокомии провайдер ва анҷоми обуна нависед. Ҷадвали меҳмон, Beginner, Pro, Expert ва корбари бегонаро илова кунед. Тестҳои манфӣ барои plan-и ивазшуда, userId-и бегона, сабти гузашта ва URL-и мустақими файлро замима кунед.",
+            "en": "Draw the trust flow browser → API → auth → entitlement → lesson. Write an ADR for provider failure and subscription expiry. Add a guest/Beginner/Pro/Expert/foreign-user matrix. Include negative tests for client plan tampering, foreign userId, expiry and direct file URLs."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "architecture-expert-day-02-q",
+          "question": {
+            "ru": "Можно ли передавать entitlement для этой функции прямо из браузера?",
+            "tg": "entitlement-ро ба ин функсия бевосита аз браузер додан мумкин аст?",
+            "en": "May this policy receive entitlement directly from browser JSON?"
+          },
+          "answer": {
+            "ru": "Нет: источник должен быть доверенным серверным хранилищем",
+            "tg": "Не: манбаъ бояд захираи боэътимоди серверӣ бошад",
+            "en": "No: it must come from trusted server storage"
+          },
+          "options": [
+            {
+              "ru": "Да, если tier равен expert",
+              "tg": "Ҳа, агар tier expert бошад",
+              "en": "Yes, if tier is expert"
+            },
+            {
+              "ru": "Нет: источник должен быть доверенным серверным хранилищем",
+              "tg": "Не: манбаъ бояд захираи боэътимоди серверӣ бошад",
+              "en": "No: it must come from trusted server storage"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "Составьте схему доверия браузер → API → auth → entitlement → урок. Напишите ADR с поведением при отказе провайдера и истечении подписки. Добавьте матрицу гостя, Beginner, Pro, Expert и чужого пользователя. Приложите отрицательные тесты для подменённого plan, чужого userId, просроченной записи и прямого URL файла.",
+          "tg": "Нақшаи эътимоди браузер → API → auth → entitlement → дарсро созед. ADR бо рафтор ҳангоми нокомии провайдер ва анҷоми обуна нависед. Ҷадвали меҳмон, Beginner, Pro, Expert ва корбари бегонаро илова кунед. Тестҳои манфӣ барои plan-и ивазшуда, userId-и бегона, сабти гузашта ва URL-и мустақими файлро замима кунед.",
+          "en": "Draw the trust flow browser → API → auth → entitlement → lesson. Write an ADR for provider failure and subscription expiry. Add a guest/Beginner/Pro/Expert/foreign-user matrix. Include negative tests for client plan tampering, foreign userId, expiry and direct file URLs."
+        },
+        "hint": {
+          "ru": "Защита должна срабатывать и без React-интерфейса. Объясните происхождение каждого доверенного поля.",
+          "tg": "Ҳифз бояд бе интерфейси React ҳам кор кунад. Манбаи ҳар майдони боэътимодро шарҳ диҳед.",
+          "en": "Protection must work without the React UI. Explain where every trusted field originates."
+        },
+        "solution": "ADR: браузер передаёт только идентификатор курса; principal строится из проверенной сервером сессии. Подписка берётся из защищённой серверной таблицы после проверки подписанного webhook провайдера, суммы, валюты и продукта; event_id уникален. Проверяем userId, срок и уровень при каждом запросе урока, файла, чата и API. Клиентские plan/XP/cookie не дают право. При недоступности проверки платный контент закрыт с явным повтором, но бесплатный материал и локальный черновик остаются доступны. Тестируем прямой URL, чужой entitlement, истечение срока и replay события. Cookie-сессии дополнительно требуют CSRF-защиты; токены и платёжные данные не попадают в логи. Пример функции не проверяет JWT и подпись webhook — доверенная граница находится до её вызова.",
+        "referenceAnswer": {
+          "ru": "ADR: браузер передаёт только идентификатор курса; principal строится из проверенной сервером сессии. Подписка берётся из защищённой серверной таблицы после проверки подписанного webhook провайдера, суммы, валюты и продукта; event_id уникален. Проверяем userId, срок и уровень при каждом запросе урока, файла, чата и API. Клиентские plan/XP/cookie не дают право. При недоступности проверки платный контент закрыт с явным повтором, но бесплатный материал и локальный черновик остаются доступны. Тестируем прямой URL, чужой entitlement, истечение срока и replay события. Cookie-сессии дополнительно требуют CSRF-защиты; токены и платёжные данные не попадают в логи. Пример функции не проверяет JWT и подпись webhook — доверенная граница находится до её вызова.",
+          "tg": "ADR: браузер танҳо id-и курсро медиҳад; principal аз сессияи тасдиқшудаи сервер сохта мешавад. Обуна аз ҷадвали муҳофизатшудаи сервер баъди санҷиши webhook-и имзодор, маблағ, асъор ва маҳсулот гирифта мешавад; event_id ягона аст. userId, муҳлат ва сатҳро дар ҳар дархости дарс, файл, чат ва API месанҷем. plan/XP/cookie-и муштарӣ ҳуқуқ намедиҳад. Агар санҷиш дастнорас бошад, муҳтавои пулакӣ бо имкони такрор баста мемонад, вале маводи ройгон ва сиёҳнависи маҳаллӣ дастрасанд. URL-и мустақим, обунаи бегона, муҳлати гузашта ва такрори ҳодисаро месанҷем. Сессияи cookie ҳифзи CSRF мехоҳад; токену додаҳои пардохт ба лог намеафтанд. Функсия JWT ё имзои webhook-ро намесанҷад — сарҳади эътимод пеш аз даъвати он аст.",
+          "en": "ADR: the browser sends only a course identifier; principal comes from a server-verified session. Entitlements come from protected server storage after checking provider webhook signature, amount, currency and product, with a unique event_id. Check userId, expiry and tier on every lesson, file, chat and API request. Client plan/XP/cookies grant no access. If verification is unavailable, paid content fails closed with a clear retry while free material and local drafts remain usable. Test direct URLs, foreign entitlements, expiry and event replay. Cookie sessions additionally need CSRF defenses; tokens and payment data stay out of logs. The example does not verify JWTs or webhook signatures: its trusted boundary precedes this policy call."
+        },
+        "criteria": [
+          {
+            "ru": "Матрица запрещает обход тарифа через JSON, хранилище и прямой URL.",
+            "tg": "Ҷадвал гузаштан аз тарифро тавассути JSON, захира ва URL-и мустақим манъ мекунад.",
+            "en": "Matrix prevents tier bypass through JSON, storage and direct URLs."
+          },
+          {
+            "ru": "Владелец, срок, подпись события и дедупликация учтены отдельно.",
+            "tg": "Соҳиб, муҳлат, имзои ҳодиса ва пешгирии дубора алоҳида баррасӣ шудаанд.",
+            "en": "Ownership, expiry, event signatures and deduplication are treated separately."
+          },
+          {
+            "ru": "ADR различает доступность бесплатного материала и отказ закрытого платного API.",
+            "tg": "ADR дастрасии маводи ройгон ва радкунии API-и пулакиро ҷудо мекунад.",
+            "en": "ADR distinguishes free-content availability from fail-closed premium APIs."
+          }
+        ]
+      }
+    },
+    {
+      "id": "architecture-expert-day-03",
+      "day": 3,
+      "prerequisiteDays": [
+        2
+      ],
+      "title": {
+        "ru": "Доказательства готовности: метрики, restore и rollback",
+        "tg": "Далелҳои омодагӣ: метрика, restore ва rollback",
+        "en": "Release evidence: metrics, restore and rollback"
+      },
+      "summary": {
+        "ru": "День 3 из 3 опубликованных. Доказательства готовности: метрики, restore и rollback. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 3 аз 3 рӯзи нашршуда. Далелҳои омодагӣ: метрика, restore ва rollback. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 3 of 3 published days. Release evidence: metrics, restore and rollback. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "Зелёный unit-тест доказывает только проверенный контракт, а не доступность production. Разделяйте фактические измерения, учебные фикстуры и непроверенные предположения. Порог p95 без объёма выборки и окна может вводить в заблуждение. Существование backup-файла не доказывает восстановимость. Маленькая функция ниже — проверяемая политика hold/release, но достоверность evidence требует отдельного процесса.",
+            "tg": "Unit-тести сабз танҳо шарти санҷидашударо исбот мекунад, на дастрасии production. Ченаки воқеӣ, фикстураи омӯзишӣ ва тахмини санҷиданашударо ҷудо кунед. Ҳудуди p95 бе ҳаҷми намуна ва фосилаи вақт метавонад гумроҳ кунад. Мавҷудияти backup-файл барқароршавиро исбот намекунад. Функсияи поён сиёсати санҷишшавандаи hold/release аст, вале эътимоди evidence раванди алоҳида мехоҳад.",
+            "en": "A green unit test proves only its checked contract, not production availability. Distinguish real measurements, teaching fixtures and unverified assumptions. A p95 threshold without sample size and a time window can mislead. A backup file does not prove restorability. The function below is a testable hold/release policy; evidence authenticity requires a separate process."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport function releaseDecision(evidence) {\n  if (!evidence || !Number.isFinite(evidence.errorRate) || evidence.errorRate < 0 || evidence.errorRate > 1) return \"hold\";\n  if (!Number.isFinite(evidence.p95Ms) || evidence.p95Ms < 0) return \"hold\";\n  if (!Number.isInteger(evidence.sampleSize) || evidence.sampleSize < 100) return \"hold\";\n  if (evidence.restoreTested !== true || evidence.rollbackTested !== true) return \"hold\";\n  return evidence.errorRate <= 0.01 && evidence.p95Ms <= 500 ? \"release\" : \"hold\";\n}\nconst baseline = { errorRate: 0.005, p95Ms: 250, sampleSize: 200, restoreTested: true, rollbackTested: true };\nconsole.log(releaseDecision({ ...baseline, restoreTested: false }));\nconsole.log(releaseDecision(baseline));\nconsole.log(releaseDecision({ ...baseline, errorRate: NaN }));\nassert.equal(releaseDecision({ ...baseline, p95Ms: 501 }), \"hold\");\nassert.equal(releaseDecision({ ...baseline, sampleSize: 99 }), \"hold\");\nassert.equal(releaseDecision({ ...baseline, rollbackTested: false }), \"hold\");\nassert.equal(releaseDecision({ ...baseline, restoreTested: false }), \"hold\");\n",
+          "language": "javascript",
+          "output": {
+            "ru": "hold\nrelease\nhold",
+            "tg": "hold\nrelease\nhold",
+            "en": "hold\nrelease\nhold"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Подготовьте release memo для учебной платформы: метрики с окном и количеством запросов, доказательство restore, план совместимой миграции, canary и откат. Предположите RPO 15 минут/RTO 30 минут и укажите, как измерите их на копии данных. Разделите реально выполненные проверки и запланированные. Приложите отрицательные тесты NaN, sampleSize=99, rollbackTested=false.",
+            "tg": "Барои платформаи омӯзишӣ release memo созед: метрика бо фосила ва шумораи дархост, далели restore, нақшаи мигратсияи мувофиқ, canary ва бозгашт. RPO 15 дақиқа/RTO 30 дақиқаро тахмин карда, тарзи чен кардан дар нусхаи додаҳоро нависед. Санҷишҳои воқеан иҷрошуда ва нақшавиро ҷудо кунед. Тестҳои манфии NaN, sampleSize=99, rollbackTested=false-ро илова намоед.",
+            "en": "Prepare a release memo for a learning platform: metrics with window/sample size, restore evidence, compatible migration plan, canary and rollback. Assume RPO 15 minutes/RTO 30 minutes and explain how to measure them on copied data. Separate completed checks from planned ones. Include negative tests for NaN, sampleSize=99 and rollbackTested=false."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "architecture-expert-day-03-q",
+          "question": {
+            "ru": "Достаточно ли наличия backup-файла для утверждения восстановления?",
+            "tg": "Оё мавҷудияти backup-файл барои тасдиқи барқароркунӣ кофист?",
+            "en": "Does having a backup file prove recovery works?"
+          },
+          "answer": {
+            "ru": "Нет: нужен проверенный restore с измеренным результатом",
+            "tg": "Не: restore-и санҷидашуда бо натиҷаи ченшуда лозим аст",
+            "en": "No: a tested restore with measured results is required"
+          },
+          "options": [
+            {
+              "ru": "Да: имя файла доказывает целостность",
+              "tg": "Ҳа: номи файл якпорчагиро исбот мекунад",
+              "en": "Yes: its filename proves integrity"
+            },
+            {
+              "ru": "Нет: нужен проверенный restore с измеренным результатом",
+              "tg": "Не: restore-и санҷидашуда бо натиҷаи ченшуда лозим аст",
+              "en": "No: a tested restore with measured results is required"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "Подготовьте release memo для учебной платформы: метрики с окном и количеством запросов, доказательство restore, план совместимой миграции, canary и откат. Предположите RPO 15 минут/RTO 30 минут и укажите, как измерите их на копии данных. Разделите реально выполненные проверки и запланированные. Приложите отрицательные тесты NaN, sampleSize=99, rollbackTested=false.",
+          "tg": "Барои платформаи омӯзишӣ release memo созед: метрика бо фосила ва шумораи дархост, далели restore, нақшаи мигратсияи мувофиқ, canary ва бозгашт. RPO 15 дақиқа/RTO 30 дақиқаро тахмин карда, тарзи чен кардан дар нусхаи додаҳоро нависед. Санҷишҳои воқеан иҷрошуда ва нақшавиро ҷудо кунед. Тестҳои манфии NaN, sampleSize=99, rollbackTested=false-ро илова намоед.",
+          "en": "Prepare a release memo for a learning platform: metrics with window/sample size, restore evidence, compatible migration plan, canary and rollback. Assume RPO 15 minutes/RTO 30 minutes and explain how to measure them on copied data. Separate completed checks from planned ones. Include negative tests for NaN, sampleSize=99 and rollbackTested=false."
+        },
+        "hint": {
+          "ru": "Не выдумывайте результаты нагрузочного теста или восстановления; отсутствие данных — отдельный блокер.",
+          "tg": "Натиҷаи санҷиши бор ё барқароркуниро насозед; набудани дода блокери алоҳида аст.",
+          "en": "Do not invent load-test or restore results; missing evidence is its own blocker."
+        },
+        "solution": "ADR выпуска: пороги учебного примера — error rate ≤1%, p95 ≤500 мс и не менее 100 запросов; это выбранные условия упражнения, не универсальный SLA. Перед решением проверяем источник метрик, окно, время сбора и репрезентативность. Бэкап восстанавливаем в изолированной базе и записываем фактические RPO/RTO; гипотеза для задачи — RPO 15 минут и RTO 30 минут. Миграция expand/contract совместима со старой версией до удаления полей; rollback протестирован на копии данных. Canary увеличиваем поэтапно, при ухудшении прекращаем выпуск и откатываем трафик. Отдельно проверяем приватность логов, лимиты исполнителя кода и права на резервные копии. Без доказательств восстановления и отката решение hold. Успешная функция на вымышленных числах не разрешает production-выпуск.",
+        "referenceAnswer": {
+          "ru": "ADR выпуска: пороги учебного примера — error rate ≤1%, p95 ≤500 мс и не менее 100 запросов; это выбранные условия упражнения, не универсальный SLA. Перед решением проверяем источник метрик, окно, время сбора и репрезентативность. Бэкап восстанавливаем в изолированной базе и записываем фактические RPO/RTO; гипотеза для задачи — RPO 15 минут и RTO 30 минут. Миграция expand/contract совместима со старой версией до удаления полей; rollback протестирован на копии данных. Canary увеличиваем поэтапно, при ухудшении прекращаем выпуск и откатываем трафик. Отдельно проверяем приватность логов, лимиты исполнителя кода и права на резервные копии. Без доказательств восстановления и отката решение hold. Успешная функция на вымышленных числах не разрешает production-выпуск.",
+          "tg": "ADR-и нашр: ҳудудҳои мисоли омӯзишӣ error rate ≤1%, p95 ≤500 мс ва на камтар аз 100 дархост мебошанд; ин шартҳои супоришанд, на SLA-и умумӣ. Пеш аз қарор манбаи метрика, фосила, вақти ҷамъоварӣ ва намояндагии маълумотро месанҷем. Нусхаи эҳтиётиро дар пойгоҳи ҷудо барқарор карда, RPO/RTO-и воқеиро сабт мекунем; тахмини супориш RPO 15 дақиқа ва RTO 30 дақиқа аст. Мигратсияи expand/contract то ҳазфи майдонҳо бо версияи кӯҳна мувофиқ мемонад; rollback дар нусхаи додаҳо санҷида мешавад. Canary-ро тадриҷан зиёд карда, ҳангоми бадшавӣ нашрро қатъ ва трафикро бармегардонем. Махфияти лог, лимити иҷрои код ва ҳуқуқи нусхаҳои эҳтиётиро алоҳида месанҷем. Бе далели барқароркунӣ ва бозгашт қарор hold аст. Функсияи муваффақ бо ададҳои сохта нашри production-ро иҷозат намедиҳад.",
+          "en": "Release ADR: this exercise chooses error rate ≤1%, p95 ≤500 ms and at least 100 requests; these are exercise thresholds, not a universal SLA. Verify metric source, time window, freshness and representativeness before deciding. Restore backups into an isolated database and record actual RPO/RTO; the exercise assumes RPO 15 minutes and RTO 30 minutes. Use expand/contract migrations compatible with the old version before removing fields; test rollback on copied data. Increase canary traffic gradually and stop/rollback on regression. Separately review log privacy, code-runner limits and backup permissions. Missing restore or rollback evidence means hold. A passing function over fictional numbers never authorizes a production release."
+        },
+        "criteria": [
+          {
+            "ru": "Memo содержит измеримые пороги, источник/окно данных и условия остановки.",
+            "tg": "Memo ҳудудҳои ченшаванда, манбаъ/фосилаи дода ва шартҳои боздошт дорад.",
+            "en": "Memo specifies measurable thresholds, data source/window and stop conditions."
+          },
+          {
+            "ru": "Восстановление и rollback требуют фактической проверки, а не существования файлов.",
+            "tg": "Барқароркунӣ ва rollback санҷиши воқеӣ мехоҳанд, на танҳо мавҷудияти файл.",
+            "en": "Restore and rollback require actual verification, not just existing files."
+          },
+          {
+            "ru": "Проверенные, неисполненные и заблокированные действия явно разделены.",
+            "tg": "Амалҳои санҷидашуда, иҷронашуда ва басташуда ошкор ҷудо шудаанд.",
+            "en": "Verified, unexecuted and blocked actions are explicitly distinguished."
+          }
+        ]
+      }
+    }
+  ]
+}

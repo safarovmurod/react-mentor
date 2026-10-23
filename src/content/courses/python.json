@@ -1,0 +1,230 @@
+{
+  "courseId": "python",
+  "sources": [
+    {
+      "id": "python-docs",
+      "title": "Python 3 — official tutorial",
+      "url": "https://docs.python.org/3/tutorial/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "python-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Python: переменные и первый расчёт",
+        "tg": "Python: тағйирёбандаҳо ва ҳисоби аввал",
+        "en": "Python: variables and your first calculation"
+      },
+      "summary": {
+        "ru": "Первый из двух вводных дней: создайте файл main.py, сохраните цену и количество в переменных и получите итог. Для запуска нужен установленный Python 3; сервер курса Python-код не исполняет.",
+        "tg": "Рӯзи аввали модули дурӯза: main.py созед, нарх ва шумораро дар тағйирёбандаҳо сабт карда, маблағро ҳисоб кунед. Барои иҷро Python 3 лозим аст; сервери курс коди Python-ро иҷро намекунад.",
+        "en": "The first of two introductory days: create main.py, store a price and quantity in variables, and calculate the total. Python 3 is required locally; the course server does not execute Python code."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "python-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Как это работает",
+            "tg": "Чӣ тавр кор мекунад",
+            "en": "How it works"
+          },
+          "body": {
+            "ru": "Присваивание = сохраняет значение под именем. Числа можно умножать; print выводит результат. Имена переменных выбирайте понятно: price, quantity, total. Python выполняет строки сверху вниз. Здесь нет базы данных и оплаты — только расчёт.",
+            "tg": "Аломати = қиматро бо ном сабт мекунад. Ададҳоро зарб кардан мумкин аст; print натиҷаро мебарорад. Номҳои фаҳмо интихоб кунед: price, quantity, total. Python сатрҳоро аз боло ба поён иҷро мекунад. Ин танҳо ҳисоб аст, на пойгоҳи дода ё пардохт.",
+            "en": "Assignment with = binds a value to a name. Numbers can be multiplied; print displays the result. Choose meaningful names such as price, quantity and total. Python executes lines from top to bottom. This is a calculation, not a database or payment system."
+          },
+          "code": "price = 12\nquantity = 3\ntotal = price * quantity\nprint(total)",
+          "language": "python"
+        },
+        {
+          "title": {
+            "ru": "Запуск и проверка",
+            "tg": "Иҷро ва санҷиш",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Шаг 1. Установите Python 3 с python.org и откройте папку в VS Code.\nШаг 2. Создайте main.py и наберите пример.\nШаг 3. В терминале этой папки выполните python3 main.py (в Windows: py main.py). Ожидается 36.\nШаг 4. Измените quantity на 0: ожидается 0. Затем price = 7 и quantity = 2: ожидается 14.",
+            "tg": "Қадами 1. Python 3-ро аз python.org насб карда, папкаро дар VS Code кушоед.\nҚадами 2. main.py созед ва мисолро нависед.\nҚадами 3. Дар терминали папка python3 main.py (дар Windows: py main.py)-ро иҷро кунед. Натиҷа 36 аст.\nҚадами 4. quantity-ро 0 кунед: натиҷа 0. Баъд price = 7 ва quantity = 2: натиҷа 14.",
+            "en": "Step 1. Install Python 3 from python.org and open a folder in VS Code.\nStep 2. Create main.py and type the example.\nStep 3. Run python3 main.py in that folder (Windows: py main.py). Expect 36.\nStep 4. Set quantity to 0: expect 0. Then set price = 7 and quantity = 2: expect 14."
+          },
+          "output": {
+            "ru": "36",
+            "tg": "36",
+            "en": "36"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "python-day-01-q",
+          "question": {
+            "ru": "Что напечатает print(7 * 2)?",
+            "tg": "print(7 * 2) чӣ мебарорад?",
+            "en": "What does print(7 * 2) display?"
+          },
+          "answer": {
+            "ru": "14: оператор * умножает числа.",
+            "tg": "14: амали * ададҳоро зарб мекунад.",
+            "en": "14: the * operator multiplies numbers."
+          },
+          "options": [
+            {
+              "ru": "72",
+              "tg": "72",
+              "en": "72"
+            },
+            {
+              "ru": "14",
+              "tg": "14",
+              "en": "14"
+            },
+            {
+              "ru": "7 * 2 как текст",
+              "tg": "7 * 2 ҳамчун матн",
+              "en": "7 * 2 as text"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Шаг 1. Установите Python 3 с python.org и откройте папку в VS Code.\nШаг 2. Создайте main.py и наберите пример.\nШаг 3. В терминале этой папки выполните python3 main.py (в Windows: py main.py). Ожидается 36.\nШаг 4. Измените quantity на 0: ожидается 0. Затем price = 7 и quantity = 2: ожидается 14.",
+          "tg": "Қадами 1. Python 3-ро аз python.org насб карда, папкаро дар VS Code кушоед.\nҚадами 2. main.py созед ва мисолро нависед.\nҚадами 3. Дар терминали папка python3 main.py (дар Windows: py main.py)-ро иҷро кунед. Натиҷа 36 аст.\nҚадами 4. quantity-ро 0 кунед: натиҷа 0. Баъд price = 7 ва quantity = 2: натиҷа 14.",
+          "en": "Step 1. Install Python 3 from python.org and open a folder in VS Code.\nStep 2. Create main.py and type the example.\nStep 3. Run python3 main.py in that folder (Windows: py main.py). Expect 36.\nStep 4. Set quantity to 0: expect 0. Then set price = 7 and quantity = 2: expect 14."
+        },
+        "hint": {
+          "ru": "Присваивание = сохраняет значение под именем. Числа можно умножать; print выводит результат. Имена переменных выбирайте понятно: price, quantity, total. Python выполняет строки сверху вниз. Здесь нет базы данных и оплаты — только расчёт.",
+          "tg": "Аломати = қиматро бо ном сабт мекунад. Ададҳоро зарб кардан мумкин аст; print натиҷаро мебарорад. Номҳои фаҳмо интихоб кунед: price, quantity, total. Python сатрҳоро аз боло ба поён иҷро мекунад. Ин танҳо ҳисоб аст, на пойгоҳи дода ё пардохт.",
+          "en": "Assignment with = binds a value to a name. Numbers can be multiplied; print displays the result. Choose meaningful names such as price, quantity and total. Python executes lines from top to bottom. This is a calculation, not a database or payment system."
+        },
+        "solution": "price = 12\nquantity = 3\ntotal = price * quantity\nprint(total)",
+        "criteria": [
+          {
+            "ru": "Пример запущен в указанной среде, результат совпадает с ожидаемым.",
+            "tg": "Мисол дар муҳити зикршуда иҷро шуд ва натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "The example runs in the stated environment and matches the expected result."
+          },
+          {
+            "ru": "Проверены изменённые входные данные; могу объяснить результат.",
+            "tg": "Маълумоти вурудии дигар санҷида шуд; натиҷаро шарҳ дода метавонам.",
+            "en": "Different inputs were checked and I can explain the result."
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Python: функция и проверка входных данных",
+        "tg": "Python: функсия ва санҷиши маълумоти вурудӣ",
+        "en": "Python: a function and input validation"
+      },
+      "summary": {
+        "ru": "Второй вводный день: вынесите расчёт в функцию, возвращайте результат через return и отклоняйте отрицательное количество. Выполните три проверки в локальном Python 3.",
+        "tg": "Рӯзи дуюми шиносоӣ: ҳисобро ба функсия гузаронед, натиҷаро бо return баргардонед ва шумораи манфиро рад кунед. Се санҷишро дар Python 3 иҷро кунед.",
+        "en": "Second introductory day: move the calculation into a function, return the result and reject a negative quantity. Run three checks in local Python 3."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "python-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Как это работает",
+            "tg": "Чӣ тавр кор мекунад",
+            "en": "How it works"
+          },
+          "body": {
+            "ru": "def объявляет функцию. Отступы определяют её тело. return передаёт результат вызывающему коду; raise ValueError сообщает о неверных данных. Проверка поведения не зависит от имён параметров.",
+            "tg": "def функсияро эълон мекунад. Фосилаи аввали сатр ҳудуди онро муайян мекунад. return натиҷаро ба рамзи даъваткунанда медиҳад; raise ValueError хатои маълумотро хабар медиҳад. Санҷиши рафтор аз номи параметрҳо вобаста нест.",
+            "en": "def declares a function; indentation defines its body. return passes a result to the caller; raise ValueError reports invalid input. Behavioral checks do not depend on parameter names."
+          },
+          "code": "def calculate_total(price, quantity):\n    if price < 0 or quantity < 0:\n        raise ValueError(\"Values must not be negative\")\n    return price * quantity\n\nprint(calculate_total(12, 3))\nprint(calculate_total(12, 0))\ntry:\n    calculate_total(12, -1)\nexcept ValueError:\n    print(\"Invalid input rejected\")",
+          "language": "python"
+        },
+        {
+          "title": {
+            "ru": "Запуск и проверка",
+            "tg": "Иҷро ва санҷиш",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Шаг 1. Сохраните вчерашний файл и добавьте calculate_total.\nШаг 2. Возвращайте произведение, если оба числа неотрицательные.\nШаг 3. Для отрицательной цены или количества поднимайте ValueError. Запустите python3 main.py.\nШаг 4. Проверьте (12, 3) → 36, (12, 0) → 0, (12, -1) → ValueError. Не подавляйте ошибку внутри функции.",
+            "tg": "Қадами 1. Файли дирӯзаро нигоҳ дошта, calculate_total илова кунед.\nҚадами 2. Агар ҳар ду адад ғайриманфӣ бошанд, ҳосили зарбро баргардонед.\nҚадами 3. Барои нарх ё шумораи манфӣ ValueError бардоред. python3 main.py-ро иҷро кунед.\nҚадами 4. (12, 3) → 36, (12, 0) → 0, (12, -1) → ValueError-ро санҷед. Хаторо дар дохили функсия пинҳон накунед.",
+            "en": "Step 1. Keep yesterday’s file and add calculate_total.\nStep 2. Return the product when both numbers are nonnegative.\nStep 3. Raise ValueError for a negative price or quantity. Run python3 main.py.\nStep 4. Check (12, 3) → 36, (12, 0) → 0, and (12, -1) → ValueError. Do not swallow the error inside the function."
+          },
+          "output": {
+            "ru": "36\n0\nInvalid input rejected",
+            "tg": "36\n0\nInvalid input rejected",
+            "en": "36\n0\nInvalid input rejected"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "python-day-02-q",
+          "question": {
+            "ru": "Что передаёт результат функции вызывающему коду?",
+            "tg": "Чӣ натиҷаи функсияро ба рамзи даъваткунанда медиҳад?",
+            "en": "What passes a function result to its caller?"
+          },
+          "answer": {
+            "ru": "return. print только показывает текст, но не заменяет возвращаемое значение.",
+            "tg": "return. print танҳо матнро нишон медиҳад ва натиҷаи баргардондашударо иваз намекунад.",
+            "en": "return. print displays text but does not replace the returned value."
+          },
+          "options": [
+            {
+              "ru": "print",
+              "tg": "print",
+              "en": "print"
+            },
+            {
+              "ru": "return",
+              "tg": "return",
+              "en": "return"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Шаг 1. Сохраните вчерашний файл и добавьте calculate_total.\nШаг 2. Возвращайте произведение, если оба числа неотрицательные.\nШаг 3. Для отрицательной цены или количества поднимайте ValueError. Запустите python3 main.py.\nШаг 4. Проверьте (12, 3) → 36, (12, 0) → 0, (12, -1) → ValueError. Не подавляйте ошибку внутри функции.",
+          "tg": "Қадами 1. Файли дирӯзаро нигоҳ дошта, calculate_total илова кунед.\nҚадами 2. Агар ҳар ду адад ғайриманфӣ бошанд, ҳосили зарбро баргардонед.\nҚадами 3. Барои нарх ё шумораи манфӣ ValueError бардоред. python3 main.py-ро иҷро кунед.\nҚадами 4. (12, 3) → 36, (12, 0) → 0, (12, -1) → ValueError-ро санҷед. Хаторо дар дохили функсия пинҳон накунед.",
+          "en": "Step 1. Keep yesterday’s file and add calculate_total.\nStep 2. Return the product when both numbers are nonnegative.\nStep 3. Raise ValueError for a negative price or quantity. Run python3 main.py.\nStep 4. Check (12, 3) → 36, (12, 0) → 0, and (12, -1) → ValueError. Do not swallow the error inside the function."
+        },
+        "hint": {
+          "ru": "def объявляет функцию. Отступы определяют её тело. return передаёт результат вызывающему коду; raise ValueError сообщает о неверных данных. Проверка поведения не зависит от имён параметров.",
+          "tg": "def функсияро эълон мекунад. Фосилаи аввали сатр ҳудуди онро муайян мекунад. return натиҷаро ба рамзи даъваткунанда медиҳад; raise ValueError хатои маълумотро хабар медиҳад. Санҷиши рафтор аз номи параметрҳо вобаста нест.",
+          "en": "def declares a function; indentation defines its body. return passes a result to the caller; raise ValueError reports invalid input. Behavioral checks do not depend on parameter names."
+        },
+        "solution": "def calculate_total(price, quantity):\n    if price < 0 or quantity < 0:\n        raise ValueError(\"Values must not be negative\")\n    return price * quantity\n\nprint(calculate_total(12, 3))\nprint(calculate_total(12, 0))\ntry:\n    calculate_total(12, -1)\nexcept ValueError:\n    print(\"Invalid input rejected\")",
+        "criteria": [
+          {
+            "ru": "Пример запущен в указанной среде, результат совпадает с ожидаемым.",
+            "tg": "Мисол дар муҳити зикршуда иҷро шуд ва натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "The example runs in the stated environment and matches the expected result."
+          },
+          {
+            "ru": "Проверены изменённые входные данные; могу объяснить результат.",
+            "tg": "Маълумоти вурудии дигар санҷида шуд; натиҷаро шарҳ дода метавонам.",
+            "en": "Different inputs were checked and I can explain the result."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "courseId": "nodejs",
+  "sources": [
+    {
+      "id": "nodejs-official",
+      "title": "Node.js — official documentation",
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "nodejs-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Node.js: JavaScript вне браузера",
+        "tg": "Node.js: JavaScript берун аз браузер",
+        "en": "Node.js: JavaScript outside the browser"
+      },
+      "summary": {
+        "ru": "День 1 из 2. Node.js: JavaScript вне браузера. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. Node.js: JavaScript берун аз браузер. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. Node.js: JavaScript outside the browser. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "nodejs-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Node.js выполняет JavaScript вне страницы браузера. Расширение .mjs включает ES-модули. console.log выводит результат в терминал. В этом примере нет DOM, сервера и HTTP-порта; window и document не являются API Node.js.",
+            "tg": "Node.js JavaScript-ро берун аз саҳифаи браузер иҷро мекунад. Пасванди .mjs ES-модулҳоро фаъол мекунад. console.log натиҷаро дар терминал мебарорад. Дар ин мисол DOM, сервер ва HTTP-порт нест; window ва document API-и Node.js нестанд.",
+            "en": "Node.js runs JavaScript outside a browser page. The .mjs extension selects ES modules. console.log writes to the terminal. This example has no DOM, server or HTTP port; window and document are not Node.js APIs."
+          },
+          "code": "const prices = [12, 7, 5];\nconst total = prices.reduce((sum, price) => sum + price, 0);\nconsole.log(total);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "24",
+            "tg": "24",
+            "en": "24"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.mjs в отдельной учебной папке и выполните в её терминале:\nnode main.mjs\nОжидаемый вывод:\n24\n\nПроверьте [] → 0 и [0, 7] → 7. Объясните начальное значение 0 в reduce.",
+            "tg": "main.mjs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nnode main.mjs\nНатиҷаи интизорӣ:\n24\n\n[] → 0 ва [0, 7] → 7-ро санҷед. Қимати аввали 0 дар reduce-ро шарҳ диҳед.",
+            "en": "Save main.mjs in a separate learning folder and run in that folder's terminal:\nnode main.mjs\nExpected output:\n24\n\nCheck [] → 0 and [0, 7] → 7. Explain the initial 0 passed to reduce."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "nodejs-day-01-q",
+          "question": {
+            "ru": "Где console.log показывает результат при node main.mjs?",
+            "tg": "Ҳангоми node main.mjs натиҷаи console.log дар куҷо мебарояд?",
+            "en": "Where does console.log display output with node main.mjs?"
+          },
+          "answer": {
+            "ru": "В терминале",
+            "tg": "Дар терминал",
+            "en": "In the terminal"
+          },
+          "options": [
+            {
+              "ru": "В DOM страницы",
+              "tg": "Дар DOM-и саҳифа",
+              "en": "In the page DOM"
+            },
+            {
+              "ru": "В терминале",
+              "tg": "Дар терминал",
+              "en": "In the terminal"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.mjs в отдельной учебной папке и выполните в её терминале:\nnode main.mjs\nОжидаемый вывод:\n24\n\nПроверьте [] → 0 и [0, 7] → 7. Объясните начальное значение 0 в reduce.",
+          "tg": "main.mjs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nnode main.mjs\nНатиҷаи интизорӣ:\n24\n\n[] → 0 ва [0, 7] → 7-ро санҷед. Қимати аввали 0 дар reduce-ро шарҳ диҳед.",
+          "en": "Save main.mjs in a separate learning folder and run in that folder's terminal:\nnode main.mjs\nExpected output:\n24\n\nCheck [] → 0 and [0, 7] → 7. Explain the initial 0 passed to reduce."
+        },
+        "hint": {
+          "ru": "Node.js выполняет JavaScript вне страницы браузера. Расширение .mjs включает ES-модули. console.log выводит результат в терминал. В этом примере нет DOM, сервера и HTTP-порта; window и document не являются API Node.js.",
+          "tg": "Node.js JavaScript-ро берун аз саҳифаи браузер иҷро мекунад. Пасванди .mjs ES-модулҳоро фаъол мекунад. console.log натиҷаро дар терминал мебарорад. Дар ин мисол DOM, сервер ва HTTP-порт нест; window ва document API-и Node.js нестанд.",
+          "en": "Node.js runs JavaScript outside a browser page. The .mjs extension selects ES modules. console.log writes to the terminal. This example has no DOM, server or HTTP port; window and document are not Node.js APIs."
+        },
+        "solution": "const prices = [12, 7, 5];\nconst total = prices.reduce((sum, price) => sum + price, 0);\nconsole.log(total);\n",
+        "criteria": [
+          {
+            "ru": "Файл main.mjs выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.mjs бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.mjs using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте [] → 0 и [0, 7] → 7. Объясните начальное значение 0 в reduce.",
+            "tg": "[] → 0 ва [0, 7] → 7-ро санҷед. Қимати аввали 0 дар reduce-ро шарҳ диҳед.",
+            "en": "Check [] → 0 and [0, 7] → 7. Explain the initial 0 passed to reduce."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "nodejs-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Node.js: модуль и проверки assert",
+        "tg": "Node.js: модул ва санҷишҳои assert",
+        "en": "Node.js: a module and assert checks"
+      },
+      "summary": {
+        "ru": "День 2 из 2. Node.js: модуль и тесты assert. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. Node.js: модул ва санҷишҳои assert. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. Node.js: a module and assert checks. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "nodejs-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Стандартный node:assert/strict сравнивает фактические результаты с ожидаемыми. assert.throws проверяет отказ. Функция ничего не знает о названиях переменных вызывающего кода: важны аргументы и результат. Ввод ограничен неотрицательными безопасными целыми; проверяем и переполнение результата.",
+            "tg": "Модули стандартии node:assert/strict натиҷаи воқеиро бо интизорӣ муқоиса мекунад. assert.throws радкуниро месанҷад. Функсия номи тағйирёбандаҳои рамзи даъваткунандаро намедонад: аргументҳо ва натиҷа муҳиманд. Вуруд ададҳои бутуни бехатари ғайриманфӣ аст; аз ҳудуд гузаштани натиҷаро ҳам месанҷем.",
+            "en": "The built-in node:assert/strict compares actual and expected results. assert.throws checks rejection. A function does not depend on its caller’s variable names: arguments and output matter. Restrict inputs to nonnegative safe integers and check result overflow too."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport function total(price, quantity) {\n  if (![price, quantity].every(value => Number.isSafeInteger(value) && value >= 0)) {\n    throw new RangeError(\"Use nonnegative safe integers\");\n  }\n  const result = price * quantity;\n  if (!Number.isSafeInteger(result)) throw new RangeError(\"Total too large\");\n  return result;\n}\nassert.equal(total(12, 3), 36);\nassert.equal(total(12, 0), 0);\nassert.throws(() => total(12, -1), RangeError);\nconsole.log(\"3 checks passed\");\n",
+          "language": "javascript",
+          "output": {
+            "ru": "3 checks passed",
+            "tg": "3 checks passed",
+            "en": "3 checks passed"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.mjs в отдельной учебной папке и выполните в её терминале:\nnode main.mjs\nОжидаемый вывод:\n3 checks passed\n\nДобавьте assert.throws для total(12, NaN), total(12, 1.5) и total(Number.MAX_SAFE_INTEGER, 2). Затем намеренно сломайте умножение: проверки должны упасть.",
+            "tg": "main.mjs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nnode main.mjs\nНатиҷаи интизорӣ:\n3 checks passed\n\nБарои total(12, NaN), total(12, 1.5) ва total(Number.MAX_SAFE_INTEGER, 2) assert.throws илова кунед. Баъд зарбро қасдан вайрон кунед: санҷишҳо бояд нагузаранд.",
+            "en": "Save main.mjs in a separate learning folder and run in that folder's terminal:\nnode main.mjs\nExpected output:\n3 checks passed\n\nAdd assert.throws for total(12, NaN), total(12, 1.5) and total(Number.MAX_SAFE_INTEGER, 2). Then deliberately break multiplication: the checks must fail."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "nodejs-day-02-q",
+          "question": {
+            "ru": "Что должна сделать неверная реализация при запуске этих assert?",
+            "tg": "Ҳангоми иҷрои ин assert ҳалли нодуруст бояд чӣ кунад?",
+            "en": "What should an incorrect implementation do when these assertions run?"
+          },
+          "answer": {
+            "ru": "Завершить проверку с ошибкой",
+            "tg": "Санҷишро бо хато ба охир расонад",
+            "en": "Fail the check"
+          },
+          "options": [
+            {
+              "ru": "Всегда напечатать успех",
+              "tg": "Ҳамеша муваффақият барорад",
+              "en": "Always print success"
+            },
+            {
+              "ru": "Завершить проверку с ошибкой",
+              "tg": "Санҷишро бо хато ба охир расонад",
+              "en": "Fail the check"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.mjs в отдельной учебной папке и выполните в её терминале:\nnode main.mjs\nОжидаемый вывод:\n3 checks passed\n\nДобавьте assert.throws для total(12, NaN), total(12, 1.5) и total(Number.MAX_SAFE_INTEGER, 2). Затем намеренно сломайте умножение: проверки должны упасть.",
+          "tg": "main.mjs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nnode main.mjs\nНатиҷаи интизорӣ:\n3 checks passed\n\nБарои total(12, NaN), total(12, 1.5) ва total(Number.MAX_SAFE_INTEGER, 2) assert.throws илова кунед. Баъд зарбро қасдан вайрон кунед: санҷишҳо бояд нагузаранд.",
+          "en": "Save main.mjs in a separate learning folder and run in that folder's terminal:\nnode main.mjs\nExpected output:\n3 checks passed\n\nAdd assert.throws for total(12, NaN), total(12, 1.5) and total(Number.MAX_SAFE_INTEGER, 2). Then deliberately break multiplication: the checks must fail."
+        },
+        "hint": {
+          "ru": "Стандартный node:assert/strict сравнивает фактические результаты с ожидаемыми. assert.throws проверяет отказ. Функция ничего не знает о названиях переменных вызывающего кода: важны аргументы и результат. Ввод ограничен неотрицательными безопасными целыми; проверяем и переполнение результата.",
+          "tg": "Модули стандартии node:assert/strict натиҷаи воқеиро бо интизорӣ муқоиса мекунад. assert.throws радкуниро месанҷад. Функсия номи тағйирёбандаҳои рамзи даъваткунандаро намедонад: аргументҳо ва натиҷа муҳиманд. Вуруд ададҳои бутуни бехатари ғайриманфӣ аст; аз ҳудуд гузаштани натиҷаро ҳам месанҷем.",
+          "en": "The built-in node:assert/strict compares actual and expected results. assert.throws checks rejection. A function does not depend on its caller’s variable names: arguments and output matter. Restrict inputs to nonnegative safe integers and check result overflow too."
+        },
+        "solution": "import assert from \"node:assert/strict\";\n\nexport function total(price, quantity) {\n  if (![price, quantity].every(value => Number.isSafeInteger(value) && value >= 0)) {\n    throw new RangeError(\"Use nonnegative safe integers\");\n  }\n  const result = price * quantity;\n  if (!Number.isSafeInteger(result)) throw new RangeError(\"Total too large\");\n  return result;\n}\nassert.equal(total(12, 3), 36);\nassert.equal(total(12, 0), 0);\nassert.throws(() => total(12, -1), RangeError);\nconsole.log(\"3 checks passed\");\n",
+        "criteria": [
+          {
+            "ru": "Файл main.mjs выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.mjs бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.mjs using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Добавьте assert.throws для total(12, NaN), total(12, 1.5) и total(Number.MAX_SAFE_INTEGER, 2). Затем намеренно сломайте умножение: проверки должны упасть.",
+            "tg": "Барои total(12, NaN), total(12, 1.5) ва total(Number.MAX_SAFE_INTEGER, 2) assert.throws илова кунед. Баъд зарбро қасдан вайрон кунед: санҷишҳо бояд нагузаранд.",
+            "en": "Add assert.throws for total(12, NaN), total(12, 1.5) and total(Number.MAX_SAFE_INTEGER, 2). Then deliberately break multiplication: the checks must fail."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

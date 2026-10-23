@@ -68,7 +68,7 @@ async function login(page:Page,email='a@example.com') {
 }
 async function firstName(page:Page,name:string) {
   await expect(page.getByRole('heading',{name:'Как вас называть?'})).toBeVisible();await page.getByLabel('Ваше имя',{exact:true}).fill(name);await page.getByRole('button',{name:'Начать обучение',exact:true}).click();await expect(page.locator('.header-tools .avatar')).toHaveAttribute('aria-label',name);
-  await expect(page.getByRole('heading',{name:'Что будем изучать?'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Навыки начинаются с практики.'})).toBeVisible();
   await page.getByRole('button',{name:'Выбрать React',exact:true}).click();
 }
 
@@ -107,7 +107,7 @@ test('first name, private notes and profile survive login, account switching and
   await page.goto('/home');await expect(page.locator('.dashboard-heading p')).toContainText('Мансур');
   await page.goto('/notes');await page.getByRole('button',{name:'Новая заметка',exact:true}).click();await page.getByLabel('Название',{exact:true}).fill('Личная заметка A');await page.getByLabel('Текст',{exact:true}).fill('Только аккаунт A');await page.getByRole('button',{name:'Сохранить',exact:true}).click();
   await page.goto('/settings');await page.getByRole('button',{name:'Синхронизировать',exact:true}).click();await expect.poll(()=>backend.progress.get(ids.a)?.data.notes).toEqual([expect.objectContaining({title:'Личная заметка A'})]);
-  await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await expect(page.getByRole('heading',{name:'Ваш путь в React'})).toBeVisible();await login(page,'b@example.com');
+  await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await expect(page.getByRole('heading',{name:'Продолжите своё обучение'})).toBeVisible();await login(page,'b@example.com');
   // First profile is mandatory and must not reuse account A's name.
   await firstName(page,'Одина');await page.goto('/home');await expect(page.locator('.dashboard-heading p')).toContainText('Одина');await expect(page.locator('.dashboard-heading p')).not.toContainText('Мансур');await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toHaveCount(0);await page.goto('/settings');
   await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await login(page);await page.goto('/notes');await expect(page.getByText('Личная заметка A',{exact:true})).toBeVisible();await page.reload();await expect(page.getByText('Личная заметка A',{exact:true})).toBeVisible();
@@ -144,7 +144,7 @@ test('remembered login survives closing the browser, refreshes expired access an
       return JSON.parse(localStorage.getItem(key)!).expires_at>Math.floor(Date.now()/1000);
     })).toBe(true);
     await resumed.page.goto('/settings');await resumed.page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();
-    await expect(resumed.page.getByRole('heading',{name:'Ваш путь в React'})).toBeVisible();
+    await expect(resumed.page.getByRole('heading',{name:'Продолжите своё обучение'})).toBeVisible();
     await context!.close();context=undefined;
     const loggedOut=await open(first.backend);await loggedOut.page.goto('/home');
     await expect(loggedOut.page.getByRole('button',{name:'Войти с email',exact:true})).toBeVisible();
@@ -162,6 +162,6 @@ test('photo upload, phone QR and authenticator enrollment/challenge work (mock b
   expect(await page.evaluate(()=>JSON.stringify(localStorage))).not.toContain('TEST-ONLY-SECRET');
   await page.screenshot({path:'/tmp/react-mentor-'+info.project.name+'-account-settings.png',fullPage:true});
   await page.getByRole('button',{name:'Выйти из аккаунта',exact:true}).click();await login(page);
-  await expect(page.getByRole('heading',{name:'Подтвердите вход'})).toBeVisible();await expect(page.getByRole('heading',{name:'Время разобраться в React.'})).toHaveCount(0);
+  await expect(page.getByRole('heading',{name:'Подтвердите вход'})).toBeVisible();await expect(page.getByRole('heading',{name:'Навыки начинаются с практики.'})).toHaveCount(0);
   await page.getByLabel('Код authenticator',{exact:true}).fill('123456');await page.getByRole('button',{name:'Подтвердить',exact:true}).click();await expect(page.getByRole('heading',{name:'Настройки',exact:true})).toBeVisible();
 });

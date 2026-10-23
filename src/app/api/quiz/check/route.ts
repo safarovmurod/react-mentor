@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { QUIZ_QUESTIONS } from '@/content/course';
+import { readBoundedJson, RequestBodyError } from '@/lib/security/request';
 const schema=z.object({questionId:z.string().max(100),answer:z.string().max(10000)});
 export async function POST(request:Request) {
   let body:unknown;
-  try {body=await request.json();}catch{return NextResponse.json({error:'Invalid JSON'},{status:400});}
+  try {body=await readBoundedJson(request);}catch(cause){return NextResponse.json({error:'Invalid or oversized JSON'},{status:cause instanceof RequestBodyError?cause.status:400});}
   const parsed=schema.safeParse(body);
   if(!parsed.success)return NextResponse.json({error:'Invalid answer'},{status:400});
   const question=QUIZ_QUESTIONS.find(item=>item.id===parsed.data.questionId);

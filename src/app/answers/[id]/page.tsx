@@ -4,7 +4,7 @@ import { getAnswerTopic } from '@/content/answers';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const topic = getAnswerTopic((await params).id);
-  return { title: topic ? `${topic.title} — Ответы — ReactMentor` : 'Ответы — ReactMentor' };
+  return { title: topic ? `${topic.title} — Ответы — DevAtlas` : 'Ответы — DevAtlas' };
 }
 
 export default async function AnswerPage({ params }: { params: Promise<{ id: string }> }) {

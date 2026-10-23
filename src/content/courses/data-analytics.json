@@ -1,0 +1,238 @@
+{
+  "courseId": "data-analytics",
+  "sources": [
+    {
+      "id": "data-analytics-reference",
+      "title": "UK Government Analysis Function — Data quality",
+      "url": "https://analysisfunction.civilservice.gov.uk/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "data-analytics-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: таблица и качество данных",
+        "tg": "Рӯзи 1: ҷадвал ва сифати додаҳо",
+        "en": "Day 1: tables and data quality"
+      },
+      "summary": {
+        "ru": "В двухдневном вводном модуле начните с маленькой таблицы: определите строку, столбец и единицу измерения. Найдите пропуск и дубликат до расчётов; программирование не требуется.",
+        "tg": "Дар модули дурӯза аз ҷадвали хурд оғоз кунед: сатр, сутун ва воҳиди ченакро муайян кунед. Пеш аз ҳисоб қимати холӣ ва такрорро ёбед; барномасозӣ лозим нест.",
+        "en": "Start this two-day introduction with a small table: identify rows, columns and units. Find a missing value and duplicate before calculating; programming is not required."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "data-analytics-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Одна строка должна описывать одну единицу наблюдения. Заголовки и единицы делают данные понятными. Пропуск не равен нулю: ноль означает измеренное отсутствие, а пропуск — неизвестность. Дубликат удаляют только после проверки, что это повтор записи, а не две реальные операции. Для практики используйте вымышленные идентификаторы.",
+            "tg": "Як сатр бояд як мушоҳидаро нишон диҳад. Номи сутун ва воҳидҳо додаҳоро фаҳмо мекунанд. Қимати холӣ сифр нест: сифр набудани ченшуда, холӣ бошад номаълумиро мефаҳмонад. Такрорро танҳо баъди тасдиқи нусха будан тоза кунед, на ду амали воқеӣ. Барои машқ рамзҳои сохта истифода баред.",
+            "en": "One row should represent one observation. Column names and units make data meaningful. Missing is not zero: zero is an observed absence; missing is unknown. Remove a duplicate only after checking it repeats a record rather than represents two real events. Use fictional identifiers for practice."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Заказы: A01 — 2 товара; A02 — значение не указано; A03 — 4 товара; A03 — 4 товара. Единица строки — заказ, единица количества — штуки. A02 требует уточнения; вторую A03 нужно проверить по источнику. Среднее до решения этих вопросов может вводить в заблуждение.",
+            "tg": "Фармоишҳо: A01 — 2 дона; A02 — номаълум; A03 — 4 дона; A03 — 4 дона. Воҳиди сатр фармоиш ва воҳиди шумора дона аст. A02 тавзеҳ мехоҳад; A03-и дуюм аз манбаъ санҷида шавад. Миёна пеш аз ин қарорҳо метавонад гумроҳ кунад.",
+            "en": "Orders: A01 — 2 items; A02 — missing; A03 — 4 items; A03 — 4 items. A row represents an order; quantities are item counts. A02 needs clarification; the second A03 needs source checking. An average before resolving these issues may mislead."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "data-analytics-day-01-q01",
+          "question": {
+            "ru": "Можно ли заменить неизвестное количество нулём без проверки?",
+            "tg": "Оё шумораи номаълумро бе санҷиш сифр кардан мумкин аст?",
+            "en": "Can an unknown quantity be replaced with zero without checking?"
+          },
+          "answer": {
+            "ru": "Нет: неизвестное значение и измеренный ноль различаются.",
+            "tg": "Не: номаълум ва сифри ченшуда фарқ доранд.",
+            "en": "No: unknown and an observed zero are different."
+          },
+          "options": [
+            {
+              "ru": "Да, это одно и то же.",
+              "tg": "Бале, як чизанд.",
+              "en": "Yes, they mean the same thing."
+            },
+            {
+              "ru": "Нет: неизвестное значение и измеренный ноль различаются.",
+              "tg": "Не: номаълум ва сифри ченшуда фарқ доранд.",
+              "en": "No: unknown and an observed zero are different."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Перенесите четыре строки примера в текст или таблицу.\n2. Дайте названия двум столбцам и укажите единицу наблюдения.\n3. Отметьте пропуск и возможный дубликат, не заменяя пропуск нулём.\n4. Напишите, что нужно проверить перед удалением строки или расчётом среднего.",
+          "tg": "1. Чор сатри мисолро ба матн ё ҷадвал гузаронед.\n2. Ду сутун ва воҳиди мушоҳидаро номбар кунед.\n3. Қимати холӣ ва такрори эҳтимолиро қайд кунед; холиро сифр накунед.\n4. Пеш аз тоза кардан ё ҳисоби миёна чиро санҷидан лозим аст, нависед.",
+          "en": "1. Copy the four example rows into text or a table.\n2. Name both columns and define one observation.\n3. Flag the missing value and possible duplicate without replacing missing with zero.\n4. State what to verify before deletion or calculating an average."
+        },
+        "hint": {
+          "ru": "Разделяйте факт «значение отсутствует» и решение «запросить источник».",
+          "tg": "Далели «қимат нест»-ро аз қарори «манбаъро пурсидан» ҷудо кунед.",
+          "en": "Separate the fact “value missing” from the decision “ask the source”."
+        },
+        "solution": "Заказы: A01 — 2 товара; A02 — значение не указано; A03 — 4 товара; A03 — 4 товара. Единица строки — заказ, единица количества — штуки. A02 требует уточнения; вторую A03 нужно проверить по источнику. Среднее до решения этих вопросов может вводить в заблуждение.",
+        "referenceAnswer": {
+          "ru": "Заказы: A01 — 2 товара; A02 — значение не указано; A03 — 4 товара; A03 — 4 товара. Единица строки — заказ, единица количества — штуки. A02 требует уточнения; вторую A03 нужно проверить по источнику. Среднее до решения этих вопросов может вводить в заблуждение.",
+          "tg": "Фармоишҳо: A01 — 2 дона; A02 — номаълум; A03 — 4 дона; A03 — 4 дона. Воҳиди сатр фармоиш ва воҳиди шумора дона аст. A02 тавзеҳ мехоҳад; A03-и дуюм аз манбаъ санҷида шавад. Миёна пеш аз ин қарорҳо метавонад гумроҳ кунад.",
+          "en": "Orders: A01 — 2 items; A02 — missing; A03 — 4 items; A03 — 4 items. A row represents an order; quantities are item counts. A02 needs clarification; the second A03 needs source checking. An average before resolving these issues may mislead."
+        },
+        "criteria": [
+          {
+            "ru": "Строка и единицы определены.",
+            "tg": "Сатр ва воҳидҳо муайянанд.",
+            "en": "Rows and units are defined."
+          },
+          {
+            "ru": "Пропуск и возможный дубликат найдены.",
+            "tg": "Қимати холӣ ва такрори эҳтимолӣ ёфт шудаанд.",
+            "en": "Missing data and a possible duplicate are identified."
+          },
+          {
+            "ru": "Изменения требуют обоснования, а не догадки.",
+            "tg": "Тағйир далел мехоҳад, на тахмин.",
+            "en": "Changes require justification, not guesses."
+          }
+        ]
+      }
+    },
+    {
+      "id": "data-analytics-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: среднее, медиана и вывод",
+        "tg": "Рӯзи 2: миёна, медиана ва хулоса",
+        "en": "Day 2: mean, median and interpretation"
+      },
+      "summary": {
+        "ru": "Посчитайте две характеристики на одних числах и объясните влияние необычно большого значения. Сдайте краткий вывод с ограничением, а не только результат вычисления.",
+        "tg": "Ду нишондиҳандаро барои як маҷмуа ҳисоб карда, таъсири қимати хеле калонро фаҳмонед. Хулосаи кӯтоҳ бо маҳдудият супоред, на танҳо ҷавоби ҳисоб.",
+        "en": "Calculate two summaries of the same values and explain the effect of an unusually large observation. Submit a short conclusion with a limitation, not just arithmetic."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "data-analytics-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Среднее — сумма значений, делённая на их количество. Медиана — центральное значение отсортированного ряда; при чётном количестве берут среднее двух центральных. Большое значение может сильно сдвинуть среднее. Ни один показатель сам по себе не доказывает причину изменения и не заменяет описание выборки.",
+            "tg": "Миёна ҷамъро ба шумораи қиматҳо тақсим мекунад. Медиана қимати марказии қатори тартибдодашуда аст; барои шумораи ҷуфт миёнаи ду марказ гирифта мешавад. Қимати калон миёнаро зиёд тағйир медиҳад. Ягон нишондиҳанда танҳо сабаби тағйирро исбот намекунад ё шарҳи намунаро иваз намекунад.",
+            "en": "The mean is the sum divided by the number of values. The median is the center of a sorted series; for an even count, average the two central values. A large observation can shift the mean sharply. Neither statistic alone proves a cause or replaces a description of the sample."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Учебное время ожидания в минутах: 2, 3, 3, 4, 18. Сумма 30, среднее 30/5 = 6, медиана 3. Вывод: типичное центральное ожидание — 3 минуты, но один долгий случай повысил среднее до 6. Ограничение: всего пять наблюдений; по ним нельзя судить обо всех днях.\n\nДля сравнения без 18: значения 2, 3, 3, 4, сумма 12, среднее 12/4 = 3, медиана (3 + 3)/2 = 3. Это анализ чувствительности, не основание удалять долгий случай из исходных данных.",
+            "tg": "Вақти сохтаи интизорӣ бо дақиқа: 2, 3, 3, 4, 18. Ҷамъ 30, миёна 30/5 = 6, медиана 3. Хулоса: маркази интизорӣ 3 дақиқа аст, вале як ҳолати дароз миёнаро ба 6 расонд. Маҳдудият: ҳамагӣ панҷ мушоҳида; барои ҳамаи рӯзҳо хулоса кофӣ нест.\n\nБарои муқоисаи бе 18: 2, 3, 3, 4, ҷамъ 12, миёна 12/4 = 3, медиана (3 + 3)/2 = 3. Ин санҷиши таъсир аст, на сабаби тоза кардани ҳолати дароз аз додаи аслӣ.",
+            "en": "Fictional waiting times in minutes: 2, 3, 3, 4, 18. Sum 30, mean 30/5 = 6, median 3. Interpretation: the central waiting time is 3 minutes, while one long wait raises the mean to 6. Limitation: only five observations; they do not represent every day.\n\nFor the comparison without 18: values 2, 3, 3, 4, sum 12, mean 12/4 = 3, median (3 + 3)/2 = 3. This is sensitivity analysis, not a reason to delete the long wait from the original data."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "data-analytics-day-02-q01",
+          "question": {
+            "ru": "Какова медиана 2, 3, 3, 4, 18?",
+            "tg": "Медианаи 2, 3, 3, 4, 18 чанд аст?",
+            "en": "What is the median of 2, 3, 3, 4, 18?"
+          },
+          "answer": {
+            "ru": "3",
+            "tg": "3",
+            "en": "3"
+          },
+          "options": [
+            {
+              "ru": "6",
+              "tg": "6",
+              "en": "6"
+            },
+            {
+              "ru": "18",
+              "tg": "18",
+              "en": "18"
+            },
+            {
+              "ru": "3",
+              "tg": "3",
+              "en": "3"
+            }
+          ],
+          "correctIndex": 2
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Отсортируйте 18, 3, 2, 4, 3.\n2. Вычислите сумму, среднее и медиану с формулами.\n3. Сравните результат без 18, не удаляя это значение из исходных данных.\n4. Напишите вывод из двух предложений и одно ограничение выборки.",
+          "tg": "1. 18, 3, 2, 4, 3-ро тартиб диҳед.\n2. Ҷамъ, миёна ва медианаро бо формула ҳисоб кунед.\n3. Натиҷаро бе 18 муқоиса кунед, вале додаи аслиро тоза накунед.\n4. Хулосаи дуҷумлаӣ ва як маҳдудияти намуна нависед.",
+          "en": "1. Sort 18, 3, 2, 4, 3.\n2. Calculate the sum, mean and median with formulas.\n3. Compare the result without 18, preserving the original data.\n4. Write two sentences of interpretation and one sample limitation."
+        },
+        "hint": {
+          "ru": "Без 18 остаётся 2, 3, 3, 4: среднее и медиана равны 3.",
+          "tg": "Бе 18 қатор 2, 3, 3, 4 мемонад: миёна ва медиана 3 ҳастанд.",
+          "en": "Without 18, the values are 2, 3, 3, 4: both mean and median are 3."
+        },
+        "solution": "Учебное время ожидания в минутах: 2, 3, 3, 4, 18. Сумма 30, среднее 30/5 = 6, медиана 3. Вывод: типичное центральное ожидание — 3 минуты, но один долгий случай повысил среднее до 6. Ограничение: всего пять наблюдений; по ним нельзя судить обо всех днях.\n\nДля сравнения без 18: значения 2, 3, 3, 4, сумма 12, среднее 12/4 = 3, медиана (3 + 3)/2 = 3. Это анализ чувствительности, не основание удалять долгий случай из исходных данных.",
+        "referenceAnswer": {
+          "ru": "Учебное время ожидания в минутах: 2, 3, 3, 4, 18. Сумма 30, среднее 30/5 = 6, медиана 3. Вывод: типичное центральное ожидание — 3 минуты, но один долгий случай повысил среднее до 6. Ограничение: всего пять наблюдений; по ним нельзя судить обо всех днях.\n\nДля сравнения без 18: значения 2, 3, 3, 4, сумма 12, среднее 12/4 = 3, медиана (3 + 3)/2 = 3. Это анализ чувствительности, не основание удалять долгий случай из исходных данных.",
+          "tg": "Вақти сохтаи интизорӣ бо дақиқа: 2, 3, 3, 4, 18. Ҷамъ 30, миёна 30/5 = 6, медиана 3. Хулоса: маркази интизорӣ 3 дақиқа аст, вале як ҳолати дароз миёнаро ба 6 расонд. Маҳдудият: ҳамагӣ панҷ мушоҳида; барои ҳамаи рӯзҳо хулоса кофӣ нест.\n\nБарои муқоисаи бе 18: 2, 3, 3, 4, ҷамъ 12, миёна 12/4 = 3, медиана (3 + 3)/2 = 3. Ин санҷиши таъсир аст, на сабаби тоза кардани ҳолати дароз аз додаи аслӣ.",
+          "en": "Fictional waiting times in minutes: 2, 3, 3, 4, 18. Sum 30, mean 30/5 = 6, median 3. Interpretation: the central waiting time is 3 minutes, while one long wait raises the mean to 6. Limitation: only five observations; they do not represent every day.\n\nFor the comparison without 18: values 2, 3, 3, 4, sum 12, mean 12/4 = 3, median (3 + 3)/2 = 3. This is sensitivity analysis, not a reason to delete the long wait from the original data."
+        },
+        "criteria": [
+          {
+            "ru": "Среднее 6 и медиана 3 вычислены верно.",
+            "tg": "Миёнаи 6 ва медианаи 3 дуруст ҳисоб шудаанд.",
+            "en": "Mean 6 and median 3 are correctly calculated."
+          },
+          {
+            "ru": "Сравнение без 18 равно 3, исходные данные сохранены.",
+            "tg": "Муқоисаи бе 18 ба 3 баробар ва додаи аслӣ нигоҳ дошта шудааст.",
+            "en": "The comparison without 18 is 3 and original data is preserved."
+          },
+          {
+            "ru": "Вывод объясняет влияние большого значения и размер выборки.",
+            "tg": "Хулоса таъсири қимати калон ва андозаи намунаро шарҳ медиҳад.",
+            "en": "Interpretation discusses the large observation and sample size."
+          }
+        ]
+      }
+    }
+  ]
+}

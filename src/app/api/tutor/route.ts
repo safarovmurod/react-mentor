@@ -9,6 +9,9 @@ import { authenticatedUser } from '@/lib/account/require-user';
 import { COURSE_IDS } from '@/lib/courses/ids';
 import { courseAnswer } from '@/lib/courses/tutor';
 import { courseName } from '@/content/courses/catalog';
+import { readBoundedJson, RequestBodyError } from '@/lib/security/request';
+import { courseAccessTier } from '@/lib/courses/access';
+import { authorizeCourseContent } from '@/lib/courses/access-server';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -39,23 +42,34 @@ let inFlight = false;
 let nextRequestAt = 0;
 
 function error(message: string, status: number) {
-  return NextResponse.json({ error: message }, { status });
+  return NextResponse.json({ error: message }, { status, headers: { 'Cache-Control': 'private, no-store' } });
+}
+
+function tutorJson(data: unknown) {
+  return NextResponse.json(data, { headers: { 'Cache-Control': 'private, no-store' } });
 }
 
 export async function POST(req: NextRequest) {
   let body: unknown;
-  try { body = await req.json(); }
-  catch { return error('Маълумоти JSON нодуруст аст.', 400); }
+  try { body = await readBoundedJson(req); }
+  catch (cause) { return error('Маълумоти JSON нодуруст ё хеле калон аст.', cause instanceof RequestBodyError ? cause.status : 400); }
   const parsed = schema.safeParse(body);
   if (!parsed.success) return error('Савол ё таърихи чат нодуруст ё хеле дароз аст.', 400);
   const { action, courseId, topicId, questionId, userText, codeContext, isDeep, history, language } = parsed.data;
+
+  // Local references are course material too: protect paid answers before lookup.
+  // Existing free/React references still require no account or provider setup.
+  if (courseAccessTier(courseId) !== 'starter') {
+    const access = await authorizeCourseContent(req, courseId);
+    if (!access.allowed) return access.response;
+  }
 
   // Official grading stays deterministic and consumes no provider tokens.
   if (action === 'grade_interview') {
     if (courseId!=='react') return error('Интервью этого курса использует самооценку по исходному ответу.',404);
     const question = CORE_INTERVIEW_QUESTIONS.find(item => item.id === questionId);
     if (!question) return error('Саволи интервью ёфт нашуд.', 404);
-    return NextResponse.json({ mode: 'local', ...gradeInterviewAnswer(question, userText) });
+    return tutorJson({ mode: 'local', ...gradeInterviewAnswer(question, userText) });
   }
   if (action === 'explain_code' && !codeContext?.trim()) return error('Кодро барои шарҳ фиристед.', 400);
 
@@ -65,12 +79,12 @@ export async function POST(req: NextRequest) {
     : userText;
   if (action === 'ask') {
     const local = courseId==='react' ? projectAnswer(query, { questionId, deep, language }) : await courseAnswer(courseId,query,{questionId,deep,language});
-    if (local) return NextResponse.json({ mode: 'local', ...local, usage: { totalTokens: 0 } });
-    if (deep && !query) return NextResponse.json({ mode: 'local', reply: 'Кадом саволро чуқур фаҳмонем? Савол ё мавзӯъро нависед.', usage: { totalTokens: 0 } });
+    if (local) return tutorJson({ mode: 'local', ...local, usage: { totalTokens: 0 } });
+    if (deep && !query) return tutorJson({ mode: 'local', reply: 'Кадом саволро чуқур фаҳмонем? Савол ё мавзӯъро нависед.', usage: { totalTokens: 0 } });
   }
   const context = courseId==='react' ? tutorContext(topicId, query) : 'Selected course: '+courseName(courseId)+'. Answer for this course. No matching published course reference was found; do not claim to have read Telegram files.';
   if (process.env.AI_TUTOR_ENABLED !== 'true') {
-    return NextResponse.json({
+    return tutorJson({
       mode: 'local',
       reply: 'Ҷавоби мувофиқ ба ин савол дар маводи лоиҳа ёфт нашуд. Барои саволҳои нав AI-и онлайн бояд фаъол бошад.',
       notice: 'AI-и онлайн ҳоло фаъол нест; токен сарф нашуд.',
@@ -113,7 +127,7 @@ export async function POST(req: NextRequest) {
     const result = completionSchema.safeParse(await response.json());
     if (!result.success) return error('AI ҷавоби хондашаванда нафиристод. Баъдтар кӯшиш кунед.', 502);
     const reply = result.data.choices[0].message.content;
-    return NextResponse.json({
+    return tutorJson({
       mode: 'online', reply,
       ...(action === 'explain_code' ? { explanation: reply } : {}),
       ...(result.data.usage ? { usage: { totalTokens: result.data.usage.total_tokens } } : {}),

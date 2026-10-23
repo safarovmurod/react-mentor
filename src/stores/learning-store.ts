@@ -7,6 +7,7 @@ import learningIndex from '@/content/learning-index.json';
 import { chooseDailyQuestions, dateKey, nextReview, type StudyMode } from '@/lib/learning';
 import { accountStorageKey, emptyProgress, emptyCourseProgress, progressSnapshot, type Progress } from '@/lib/account/progress';
 import type { CourseId, ImportedCourseId } from '@/lib/courses/ids';
+import { courseDayProgress, courseDayReady, type CoursePlanDay } from '@/lib/courses/plan';
 import { contentLocaleFor, persistManualLocale, type InterfaceLocale } from '@/lib/locale';
 
 const studyTimeFlushes = new Set<() => void>();
@@ -30,6 +31,8 @@ interface LearningState extends Progress {
   recordAnswer: (question: LearningQuestion, mode: StudyMode, correct: boolean, answer: string, today?: string) => void;
   completeTopic: (topicId: string) => void;
   completePractice: (practiceId: string, verified: boolean) => void;
+  confirmCourseDay: (courseId: ImportedCourseId, day: number, plan: CoursePlanDay[]) => boolean;
+  confirmReactDay: (month: number, day: number) => boolean;
   saveDraft: (id: string, code: string) => void;
   saveNote: (note: {id:string;title:string;content:string}) => void;
   deleteNote: (id:string) => void;
@@ -39,7 +42,7 @@ interface LearningState extends Progress {
   recordCourseAnswer: (courseId:ImportedCourseId, question:{id:string;topicId:string}, mode:StudyMode, correct:boolean, answer:string) => void;
   saveCourseNote: (courseId:ImportedCourseId, note:{id:string;title:string;content:string}) => void;
   deleteCourseNote: (courseId:ImportedCourseId, id:string) => void;
-  completeCoursePractice: (courseId:ImportedCourseId, lessonId:string) => void;
+  completeCoursePractice: (courseId:ImportedCourseId, lessonId:string, verified?:boolean) => void;
   saveCourseDraft: (courseId:ImportedCourseId, id:string, code:string) => void;
 }
 
@@ -81,8 +84,35 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
   },
   completePractice(practiceId, verified) {
     const current = get();
-    if (current.completedPractice.includes(practiceId)) return;
-    set({completedPractice:[...current.completedPractice,practiceId],awards:{...current.awards,[`practice:${practiceId}`]:verified ? 20 : 4}});
+    const points=verified ? 20 : 4;
+    if (current.completedPractice.includes(practiceId) && (current.awards[`practice:${practiceId}`] || 0)>=points) return;
+    set({completedPractice:[...new Set([...current.completedPractice,practiceId])],awards:{...current.awards,[`practice:${practiceId}`]:Math.max(points,current.awards[`practice:${practiceId}`] || 0)}});
+  },
+  confirmCourseDay(courseId, day, plan) {
+    const state = get(), progress = state.courses[courseId] || emptyCourseProgress();
+    const current = courseDayProgress(plan, progress.completedTopics, progress.completedPractice, progress.confirmedDays).current;
+    if (!current || current.day !== day || !courseDayReady(current, progress.completedTopics, progress.completedPractice)) return false;
+    set({courses: {...state.courses, [courseId]: {...progress, confirmedDays: [...progress.confirmedDays, String(day)]}}});
+    return true;
+  },
+  confirmReactDay(month, day) {
+    if (month !== 1 && month !== 2) return false;
+    const state = get();
+    // Use the shared lightweight index, not the full React lesson corpus in this global store.
+    const dayReady=(targetMonth:number, targetDay:number)=>{
+      const topics=learningIndex.topics.filter(topic=>topic.month===targetMonth);
+      const index=targetDay-1;
+      const start=topics.length>=30?Math.floor(index*topics.length/30):index;
+      const end=topics.length>=30?Math.floor((index+1)*topics.length/30):index+1;
+      const learning=topics.slice(start,end);
+      const selected=learning.length?learning:[topics[(index-topics.length)%topics.length]].filter(Boolean);
+      return selected.length>0 && selected.every(topic=>(!learning.length || state.completedTopics.includes(topic.id)) && state.completedPractice.some(id=>id.startsWith(topic.id+'-exercise-') || (topic.id==='local-practice' && id.startsWith('local-project-'))));
+    };
+    if (!Number.isInteger(day)||day<1||day>30||!dayReady(month,day)||state.confirmedDays.includes(`${month}:${day}`)) return false;
+    if (month===2 && Array.from({length:30},(_,index)=>index+1).some(previous=>!state.confirmedDays.includes(`1:${previous}`)||!dayReady(1,previous))) return false;
+    if (Array.from({length:day-1},(_,index)=>index+1).some(previous=>!state.confirmedDays.includes(`${month}:${previous}`)||!dayReady(month,previous))) return false;
+    set({confirmedDays: [...state.confirmedDays, `${month}:${day}`]});
+    return true;
   },
   saveDraft(id, code) { set({drafts:{...get().drafts,[id]:code},draftClock:{...get().draftClock,[id]:Date.now()}}); },
   saveNote(note) { set({notes:[note,...get().notes.filter(item=>item.id!==note.id)],noteClock:{...get().noteClock,[note.id]:Date.now()}}); },
@@ -126,10 +156,11 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
     const courses=get().courses, progress=courses[courseId] || emptyCourseProgress();
     set({courses:{...courses,[courseId]:{...progress,notes:progress.notes.filter(item=>item.id!==id),deletedNotes:{...progress.deletedNotes,[id]:Date.now()}}}});
   },
-  completeCoursePractice(courseId, lessonId) {
+  completeCoursePractice(courseId, lessonId, verified=false) {
     const courses=get().courses, progress=courses[courseId] || emptyCourseProgress();
-    if (progress.completedPractice.includes(lessonId)) return;
-    set({courses:{...courses,[courseId]:{...progress,completedPractice:[...progress.completedPractice,lessonId],awards:{...progress.awards,['practice:'+lessonId]:4}}}});
+    const points=verified ? 20 : 4;
+    if (progress.completedPractice.includes(lessonId) && (progress.awards['practice:'+lessonId] || 0)>=points) return;
+    set({courses:{...courses,[courseId]:{...progress,completedPractice:[...new Set([...progress.completedPractice,lessonId])],awards:{...progress.awards,['practice:'+lessonId]:Math.max(points,progress.awards['practice:'+lessonId] || 0)}}}});
   },
 }), {
   name:'react-mentor-learning-v2', version:2, storage:createJSONStorage(()=>localStorage), skipHydration:true,

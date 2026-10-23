@@ -1,0 +1,400 @@
+{
+  "courseId": "javascript-pro",
+  "sources": [
+    {
+      "id": "original-premium",
+      "title": "DevAtlas original exercises and source review",
+      "url": "https://github.com/safarovmurod/react-mentor"
+    },
+    {
+      "id": "node-docs",
+      "title": "Node.js official documentation — standard APIs",
+      "url": "https://nodejs.org/api/"
+    },
+    {
+      "id": "algorithms-mit",
+      "title": "MIT reference reviewed at 85293e3 — algorithm behavioral tests",
+      "url": "https://github.com/trekhleb/javascript-algorithms/tree/85293e3e2b88f4d2ce330d956b139cf628aa1e82/src/algorithms/sets/power-set"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "javascript-pro-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Неизменяемые данные: сводка задач",
+        "tg": "Додаҳои тағйирнопазир: ҷамъбасти вазифаҳо",
+        "en": "Immutable data: a task summary"
+      },
+      "summary": {
+        "ru": "День 1 из 3 опубликованных. Неизменяемые данные: сводка задач. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 1 аз 3 рӯзи нашршуда. Додаҳои тағйирнопазир: ҷамъбасти вазифаҳо. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 1 of 3 published days. Immutable data: a task summary. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs",
+        "algorithms-mit"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "Контракт: массив задач с owner и done преобразуется в отсортированную сводку без изменения входных объектов. Map корректно хранит и имя __proto__, не смешивая его со свойствами прототипа. Новые объекты сводки создаются явно; замороженные входные данные помогают обнаружить случайную мутацию. Сортировка здесь сравнивает строки по кодовым единицам, а не по правилам языка. Форма поведенческих проверок вдохновлена прочитанными MIT-тестами javascript-algorithms; код и задача написаны заново.",
+            "tg": "Шарт: массиви вазифаҳои дорои owner ва done ба ҷамъбасти тартибдода табдил меёбад, бе тағйири объектҳои вурудӣ. Map номи __proto__-ро ҳам бе омехтан бо прототип нигоҳ медорад. Объектҳои нави ҷамъбаст ошкор сохта мешаванд; додаҳои яхкардашуда тағйири тасодуфиро ошкор мекунанд. Тартибдиҳӣ дар ин ҷо сатрҳоро аз рӯйи воҳидҳои кодӣ муқоиса мекунад, на қоидаҳои забон. Шакли санҷишҳо аз тестҳои хондашудаи MIT-и javascript-algorithms илҳом гирифтааст; рамз ва вазифа нав навишта шудаанд.",
+            "en": "Contract: turn tasks with owner and done into a sorted summary without changing input objects. Map handles even the owner name __proto__ without prototype-property collisions. Build new summary objects explicitly; frozen input helps catch accidental mutation. Sorting compares UTF-16 code units here, not locale collation. Behavioral-test structure was informed by the reviewed MIT javascript-algorithms tests; this exercise and implementation are original."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport function summarizeTasks(tasks) {\n  if (!Array.isArray(tasks)) throw new TypeError(\"Expected an array\");\n  const groups = new Map();\n  for (const task of tasks) {\n    if (!task || typeof task.owner !== \"string\" || !task.owner.trim() || typeof task.done !== \"boolean\") {\n      throw new TypeError(\"Invalid task\");\n    }\n    const owner = task.owner.trim();\n    const previous = groups.get(owner) ?? { owner, total: 0, completed: 0 };\n    groups.set(owner, { ...previous, total: previous.total + 1, completed: previous.completed + Number(task.done) });\n  }\n  return [...groups.values()].sort((a, b) => a.owner < b.owner ? -1 : a.owner > b.owner ? 1 : 0);\n}\nconst tasks = Object.freeze([\n  Object.freeze({ owner: \"Ada\", done: true }),\n  Object.freeze({ owner: \"Bo\", done: true }),\n  Object.freeze({ owner: \"Ada\", done: false }),\n]);\nassert.deepEqual(summarizeTasks([]), []);\nassert.deepEqual(summarizeTasks([{ owner: \"__proto__\", done: false }]), [{ owner: \"__proto__\", total: 1, completed: 0 }]);\nassert.throws(() => summarizeTasks([{ owner: \"Ada\", done: \"yes\" }]), TypeError);\nconsole.log(JSON.stringify(summarizeTasks(tasks)));\nassert.equal(summarizeTasks([{ owner: \"Ada\", done: false }])[0].completed, 0);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "[{\"owner\":\"Ada\",\"total\":2,\"completed\":1},{\"owner\":\"Bo\",\"total\":1,\"completed\":1}]",
+            "tg": "[{\"owner\":\"Ada\",\"total\":2,\"completed\":1},{\"owner\":\"Bo\",\"total\":1,\"completed\":1}]",
+            "en": "[{\"owner\":\"Ada\",\"total\":2,\"completed\":1},{\"owner\":\"Bo\",\"total\":1,\"completed\":1}]"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Реализуйте summarizeTasks самостоятельно. Принимайте другие имена локальных переменных и любой алгоритм, сохраняющий контракт. Проверьте пустой список, одного владельца, __proto__, owner с пробелами, done=false и неверный done=\"yes\". Сравните вход до и после; ни массив, ни его элементы не должны измениться.",
+            "tg": "summarizeTasks-ро мустақилона созед. Номи тағйирёбандаҳои маҳаллӣ ва алгоритм метавонанд дигар бошанд, агар шарт нигоҳ дошта шавад. Рӯйхати холӣ, як соҳиб, __proto__, owner бо фосила, done=false ва done=\"yes\"-и нодурустро санҷед. Вурудро пешу баъд муқоиса кунед; массиву элементҳо набояд тағйир ёбанд.",
+            "en": "Implement summarizeTasks yourself. Local names and algorithms may differ if the contract holds. Check an empty list, one owner, __proto__, surrounding owner spaces, done=false and invalid done=\"yes\". Compare input before and after; neither the array nor its items may change."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "javascript-pro-day-01-q",
+          "question": {
+            "ru": "Почему здесь выбран Map?",
+            "tg": "Чаро дар ин ҷо Map интихоб шудааст?",
+            "en": "Why use Map here?"
+          },
+          "answer": {
+            "ru": "Ключи владельцев не конфликтуют со свойствами прототипа объекта",
+            "tg": "Калидҳои соҳибон бо хосиятҳои прототипи объект бархӯрд намекунанд",
+            "en": "Owner keys do not collide with object prototype properties"
+          },
+          "options": [
+            {
+              "ru": "Map автоматически проверяет тип всех данных",
+              "tg": "Map типи ҳамаи додаҳоро худкор месанҷад",
+              "en": "Map automatically validates all data types"
+            },
+            {
+              "ru": "Ключи владельцев не конфликтуют со свойствами прототипа объекта",
+              "tg": "Калидҳои соҳибон бо хосиятҳои прототипи объект бархӯрд намекунанд",
+              "en": "Owner keys do not collide with object prototype properties"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "code",
+        "task": {
+          "ru": "Реализуйте summarizeTasks самостоятельно. Принимайте другие имена локальных переменных и любой алгоритм, сохраняющий контракт. Проверьте пустой список, одного владельца, __proto__, owner с пробелами, done=false и неверный done=\"yes\". Сравните вход до и после; ни массив, ни его элементы не должны измениться.",
+          "tg": "summarizeTasks-ро мустақилона созед. Номи тағйирёбандаҳои маҳаллӣ ва алгоритм метавонанд дигар бошанд, агар шарт нигоҳ дошта шавад. Рӯйхати холӣ, як соҳиб, __proto__, owner бо фосила, done=false ва done=\"yes\"-и нодурустро санҷед. Вурудро пешу баъд муқоиса кунед; массиву элементҳо набояд тағйир ёбанд.",
+          "en": "Implement summarizeTasks yourself. Local names and algorithms may differ if the contract holds. Check an empty list, one owner, __proto__, surrounding owner spaces, done=false and invalid done=\"yes\". Compare input before and after; neither the array nor its items may change."
+        },
+        "hint": {
+          "ru": "Группируйте по нормализованному owner; увеличивайте total для каждой задачи, completed — только для true.",
+          "tg": "Аз рӯйи owner-и тозашуда гурӯҳбандӣ кунед; total барои ҳар вазифа, completed танҳо барои true зиёд мешавад.",
+          "en": "Group by trimmed owner; increase total for every task and completed only for true."
+        },
+        "solution": "import assert from \"node:assert/strict\";\n\nexport function summarizeTasks(tasks) {\n  if (!Array.isArray(tasks)) throw new TypeError(\"Expected an array\");\n  const groups = new Map();\n  for (const task of tasks) {\n    if (!task || typeof task.owner !== \"string\" || !task.owner.trim() || typeof task.done !== \"boolean\") {\n      throw new TypeError(\"Invalid task\");\n    }\n    const owner = task.owner.trim();\n    const previous = groups.get(owner) ?? { owner, total: 0, completed: 0 };\n    groups.set(owner, { ...previous, total: previous.total + 1, completed: previous.completed + Number(task.done) });\n  }\n  return [...groups.values()].sort((a, b) => a.owner < b.owner ? -1 : a.owner > b.owner ? 1 : 0);\n}\nconst tasks = Object.freeze([\n  Object.freeze({ owner: \"Ada\", done: true }),\n  Object.freeze({ owner: \"Bo\", done: true }),\n  Object.freeze({ owner: \"Ada\", done: false }),\n]);\nassert.deepEqual(summarizeTasks([]), []);\nassert.deepEqual(summarizeTasks([{ owner: \"__proto__\", done: false }]), [{ owner: \"__proto__\", total: 1, completed: 0 }]);\nassert.throws(() => summarizeTasks([{ owner: \"Ada\", done: \"yes\" }]), TypeError);\nconsole.log(JSON.stringify(summarizeTasks(tasks)));\nassert.equal(summarizeTasks([{ owner: \"Ada\", done: false }])[0].completed, 0);\n",
+        "criteria": [
+          {
+            "ru": "Сводка содержит верные total/completed, отсортирована и обрабатывает пустой ввод.",
+            "tg": "Ҷамъбаст total/completed-и дуруст дорад, тартиб дода шудааст ва вуруди холиро қабул мекунад.",
+            "en": "Summary totals and completed counts are correct, sorted and handle empty input."
+          },
+          {
+            "ru": "Замороженный вход не изменён; __proto__ не вызывает коллизии.",
+            "tg": "Вуруди яхкардашуда тағйир намеёбад; __proto__ бархӯрди ном намесозад.",
+            "en": "Frozen input is unchanged and __proto__ causes no collision."
+          },
+          {
+            "ru": "Неверная форма задачи отклоняется, а не засчитывается как выполненная.",
+            "tg": "Шакли нодурусти вазифа рад мешавад, на ҳамчун иҷрошуда ҳисоб.",
+            "en": "Malformed tasks are rejected rather than counted as completed."
+          }
+        ]
+      }
+    },
+    {
+      "id": "javascript-pro-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Асинхронный запрос: HTTP и неверные данные",
+        "tg": "Дархости асинхронӣ: HTTP ва додаҳои нодуруст",
+        "en": "Async requests: HTTP and invalid data"
+      },
+      "summary": {
+        "ru": "День 2 из 3 опубликованных. Асинхронный запрос: HTTP и неверные данные. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 2 аз 3 рӯзи нашршуда. Дархости асинхронӣ: HTTP ва додаҳои нодуруст. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 2 of 3 published days. Async requests: HTTP and invalid data. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "fetch не отклоняет Promise только из-за статуса 503: отдельно проверяйте response.ok. Даже HTTP 200 не доказывает правильную форму JSON. Передайте fetcher как зависимость, чтобы проверить успех, HTTP-ошибку и сетевой отказ без внешнего сервиса. Здесь используются реальные Response и локальные тестовые функции: живой запрос не отправляется. В браузере адаптером может быть fetch; AbortSignal.timeout ограничивает запрос только если адаптер соблюдает signal. Отмена запроса не означает, что сервер отменил запись.",
+            "tg": "fetch танҳо аз сабаби ҳолати 503 Promise-ро рад намекунад: response.ok-ро алоҳида санҷед. HTTP 200 ҳам шакли дурусти JSON-ро исбот намекунад. fetcher-ро ҳамчун вобастагӣ диҳед, то муваффақият, хатои HTTP ва қатъи шабакаро бе хидмати беруна санҷед. Дар ин ҷо Response-и воқеӣ ва функсияҳои маҳаллии тестӣ истифода мешаванд; дархости зинда фиристода намешавад. Дар браузер fetch адаптер шуда метавонад; AbortSignal.timeout танҳо ҳангоми риояи signal кор мекунад. Қатъи дархост маънои бекор шудани навишти серверро надорад.",
+            "en": "fetch does not reject merely because the status is 503: check response.ok separately. Even HTTP 200 does not prove the JSON shape is valid. Inject fetcher to test success, HTTP errors and network failure without an external service. These are real Response objects and local fixtures; no live request is made. Browser fetch can be the adapter; AbortSignal.timeout bounds a request only when the adapter honors signal. Aborting a request does not prove the server canceled a write."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport async function loadLessonCount(fetcher) {\n  const response = await fetcher(\"/api/courses/html\", { signal: AbortSignal.timeout(2000) });\n  if (!response.ok) throw new Error(\"HTTP \" + response.status);\n  const data = await response.json();\n  if (!data || data.courseId !== \"html\" || !Array.isArray(data.lessons)) {\n    throw new TypeError(\"Invalid course payload\");\n  }\n  return data.lessons.length;\n}\nconst good = async () => Response.json({ courseId: \"html\", lessons: [{ id: \"a\" }, { id: \"b\" }] });\nassert.equal(await loadLessonCount(good), 2);\nconsole.log(await loadLessonCount(good));\ntry { await loadLessonCount(async () => new Response(null, { status: 503 })); }\ncatch (error) { console.log(error.message); }\ntry { await loadLessonCount(async () => Response.json({ courseId: \"html\", lessons: null })); }\ncatch (error) { console.log(error.message); }\nassert.equal(await loadLessonCount(async () => Response.json({ courseId: \"html\", lessons: [] })), 0);\nawait assert.rejects(() => loadLessonCount(async () => { throw new Error(\"Offline\"); }), /Offline/);\nawait assert.rejects(() => loadLessonCount(async () => new Response(null, { status: 503 })), /HTTP 503/);\nawait assert.rejects(() => loadLessonCount(async () => new Response(null, { status: 401 })), /HTTP 401/);\nawait assert.rejects(() => loadLessonCount(async () => Response.json({ lessons: [] })), TypeError);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "2\nHTTP 503\nInvalid course payload",
+            "tg": "2\nHTTP 503\nInvalid course payload",
+            "en": "2\nHTTP 503\nInvalid course payload"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Напишите loadLessonCount. Сохраните HTTP-код в ошибке, проверьте courseId и массив lessons. Добавьте проверки: пустой массив → 0; HTTP 401 → ошибка; JSON неправильного типа → ошибка; fetcher отклонён с Offline → та же ошибка. Не подменяйте отказ пустым успешным списком.",
+            "tg": "loadLessonCount-ро нависед. Коди HTTP-ро дар хато нигоҳ дошта, courseId ва массиви lessons-ро санҷед. Ҳолатҳои иловагӣ: массиви холӣ → 0; HTTP 401 → хато; JSON-и типи дигар → хато; радкунии fetcher бо Offline → ҳамон хато. Радкуниро бо рӯйхати холии муваффақ иваз накунед.",
+            "en": "Write loadLessonCount. Preserve the HTTP status in errors and validate courseId and the lessons array. Add cases: empty array → 0; HTTP 401 → error; wrong JSON shape → error; fetcher rejecting Offline → propagated error. Do not turn failures into a successful empty list."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "javascript-pro-day-02-q",
+          "question": {
+            "ru": "Нужно ли проверять response.ok после успешного await fetch?",
+            "tg": "Баъди await fetch-и муваффақ response.ok-ро санҷидан лозим аст?",
+            "en": "Must response.ok be checked after await fetch resolves?"
+          },
+          "answer": {
+            "ru": "Да: HTTP-ошибка тоже может дать Response",
+            "tg": "Ҳа: хатои HTTP ҳам Response дода метавонад",
+            "en": "Yes: an HTTP error can still produce a Response"
+          },
+          "options": [
+            {
+              "ru": "Нет: await означает HTTP 200",
+              "tg": "Не: await маънои HTTP 200 дорад",
+              "en": "No: await means HTTP 200"
+            },
+            {
+              "ru": "Да: HTTP-ошибка тоже может дать Response",
+              "tg": "Ҳа: хатои HTTP ҳам Response дода метавонад",
+              "en": "Yes: an HTTP error can still produce a Response"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "code",
+        "task": {
+          "ru": "Напишите loadLessonCount. Сохраните HTTP-код в ошибке, проверьте courseId и массив lessons. Добавьте проверки: пустой массив → 0; HTTP 401 → ошибка; JSON неправильного типа → ошибка; fetcher отклонён с Offline → та же ошибка. Не подменяйте отказ пустым успешным списком.",
+          "tg": "loadLessonCount-ро нависед. Коди HTTP-ро дар хато нигоҳ дошта, courseId ва массиви lessons-ро санҷед. Ҳолатҳои иловагӣ: массиви холӣ → 0; HTTP 401 → хато; JSON-и типи дигар → хато; радкунии fetcher бо Offline → ҳамон хато. Радкуниро бо рӯйхати холии муваффақ иваз накунед.",
+          "en": "Write loadLessonCount. Preserve the HTTP status in errors and validate courseId and the lessons array. Add cases: empty array → 0; HTTP 401 → error; wrong JSON shape → error; fetcher rejecting Offline → propagated error. Do not turn failures into a successful empty list."
+        },
+        "hint": {
+          "ru": "Успех, HTTP-ошибка, ошибка JSON и сеть — разные ветки. Проверяйте их независимо.",
+          "tg": "Муваффақият, хатои HTTP, JSON ва шабака ҳолатҳои ҷудоянд. Онҳоро алоҳида санҷед.",
+          "en": "Success, HTTP failure, JSON failure and network failure are separate branches; test each."
+        },
+        "solution": "import assert from \"node:assert/strict\";\n\nexport async function loadLessonCount(fetcher) {\n  const response = await fetcher(\"/api/courses/html\", { signal: AbortSignal.timeout(2000) });\n  if (!response.ok) throw new Error(\"HTTP \" + response.status);\n  const data = await response.json();\n  if (!data || data.courseId !== \"html\" || !Array.isArray(data.lessons)) {\n    throw new TypeError(\"Invalid course payload\");\n  }\n  return data.lessons.length;\n}\nconst good = async () => Response.json({ courseId: \"html\", lessons: [{ id: \"a\" }, { id: \"b\" }] });\nassert.equal(await loadLessonCount(good), 2);\nconsole.log(await loadLessonCount(good));\ntry { await loadLessonCount(async () => new Response(null, { status: 503 })); }\ncatch (error) { console.log(error.message); }\ntry { await loadLessonCount(async () => Response.json({ courseId: \"html\", lessons: null })); }\ncatch (error) { console.log(error.message); }\nassert.equal(await loadLessonCount(async () => Response.json({ courseId: \"html\", lessons: [] })), 0);\nawait assert.rejects(() => loadLessonCount(async () => { throw new Error(\"Offline\"); }), /Offline/);\nawait assert.rejects(() => loadLessonCount(async () => new Response(null, { status: 503 })), /HTTP 503/);\nawait assert.rejects(() => loadLessonCount(async () => new Response(null, { status: 401 })), /HTTP 401/);\nawait assert.rejects(() => loadLessonCount(async () => Response.json({ lessons: [] })), TypeError);\n",
+        "criteria": [
+          {
+            "ru": "Успех и пустой массив дают корректное число; форма JSON проверяется.",
+            "tg": "Муваффақият ва массиви холӣ адади дуруст медиҳанд; шакли JSON санҷида мешавад.",
+            "en": "Success and an empty array return correct counts; JSON shape is validated."
+          },
+          {
+            "ru": "HTTP 401/503 и Offline не становятся успешным результатом.",
+            "tg": "HTTP 401/503 ва Offline ба натиҷаи муваффақ табдил намеёбанд.",
+            "en": "HTTP 401/503 and Offline never become successful results."
+          },
+          {
+            "ru": "Тесты не требуют внешней сети; ограничения signal объяснены.",
+            "tg": "Тестҳо шабакаи беруна талаб намекунанд; ҳудуди signal шарҳ дода шудааст.",
+            "en": "Tests require no external network and explain signal limitations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "javascript-pro-day-03",
+      "day": 3,
+      "prerequisiteDays": [
+        2
+      ],
+      "title": {
+        "ru": "Браузерное хранилище: версия и валидация",
+        "tg": "Захираи браузер: версия ва санҷиш",
+        "en": "Browser storage: versioning and validation"
+      },
+      "summary": {
+        "ru": "День 3 из 3 опубликованных. Браузерное хранилище: версия и валидация. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 3 аз 3 рӯзи нашршуда. Захираи браузер: версия ва санҷиш. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 3 of 3 published days. Browser storage: versioning and validation. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "localStorage — недоверенный кэш интерфейса, не доказательство подписки, личности или XP. JSON может быть повреждён, устареть или содержать лишние поля. Проверяйте версию, типы и границы; возвращайте новый объект только с разрешёнными полями. Доступ к хранилищу тоже может бросить ошибку. Адаптер memory делает пример исполняемым в Node; в браузере передайте localStorage. Нельзя хранить здесь секретные серверные ключи.",
+            "tg": "localStorage кеши беэътимоди интерфейс аст, на далели обуна, шахсият ё XP. JSON метавонад вайрон, кӯҳна ё дорои майдонҳои зиёдатӣ бошад. Версия, тип ва ҳудудҳоро санҷед; объекти навро танҳо бо майдонҳои иҷозатдода баргардонед. Дастрасӣ ба захира ҳам хато дода метавонад. Адаптери memory мисолро дар Node иҷрошаванда мекунад; дар браузер localStorage диҳед. Калидҳои махфии сервериро ин ҷо нигоҳ надоред.",
+            "en": "localStorage is an untrusted UI cache, not proof of subscription, identity or XP. JSON may be corrupt, outdated or contain extra fields. Validate version, types and ranges; return a new object containing only allowed fields. Storage access can also throw. The memory adapter runs this example in Node; pass localStorage in a browser. Never put secret server keys here."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\nconst defaults = Object.freeze({ version: 1, theme: \"light\", fontSize: 16 });\n\nexport function parsePreferences(raw) {\n  if (typeof raw !== \"string\" || raw.length > 2048) return null;\n  try {\n    const value = JSON.parse(raw);\n    if (!value || typeof value !== \"object\" || Array.isArray(value) || value.version !== 1) return null;\n    if (![\"light\", \"dark\"].includes(value.theme) || !Number.isInteger(value.fontSize) || value.fontSize < 12 || value.fontSize > 24) return null;\n    return { version: 1, theme: value.theme, fontSize: value.fontSize };\n  } catch { return null; }\n}\nexport function readPreferences(storage) {\n  try { return parsePreferences(storage.getItem(\"editor-preferences\")) ?? { ...defaults }; }\n  catch { return { ...defaults }; }\n}\nconst memory = { getItem: () => '{\"version\":1,\"theme\":\"dark\",\"fontSize\":18,\"plan\":\"expert\"}' };\nconsole.log(JSON.stringify(readPreferences(memory)));\nconsole.log(JSON.stringify(readPreferences({ getItem: () => \"broken json\" })));\nassert.equal(parsePreferences('{\"version\":2,\"theme\":\"dark\",\"fontSize\":18}'), null);\nassert.equal(parsePreferences('{\"version\":1,\"theme\":\"dark\",\"fontSize\":99}'), null);\nassert.deepEqual(readPreferences({ getItem: () => { throw new Error(\"Storage disabled\"); } }), defaults);\nassert.equal(\"plan\" in readPreferences(memory), false);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "{\"version\":1,\"theme\":\"dark\",\"fontSize\":18}\n{\"version\":1,\"theme\":\"light\",\"fontSize\":16}",
+            "tg": "{\"version\":1,\"theme\":\"dark\",\"fontSize\":18}\n{\"version\":1,\"theme\":\"light\",\"fontSize\":16}",
+            "en": "{\"version\":1,\"theme\":\"dark\",\"fontSize\":18}\n{\"version\":1,\"theme\":\"light\",\"fontSize\":16}"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Реализуйте parsePreferences и readPreferences. Проверьте неверный JSON, null, массив, версию 2, fontSize=11/25 и ошибку getItem. Разрешите только version/theme/fontSize: добавленный plan=\"expert\" не должен сохраниться и никогда не должен открывать платный курс.",
+            "tg": "parsePreferences ва readPreferences-ро созед. JSON-и нодуруст, null, массив, версияи 2, fontSize=11/25 ва хатои getItem-ро санҷед. Танҳо version/theme/fontSize иҷозат аст: plan=\"expert\" набояд нигоҳ дошта шавад ва ҳеҷ гоҳ курси пулакиро кушояд.",
+            "en": "Implement parsePreferences and readPreferences. Test invalid JSON, null, arrays, version 2, fontSize=11/25 and getItem throwing. Allow only version/theme/fontSize: an injected plan=\"expert\" must be discarded and must never unlock a paid course."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "javascript-pro-day-03-q",
+          "question": {
+            "ru": "Можно ли доверять plan из localStorage для доступа Pro?",
+            "tg": "Барои дастрасии Pro ба plan-и localStorage бовар кардан мумкин аст?",
+            "en": "Can localStorage plan authorize Pro access?"
+          },
+          "answer": {
+            "ru": "Нет: доступ проверяет сервер по подтверждённой подписке",
+            "tg": "Не: сервер дастрасиро аз рӯйи обунаи тасдиқшуда месанҷад",
+            "en": "No: the server checks a verified subscription"
+          },
+          "options": [
+            {
+              "ru": "Да, если JSON правильно разобран",
+              "tg": "Ҳа, агар JSON дуруст хонда шавад",
+              "en": "Yes, if JSON parses correctly"
+            },
+            {
+              "ru": "Нет: доступ проверяет сервер по подтверждённой подписке",
+              "tg": "Не: сервер дастрасиро аз рӯйи обунаи тасдиқшуда месанҷад",
+              "en": "No: the server checks a verified subscription"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "code",
+        "task": {
+          "ru": "Реализуйте parsePreferences и readPreferences. Проверьте неверный JSON, null, массив, версию 2, fontSize=11/25 и ошибку getItem. Разрешите только version/theme/fontSize: добавленный plan=\"expert\" не должен сохраниться и никогда не должен открывать платный курс.",
+          "tg": "parsePreferences ва readPreferences-ро созед. JSON-и нодуруст, null, массив, версияи 2, fontSize=11/25 ва хатои getItem-ро санҷед. Танҳо version/theme/fontSize иҷозат аст: plan=\"expert\" набояд нигоҳ дошта шавад ва ҳеҷ гоҳ курси пулакиро кушояд.",
+          "en": "Implement parsePreferences and readPreferences. Test invalid JSON, null, arrays, version 2, fontSize=11/25 and getItem throwing. Allow only version/theme/fontSize: an injected plan=\"expert\" must be discarded and must never unlock a paid course."
+        },
+        "hint": {
+          "ru": "Выбирайте поля явно; не используйте Object.assign(defaults, JSON.parse(raw)).",
+          "tg": "Майдонҳоро ошкор интихоб кунед; Object.assign(defaults, JSON.parse(raw))-ро истифода набаред.",
+          "en": "Select fields explicitly; do not use Object.assign(defaults, JSON.parse(raw))."
+        },
+        "solution": "import assert from \"node:assert/strict\";\nconst defaults = Object.freeze({ version: 1, theme: \"light\", fontSize: 16 });\n\nexport function parsePreferences(raw) {\n  if (typeof raw !== \"string\" || raw.length > 2048) return null;\n  try {\n    const value = JSON.parse(raw);\n    if (!value || typeof value !== \"object\" || Array.isArray(value) || value.version !== 1) return null;\n    if (![\"light\", \"dark\"].includes(value.theme) || !Number.isInteger(value.fontSize) || value.fontSize < 12 || value.fontSize > 24) return null;\n    return { version: 1, theme: value.theme, fontSize: value.fontSize };\n  } catch { return null; }\n}\nexport function readPreferences(storage) {\n  try { return parsePreferences(storage.getItem(\"editor-preferences\")) ?? { ...defaults }; }\n  catch { return { ...defaults }; }\n}\nconst memory = { getItem: () => '{\"version\":1,\"theme\":\"dark\",\"fontSize\":18,\"plan\":\"expert\"}' };\nconsole.log(JSON.stringify(readPreferences(memory)));\nconsole.log(JSON.stringify(readPreferences({ getItem: () => \"broken json\" })));\nassert.equal(parsePreferences('{\"version\":2,\"theme\":\"dark\",\"fontSize\":18}'), null);\nassert.equal(parsePreferences('{\"version\":1,\"theme\":\"dark\",\"fontSize\":99}'), null);\nassert.deepEqual(readPreferences({ getItem: () => { throw new Error(\"Storage disabled\"); } }), defaults);\nassert.equal(\"plan\" in readPreferences(memory), false);\n",
+        "criteria": [
+          {
+            "ru": "Повреждённые/неподдерживаемые данные дают безопасные настройки по умолчанию.",
+            "tg": "Додаҳои вайрон ё дастгиринашаванда танзимоти бехатари аввалро медиҳанд.",
+            "en": "Corrupt or unsupported data yields safe defaults."
+          },
+          {
+            "ru": "Лишние поля отброшены, исходные defaults не мутируют.",
+            "tg": "Майдонҳои зиёдатӣ партофта мешаванд, defaults-и аввал тағйир намеёбад.",
+            "en": "Extra fields are discarded and defaults are not mutated."
+          },
+          {
+            "ru": "Недоступное хранилище обрабатывается без бесконечной загрузки.",
+            "tg": "Захираи дастнорас бе боршавии беохир коркард мешавад.",
+            "en": "Unavailable storage is handled without an indefinite loading state."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test';
 
 const expected = [
-  {country:'RU',lang:'ru',heading:'Изучайте React и JavaScript',policy:'Конфиденциальность'},
-  {country:'UA',lang:'uk',heading:'Вивчайте React і JavaScript',policy:'Конфіденційність'},
-  {country:'US',lang:'en',heading:'Learn React and JavaScript',policy:'Privacy'},
-  {country:'TJ',lang:'tg',heading:'React ва JavaScript-ро',policy:'Махфият'},
+  {country:'RU',lang:'ru',heading:'От нового интереса',policy:'Конфиденциальность'},
+  {country:'UA',lang:'uk',heading:'Від нового інтересу',policy:'Конфіденційність'},
+  {country:'US',lang:'en',heading:'Turn your curiosity',policy:'Privacy'},
+  {country:'TJ',lang:'tg',heading:'Аз шавқи нав',policy:'Махфият'},
+  {country:'JP',lang:'ja',heading:'新しい興味を',policy:'プライバシー'},
+  {country:'KR',lang:'ko',heading:'새로운 관심을',policy:'개인정보 처리방침'},
 ] as const;
 
 for (const item of expected) {
@@ -18,7 +20,7 @@ for (const item of expected) {
     await page.goto('/settings');
     await expect(page.locator('.language-link')).toHaveText(item.lang.toUpperCase());
     await expect(page.locator('select').first()).toHaveValue(item.lang);
-    const expectedContentLanguage=item.lang==='uk'?'en':item.lang;
+    const expectedContentLanguage=['uk','ja','ko'].includes(item.lang)?'en':item.lang;
     await expect(page.locator('select').nth(1)).toHaveValue(expectedContentLanguage);
     await page.reload();
     await expect(page.locator('select').first()).toHaveValue(item.lang);
@@ -29,7 +31,7 @@ test('Cloudflare visitor country wins over Vercel proxy IP country',async({page}
   await page.setExtraHTTPHeaders({'x-vercel-ip-country':'US','cf-ipcountry':'UA'});
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('lang','uk');
-  await expect(page.getByRole('heading',{name:/Вивчайте React і JavaScript/})).toBeVisible();
+  await expect(page.getByRole('heading',{name:/Від нового інтересу/})).toBeVisible();
 });
 
 test('manual preference survives refresh, navigation and country changes',async({page})=>{
@@ -44,7 +46,7 @@ test('manual preference survives refresh, navigation and country changes',async(
   await page.setExtraHTTPHeaders({'x-vercel-ip-country':'RU'});
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('lang','tg');
-  await expect(page.getByRole('heading',{name:/React ва JavaScript-ро/})).toBeVisible();
+  await expect(page.getByRole('heading',{name:/Аз шавқи нав/})).toBeVisible();
 });
 
 test('existing stored account/browser language wins over first-visit geolocation',async({page})=>{
@@ -70,8 +72,8 @@ test('unknown-country initial HTTP requests honor Accept-Language and English fa
   expect(await ukrainian.text()).toContain('<html lang="uk"');
 
   const english=await request.get('/',{headers:{
-    'x-vercel-ip-country':'JP',
-    'accept-language':'ja-JP,ko-KR;q=0.8',
+    'x-vercel-ip-country':'BR',
+    'accept-language':'pt-BR,fr-FR;q=0.8',
   }});
   expect(english.ok()).toBe(true);
   expect(await english.text()).toContain('<html lang="en"');

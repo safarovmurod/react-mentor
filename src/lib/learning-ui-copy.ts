@@ -1,4 +1,6 @@
 import type { InterfaceLocale } from './locale';
+import { JAPANESE_LEARNING_COPY } from './locales/ja';
+import { KOREAN_LEARNING_COPY } from './locales/ko';
 
 // Interface text is independent of the language selected for authored lessons
 // and Tutor replies. This dictionary does not imply course translation coverage.
@@ -48,6 +50,8 @@ const ru = {
 };
 
 export const LEARNING_UI_COPY: Record<InterfaceLocale, typeof ru> = {
+  ja: JAPANESE_LEARNING_COPY,
+  ko: KOREAN_LEARNING_COPY,
   ru,
   en: {
     testsInterview: 'Tests & interview', answersInterview: 'Answers & interview',
@@ -180,6 +184,14 @@ export const LEARNING_UI_COPY: Record<InterfaceLocale, typeof ru> = {
 export type TutorErrorKey = 'tutorUnavailable' | 'tutorEmpty' | 'tutorConnection' | 'tutorInvalid'
   | 'tutorSignInRequired' | 'tutorAuthUnavailable' | 'tutorUnconfigured' | 'tutorBusy'
   | 'tutorRejected' | 'tutorQuota' | 'tutorUnreadable';
+
+/** A translated interface does not imply translated authored lessons. */
+export function lessonTranslationNotice(locale: InterfaceLocale): string | null {
+  if (locale === 'ja') return '教材はタジク語・ロシア語・英語に対応しています。日本語の教材翻訳はまだありません。設定で教材の言語を変更できます。';
+  if (locale === 'ko') return '학습 자료는 타지크어, 러시아어, 영어로 제공됩니다. 한국어로 번역된 학습 자료는 아직 없습니다. 설정에서 학습 자료 언어를 변경할 수 있습니다.';
+  if (locale === 'uk') return 'Навчальні матеріали доступні таджицькою, російською та англійською. Мову матеріалів можна змінити в налаштуваннях.';
+  return null;
+}
 
 // The current API supplies messages rather than stable codes. Recognize known
 // application failures; never show untrusted provider or browser errors as UI.

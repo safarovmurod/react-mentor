@@ -6,6 +6,7 @@ import type { AnswerTopic, AnswerQuestion, SourceAnswerQuestion } from '@/conten
 import { useLearningStore } from '@/stores/learning-store';
 import { COPY } from '@/lib/i18n';
 import { tr } from '@/lib/translate';
+import type { InterfaceLocale } from '@/lib/locale';
 import { PageHeading } from './page-heading';
 
 function ReadingQuestion({ question, index, topic }: { question: AnswerQuestion; index: number; topic: AnswerTopic }) {
@@ -40,7 +41,7 @@ function ReadingQuestion({ question, index, topic }: { question: AnswerQuestion;
     </div>
   </details>;
 }
-function AnswerContent({ question, language, contentLanguage }: { question: SourceAnswerQuestion; language: 'ru' | 'en' | 'tg' | 'uk'; contentLanguage: 'tg' | 'ru' | 'en' }) {
+function AnswerContent({ question, language, contentLanguage }: { question: SourceAnswerQuestion; language: InterfaceLocale; contentLanguage: 'tg' | 'ru' | 'en' }) {
   const copy = COPY[language];
   const translate = (value: string) => tr(value, contentLanguage);
   return <div className="answer-content-block">

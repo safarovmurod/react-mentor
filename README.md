@@ -1,4 +1,6 @@
-# React Mentor — Full-Stack Real Learning Platform
+# DevAtlas — Learning by building
+
+**Навсозӣ:** платформа ҳоло DevAtlas ном дорад ва чанд самти омӯзишро дастгирӣ мекунад. Натиҷаҳо, маҳдудиятҳо ва тартиби запуск дар [docs/DEVATLAS-DELIVERY.md](docs/DEVATLAS-DELIVERY.md). Пардохтҳо ва Supabase-и воқеӣ ҳанӯз бояд танзим шаванд.
 
 Системаи касбии омӯзиши **React**, **JavaScript**, **TypeScript**, **State Management**, **Routing**, **API** ва омодагӣ ба мусоҳиба (Interview) аз сифр то дараҷаи **Junior**.
 
@@ -18,7 +20,7 @@
   - Кэши фаъоли маҳаллӣ: `localStorage`, алоҳида барои меҳмон ва ҳар ҳисоб
   - `Dexie`: дастрасӣ ба маълумоти кӯҳна барои export; базаи асосии пешрафти фаъол нест
 - **Код ва Санҷиш**:
-  - Машқҳо: textarea, preview дар iframe-и sandbox ва санҷиши функсия дар Web Worker
+  - Машқҳо: Monaco бо completion/diagnostics, preview дар iframe-и sandbox ва санҷиши функсия дар Web Worker
   - Машқҳои лоиҳавӣ: self-check-и дастӣ; ҳамаи забонҳо компилятори худкор надоранд
   - Санҷишҳои тестӣ: `Vitest`, `@testing-library/react`, `jsdom`
   - Линтер: `ESLint 9`

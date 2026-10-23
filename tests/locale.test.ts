@@ -4,7 +4,7 @@ import { contentLocaleFor, localeFromAcceptLanguage, negotiateLocale } from '@/l
 
 describe('visitor locale: saved preference, geolocation, browser language', () => {
   it.each([
-    ['RU','ru'],['UA','uk'],['US','en'],['TJ','tg'],
+    ['RU','ru'],['UA','uk'],['US','en'],['TJ','tg'],['JP','ja'],['KR','ko'],
     ['ru','ru'],['ua','uk'],['tj','tg'],
   ] as const)('country %s resolves to %s', (country, expected) => {
     expect(negotiateLocale({country,acceptLanguage:'en-US,en;q=0.9'})).toBe(expected);
@@ -26,7 +26,9 @@ describe('visitor locale: saved preference, geolocation, browser language', () =
     expect(negotiateLocale({country:'DE',acceptLanguage:'de-DE,uk-UA;q=0.9,ru;q=0.7'})).toBe('uk');
     expect(negotiateLocale({country:'FR',acceptLanguage:'fr-CA,ru-RU;q=0.6,en-US;q=0.8'})).toBe('en');
     expect(negotiateLocale({country:'ZZ',acceptLanguage:'tg-TJ,tg;q=0.9'})).toBe('tg');
-    expect(negotiateLocale({country:'ZZ',acceptLanguage:'ja-JP,ko-KR'})).toBe('en');
+    expect(negotiateLocale({country:'ZZ',acceptLanguage:'ja-JP,ko-KR;q=0.9'})).toBe('ja');
+    expect(negotiateLocale({country:'ZZ',acceptLanguage:'ko-KR,ja-JP;q=0.9'})).toBe('ko');
+    expect(negotiateLocale({country:'ZZ',acceptLanguage:'fr-FR,de-DE;q=0.8'})).toBe('en');
   });
   it('respects q=0, invalid q, and deterministic tie order', () => {
     expect(localeFromAcceptLanguage('uk;q=0,ru;q=0.9,en;q=0.8')).toBe('ru');
@@ -37,5 +39,7 @@ describe('visitor locale: saved preference, geolocation, browser language', () =
     expect(contentLocaleFor('uk')).toBe('en');
     expect(contentLocaleFor('tg')).toBe('tg');
     expect(contentLocaleFor('ru')).toBe('ru');
+    expect(contentLocaleFor('ja')).toBe('en');
+    expect(contentLocaleFor('ko')).toBe('en');
   });
 });

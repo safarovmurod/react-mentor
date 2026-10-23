@@ -16,3 +16,22 @@ export function reactMonthDays(month:number):ReactDay[] {
     return {day:index+1,title:practiceOnly?projectSteps[projectIndex%projectSteps.length]+': '+selected[0]?.titleRu:selected.map(t=>t.titleRu).join(' · '),topics:selected,practiceOnly};
   });
 }
+
+/** Acknowledging theory alone does not finish a day: apply each topic in practice. */
+export function reactDayReady(day: ReactDay, completedTopics: readonly string[], completedPractice: readonly string[]) {
+  return day.topics.length > 0 && day.topics.every(topic =>
+    (day.practiceOnly || completedTopics.includes(topic.id)) && completedPractice.some(id => id.startsWith(topic.id + '-exercise-') || (topic.id === 'local-practice' && id.startsWith('local-project-')))
+  );
+}
+
+export function reactDayProgress(month: number, completedTopics: readonly string[], completedPractice: readonly string[], confirmedDays: readonly string[]) {
+  let previousConfirmed = month !== 2 || reactMonthDays(1).every(day =>
+    confirmedDays.includes(`1:${day.day}`) && reactDayReady(day, completedTopics, completedPractice)
+  );
+  return reactMonthDays(month).map(day => {
+    const done = previousConfirmed && confirmedDays.includes(`${month}:${day.day}`) && reactDayReady(day, completedTopics, completedPractice);
+    const status: 'done' | 'current' | 'upcoming' = done ? 'done' : previousConfirmed ? 'current' : 'upcoming';
+    previousConfirmed = done;
+    return { ...day, status };
+  });
+}

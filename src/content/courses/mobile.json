@@ -1,0 +1,232 @@
+{
+  "courseId": "mobile",
+  "sources": [
+    {
+      "id": "mobile-docs",
+      "title": "React Native — Core Components and APIs",
+      "url": "https://reactnative.dev/docs/components-and-apis"
+    },
+    {
+      "id": "expo-docs",
+      "title": "Expo — Create a project",
+      "url": "https://docs.expo.dev/get-started/create-a-project/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "mobile-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Mobile: первый экран React Native",
+        "tg": "Mobile: экрани аввалини React Native",
+        "en": "Mobile: your first React Native screen"
+      },
+      "summary": {
+        "ru": "Первый из двух вводных дней после React: соберите экран из View и Text. Для запуска нужен собственный проект Expo и устройство или эмулятор; браузер курса не является мобильным эмулятором.",
+        "tg": "Рӯзи аввал аз ду рӯзи шиносоӣ баъди React: аз View ва Text экран созед. Барои иҷро лоиҳаи Expo ва дастгоҳ ё эмулятор лозим аст; браузери курс эмулятори мобилӣ нест.",
+        "en": "The first of two introductory days after React: build a screen with View and Text. You need an Expo project and a device or emulator; the course browser is not a mobile emulator."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "mobile-docs",
+        "expo-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Как это работает",
+            "tg": "Чӣ тавр кор мекунад",
+            "en": "How it works"
+          },
+          "body": {
+            "ru": "React Native использует компоненты платформы вместо HTML-тегов. View — контейнер, Text отображает текст. Стили — JavaScript-объекты, например fontSize вместо font-size. flex: 1 заполняет доступное место. Не переносите div и CSS-файлы напрямую из веб-проекта.",
+            "tg": "React Native ба ҷойи тегҳои HTML ҷузъҳои платформаро истифода мебарад. View контейнер ва Text нишондиҳандаи матн аст. Услубҳо объектҳои JavaScript мебошанд: fontSize, на font-size. flex: 1 фазои дастрасро пур мекунад. div ва файлҳои CSS-ро аз веб мустақим нагузаронед.",
+            "en": "React Native uses platform components instead of HTML tags. View is a container; Text renders text. Styles are JavaScript objects: fontSize, not font-size. flex: 1 fills available space. Do not copy div elements or CSS files directly from a web project."
+          },
+          "code": "import { View, Text, StyleSheet } from 'react-native';\nexport default function App() {\n  return (\n    <View style={styles.screen}>\n      <Text accessibilityRole=\"header\" style={styles.title}>My first app</Text>\n      <Text>I am learning to build mobile screens.</Text>\n    </View>\n  );\n}\nconst styles = StyleSheet.create({\n  screen: { flex: 1, justifyContent: 'center', padding: 24 },\n  title: { fontSize: 28, fontWeight: '700', marginBottom: 12 },\n});",
+          "language": "tsx"
+        },
+        {
+          "title": {
+            "ru": "Запуск и проверка",
+            "tg": "Иҷро ва санҷиш",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Шаг 1. Подготовьте Expo-проект по официальной инструкции docs.expo.dev/get-started/create-a-project/.\nШаг 2. В стартовом экране проекта разместите пример (обычно app/index.tsx или src/app/index.tsx; структура зависит от шаблона).\nШаг 3. Запустите npx expo start и откройте проект на устройстве или эмуляторе.\nШаг 4. Измените заголовок и размер шрифта. Проверьте, что текст не обрезается при увеличенном системном шрифте.",
+            "tg": "Қадами 1. Лоиҳаи Expo-ро аз рӯи docs.expo.dev/get-started/create-a-project/ омода кунед.\nҚадами 2. Мисолро дар экрани аввали лоиҳа ҷойгир кунед (одатан app/index.tsx ё src/app/index.tsx; сохтор аз қолаб вобаста аст).\nҚадами 3. npx expo start-ро иҷро карда, лоиҳаро дар дастгоҳ ё эмулятор кушоед.\nҚадами 4. Сарлавҳа ва андозаи ҳуруфро иваз кунед. Ҳангоми калон кардани ҳуруфи система матн набояд бурида шавад.",
+            "en": "Step 1. Prepare an Expo project using docs.expo.dev/get-started/create-a-project/.\nStep 2. Put the example in the starting screen (usually app/index.tsx or src/app/index.tsx; paths depend on the template).\nStep 3. Run npx expo start and open the project on a device or emulator.\nStep 4. Change the heading and font size. Check that larger system text is not clipped."
+          },
+          "output": {
+            "ru": "Экран с заголовком My first app и описанием.",
+            "tg": "Экран бо сарлавҳаи My first app ва шарҳ.",
+            "en": "A screen with the heading My first app and a description."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "mobile-day-01-q",
+          "question": {
+            "ru": "Какой компонент выводит текст?",
+            "tg": "Кадом ҷузъ матнро нишон медиҳад?",
+            "en": "Which component displays text?"
+          },
+          "answer": {
+            "ru": "Text. View группирует элементы и управляет раскладкой.",
+            "tg": "Text. View унсурҳоро гурӯҳбандӣ карда, ҷойгиршавиро идора мекунад.",
+            "en": "Text. View groups elements and controls layout."
+          },
+          "options": [
+            {
+              "ru": "Text",
+              "tg": "Text",
+              "en": "Text"
+            },
+            {
+              "ru": "div",
+              "tg": "div",
+              "en": "div"
+            }
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Шаг 1. Подготовьте Expo-проект по официальной инструкции docs.expo.dev/get-started/create-a-project/.\nШаг 2. В стартовом экране проекта разместите пример (обычно app/index.tsx или src/app/index.tsx; структура зависит от шаблона).\nШаг 3. Запустите npx expo start и откройте проект на устройстве или эмуляторе.\nШаг 4. Измените заголовок и размер шрифта. Проверьте, что текст не обрезается при увеличенном системном шрифте.",
+          "tg": "Қадами 1. Лоиҳаи Expo-ро аз рӯи docs.expo.dev/get-started/create-a-project/ омода кунед.\nҚадами 2. Мисолро дар экрани аввали лоиҳа ҷойгир кунед (одатан app/index.tsx ё src/app/index.tsx; сохтор аз қолаб вобаста аст).\nҚадами 3. npx expo start-ро иҷро карда, лоиҳаро дар дастгоҳ ё эмулятор кушоед.\nҚадами 4. Сарлавҳа ва андозаи ҳуруфро иваз кунед. Ҳангоми калон кардани ҳуруфи система матн набояд бурида шавад.",
+          "en": "Step 1. Prepare an Expo project using docs.expo.dev/get-started/create-a-project/.\nStep 2. Put the example in the starting screen (usually app/index.tsx or src/app/index.tsx; paths depend on the template).\nStep 3. Run npx expo start and open the project on a device or emulator.\nStep 4. Change the heading and font size. Check that larger system text is not clipped."
+        },
+        "hint": {
+          "ru": "React Native использует компоненты платформы вместо HTML-тегов. View — контейнер, Text отображает текст. Стили — JavaScript-объекты, например fontSize вместо font-size. flex: 1 заполняет доступное место. Не переносите div и CSS-файлы напрямую из веб-проекта.",
+          "tg": "React Native ба ҷойи тегҳои HTML ҷузъҳои платформаро истифода мебарад. View контейнер ва Text нишондиҳандаи матн аст. Услубҳо объектҳои JavaScript мебошанд: fontSize, на font-size. flex: 1 фазои дастрасро пур мекунад. div ва файлҳои CSS-ро аз веб мустақим нагузаронед.",
+          "en": "React Native uses platform components instead of HTML tags. View is a container; Text renders text. Styles are JavaScript objects: fontSize, not font-size. flex: 1 fills available space. Do not copy div elements or CSS files directly from a web project."
+        },
+        "solution": "import { View, Text, StyleSheet } from 'react-native';\nexport default function App() {\n  return (\n    <View style={styles.screen}>\n      <Text accessibilityRole=\"header\" style={styles.title}>My first app</Text>\n      <Text>I am learning to build mobile screens.</Text>\n    </View>\n  );\n}\nconst styles = StyleSheet.create({\n  screen: { flex: 1, justifyContent: 'center', padding: 24 },\n  title: { fontSize: 28, fontWeight: '700', marginBottom: 12 },\n});",
+        "criteria": [
+          {
+            "ru": "Пример запущен в указанной среде, результат совпадает с ожидаемым.",
+            "tg": "Мисол дар муҳити зикршуда иҷро шуд ва натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "The example runs in the stated environment and matches the expected result."
+          },
+          {
+            "ru": "Проверены изменённые входные данные; могу объяснить результат.",
+            "tg": "Маълумоти вурудии дигар санҷида шуд; натиҷаро шарҳ дода метавонам.",
+            "en": "Different inputs were checked and I can explain the result."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mobile-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Mobile: состояние и нажатия",
+        "tg": "Mobile: ҳолат ва пахшкунӣ",
+        "en": "Mobile: state and button presses"
+      },
+      "summary": {
+        "ru": "Второй вводный день: добавьте счётчик заданий и сброс. Проверьте последовательность нажатий на устройстве; простое изменение переменной не перерисовывает компонент React.",
+        "tg": "Рӯзи дуюми шиносоӣ: ҳисобкунаки супориш ва барқароркуниро илова кунед. Пайдарпайии пахшҳоро дар дастгоҳ санҷед; тағйири тағйирёбандаи оддӣ ҷузъи React-ро нав намекунад.",
+        "en": "Second introductory day: add a task counter and reset. Check a sequence of presses on your device; changing an ordinary variable does not re-render a React component."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "mobile-docs",
+        "expo-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Как это работает",
+            "tg": "Чӣ тавр кор мекунад",
+            "en": "How it works"
+          },
+          "body": {
+            "ru": "useState хранит состояние между рендерами. onPress получает функцию, которую вызовут при нажатии; не вызывайте её во время рендера. Функциональное обновление value => value + 1 использует последнее значение. Состояние этого примера сбрасывается после перезапуска — постоянное хранение ещё не реализовано.",
+            "tg": "useState ҳолатро байни намоишҳо нигоҳ медорад. onPress функсия мегирад, ки ҳангоми пахш даъват мешавад; онро ҳангоми намоиш даъват накунед. Навсозии value => value + 1 қимати охиринро истифода мебарад. Баъди аз нав оғоз кардан ҳолат нест мешавад — нигоҳдории доимӣ ҳоло сохта нашудааст.",
+            "en": "useState preserves state between renders. onPress receives a function called when pressed; do not call it during rendering. A functional update value => value + 1 uses the latest value. This example resets after restarting; persistent storage is not implemented yet."
+          },
+          "code": "import { useState } from 'react';\nimport { View, Text, Button } from 'react-native';\nexport default function App() {\n  const [count, setCount] = useState(0);\n  return (\n    <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>\n      <Text accessibilityLiveRegion=\"polite\">Completed: {count}</Text>\n      <Button title=\"Complete one task\" onPress={() => setCount(value => value + 1)} />\n      <Button title=\"Reset\" onPress={() => setCount(0)} />\n    </View>\n  );\n}",
+          "language": "tsx"
+        },
+        {
+          "title": {
+            "ru": "Запуск и проверка",
+            "tg": "Иҷро ва санҷиш",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Шаг 1. Сохраните прошлый экран и добавьте useState(0).\nШаг 2. Добавьте кнопку увеличения через функциональное обновление.\nШаг 3. Добавьте Reset, устанавливающий 0. Запустите приложение через Expo.\nШаг 4. Проверьте: старт 0, три нажатия → 3, Reset → 0, ещё нажатие → 1. Не показывайте фиктивную синхронизацию с сервером.",
+            "tg": "Қадами 1. Экрани пешинаро нигоҳ дошта, useState(0) илова кунед.\nҚадами 2. Тугмаи зиёдкуниро бо навсозии функсионалӣ илова кунед.\nҚадами 3. Reset илова кунед, ки 0 мегузорад. Барномаро бо Expo иҷро кунед.\nҚадами 4. Санҷед: оғоз 0, се пахш → 3, Reset → 0, як пахши дигар → 1. Ҳамоҳангсозии сохта бо серверро нишон надиҳед.",
+            "en": "Step 1. Keep the previous screen and add useState(0).\nStep 2. Add an increment button using a functional update.\nStep 3. Add Reset, setting the value to 0. Run through Expo.\nStep 4. Check: initial 0, three presses → 3, Reset → 0, one more press → 1. Do not show pretend server synchronization."
+          },
+          "output": {
+            "ru": "0 → 1 → 2 → 3 → Reset → 0",
+            "tg": "0 → 1 → 2 → 3 → Reset → 0",
+            "en": "0 → 1 → 2 → 3 → Reset → 0"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "mobile-day-02-q",
+          "question": {
+            "ru": "Что передают в onPress?",
+            "tg": "Ба onPress чӣ медиҳанд?",
+            "en": "What should you pass to onPress?"
+          },
+          "answer": {
+            "ru": "Функцию-обработчик, например () => setCount(0).",
+            "tg": "Функсияи коркардкунанда, масалан () => setCount(0).",
+            "en": "A handler function, such as () => setCount(0)."
+          },
+          "options": [
+            {
+              "ru": "Результат setCount(0)",
+              "tg": "Натиҷаи setCount(0)",
+              "en": "The result of setCount(0)"
+            },
+            {
+              "ru": "() => setCount(0)",
+              "tg": "() => setCount(0)",
+              "en": "() => setCount(0)"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Шаг 1. Сохраните прошлый экран и добавьте useState(0).\nШаг 2. Добавьте кнопку увеличения через функциональное обновление.\nШаг 3. Добавьте Reset, устанавливающий 0. Запустите приложение через Expo.\nШаг 4. Проверьте: старт 0, три нажатия → 3, Reset → 0, ещё нажатие → 1. Не показывайте фиктивную синхронизацию с сервером.",
+          "tg": "Қадами 1. Экрани пешинаро нигоҳ дошта, useState(0) илова кунед.\nҚадами 2. Тугмаи зиёдкуниро бо навсозии функсионалӣ илова кунед.\nҚадами 3. Reset илова кунед, ки 0 мегузорад. Барномаро бо Expo иҷро кунед.\nҚадами 4. Санҷед: оғоз 0, се пахш → 3, Reset → 0, як пахши дигар → 1. Ҳамоҳангсозии сохта бо серверро нишон надиҳед.",
+          "en": "Step 1. Keep the previous screen and add useState(0).\nStep 2. Add an increment button using a functional update.\nStep 3. Add Reset, setting the value to 0. Run through Expo.\nStep 4. Check: initial 0, three presses → 3, Reset → 0, one more press → 1. Do not show pretend server synchronization."
+        },
+        "hint": {
+          "ru": "useState хранит состояние между рендерами. onPress получает функцию, которую вызовут при нажатии; не вызывайте её во время рендера. Функциональное обновление value => value + 1 использует последнее значение. Состояние этого примера сбрасывается после перезапуска — постоянное хранение ещё не реализовано.",
+          "tg": "useState ҳолатро байни намоишҳо нигоҳ медорад. onPress функсия мегирад, ки ҳангоми пахш даъват мешавад; онро ҳангоми намоиш даъват накунед. Навсозии value => value + 1 қимати охиринро истифода мебарад. Баъди аз нав оғоз кардан ҳолат нест мешавад — нигоҳдории доимӣ ҳоло сохта нашудааст.",
+          "en": "useState preserves state between renders. onPress receives a function called when pressed; do not call it during rendering. A functional update value => value + 1 uses the latest value. This example resets after restarting; persistent storage is not implemented yet."
+        },
+        "solution": "import { useState } from 'react';\nimport { View, Text, Button } from 'react-native';\nexport default function App() {\n  const [count, setCount] = useState(0);\n  return (\n    <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>\n      <Text accessibilityLiveRegion=\"polite\">Completed: {count}</Text>\n      <Button title=\"Complete one task\" onPress={() => setCount(value => value + 1)} />\n      <Button title=\"Reset\" onPress={() => setCount(0)} />\n    </View>\n  );\n}",
+        "criteria": [
+          {
+            "ru": "Пример запущен в указанной среде, результат совпадает с ожидаемым.",
+            "tg": "Мисол дар муҳити зикршуда иҷро шуд ва натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "The example runs in the stated environment and matches the expected result."
+          },
+          {
+            "ru": "Проверены изменённые входные данные; могу объяснить результат.",
+            "tg": "Маълумоти вурудии дигар санҷида шуд; натиҷаро шарҳ дода метавонам.",
+            "en": "Different inputs were checked and I can explain the result."
+          }
+        ]
+      }
+    }
+  ]
+}

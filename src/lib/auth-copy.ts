@@ -1,4 +1,6 @@
 import type { InterfaceLocale } from '@/lib/locale';
+import { JAPANESE_AUTH_COPY } from './locales/ja';
+import { KOREAN_AUTH_COPY } from './locales/ko';
 
 export type AuthCopy = {
   signupTitle:string; resetTitle:string; loginTitle:string; intro:string; unavailable:string;
@@ -9,8 +11,10 @@ export type AuthCopy = {
   firstNameTitle:string; firstNameDescription:string; firstNameStart:string; logout:string; nameError:string;
 };
 export const AUTH_COPY:Record<InterfaceLocale,AuthCopy>={
+  ja:JAPANESE_AUTH_COPY,
+  ko:KOREAN_AUTH_COPY,
   ru:{
-    signupTitle:'Начнём учиться вместе',resetTitle:'Восстановить доступ',loginTitle:'Ваш путь в React',intro:'Личный прогресс, заметки и практика — на компьютере и телефоне.',
+    signupTitle:'Начнём учиться вместе',resetTitle:'Восстановить доступ',loginTitle:'Продолжите своё обучение',intro:'Личный прогресс, заметки и практика — на компьютере и телефоне.',
     unavailable:'Вход и регистрация пока не подключены. Курс и ответы доступны без аккаунта; для AI нужен аккаунт.',
     guest:'Продолжить как гость',google:'Продолжить с Google',recommended:'Рекомендуем',orEmail:'или через email',name:'Ваше имя',password:'Пароль',
     creating:'Создаём…',saveWait:'Подождите…',signUp:'Создать аккаунт',sendLink:'Отправить ссылку',signIn:'Войти с email',existing:'Уже есть аккаунт? Войти',
@@ -19,7 +23,7 @@ export const AUTH_COPY:Record<InterfaceLocale,AuthCopy>={
     firstNameTitle:'Как вас называть?',firstNameDescription:'Имя будет в вашем профиле. Изменить его и добавить фото можно в настройках.',firstNameStart:'Начать обучение',logout:'Выйти',nameError:'Не удалось сохранить имя.'
   },
   en:{
-    signupTitle:"Let's learn together",resetTitle:'Recover access',loginTitle:'Your React journey',intro:'Your progress, notes and practice — on desktop and mobile.',
+    signupTitle:"Let's learn together",resetTitle:'Recover access',loginTitle:'Continue your learning journey',intro:'Your progress, notes and practice — on desktop and mobile.',
     unavailable:'Login and registration are not configured yet. Lessons and answers are available without an account; AI requires an account.',
     guest:'Continue as guest',google:'Continue with Google',recommended:'Recommended',orEmail:'or use email',name:'Your name',password:'Password',
     creating:'Creating…',saveWait:'Please wait…',signUp:'Create account',sendLink:'Send link',signIn:'Sign in with email',existing:'Already have an account? Sign in',
@@ -28,7 +32,7 @@ export const AUTH_COPY:Record<InterfaceLocale,AuthCopy>={
     firstNameTitle:'What should we call you?',firstNameDescription:'This name will appear in your profile. You can change it and add a photo in Settings.',firstNameStart:'Start learning',logout:'Log out',nameError:'Could not save your name.'
   },
   tg:{
-    signupTitle:'Биёед якҷоя омӯзем',resetTitle:'Барқарор кардани дастрасӣ',loginTitle:'Роҳи шумо ба React',intro:'Пешрафт, ёддошт ва машқҳои шахсӣ — дар компютер ва телефон.',
+    signupTitle:'Биёед якҷоя омӯзем',resetTitle:'Барқарор кардани дастрасӣ',loginTitle:'Омӯзишро идома диҳед',intro:'Пешрафт, ёддошт ва машқҳои шахсӣ — дар компютер ва телефон.',
     unavailable:'Воридшавӣ ва бақайдгирӣ ҳоло танзим нашудааст. Дарсҳо бе аккаунт дастрасанд; AI аккаунт мехоҳад.',
     guest:'Идома ҳамчун меҳмон',google:'Идома бо Google',recommended:'Тавсия мешавад',orEmail:'ё бо email',name:'Номи шумо',password:'Рамз',
     creating:'Сохта мешавад…',saveWait:'Лутфан интизор шавед…',signUp:'Сохтани аккаунт',sendLink:'Фиристодани пайванд',signIn:'Воридшавӣ бо email',existing:'Аллакай аккаунт доред? Ворид шавед',
@@ -37,7 +41,7 @@ export const AUTH_COPY:Record<InterfaceLocale,AuthCopy>={
     firstNameTitle:'Шуморо чӣ ном гӯем?',firstNameDescription:'Ном дар профили шумо нишон дода мешавад. Аз Танзимот метавонед онро иваз кунед.',firstNameStart:'Оғози омӯзиш',logout:'Баромадан',nameError:'Ном нигоҳ дошта нашуд.'
   },
   uk:{
-    signupTitle:'Нумо навчатися разом',resetTitle:'Відновлення доступу',loginTitle:'Ваш шлях до React',intro:'Особистий прогрес, нотатки та практика — на комп’ютері й телефоні.',
+    signupTitle:'Нумо навчатися разом',resetTitle:'Відновлення доступу',loginTitle:'Продовжте своє навчання',intro:'Особистий прогрес, нотатки та практика — на комп’ютері й телефоні.',
     unavailable:'Вхід і реєстрацію поки не налаштовано. Уроки й відповіді доступні без акаунта; AI потребує акаунта.',
     guest:'Продовжити як гість',google:'Продовжити з Google',recommended:'Рекомендуємо',orEmail:'або через email',name:'Ваше ім’я',password:'Пароль',
     creating:'Створюємо…',saveWait:'Зачекайте…',signUp:'Створити акаунт',sendLink:'Надіслати посилання',signIn:'Увійти через email',existing:'Уже маєте акаунт? Увійти',

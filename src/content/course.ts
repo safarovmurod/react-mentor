@@ -3,6 +3,8 @@ import quizSource from './imported/quiz.json';
 import interviewSource from './imported/interview.json';
 import roadmapSource from './imported/roadmap.json';
 import { EXTRA_TOPICS, EXTRA_QUESTIONS } from './supplemental';
+import { contentLocaleFor, type InterfaceLocale } from '@/lib/locale';
+import { tr } from '@/lib/translate';
 
 export interface LearningTopic {
   id: string;
@@ -137,4 +139,4 @@ export const CURRICULUM = roadmapSource.map(month => ({
 
 export function getTopic(id: string) { return LEARNING_TOPICS.find(topic => topic.id === id); }
 export function questionsForTopic(id: string) { return ALL_QUESTIONS.filter(question => question.topicId === id); }
-export function topicTitle(topic: LearningTopic, language: 'ru' | 'en' | 'tg' | 'uk') { return language === 'ru' ? topic.titleRu : topic.title; }
+export function topicTitle(topic: LearningTopic, language: InterfaceLocale) { return language === 'ru' ? topic.titleRu : tr(topic.title, contentLocaleFor(language)); }

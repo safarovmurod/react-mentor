@@ -4,10 +4,10 @@ import { loadCourseContent } from '@/lib/courses/content';
 import { courseDayProgress, courseMonthPlan } from '@/lib/courses/plan';
 
 describe('guided 30-day HTML + CSS course', () => {
-  it('contains exactly Day 0 through Day 29, each with a real lesson, example, question and practice', async () => {
+  it('contains exactly Day 1 through Day 30, each with a real lesson, example, question and practice', async () => {
     const content = await loadCourseContent('html');
     const plan = courseMonthPlan(content.lessons);
-    expect(plan.map(item => item.day)).toEqual(Array.from({ length: 30 }, (_, day) => day));
+    expect(plan.map(item => item.day)).toEqual(Array.from({ length: 30 }, (_, day) => day + 1));
     expect(new Set(plan.map(item => item.lesson.id)).size).toBe(30);
     for (const item of plan) {
       expect(item.lesson.title.ru.length).toBeGreaterThan(8);
@@ -23,13 +23,13 @@ describe('guided 30-day HTML + CSS course', () => {
     expect(plan[0].lesson.sections.map(section => section.code || '').join('\n')).toContain('styles.css');
   });
 
-  it('Day 0 becomes current and only advances when both reading and practice are complete', async () => {
+  it('Day 1 becomes current and only advances when both reading and practice are complete', async () => {
     const { lessons } = await loadCourseContent('html');
     const plan = courseMonthPlan(lessons);
     const id = plan[0].lesson.id;
-    expect(courseDayProgress(plan, [], []).current?.day).toBe(0);
-    expect(courseDayProgress(plan, [id], []).current?.day).toBe(0);
-    expect(courseDayProgress(plan, [id], [id]).current?.day).toBe(1);
+    expect(courseDayProgress(plan, [], []).current?.day).toBe(1);
+    expect(courseDayProgress(plan, [id], []).current?.day).toBe(1);
+    expect(courseDayProgress(plan, [id], [id]).current?.day).toBe(2);
   });
 
   it('keeps the other published courses independent with practice on their planned days', async () => {

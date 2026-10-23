@@ -42,3 +42,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated local Monaco assets
+/public/monaco/
+
+# Browser test artifacts
+/test-results/
+/playwright-report/

@@ -1,4 +1,9 @@
+import { JAPANESE_COPY } from './locales/ja';
+import { KOREAN_COPY } from './locales/ko';
+
 export const COPY = {
+  ja: JAPANESE_COPY,
+  ko: KOREAN_COPY,
   ru: {
     home:'Мой день', plan:'Учебный план', practice:'Практика', tests:'Тесты', interview:'Интервью', revision:'Повторение', weak:'Сложные темы', notes:'Заметки', answers:'Ответы', settings:'Настройки',
     back:'Назад', month:'Месяц', week:'Неделя', open:'Открыть', start:'Начать', continue:'Продолжить', learn:'Изучить', questions:'Вопросы', topics:'Темы', all:'Все', questionsOf:'вопросов',

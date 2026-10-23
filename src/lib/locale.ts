@@ -1,8 +1,11 @@
 /** Locale negotiation is UI personalization, never an authorization signal. */
 export const LOCALE_COOKIE = 'react-mentor-locale';
-export const INTERFACE_LOCALES = ['ru', 'uk', 'en', 'tg'] as const;
+export const INTERFACE_LOCALES = ['ru', 'uk', 'en', 'tg', 'ja', 'ko'] as const;
 export type InterfaceLocale = typeof INTERFACE_LOCALES[number];
 export type ContentLocale = 'ru' | 'en' | 'tg';
+export const INTERFACE_LANGUAGE_NAMES: Record<InterfaceLocale, string> = {
+  ru:'Русский', uk:'Українська', en:'English', tg:'Тоҷикӣ', ja:'日本語', ko:'한국어',
+};
 
 export function isInterfaceLocale(value: unknown): value is InterfaceLocale {
   return typeof value === 'string' && (INTERFACE_LOCALES as readonly string[]).includes(value);
@@ -10,12 +13,12 @@ export function isInterfaceLocale(value: unknown): value is InterfaceLocale {
 
 export function contentLocaleFor(locale: InterfaceLocale): ContentLocale {
   // The existing lessons are available in RU/EN/TG only. Never label Russian
-  // or English lesson text as a Ukrainian translation.
+  // or English lesson text as a Ukrainian, Japanese, or Korean translation.
   return locale === 'ru' ? 'ru' : locale === 'tg' ? 'tg' : 'en';
 }
 
 const countryLocales: Record<string, InterfaceLocale> = {
-  RU: 'ru', UA: 'uk', US: 'en', TJ: 'tg',
+  RU: 'ru', UA: 'uk', US: 'en', TJ: 'tg', JP: 'ja', KR: 'ko',
 };
 
 /** q=0 entries must not be selected. Unsupported languages fall through. */

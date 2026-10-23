@@ -1,7 +1,7 @@
 import { AnswersLibrary } from '@/components/learning/answers-library';
 import { ANSWER_COUNT, ANSWER_PROGRESS_IDS, answerSummary, filterAnswerTopics, type AnswerSource } from '@/content/answers';
 
-export const metadata = { title: 'Ответы — ReactMentor' };
+export const metadata = { title: 'Ответы — DevAtlas' };
 export default async function AnswersPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams;
   const source: AnswerSource = ['deep','quiz','interview'].includes(String(params.source)) ? params.source as AnswerSource : 'all';

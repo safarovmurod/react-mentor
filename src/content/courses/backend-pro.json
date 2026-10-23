@@ -1,0 +1,394 @@
+{
+  "courseId": "backend-pro",
+  "sources": [
+    {
+      "id": "original-premium",
+      "title": "DevAtlas original exercises and source review",
+      "url": "https://github.com/safarovmurod/react-mentor"
+    },
+    {
+      "id": "node-docs",
+      "title": "Node.js official documentation — standard APIs",
+      "url": "https://nodejs.org/api/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "backend-pro-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Валидация запроса и запрет лишних полей",
+        "tg": "Санҷиши дархост ва манъи майдонҳои зиёдатӣ",
+        "en": "Request validation and rejecting extra fields"
+      },
+      "summary": {
+        "ru": "День 1 из 3 опубликованных. Валидация запроса и запрет лишних полей. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 1 аз 3 рӯзи нашршуда. Санҷиши дархост ва манъи майдонҳои зиёдатӣ. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 1 of 3 published days. Request validation and rejecting extra fields. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "На границе API проверяем размер, JSON, форму объекта и поля. HTTP 400 означает неверный ввод; 413 — превышение лимита. Не принимайте ownerId, role или plan из формы создания задачи: владельца назначает сервер из проверенной сессии. Считайте UTF-8 байты, а не только число JavaScript-символов. Эта чистая функция проверяет уже полученную строку; настоящий HTTP-сервер обязан ограничивать поток до накопления всего большого тела.",
+            "tg": "Дар сарҳади API андоза, JSON, шакли объект ва майдонҳоро месанҷем. HTTP 400 вуруди нодуруст, 413 аз лимит гузаштан аст. ownerId, role ё plan-ро аз шакли сохтани вазифа қабул накунед: сервер соҳибро аз сессияи тасдиқшуда таъйин мекунад. Байти UTF-8-ро ҳисоб кунед, на танҳо шумораи аломатҳои JavaScript. Ин функсияи соф сатри гирифташударо месанҷад; HTTP-сервер бояд ҷараёнро пеш аз ҷамъ кардани тамоми баданаи калон маҳдуд кунад.",
+            "en": "At the API boundary validate size, JSON, object shape and fields. HTTP 400 means invalid input; 413 means the size limit was exceeded. Never accept ownerId, role or plan from a create-task form: the server derives ownership from a verified session. Count UTF-8 bytes, not only JavaScript characters. This pure function checks an already received string; a real HTTP server must bound the stream before accumulating a large body."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\nimport { Buffer } from \"node:buffer\";\n\nexport function validateCreateTodo(raw) {\n  if (typeof raw !== \"string\") return { status: 400, error: \"Invalid body\" };\n  if (Buffer.byteLength(raw, \"utf8\") > 4096) return { status: 413, error: \"Body too large\" };\n  let value;\n  try { value = JSON.parse(raw); } catch { return { status: 400, error: \"Invalid JSON\" }; }\n  if (!value || typeof value !== \"object\" || Array.isArray(value) || Object.keys(value).some(key => key !== \"title\")) {\n    return { status: 400, error: \"Unexpected fields\" };\n  }\n  if (typeof value.title !== \"string\" || value.title.trim().length < 2 || value.title.trim().length > 80) {\n    return { status: 400, error: \"Invalid title\" };\n  }\n  return { status: 201, data: { title: value.title.trim() } };\n}\nconsole.log(JSON.stringify(validateCreateTodo('{\"title\":\"  Learn HTTP  \"}')));\nconsole.log(validateCreateTodo('{\"title\":\"Learn\",\"ownerId\":\"someone-else\"}').status);\nconsole.log(validateCreateTodo(\"x\".repeat(4097)).status);\nassert.equal(validateCreateTodo(\"not json\").status, 400);\nassert.equal(validateCreateTodo(\"null\").status, 400);\nassert.equal(validateCreateTodo('{\"title\":\"x\"}').status, 400);\nassert.equal(validateCreateTodo('{\"title\":\"Read\",\"ownerId\":\"other\"}').status, 400);\n",
+          "language": "javascript",
+          "output": {
+            "ru": "{\"status\":201,\"data\":{\"title\":\"Learn HTTP\"}}\n400\n413",
+            "tg": "{\"status\":201,\"data\":{\"title\":\"Learn HTTP\"}}\n400\n413",
+            "en": "{\"status\":201,\"data\":{\"title\":\"Learn HTTP\"}}\n400\n413"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Реализуйте validateCreateTodo без побочных эффектов. Принимайте только title длиной 2–80 после trim; ownerId и любые лишние поля отклоняйте. Проверьте null, массив, неверный JSON, пустую строку и более 4096 UTF-8 байт. Валидный title не должен менять другие пользовательские данные.",
+            "tg": "validateCreateTodo-ро бе таъсири тарафӣ созед. Танҳо title-и дарозияш 2–80 баъди trim қабул шавад; ownerId ва ҳар майдони зиёдатиро рад кунед. null, массив, JSON-и нодуруст, сатри холӣ ва зиёда аз 4096 байти UTF-8-ро санҷед. title-и дуруст набояд додаҳои дигари корбарро тағйир диҳад.",
+            "en": "Implement validateCreateTodo without side effects. Accept only title with 2–80 characters after trim; reject ownerId and all extra fields. Test null, arrays, invalid JSON, an empty title and more than 4096 UTF-8 bytes. A valid title must not alter other user data."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "backend-pro-day-01-q",
+          "question": {
+            "ru": "Откуда сервер должен взять владельца новой задачи?",
+            "tg": "Сервер соҳиби вазифаи навро аз куҷо мегирад?",
+            "en": "Where must a new task owner come from?"
+          },
+          "answer": {
+            "ru": "Из проверенной сервером сессии",
+            "tg": "Аз сессияи тасдиқкардаи сервер",
+            "en": "From a server-verified session"
+          },
+          "options": [
+            {
+              "ru": "Из ownerId в JSON клиента",
+              "tg": "Аз ownerId-и JSON-и муштарӣ",
+              "en": "From client JSON ownerId"
+            },
+            {
+              "ru": "Из проверенной сервером сессии",
+              "tg": "Аз сессияи тасдиқкардаи сервер",
+              "en": "From a server-verified session"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "code",
+        "task": {
+          "ru": "Реализуйте validateCreateTodo без побочных эффектов. Принимайте только title длиной 2–80 после trim; ownerId и любые лишние поля отклоняйте. Проверьте null, массив, неверный JSON, пустую строку и более 4096 UTF-8 байт. Валидный title не должен менять другие пользовательские данные.",
+          "tg": "validateCreateTodo-ро бе таъсири тарафӣ созед. Танҳо title-и дарозияш 2–80 баъди trim қабул шавад; ownerId ва ҳар майдони зиёдатиро рад кунед. null, массив, JSON-и нодуруст, сатри холӣ ва зиёда аз 4096 байти UTF-8-ро санҷед. title-и дуруст набояд додаҳои дигари корбарро тағйир диҳад.",
+          "en": "Implement validateCreateTodo without side effects. Accept only title with 2–80 characters after trim; reject ownerId and all extra fields. Test null, arrays, invalid JSON, an empty title and more than 4096 UTF-8 bytes. A valid title must not alter other user data."
+        },
+        "hint": {
+          "ru": "Валидатор не аутентифицирует пользователя. Отдельно проверяйте сессию и задавайте владельца на сервере.",
+          "tg": "Валидатор корбарро тасдиқ намекунад. Сессияро алоҳида санҷида, соҳибро дар сервер таъйин кунед.",
+          "en": "A validator does not authenticate the caller. Verify the session separately and assign ownership server-side."
+        },
+        "solution": "import assert from \"node:assert/strict\";\nimport { Buffer } from \"node:buffer\";\n\nexport function validateCreateTodo(raw) {\n  if (typeof raw !== \"string\") return { status: 400, error: \"Invalid body\" };\n  if (Buffer.byteLength(raw, \"utf8\") > 4096) return { status: 413, error: \"Body too large\" };\n  let value;\n  try { value = JSON.parse(raw); } catch { return { status: 400, error: \"Invalid JSON\" }; }\n  if (!value || typeof value !== \"object\" || Array.isArray(value) || Object.keys(value).some(key => key !== \"title\")) {\n    return { status: 400, error: \"Unexpected fields\" };\n  }\n  if (typeof value.title !== \"string\" || value.title.trim().length < 2 || value.title.trim().length > 80) {\n    return { status: 400, error: \"Invalid title\" };\n  }\n  return { status: 201, data: { title: value.title.trim() } };\n}\nconsole.log(JSON.stringify(validateCreateTodo('{\"title\":\"  Learn HTTP  \"}')));\nconsole.log(validateCreateTodo('{\"title\":\"Learn\",\"ownerId\":\"someone-else\"}').status);\nconsole.log(validateCreateTodo(\"x\".repeat(4097)).status);\nassert.equal(validateCreateTodo(\"not json\").status, 400);\nassert.equal(validateCreateTodo(\"null\").status, 400);\nassert.equal(validateCreateTodo('{\"title\":\"x\"}').status, 400);\nassert.equal(validateCreateTodo('{\"title\":\"Read\",\"ownerId\":\"other\"}').status, 400);\n",
+        "criteria": [
+          {
+            "ru": "Корректный title нормализован; неверный ввод даёт 400.",
+            "tg": "title-и дуруст тоза мешавад; вуруди нодуруст 400 медиҳад.",
+            "en": "Valid titles are normalized; invalid input returns 400."
+          },
+          {
+            "ru": "Размер проверяется в UTF-8 байтах и ограничивается 4096.",
+            "tg": "Андоза бо байти UTF-8 санҷида шуда, ба 4096 маҳдуд аст.",
+            "en": "Size is checked in UTF-8 bytes and limited to 4096."
+          },
+          {
+            "ru": "ownerId/role/plan не проходят через валидатор.",
+            "tg": "ownerId/role/plan аз валидатор намегузаранд.",
+            "en": "ownerId/role/plan cannot pass through validation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "backend-pro-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Авторизация владельца и защита от IDOR",
+        "tg": "Санҷиши соҳиб ва ҳифз аз IDOR",
+        "en": "Ownership authorization and IDOR prevention"
+      },
+      "summary": {
+        "ru": "День 2 из 3 опубликованных. Авторизация владельца и защита от IDOR. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 2 аз 3 рӯзи нашршуда. Санҷиши соҳиб ва ҳифз аз IDOR. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 2 of 3 published days. Ownership authorization and IDOR prevention. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "Аутентификация отвечает «кто это», авторизация — «можно ли ему читать эту запись». session здесь уже получена доверенным серверным middleware, а не из тела запроса. Даже корректный id не даёт права читать чужую задачу. Возвращаем одинаковый 404 для чужой и отсутствующей записи, чтобы не подтверждать её существование. Тестовая repository проверяет логику без настоящей базы; в production нужна фильтрация по user_id в запросе и RLS как второй слой.",
+            "tg": "Тасдиқи шахсият ба «ин кист», иҷозат ба «оё ин сабтро хонда метавонад» ҷавоб медиҳад. session ин ҷо аз middleware-и боэътимоди сервер гирифта шудааст, на аз баданаи дархост. Ҳатто id-и дуруст ҳуқуқи хондани вазифаи дигаронро намедиҳад. Барои сабти бегона ва набуда як 404 медиҳем, то мавҷудияташро ошкор накунем. repository-и тестӣ мантиқро бе пойгоҳи воқеӣ месанҷад; дар production филтри user_id ва RLS ҳамчун қабати дуюм лозим аст.",
+            "en": "Authentication answers who the caller is; authorization decides whether they may read this record. session is already supplied by trusted server middleware, never by the request body. A valid id does not grant access to another user’s task. Return the same 404 for missing and foreign records to avoid confirming existence. A repository fixture tests the logic without a live database; production needs ownership-scoped queries and RLS as a second layer."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\n\nexport async function readOwnedTodo(session, id, repository) {\n  if (!session || typeof session.userId !== \"string\" || !session.userId) return { status: 401 };\n  if (!Number.isSafeInteger(id) || id < 1) return { status: 400 };\n  const todo = await repository.findById(id);\n  if (!todo || todo.ownerId !== session.userId) return { status: 404 };\n  return { status: 200, data: { id: todo.id, title: todo.title } };\n}\nconst repository = { findById: async id => id === 7 ? { id: 7, ownerId: \"user-a\", title: \"Private task\" } : null };\nconsole.log(JSON.stringify(await readOwnedTodo({ userId: \"user-a\" }, 7, repository)));\nconsole.log((await readOwnedTodo(null, 7, repository)).status);\nconsole.log((await readOwnedTodo({ userId: \"user-b\" }, 7, repository)).status);\nassert.deepEqual(await readOwnedTodo({ userId: \"user-a\" }, 99, repository), { status: 404 });\nassert.deepEqual(await readOwnedTodo({ userId: \"user-a\" }, -1, repository), { status: 400 });\nassert.deepEqual(await readOwnedTodo(null, 7, { findById: () => { throw new Error(\"Must not query\"); } }), { status: 401 });\nassert.deepEqual(await readOwnedTodo({ userId: \"user-b\" }, 7, repository), { status: 404 });\n",
+          "language": "javascript",
+          "output": {
+            "ru": "{\"status\":200,\"data\":{\"id\":7,\"title\":\"Private task\"}}\n401\n404",
+            "tg": "{\"status\":200,\"data\":{\"id\":7,\"title\":\"Private task\"}}\n401\n404",
+            "en": "{\"status\":200,\"data\":{\"id\":7,\"title\":\"Private task\"}}\n401\n404"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Создайте readOwnedTodo и тесты для двух пользователей. Первый читает свою запись, второй получает 404 без title/ownerId в ответе. Гость получает 401 до запроса к базе. Проверьте отсутствующий id и неверный id. Не передавайте session из JSON браузера.",
+            "tg": "readOwnedTodo ва тестҳо барои ду корбар созед. Аввалӣ сабти худро мехонад, дуюмӣ 404 мегирад, бе title/ownerId дар ҷавоб. Меҳмон пеш аз дархости пойгоҳ 401 мегирад. id-и набуда ва нодурустро санҷед. session-ро аз JSON-и браузер надиҳед.",
+            "en": "Create readOwnedTodo and two-user tests. The owner reads their record; another user receives 404 without title/ownerId. A guest receives 401 before the repository is queried. Test missing and invalid ids. Never build session from browser JSON."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "backend-pro-day-02-q",
+          "question": {
+            "ru": "Достаточно ли скрыть ссылку на чужую запись в интерфейсе?",
+            "tg": "Пинҳон кардани пайванди сабти бегона дар интерфейс кофист?",
+            "en": "Is hiding a foreign-record link in the UI sufficient?"
+          },
+          "answer": {
+            "ru": "Нет: API проверяет владельца при каждом запросе",
+            "tg": "Не: API соҳибро дар ҳар дархост месанҷад",
+            "en": "No: the API checks ownership on every request"
+          },
+          "options": [
+            {
+              "ru": "Да: скрытая ссылка недоступна",
+              "tg": "Ҳа: пайванди пинҳон дастнорас аст",
+              "en": "Yes: a hidden link is inaccessible"
+            },
+            {
+              "ru": "Нет: API проверяет владельца при каждом запросе",
+              "tg": "Не: API соҳибро дар ҳар дархост месанҷад",
+              "en": "No: the API checks ownership on every request"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "code",
+        "task": {
+          "ru": "Создайте readOwnedTodo и тесты для двух пользователей. Первый читает свою запись, второй получает 404 без title/ownerId в ответе. Гость получает 401 до запроса к базе. Проверьте отсутствующий id и неверный id. Не передавайте session из JSON браузера.",
+          "tg": "readOwnedTodo ва тестҳо барои ду корбар созед. Аввалӣ сабти худро мехонад, дуюмӣ 404 мегирад, бе title/ownerId дар ҷавоб. Меҳмон пеш аз дархости пойгоҳ 401 мегирад. id-и набуда ва нодурустро санҷед. session-ро аз JSON-и браузер надиҳед.",
+          "en": "Create readOwnedTodo and two-user tests. The owner reads their record; another user receives 404 without title/ownerId. A guest receives 401 before the repository is queried. Test missing and invalid ids. Never build session from browser JSON."
+        },
+        "hint": {
+          "ru": "Сравнивайте todo.ownerId с подтверждённым session.userId на сервере для каждого запроса.",
+          "tg": "todo.ownerId-ро бо session.userId-и тасдиқшуда дар сервер барои ҳар дархост муқоиса кунед.",
+          "en": "Compare todo.ownerId against verified session.userId on every server request."
+        },
+        "solution": "import assert from \"node:assert/strict\";\n\nexport async function readOwnedTodo(session, id, repository) {\n  if (!session || typeof session.userId !== \"string\" || !session.userId) return { status: 401 };\n  if (!Number.isSafeInteger(id) || id < 1) return { status: 400 };\n  const todo = await repository.findById(id);\n  if (!todo || todo.ownerId !== session.userId) return { status: 404 };\n  return { status: 200, data: { id: todo.id, title: todo.title } };\n}\nconst repository = { findById: async id => id === 7 ? { id: 7, ownerId: \"user-a\", title: \"Private task\" } : null };\nconsole.log(JSON.stringify(await readOwnedTodo({ userId: \"user-a\" }, 7, repository)));\nconsole.log((await readOwnedTodo(null, 7, repository)).status);\nconsole.log((await readOwnedTodo({ userId: \"user-b\" }, 7, repository)).status);\nassert.deepEqual(await readOwnedTodo({ userId: \"user-a\" }, 99, repository), { status: 404 });\nassert.deepEqual(await readOwnedTodo({ userId: \"user-a\" }, -1, repository), { status: 400 });\nassert.deepEqual(await readOwnedTodo(null, 7, { findById: () => { throw new Error(\"Must not query\"); } }), { status: 401 });\nassert.deepEqual(await readOwnedTodo({ userId: \"user-b\" }, 7, repository), { status: 404 });\n",
+        "criteria": [
+          {
+            "ru": "Гость, владелец и посторонний получают ожидаемые разные решения.",
+            "tg": "Меҳмон, соҳиб ва бегона қарорҳои мувофиқ мегиранд.",
+            "en": "Guest, owner and unrelated user receive the correct decisions."
+          },
+          {
+            "ru": "Чужие данные не попадают в ответ; отсутствующая/чужая запись не различаются.",
+            "tg": "Додаҳои бегона ба ҷавоб намеафтанд; сабти набуда ва бегона ҷудо намешаванд.",
+            "en": "Foreign data is never returned; missing and foreign records look the same."
+          },
+          {
+            "ru": "Тест доказывает, что гость не вызывает repository.findById.",
+            "tg": "Тест исбот мекунад, ки меҳмон repository.findById-ро даъват намекунад.",
+            "en": "A test proves guests do not call repository.findById."
+          }
+        ]
+      }
+    },
+    {
+      "id": "backend-pro-day-03",
+      "day": 3,
+      "prerequisiteDays": [
+        2
+      ],
+      "title": {
+        "ru": "Интеграционные HTTP-тесты и отказоустойчивый обработчик",
+        "tg": "HTTP-тестҳои ҳамгироӣ ва коркарди устувор",
+        "en": "HTTP integration tests and a resilient handler"
+      },
+      "summary": {
+        "ru": "День 3 из 3 опубликованных. Интеграционные HTTP-тесты и отказоустойчивый обработчик. Разберите решение, выполните задание и проверьте крайние случаи.",
+        "tg": "Рӯзи 3 аз 3 рӯзи нашршуда. HTTP-тестҳои ҳамгироӣ ва коркарди устувор. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
+        "en": "Day 3 of 3 published days. HTTP integration tests and a resilient handler. Understand the solution, complete the task and check boundary cases."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "original-premium",
+        "node-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Модель и границы",
+            "tg": "Модел ва ҳудудҳо",
+            "en": "Model and boundaries"
+          },
+          "body": {
+            "ru": "Пример действительно запускает Node HTTP-сервер только на 127.0.0.1 со свободным портом, выполняет fetch и закрывает сервер в finally. Сессия — временный случайный 256-битный токен в памяти, а не пользовательский ownerId. Это локальный интеграционный стенд, не production-вход и не постоянная база. В production нужны HTTPS, полноценный жизненный цикл сессий, хранилище, миграции, rate limits и лимит тела на ingress. Тело больше 4096 байт не накапливается в памяти; медленный поток ограничен тайм-аутом. Лимит при этом не заменяет ограничения сетевого трафика на сервере размещения.",
+            "tg": "Мисол воқеан Node HTTP-серверро танҳо дар 127.0.0.1 бо порти озод оғоз карда, fetch иҷро мекунад ва дар finally мебандад. Сессия токени тасодуфии муваққатии 256-бита дар хотира аст, на ownerId-и муштарӣ. Ин стенди маҳаллии ҳамгироӣ аст, на воридшавии production ё пойгоҳи доимӣ. Дар production HTTPS, давраи пурраи сессия, захира, мигратсия, rate limit ва лимити бадана дар ingress лозиманд. Баданаи зиёда аз 4096 байт дар хотира ҷамъ намешавад; ҷараёни суст бо вақт маҳдуд аст. Ин лимит ҷойи маҳдудияти трафики хостингро намегирад.",
+            "en": "This example really starts a Node HTTP server on loopback with an ephemeral port, makes fetch requests and closes it in finally. Its session is a temporary random 256-bit token in memory, not a client ownerId. This is a local integration fixture, not production login or persistent storage. Production additionally needs HTTPS, complete session lifecycle, storage, migrations, rate limits and ingress body limits. Bodies beyond 4096 bytes are not accumulated; slow streams have timeouts. This does not replace hosting-level traffic limits."
+          }
+        },
+        {
+          "title": {
+            "ru": "Исполняемый пример",
+            "tg": "Мисоли иҷрошаванда",
+            "en": "Runnable example"
+          },
+          "body": {
+            "ru": "Сохраните пример как lesson.mjs. В отдельной учебной папке выполните node lesson.mjs (Node.js 22+). Пример использует только стандартные API и проверенные учебные данные. Это не сервер выполнения пользовательских программ.",
+            "tg": "Мисолро ҳамчун lesson.mjs сабт кунед. Дар папкаи алоҳидаи омӯзишӣ node lesson.mjs-ро иҷро кунед (Node.js 22+). Танҳо API-ҳои стандартӣ ва додаҳои омӯзишии санҷидашуда истифода мешаванд. Ин сервери иҷрои барномаҳои корбар нест.",
+            "en": "Save the example as lesson.mjs and run node lesson.mjs in a separate learning folder (Node.js 22+). It uses only standard APIs and reviewed teaching fixtures. It is not a server for executing submitted programs."
+          },
+          "code": "import assert from \"node:assert/strict\";\nimport { createServer } from \"node:http\";\nimport { randomBytes } from \"node:crypto\";\n\n// Local integration fixture: temporary opaque session and in-memory repository.\nconst token = randomBytes(32).toString(\"hex\");\nconst sessions = new Map([[token, { userId: \"learner-1\", expiresAt: Date.now() + 60000 }]]);\nconst saved = [];\nconst server = createServer(async (request, response) => {\n  const reply = (status, data) => {\n    response.writeHead(status, { \"Content-Type\": \"application/json\", \"Cache-Control\": \"no-store\", \"X-Content-Type-Options\": \"nosniff\" });\n    response.end(JSON.stringify(data));\n  };\n  try {\n    if (request.url !== \"/todos\") return reply(404, { error: \"Not found\" });\n    if (request.method !== \"POST\") { response.setHeader(\"Allow\", \"POST\"); return reply(405, { error: \"Method not allowed\" }); }\n    const authorization = request.headers.authorization ?? \"\";\n    const session = sessions.get(authorization.startsWith(\"Bearer \") ? authorization.slice(7) : \"\");\n    if (!session || session.expiresAt <= Date.now()) return reply(401, { error: \"Unauthorized\" });\n    if ((request.headers[\"content-type\"] ?? \"\").split(\";\")[0].trim() !== \"application/json\") return reply(415, { error: \"Use JSON\" });\n    const chunks = []; let bytes = 0;\n    for await (const chunk of request) { bytes += chunk.length; if (bytes <= 4096) chunks.push(chunk); }\n    if (bytes > 4096) return reply(413, { error: \"Body too large\" });\n    let body;\n    try { body = JSON.parse(Buffer.concat(chunks).toString(\"utf8\")); } catch { return reply(400, { error: \"Invalid JSON\" }); }\n    if (!body || typeof body !== \"object\" || Array.isArray(body) || Object.keys(body).some(key => key !== \"title\") || typeof body.title !== \"string\" || body.title.trim().length < 2 || body.title.trim().length > 80) return reply(400, { error: \"Invalid title\" });\n    const todo = { id: saved.length + 1, title: body.title.trim(), ownerId: session.userId };\n    saved.push(todo);\n    return reply(201, { id: todo.id, title: todo.title });\n  } catch { if (!response.headersSent) reply(500, { error: \"Request failed\" }); }\n});\nserver.requestTimeout = 2000;\nserver.headersTimeout = 2000;\nserver.timeout = 2500;\nawait new Promise(resolve => server.listen(0, \"127.0.0.1\", resolve));\ntry {\n  const url = `http://127.0.0.1:${server.address().port}/todos`;\n  const headers = { Authorization: `Bearer ${token}`, \"Content-Type\": \"application/json\" };\n  assert.equal((await fetch(url, { method: \"POST\", body: \"{}\" })).status, 401);\n  assert.equal((await fetch(url)).status, 405);\n  assert.equal((await fetch(url, { method: \"POST\", headers, body: \"{\" })).status, 400);\n  assert.equal((await fetch(url, { method: \"POST\", headers, body: \"x\".repeat(4097) })).status, 413);\n  assert.equal((await fetch(url, { method: \"POST\", headers, body: JSON.stringify({ title: \"Read\", ownerId: \"other\" }) })).status, 400);\n  const success = await fetch(url, { method: \"POST\", headers, body: JSON.stringify({ title: \"  Read HTTP  \" }) });\n  assert.equal(success.status, 201);\n  assert.equal(success.headers.get(\"cache-control\"), \"no-store\");\n  assert.deepEqual(await success.json(), { id: 1, title: \"Read HTTP\" });\n  assert.equal(saved[0].ownerId, \"learner-1\");\n  console.log(\"HTTP checks passed\");\n} finally { await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve())); }\n",
+          "language": "javascript",
+          "output": {
+            "ru": "HTTP checks passed",
+            "tg": "HTTP checks passed",
+            "en": "HTTP checks passed"
+          }
+        },
+        {
+          "title": {
+            "ru": "Выполните самостоятельно",
+            "tg": "Мустақилона иҷро кунед",
+            "en": "Try it yourself"
+          },
+          "body": {
+            "ru": "Соберите и запустите стенд. Добавьте проверки: истёкшая сессия → 401, text/plain → 415, неизвестный путь → 404, title из пробелов → 400. Убедитесь, что rejected-запросы не добавляют запись. Намеренно замените отказ гостю на 200: тест должен упасть. Не публикуйте учебный сервер как готовую систему аккаунтов.",
+            "tg": "Стендро ҷамъ карда иҷро кунед. Санҷишҳо илова кунед: сессияи гузашта → 401, text/plain → 415, роҳи номаълум → 404, title аз фосила → 400. Дархостҳои радшуда набояд сабт илова кунанд. Қасдан радкунии меҳмонро 200 кунед: тест бояд нагузарад. Сервери омӯзиширо ҳамчун низоми тайёри ҳисобҳо нашр накунед.",
+            "en": "Build and run the fixture. Add checks for an expired session → 401, text/plain → 415, unknown path → 404 and whitespace-only title → 400. Rejected requests must not add records. Deliberately change guest rejection to 200: the test must fail. Do not publish this teaching server as a production account system."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "backend-pro-day-03-q",
+          "question": {
+            "ru": "Почему сервер закрывается в finally?",
+            "tg": "Чаро сервер дар finally баста мешавад?",
+            "en": "Why close the server in finally?"
+          },
+          "answer": {
+            "ru": "Чтобы освободить ресурс и при успехе, и при ошибке теста",
+            "tg": "Барои озод кардани захира ҳам дар муваффақият ва ҳам дар хатои тест",
+            "en": "To release the resource on both test success and failure"
+          },
+          "options": [
+            {
+              "ru": "Чтобы скрыть упавшие проверки",
+              "tg": "Барои пинҳон кардани тестҳои номуваффақ",
+              "en": "To hide failed checks"
+            },
+            {
+              "ru": "Чтобы освободить ресурс и при успехе, и при ошибке теста",
+              "tg": "Барои озод кардани захира ҳам дар муваффақият ва ҳам дар хатои тест",
+              "en": "To release the resource on both test success and failure"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "code",
+        "task": {
+          "ru": "Соберите и запустите стенд. Добавьте проверки: истёкшая сессия → 401, text/plain → 415, неизвестный путь → 404, title из пробелов → 400. Убедитесь, что rejected-запросы не добавляют запись. Намеренно замените отказ гостю на 200: тест должен упасть. Не публикуйте учебный сервер как готовую систему аккаунтов.",
+          "tg": "Стендро ҷамъ карда иҷро кунед. Санҷишҳо илова кунед: сессияи гузашта → 401, text/plain → 415, роҳи номаълум → 404, title аз фосила → 400. Дархостҳои радшуда набояд сабт илова кунанд. Қасдан радкунии меҳмонро 200 кунед: тест бояд нагузарад. Сервери омӯзиширо ҳамчун низоми тайёри ҳисобҳо нашр накунед.",
+          "en": "Build and run the fixture. Add checks for an expired session → 401, text/plain → 415, unknown path → 404 and whitespace-only title → 400. Rejected requests must not add records. Deliberately change guest rejection to 200: the test must fail. Do not publish this teaching server as a production account system."
+        },
+        "hint": {
+          "ru": "Проверяйте статус, безопасные заголовки, ответ и побочные эффекты; finally должен закрыть сервер даже при упавшем assert.",
+          "tg": "Ҳолат, сарлавҳаҳои бехатар, ҷавоб ва таъсирҳои тарафиро санҷед; finally бояд серверро ҳатто ҳангоми assert-и номуваффақ бандад.",
+          "en": "Check status, safe headers, response and side effects; finally must close the server even when an assertion fails."
+        },
+        "solution": "import assert from \"node:assert/strict\";\nimport { createServer } from \"node:http\";\nimport { randomBytes } from \"node:crypto\";\n\n// Local integration fixture: temporary opaque session and in-memory repository.\nconst token = randomBytes(32).toString(\"hex\");\nconst sessions = new Map([[token, { userId: \"learner-1\", expiresAt: Date.now() + 60000 }]]);\nconst saved = [];\nconst server = createServer(async (request, response) => {\n  const reply = (status, data) => {\n    response.writeHead(status, { \"Content-Type\": \"application/json\", \"Cache-Control\": \"no-store\", \"X-Content-Type-Options\": \"nosniff\" });\n    response.end(JSON.stringify(data));\n  };\n  try {\n    if (request.url !== \"/todos\") return reply(404, { error: \"Not found\" });\n    if (request.method !== \"POST\") { response.setHeader(\"Allow\", \"POST\"); return reply(405, { error: \"Method not allowed\" }); }\n    const authorization = request.headers.authorization ?? \"\";\n    const session = sessions.get(authorization.startsWith(\"Bearer \") ? authorization.slice(7) : \"\");\n    if (!session || session.expiresAt <= Date.now()) return reply(401, { error: \"Unauthorized\" });\n    if ((request.headers[\"content-type\"] ?? \"\").split(\";\")[0].trim() !== \"application/json\") return reply(415, { error: \"Use JSON\" });\n    const chunks = []; let bytes = 0;\n    for await (const chunk of request) { bytes += chunk.length; if (bytes <= 4096) chunks.push(chunk); }\n    if (bytes > 4096) return reply(413, { error: \"Body too large\" });\n    let body;\n    try { body = JSON.parse(Buffer.concat(chunks).toString(\"utf8\")); } catch { return reply(400, { error: \"Invalid JSON\" }); }\n    if (!body || typeof body !== \"object\" || Array.isArray(body) || Object.keys(body).some(key => key !== \"title\") || typeof body.title !== \"string\" || body.title.trim().length < 2 || body.title.trim().length > 80) return reply(400, { error: \"Invalid title\" });\n    const todo = { id: saved.length + 1, title: body.title.trim(), ownerId: session.userId };\n    saved.push(todo);\n    return reply(201, { id: todo.id, title: todo.title });\n  } catch { if (!response.headersSent) reply(500, { error: \"Request failed\" }); }\n});\nserver.requestTimeout = 2000;\nserver.headersTimeout = 2000;\nserver.timeout = 2500;\nawait new Promise(resolve => server.listen(0, \"127.0.0.1\", resolve));\ntry {\n  const url = `http://127.0.0.1:${server.address().port}/todos`;\n  const headers = { Authorization: `Bearer ${token}`, \"Content-Type\": \"application/json\" };\n  assert.equal((await fetch(url, { method: \"POST\", body: \"{}\" })).status, 401);\n  assert.equal((await fetch(url)).status, 405);\n  assert.equal((await fetch(url, { method: \"POST\", headers, body: \"{\" })).status, 400);\n  assert.equal((await fetch(url, { method: \"POST\", headers, body: \"x\".repeat(4097) })).status, 413);\n  assert.equal((await fetch(url, { method: \"POST\", headers, body: JSON.stringify({ title: \"Read\", ownerId: \"other\" }) })).status, 400);\n  const success = await fetch(url, { method: \"POST\", headers, body: JSON.stringify({ title: \"  Read HTTP  \" }) });\n  assert.equal(success.status, 201);\n  assert.equal(success.headers.get(\"cache-control\"), \"no-store\");\n  assert.deepEqual(await success.json(), { id: 1, title: \"Read HTTP\" });\n  assert.equal(saved[0].ownerId, \"learner-1\");\n  console.log(\"HTTP checks passed\");\n} finally { await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve())); }\n",
+        "criteria": [
+          {
+            "ru": "Проверки отправляют реальные локальные HTTP-запросы, сервер завершается после них.",
+            "tg": "Санҷишҳо HTTP-дархостҳои маҳаллии воқеӣ мефиристанд ва сервер баъди онҳо баста мешавад.",
+            "en": "Tests send real local HTTP requests and the server closes afterward."
+          },
+          {
+            "ru": "Гость, неверный JSON, лишний ownerId и слишком большое тело не создают задачи.",
+            "tg": "Меҳмон, JSON-и нодуруст, ownerId-и зиёдатӣ ва баданаи калон вазифа намесозанд.",
+            "en": "Guests, invalid JSON, injected ownerId and oversized bodies cannot create tasks."
+          },
+          {
+            "ru": "Ошибка в авторизации обнаруживается отрицательным тестом, а не только просмотром кода.",
+            "tg": "Хатои иҷозат бо тести манфӣ ошкор мешавад, на танҳо бо дидани код.",
+            "en": "An authorization defect is caught by a negative test, not merely code inspection."
+          }
+        ]
+      }
+    }
+  ]
+}

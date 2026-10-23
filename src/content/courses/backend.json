@@ -1,0 +1,225 @@
+{
+  "courseId": "backend",
+  "sources": [
+    {
+      "id": "backend-docs",
+      "title": "Node.js — HTTP API",
+      "url": "https://nodejs.org/api/http.html"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "backend-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Backend: первый HTTP-сервер",
+        "tg": "Backend: сервери аввалини HTTP",
+        "en": "Backend: your first HTTP server"
+      },
+      "summary": {
+        "ru": "Два вводных дня после основ JavaScript. Сегодня запустите локальный сервер Node.js: GET /health отдаёт JSON, неизвестный путь — 404. Это учебный сервер, не готовый публичный сервис.",
+        "tg": "Ду рӯзи шиносоӣ баъди асосҳои JavaScript. Имрӯз сервери маҳаллии Node.js созед: GET /health JSON медиҳад, роҳи номаълум — 404. Ин сервери омӯзишӣ аст, на хидмати омодаи оммавӣ.",
+        "en": "Two introductory days after JavaScript fundamentals. Today run a local Node.js server: GET /health returns JSON and unknown paths return 404. This is a learning server, not a production public service."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "backend-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Как это работает",
+            "tg": "Чӣ тавр кор мекунад",
+            "en": "How it works"
+          },
+          "body": {
+            "ru": "Клиент отправляет HTTP-запрос, сервер выбирает обработчик по методу и пути и возвращает статус, заголовки и тело. Content-Type описывает формат ответа. JSON.stringify превращает объект в JSON. Пример слушает только 127.0.0.1: не публикуйте его как защищённый API.",
+            "tg": "Мизоҷ дархости HTTP мефиристад; сервер аз рӯи усул ва роҳ коркардро интихоб карда, ҳолат, сарлавҳаҳо ва баданро бармегардонад. Content-Type шакли ҷавоб аст. JSON.stringify объектро ба JSON табдил медиҳад. Мисол танҳо дар 127.0.0.1 кор мекунад; онро API-и ҳифзшуда эълон накунед.",
+            "en": "A client sends an HTTP request; the server matches a method and path and returns a status, headers and body. Content-Type identifies the format. JSON.stringify converts an object to JSON. This example listens only on 127.0.0.1; do not present it as a secured public API."
+          },
+          "code": "import { createServer } from 'node:http';\nconst server = createServer((request, response) => {\n  const url = new URL(request.url ?? '/', 'http://localhost');\n  response.setHeader('Content-Type', 'application/json; charset=utf-8');\n  if (request.method === 'GET' && url.pathname === '/health') {\n    response.writeHead(200);\n    response.end(JSON.stringify({ status: 'ok' }));\n    return;\n  }\n  response.writeHead(404);\n  response.end(JSON.stringify({ error: 'Not found' }));\n});\nserver.listen(3001, '127.0.0.1');",
+          "language": "javascript"
+        },
+        {
+          "title": {
+            "ru": "Запуск и проверка",
+            "tg": "Иҷро ва санҷиш",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Шаг 1. Установите актуальную LTS-версию Node.js. Создайте server.mjs.\nШаг 2. Наберите пример и запустите node server.mjs.\nШаг 3. В другом терминале выполните curl -i http://127.0.0.1:3001/health: ожидаются 200 и {\"status\":\"ok\"}.\nШаг 4. Проверьте /missing: ожидается 404. Остановите свой сервер Ctrl+C.",
+            "tg": "Қадами 1. Версияи LTS-и Node.js-ро насб карда, server.mjs созед.\nҚадами 2. Мисолро навишта, node server.mjs-ро иҷро кунед.\nҚадами 3. Дар терминали дигар curl -i http://127.0.0.1:3001/health-ро иҷро кунед: 200 ва {\"status\":\"ok\"} интизор аст.\nҚадами 4. /missing-ро санҷед: 404. Сервери худро бо Ctrl+C қатъ кунед.",
+            "en": "Step 1. Install the current Node.js LTS and create server.mjs.\nStep 2. Type the example and run node server.mjs.\nStep 3. In another terminal, run curl -i http://127.0.0.1:3001/health: expect 200 and {\"status\":\"ok\"}.\nStep 4. Check /missing: expect 404. Stop your server with Ctrl+C."
+          },
+          "output": {
+            "ru": "GET /health → 200 {\"status\":\"ok\"}\nGET /missing → 404",
+            "tg": "GET /health → 200 {\"status\":\"ok\"}\nGET /missing → 404",
+            "en": "GET /health → 200 {\"status\":\"ok\"}\nGET /missing → 404"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "backend-day-01-q",
+          "question": {
+            "ru": "Какой статус сообщает, что путь не найден?",
+            "tg": "Кадом ҳолат роҳи ёфтнашударо хабар медиҳад?",
+            "en": "Which status means the path was not found?"
+          },
+          "answer": {
+            "ru": "404. Успешный запрос обычно возвращает 200.",
+            "tg": "404. Дархости муваффақ одатан 200 медиҳад.",
+            "en": "404. A successful request normally returns 200."
+          },
+          "options": [
+            {
+              "ru": "200",
+              "tg": "200",
+              "en": "200"
+            },
+            {
+              "ru": "404",
+              "tg": "404",
+              "en": "404"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Шаг 1. Установите актуальную LTS-версию Node.js. Создайте server.mjs.\nШаг 2. Наберите пример и запустите node server.mjs.\nШаг 3. В другом терминале выполните curl -i http://127.0.0.1:3001/health: ожидаются 200 и {\"status\":\"ok\"}.\nШаг 4. Проверьте /missing: ожидается 404. Остановите свой сервер Ctrl+C.",
+          "tg": "Қадами 1. Версияи LTS-и Node.js-ро насб карда, server.mjs созед.\nҚадами 2. Мисолро навишта, node server.mjs-ро иҷро кунед.\nҚадами 3. Дар терминали дигар curl -i http://127.0.0.1:3001/health-ро иҷро кунед: 200 ва {\"status\":\"ok\"} интизор аст.\nҚадами 4. /missing-ро санҷед: 404. Сервери худро бо Ctrl+C қатъ кунед.",
+          "en": "Step 1. Install the current Node.js LTS and create server.mjs.\nStep 2. Type the example and run node server.mjs.\nStep 3. In another terminal, run curl -i http://127.0.0.1:3001/health: expect 200 and {\"status\":\"ok\"}.\nStep 4. Check /missing: expect 404. Stop your server with Ctrl+C."
+        },
+        "hint": {
+          "ru": "Клиент отправляет HTTP-запрос, сервер выбирает обработчик по методу и пути и возвращает статус, заголовки и тело. Content-Type описывает формат ответа. JSON.stringify превращает объект в JSON. Пример слушает только 127.0.0.1: не публикуйте его как защищённый API.",
+          "tg": "Мизоҷ дархости HTTP мефиристад; сервер аз рӯи усул ва роҳ коркардро интихоб карда, ҳолат, сарлавҳаҳо ва баданро бармегардонад. Content-Type шакли ҷавоб аст. JSON.stringify объектро ба JSON табдил медиҳад. Мисол танҳо дар 127.0.0.1 кор мекунад; онро API-и ҳифзшуда эълон накунед.",
+          "en": "A client sends an HTTP request; the server matches a method and path and returns a status, headers and body. Content-Type identifies the format. JSON.stringify converts an object to JSON. This example listens only on 127.0.0.1; do not present it as a secured public API."
+        },
+        "solution": "import { createServer } from 'node:http';\nconst server = createServer((request, response) => {\n  const url = new URL(request.url ?? '/', 'http://localhost');\n  response.setHeader('Content-Type', 'application/json; charset=utf-8');\n  if (request.method === 'GET' && url.pathname === '/health') {\n    response.writeHead(200);\n    response.end(JSON.stringify({ status: 'ok' }));\n    return;\n  }\n  response.writeHead(404);\n  response.end(JSON.stringify({ error: 'Not found' }));\n});\nserver.listen(3001, '127.0.0.1');",
+        "criteria": [
+          {
+            "ru": "Пример запущен в указанной среде, результат совпадает с ожидаемым.",
+            "tg": "Мисол дар муҳити зикршуда иҷро шуд ва натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "The example runs in the stated environment and matches the expected result."
+          },
+          {
+            "ru": "Проверены изменённые входные данные; могу объяснить результат.",
+            "tg": "Маълумоти вурудии дигар санҷида шуд; натиҷаро шарҳ дода метавонам.",
+            "en": "Different inputs were checked and I can explain the result."
+          }
+        ]
+      }
+    },
+    {
+      "id": "backend-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Backend: валидация до обработки",
+        "tg": "Backend: санҷиш пеш аз коркард",
+        "en": "Backend: validate before processing"
+      },
+      "summary": {
+        "ru": "Второй вводный день: отделите бизнес-расчёт от HTTP, проверьте типы и границы, затем запустите проверки. Не доверяйте данным клиента: валидация нужна на сервере.",
+        "tg": "Рӯзи дуюми шиносоӣ: ҳисобро аз HTTP ҷудо карда, навъ ва ҳудудҳоро санҷед, баъд санҷишҳоро иҷро кунед. Ба маълумоти мизоҷ бовар накунед: санҷиш дар сервер лозим аст.",
+        "en": "Second introductory day: separate a calculation from HTTP, validate types and boundaries, then run checks. Client input is untrusted: validation belongs on the server."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "backend-docs"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Как это работает",
+            "tg": "Чӣ тавр кор мекунад",
+            "en": "How it works"
+          },
+          "body": {
+            "ru": "Number.isFinite не принимает строки, NaN и Infinity. Number.isInteger требует целое количество. Отрицательные значения отклоняем до расчёта. Это проверка входных данных, а не авторизация: доступ к чужим данным требует отдельной проверки владельца.",
+            "tg": "Number.isFinite сатр, NaN ва Infinity-ро қабул намекунад. Number.isInteger шумораи бутунро талаб мекунад. Қиматҳои манфиро пеш аз ҳисоб рад мекунем. Ин санҷиши маълумот аст, на иҷозати дастрасӣ: соҳиби маълумот бояд алоҳида санҷида шавад.",
+            "en": "Number.isFinite rejects strings, NaN and Infinity. Number.isInteger requires a whole quantity. Reject negative values before calculating. Input validation is not authorization: access to another user’s data requires a separate ownership check."
+          },
+          "code": "export function calculateTotal(price, quantity) {\n  if (!Number.isFinite(price) || !Number.isInteger(quantity) || price < 0 || quantity < 0) {\n    throw new TypeError('Invalid price or quantity');\n  }\n  return price * quantity;\n}\nconsole.assert(calculateTotal(12, 3) === 36);\nconsole.assert(calculateTotal(12, 0) === 0);\ntry {\n  calculateTotal(12, -1);\n  throw new Error('Expected validation failure');\n} catch (error) {\n  if (!(error instanceof TypeError)) throw error;\n}\nconsole.log('Checks passed');",
+          "language": "javascript"
+        },
+        {
+          "title": {
+            "ru": "Запуск и проверка",
+            "tg": "Иҷро ва санҷиш",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Шаг 1. Создайте validation.mjs, не меняя работающий сервер.\nШаг 2. Реализуйте calculateTotal и отклоняйте неверные типы и отрицательные значения через TypeError.\nШаг 3. Запустите node validation.mjs: ожидается Checks passed.\nШаг 4. Добавьте проверки для \"12\", NaN, Infinity и дробного количества. Все должны отклоняться.",
+            "tg": "Қадами 1. validation.mjs созед; сервери коркунандаро тағйир надиҳед.\nҚадами 2. calculateTotal созед ва навъи нодурусту қимати манфиро бо TypeError рад кунед.\nҚадами 3. node validation.mjs-ро иҷро кунед: Checks passed интизор аст.\nҚадами 4. Барои \"12\", NaN, Infinity ва шумораи касрӣ санҷиш илова кунед. Ҳама бояд рад шаванд.",
+            "en": "Step 1. Create validation.mjs without changing the working server.\nStep 2. Implement calculateTotal and reject invalid types and negative values with TypeError.\nStep 3. Run node validation.mjs: expect Checks passed.\nStep 4. Add checks for \"12\", NaN, Infinity and a fractional quantity. All must be rejected."
+          },
+          "output": {
+            "ru": "Checks passed",
+            "tg": "Checks passed",
+            "en": "Checks passed"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "backend-day-02-q",
+          "question": {
+            "ru": "Достаточно ли проверки в браузере для API?",
+            "tg": "Оё санҷиш дар браузер барои API кофист?",
+            "en": "Is browser validation enough for an API?"
+          },
+          "answer": {
+            "ru": "Нет. Запрос можно отправить без браузера, поэтому сервер проверяет данные заново.",
+            "tg": "Не. Дархостро бе браузер фиристодан мумкин аст; сервер маълумотро дубора месанҷад.",
+            "en": "No. Requests can bypass the browser, so the server validates again."
+          },
+          "options": [
+            {
+              "ru": "Да",
+              "tg": "Бале",
+              "en": "Yes"
+            },
+            {
+              "ru": "Нет",
+              "tg": "Не",
+              "en": "No"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Шаг 1. Создайте validation.mjs, не меняя работающий сервер.\nШаг 2. Реализуйте calculateTotal и отклоняйте неверные типы и отрицательные значения через TypeError.\nШаг 3. Запустите node validation.mjs: ожидается Checks passed.\nШаг 4. Добавьте проверки для \"12\", NaN, Infinity и дробного количества. Все должны отклоняться.",
+          "tg": "Қадами 1. validation.mjs созед; сервери коркунандаро тағйир надиҳед.\nҚадами 2. calculateTotal созед ва навъи нодурусту қимати манфиро бо TypeError рад кунед.\nҚадами 3. node validation.mjs-ро иҷро кунед: Checks passed интизор аст.\nҚадами 4. Барои \"12\", NaN, Infinity ва шумораи касрӣ санҷиш илова кунед. Ҳама бояд рад шаванд.",
+          "en": "Step 1. Create validation.mjs without changing the working server.\nStep 2. Implement calculateTotal and reject invalid types and negative values with TypeError.\nStep 3. Run node validation.mjs: expect Checks passed.\nStep 4. Add checks for \"12\", NaN, Infinity and a fractional quantity. All must be rejected."
+        },
+        "hint": {
+          "ru": "Number.isFinite не принимает строки, NaN и Infinity. Number.isInteger требует целое количество. Отрицательные значения отклоняем до расчёта. Это проверка входных данных, а не авторизация: доступ к чужим данным требует отдельной проверки владельца.",
+          "tg": "Number.isFinite сатр, NaN ва Infinity-ро қабул намекунад. Number.isInteger шумораи бутунро талаб мекунад. Қиматҳои манфиро пеш аз ҳисоб рад мекунем. Ин санҷиши маълумот аст, на иҷозати дастрасӣ: соҳиби маълумот бояд алоҳида санҷида шавад.",
+          "en": "Number.isFinite rejects strings, NaN and Infinity. Number.isInteger requires a whole quantity. Reject negative values before calculating. Input validation is not authorization: access to another user’s data requires a separate ownership check."
+        },
+        "solution": "export function calculateTotal(price, quantity) {\n  if (!Number.isFinite(price) || !Number.isInteger(quantity) || price < 0 || quantity < 0) {\n    throw new TypeError('Invalid price or quantity');\n  }\n  return price * quantity;\n}\nconsole.assert(calculateTotal(12, 3) === 36);\nconsole.assert(calculateTotal(12, 0) === 0);\ntry {\n  calculateTotal(12, -1);\n  throw new Error('Expected validation failure');\n} catch (error) {\n  if (!(error instanceof TypeError)) throw error;\n}\nconsole.log('Checks passed');",
+        "criteria": [
+          {
+            "ru": "Пример запущен в указанной среде, результат совпадает с ожидаемым.",
+            "tg": "Мисол дар муҳити зикршуда иҷро шуд ва натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "The example runs in the stated environment and matches the expected result."
+          },
+          {
+            "ru": "Проверены изменённые входные данные; могу объяснить результат.",
+            "tg": "Маълумоти вурудии дигар санҷида шуд; натиҷаро шарҳ дода метавонам.",
+            "en": "Different inputs were checked and I can explain the result."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "courseId": "content-creation",
+  "sources": [
+    {
+      "id": "content-creation-reference",
+      "title": "Creative Commons — About CC licenses",
+      "url": "https://creativecommons.org/share-your-work/cclicenses/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "content-creation-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: полезный материал и структура",
+        "tg": "Рӯзи 1: маводи фоиданок ва сохтор",
+        "en": "Day 1: useful content and structure"
+      },
+      "summary": {
+        "ru": "Начните двухдневный модуль создания контента с одного читательского вопроса. Подготовьте план короткой инструкции; не копируйте чужие тексты, изображения или обещания из рекламы.",
+        "tg": "Модули дурӯзаи эҷоди муҳтаворо аз як саволи хонанда оғоз кунед. Нақшаи дастури кӯтоҳ созед; матн, тасвир ё ваъдаи рекламавии дигаронро нусха накунед.",
+        "en": "Begin this two-day content module with one reader question. Outline a short guide without copying others’ text, images or advertising promises."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "content-creation-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Хорошая инструкция отвечает на конкретный вопрос и имеет понятный результат. Начните с аудитории и цели, затем расположите шаги в порядке выполнения. Укажите необходимые материалы и ограничение. Проверяемые факты требуют источника; личный опыт нужно так и называть. Не выдавайте выдуманный отзыв или опыт за реальный.",
+            "tg": "Дастури хуб ба саволи мушаххас ҷавоб дода, натиҷаи фаҳмо дорад. Аз аудитория ва ҳадаф оғоз карда, қадамҳоро бо тартиб гузоред. Маводи зарурӣ ва маҳдудиятро гӯед. Далели санҷишшаванда манбаъ мехоҳад; таҷрибаи шахсиро ҳамин тавр номбар кунед. Тақриз ё таҷрибаи сохтаро воқеӣ нишон надиҳед.",
+            "en": "A useful guide answers a specific question and has a clear outcome. Start with audience and purpose, then order steps by execution. State required materials and a limitation. Verifiable facts need sources; personal experience should be labeled. Never present invented reviews or experience as real."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Тема: как организовать учебные файлы. Аудитория: начинающий с ноутбуком. Результат: одна папка и понятные имена файлов. План: создать папку; добавить подпапки по темам; назвать файл по содержанию; проверить, что его легко найти. Ограничение: названия должны соответствовать правилам используемой системы. Это авторская учебная инструкция.",
+            "tg": "Мавзӯъ: тартиби файлҳои омӯзишӣ. Аудитория: навкор бо ноутбук. Натиҷа: як папка ва номҳои фаҳмо. Нақша: папка созед; зерпапкаҳо аз рӯи мавзӯъ; файлро аз рӯи мазмун ном диҳед; ёфтани онро санҷед. Маҳдудият: номҳо ба қоидаи система мувофиқ бошанд. Ин дастури омӯзишии муаллифист.",
+            "en": "Topic: organize study files. Audience: a beginner with a laptop. Outcome: one folder and understandable filenames. Outline: create a folder; add topic subfolders; name a file by its content; check it is easy to find. Limitation: names must follow the operating system’s rules. This is an original practice guide."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "content-creation-day-01-q01",
+          "question": {
+            "ru": "Что лучше подходит для короткой инструкции?",
+            "tg": "Барои дастури кӯтоҳ кадомаш беҳтар аст?",
+            "en": "Which topic fits a short guide better?"
+          },
+          "answer": {
+            "ru": "Как создать папку для учебных файлов.",
+            "tg": "Чӣ тавр папкаи файлҳои омӯзишӣ сохтан.",
+            "en": "How to create a folder for study files."
+          },
+          "options": [
+            {
+              "ru": "Всё о жизни.",
+              "tg": "Ҳама чиз дар бораи зиндагӣ.",
+              "en": "Everything about life."
+            },
+            {
+              "ru": "Как создать папку для учебных файлов.",
+              "tg": "Чӣ тавр папкаи файлҳои омӯзишӣ сохтан.",
+              "en": "How to create a folder for study files."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Выберите бытовой или учебный вопрос без опасных советов.\n2. Опишите аудиторию, вопрос и итог для читателя.\n3. Напишите заголовок и план из четырёх шагов.\n4. Отметьте, где нужен источник и какие условия ограничивают инструкцию.",
+          "tg": "1. Саволи рӯзмарра ё омӯзишии бехатар интихоб кунед.\n2. Аудитория, савол ва натиҷаи хонандаро нависед.\n3. Сарлавҳа ва нақшаи чорқадамӣ созед.\n4. Ҷои зарурати манбаъ ва маҳдудияти дастурро қайд кунед.",
+          "en": "1. Choose a safe everyday or learning question.\n2. Define the audience, question and reader outcome.\n3. Write a headline and four-step outline.\n4. Mark where a source is needed and what limits the guide."
+        },
+        "hint": {
+          "ru": "Вместо «всё про продуктивность» выберите одну задачу, например найти учебный файл.",
+          "tg": "Ба ҷойи «ҳама чиз дар бораи самаранокӣ» як вазифа, масалан ёфтани файлро интихоб кунед.",
+          "en": "Instead of “everything about productivity”, choose one task, such as finding a study file."
+        },
+        "solution": "Тема: как организовать учебные файлы. Аудитория: начинающий с ноутбуком. Результат: одна папка и понятные имена файлов. План: создать папку; добавить подпапки по темам; назвать файл по содержанию; проверить, что его легко найти. Ограничение: названия должны соответствовать правилам используемой системы. Это авторская учебная инструкция.",
+        "referenceAnswer": {
+          "ru": "Тема: как организовать учебные файлы. Аудитория: начинающий с ноутбуком. Результат: одна папка и понятные имена файлов. План: создать папку; добавить подпапки по темам; назвать файл по содержанию; проверить, что его легко найти. Ограничение: названия должны соответствовать правилам используемой системы. Это авторская учебная инструкция.",
+          "tg": "Мавзӯъ: тартиби файлҳои омӯзишӣ. Аудитория: навкор бо ноутбук. Натиҷа: як папка ва номҳои фаҳмо. Нақша: папка созед; зерпапкаҳо аз рӯи мавзӯъ; файлро аз рӯи мазмун ном диҳед; ёфтани онро санҷед. Маҳдудият: номҳо ба қоидаи система мувофиқ бошанд. Ин дастури омӯзишии муаллифист.",
+          "en": "Topic: organize study files. Audience: a beginner with a laptop. Outcome: one folder and understandable filenames. Outline: create a folder; add topic subfolders; name a file by its content; check it is easy to find. Limitation: names must follow the operating system’s rules. This is an original practice guide."
+        },
+        "criteria": [
+          {
+            "ru": "Один вопрос и аудитория определены.",
+            "tg": "Як савол ва аудитория муайянанд.",
+            "en": "One question and audience are defined."
+          },
+          {
+            "ru": "Шаги ведут к конкретному результату.",
+            "tg": "Қадамҳо ба натиҷаи мушаххас мебаранд.",
+            "en": "Steps lead to a specific outcome."
+          },
+          {
+            "ru": "Источники и ограничения не скрыты.",
+            "tg": "Манбаъ ва маҳдудият пинҳон нестанд.",
+            "en": "Sources and limitations are transparent."
+          }
+        ]
+      }
+    },
+    {
+      "id": "content-creation-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: редактура, доступность и права",
+        "tg": "Рӯзи 2: таҳрир, дастрасӣ ва ҳуқуқ",
+        "en": "Day 2: editing, accessibility and rights"
+      },
+      "summary": {
+        "ru": "Превратите план в небольшой оригинальный текст. Проверьте ясность, подписи к изображениям и право использования материалов; публикация и автоматическая проверка авторства в модуль не входят.",
+        "tg": "Нақшаро ба матни кӯтоҳи аслӣ табдил диҳед. Равшанӣ, шарҳи тасвир ва ҳуқуқи истифодаи маводро санҷед; нашр ва санҷиши худкори муаллифӣ ба модул дохил нестанд.",
+        "en": "Turn the outline into a short original text. Check clarity, image descriptions and reuse rights; publication and automatic authorship verification are outside this module."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "content-creation-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Редактура убирает повторы и делает действие ясным. Заголовки помогают сканировать текст, а описание изображения передаёт значимую информацию тем, кто его не видит. Найденное в интернете не означает разрешённое к копированию: проверьте автора, лицензию и условия атрибуции. Если разрешение неизвестно, используйте собственный материал или ссылку вместо копии.",
+            "tg": "Таҳрир такрорро кам карда, амалро равшан мекунад. Сарлавҳаҳо хонданро осон мекунанд; шарҳи тасвир маълумоти муҳимро ба касе медиҳад, ки намебинад. Ёфтан дар интернет иҷозати нусха нест: муаллиф, иҷозатнома ва шарти зикрро санҷед. Агар иҷозат номаълум бошад, маводи худ ё пайванд истифода баред.",
+            "en": "Editing removes repetition and clarifies actions. Headings make text scannable; image descriptions convey meaningful information to people who cannot see it. Finding something online does not grant reuse rights: check creator, license and attribution terms. When permission is unknown, use original material or a link rather than a copy."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Создайте папку Study в месте, где храните учебные материалы. Внутри добавьте папку Notes: здесь будут только заметки, чтобы не смешивать их с фотографиями и загрузками. Откройте новый текстовый документ и напишите заголовок урока. Сохраните его как lesson-01.txt в Notes. Проверьте расширение файла: оно не должно повторяться дважды. Закройте документ и найдите его по имени через файловый менеджер. Откройте снова и убедитесь, что текст сохранился. Для следующего урока выберите новый номер, не перезаписывая предыдущую заметку. Если файл не найден, проверьте папку сохранения до создания второй копии. Названия меню зависят от системы.\n\nОписание собственного снимка: «Study содержит Notes, внутри — lesson-01.txt». Текст авторский. Внешнее изображение не используется; перед добавлением проверим автора, исходную ссылку, точную лицензию и требуемую атрибуцию.",
+            "tg": "Дар ҷойи маводи омӯзишӣ папкаи Study созед. Дар дохил Notes созед: ин ҷо танҳо ёддоштҳо мемонанд, то бо аксҳо ва файлҳои боршуда омехта нашаванд. Ҳуҷҷати нави матнӣ кушода, сарлавҳаи дарсро нависед. Онро бо номи lesson-01.txt дар Notes сабт кунед. Пасванди файлро санҷед: он ду бор такрор нашавад. Ҳуҷҷатро пӯшида, дар мудири файлҳо аз рӯи ном ҷустуҷӯ кунед. Боз кушода, сабт шудани матнро бинед. Барои дарси дигар рақами нав гиред, ёддошти пешинаро аз нав нанависед. Агар файл наёфтед, пеш аз нусхаи дуюм папкаи сабтро санҷед. Номи меню аз система вобаста аст.\n\nШарҳи акси худ: «Study дорои Notes ва дар он lesson-01.txt аст». Матн аслӣ аст. Тасвири берунӣ истифода нашудааст; пеш аз илова муаллиф, пайванди аслӣ, иҷозатномаи дақиқ ва шарти зикрро месанҷем.",
+            "en": "Create a Study folder where you keep learning materials. Add a Notes folder inside: keep only notes here so they do not get mixed with photos and downloads. Open a new text document and write the lesson heading. Save it as lesson-01.txt in Notes. Check that its extension is not repeated twice. Close the document and find it by name in your file manager. Open it again to confirm the text was saved. For the next lesson, use a new number instead of overwriting the previous note. If the file is missing, check the save location before creating another copy. Menu names depend on the system.\n\nDescription for an original screenshot: “Study contains Notes, which contains lesson-01.txt.” The text is original. No external image is used; before adding one, verify creator, original URL, exact license and attribution terms."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "content-creation-day-02-q01",
+          "question": {
+            "ru": "Можно ли копировать любое найденное изображение?",
+            "tg": "Оё ҳар тасвири ёфтшударо нусха кардан мумкин аст?",
+            "en": "Can every image found online be copied?"
+          },
+          "answer": {
+            "ru": "Нет, нужно проверить права и условия использования.",
+            "tg": "Не, ҳуқуқ ва шарти истифода бояд санҷида шаванд.",
+            "en": "No, rights and reuse conditions must be checked."
+          },
+          "options": [
+            {
+              "ru": "Да, если оно открывается.",
+              "tg": "Бале, агар кушода шавад.",
+              "en": "Yes, if it opens."
+            },
+            {
+              "ru": "Нет, нужно проверить права и условия использования.",
+              "tg": "Не, ҳуқуқ ва шарти истифода бояд санҷида шаванд.",
+              "en": "No, rights and reuse conditions must be checked."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Напишите оригинальную инструкцию из 80–150 слов по вчерашнему плану.\n2. Уберите повторы и проверьте порядок действий.\n3. Придумайте описание одного полезного изображения.\n4. Укажите, какой материал ваш, а для внешнего — как проверите лицензию. Не загружайте чужие файлы без разрешения.",
+          "tg": "1. Аз рӯи нақшаи дирӯза дастури аслии 80–150 калима нависед.\n2. Такрорро гирифта, тартиби амалҳоро санҷед.\n3. Шарҳи як тасвири фоиданокро созед.\n4. Маводи худро қайд карда, барои беруниаш роҳи санҷиши иҷозатномаро гӯед. Бе иҷозат файли дигаронро нагузоред.",
+          "en": "1. Write an original 80–150 word guide using yesterday’s outline.\n2. Remove repetition and check the action order.\n3. Draft a description for one useful image.\n4. Identify original material and explain how you would verify external licenses. Do not upload others’ files without permission."
+        },
+        "hint": {
+          "ru": "Описание изображения передаёт смысл, а не просто говорит «картинка».",
+          "tg": "Шарҳи тасвир маъноро медиҳад, на танҳо «расм» мегӯяд.",
+          "en": "An image description communicates meaning, not just “picture”."
+        },
+        "solution": "Создайте папку Study в месте, где храните учебные материалы. Внутри добавьте папку Notes: здесь будут только заметки, чтобы не смешивать их с фотографиями и загрузками. Откройте новый текстовый документ и напишите заголовок урока. Сохраните его как lesson-01.txt в Notes. Проверьте расширение файла: оно не должно повторяться дважды. Закройте документ и найдите его по имени через файловый менеджер. Откройте снова и убедитесь, что текст сохранился. Для следующего урока выберите новый номер, не перезаписывая предыдущую заметку. Если файл не найден, проверьте папку сохранения до создания второй копии. Названия меню зависят от системы.\n\nОписание собственного снимка: «Study содержит Notes, внутри — lesson-01.txt». Текст авторский. Внешнее изображение не используется; перед добавлением проверим автора, исходную ссылку, точную лицензию и требуемую атрибуцию.",
+        "referenceAnswer": {
+          "ru": "Создайте папку Study в месте, где храните учебные материалы. Внутри добавьте папку Notes: здесь будут только заметки, чтобы не смешивать их с фотографиями и загрузками. Откройте новый текстовый документ и напишите заголовок урока. Сохраните его как lesson-01.txt в Notes. Проверьте расширение файла: оно не должно повторяться дважды. Закройте документ и найдите его по имени через файловый менеджер. Откройте снова и убедитесь, что текст сохранился. Для следующего урока выберите новый номер, не перезаписывая предыдущую заметку. Если файл не найден, проверьте папку сохранения до создания второй копии. Названия меню зависят от системы.\n\nОписание собственного снимка: «Study содержит Notes, внутри — lesson-01.txt». Текст авторский. Внешнее изображение не используется; перед добавлением проверим автора, исходную ссылку, точную лицензию и требуемую атрибуцию.",
+          "tg": "Дар ҷойи маводи омӯзишӣ папкаи Study созед. Дар дохил Notes созед: ин ҷо танҳо ёддоштҳо мемонанд, то бо аксҳо ва файлҳои боршуда омехта нашаванд. Ҳуҷҷати нави матнӣ кушода, сарлавҳаи дарсро нависед. Онро бо номи lesson-01.txt дар Notes сабт кунед. Пасванди файлро санҷед: он ду бор такрор нашавад. Ҳуҷҷатро пӯшида, дар мудири файлҳо аз рӯи ном ҷустуҷӯ кунед. Боз кушода, сабт шудани матнро бинед. Барои дарси дигар рақами нав гиред, ёддошти пешинаро аз нав нанависед. Агар файл наёфтед, пеш аз нусхаи дуюм папкаи сабтро санҷед. Номи меню аз система вобаста аст.\n\nШарҳи акси худ: «Study дорои Notes ва дар он lesson-01.txt аст». Матн аслӣ аст. Тасвири берунӣ истифода нашудааст; пеш аз илова муаллиф, пайванди аслӣ, иҷозатномаи дақиқ ва шарти зикрро месанҷем.",
+          "en": "Create a Study folder where you keep learning materials. Add a Notes folder inside: keep only notes here so they do not get mixed with photos and downloads. Open a new text document and write the lesson heading. Save it as lesson-01.txt in Notes. Check that its extension is not repeated twice. Close the document and find it by name in your file manager. Open it again to confirm the text was saved. For the next lesson, use a new number instead of overwriting the previous note. If the file is missing, check the save location before creating another copy. Menu names depend on the system.\n\nDescription for an original screenshot: “Study contains Notes, which contains lesson-01.txt.” The text is original. No external image is used; before adding one, verify creator, original URL, exact license and attribution terms."
+        },
+        "criteria": [
+          {
+            "ru": "Инструкция оригинальная и следует плану.",
+            "tg": "Дастур аслӣ ва мувофиқи нақша аст.",
+            "en": "The guide is original and follows the outline."
+          },
+          {
+            "ru": "Описание изображения передаёт нужную информацию.",
+            "tg": "Шарҳи тасвир маълумоти заруриро мерасонад.",
+            "en": "The image description conveys useful information."
+          },
+          {
+            "ru": "Авторство и проверка прав обозначены честно.",
+            "tg": "Муаллифӣ ва санҷиши ҳуқуқ рост қайд шудаанд.",
+            "en": "Authorship and rights checks are honestly stated."
+          }
+        ]
+      }
+    }
+  ]
+}

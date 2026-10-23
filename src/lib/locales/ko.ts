@@ -1,0 +1,82 @@
+/** Korean interface copy. Authored course content has its own language setting. */
+export const KOREAN_COPY = {
+  home:'오늘의 학습', plan:'학습 계획', practice:'실습', tests:'테스트', interview:'면접 준비', revision:'복습', weak:'어려운 주제', notes:'노트', answers:'해설', settings:'설정',
+  back:'뒤로', month:'개월', week:'주', open:'열기', start:'시작', continue:'계속', learn:'학습', questions:'문제', topics:'주제', all:'전체', questionsOf:'문제',
+  today:'오늘', daily:'오늘의 문제', dailyText:'먼저 해설을 학습한 다음 같은 문제로 이해도를 확인하세요.',
+  learnStep:'해설 학습', testStep:'테스트 시작', interviewStep:'내 말로 설명하기', recommended:'추천',
+  lesson:'해설', code:'코드', flow:'작동 원리', question:'문제', answer:'답변', showAnswer:'답변 보기', hideAnswer:'답변 숨기기',
+  next:'다음', previous:'이전', finish:'완료', learned:'학습 완료', markLearned:'읽고 이해했어요', check:'확인',
+  correct:'정답', incorrect:'복습이 필요해요', result:'결과', retry:'처음으로', yourAnswer:'내 답변', compare:'해설과 비교',
+  selfCheck:'자가 평가: 답변의 의미를 해설과 비교하세요.', remembered:'설명할 수 있어요', forgotten:'복습이 필요해요',
+  search:'주제 또는 문제 검색', group:'그룹', source:'출처', empty:'조건에 맞는 문제가 없습니다.',
+  complete:'학습 완료로 표시', completed:'학습 완료', selectMonth:'학습 월 선택', selectTopic:'주제 선택',
+  task:'과제', hint:'힌트', solution:'예시 풀이', reset:'코드 초기화', save:'저장', saved:'저장됨',
+  local:'로컬 상태', global:'공유 상태', files:'파일과 코드', project:'선택한 주제의 프로젝트', selectFive:'같은 학습 월에서 주제 1~5개를 선택하세요',
+  generate:'과제 만들기', copy:'복사', copied:'복사됨', criteria:'확인 항목', manual:'프로젝트 자가 점검',
+  manualHint:'내 프로젝트에서 각 항목을 확인하세요. 수동으로 진행하는 점검입니다.', run:'함수 테스트', loading:'불러오는 중…',
+  noAttempts:'아직 답변이 없습니다. 오늘의 문제부터 시작하세요.', reviewDue:'복습할 시간이에요', allTopics:'모든 주제',
+  settingsSubtitle:'언어, 학습량 및 저장', interfaceLanguage:'화면 언어', learningLanguage:'학습 자료 언어',
+  tajik:'학습 자료는 타지크어, 러시아어, 영어로 제공됩니다. 한국어로 번역된 학습 자료는 아직 없습니다.', questionsPerDay:'하루 문제 수', limitHint:'다음 새 문제 세트부터 적용됩니다. 오늘의 세트는 변경되지 않습니다.',
+  theme:'화면 모드', light:'라이트', dark:'다크', storage:'저장', storageHint:'진도는 이 브라우저에 저장됩니다. 파일로 백업을 내보낼 수 있습니다.', export:'진도 내보내기',
+  newNote:'새 노트', title:'제목', text:'내용', cancel:'취소', delete:'삭제', edit:'편집',
+  progress:'완료한 주제', readCount:'학습한 문제', totalXP:'총 XP', course:'3개월 과정',
+  group1:'기초와 훅', group2:'상태와 설계', group3:'실전과 면접 준비', readyForTest:'해설을 학습할 수 있어요', sessionDone:'세트 완료', practiceCount:'과제 5개',
+  prompt:'Stitch 프롬프트', openLesson:'해설 열기', noCloud:'이 브라우저에만 저장', select:'선택', selected:'선택됨',
+};
+
+export const KOREAN_LEARNING_COPY = {
+  testsInterview:'테스트와 면접 준비', answersInterview:'해설과 면접 준비', assessmentIntro:'지식을 확인한 다음 내 말로 풀이를 설명하세요.',
+  tests:'테스트', interview:'면접 준비', allCourses:'모든 강좌', oneMonth:'1개월', planIntro:'학습일을 선택하고 주제를 배운 다음 실습으로 이해도를 확인하세요.',
+  dayIntro:'하루에 하나씩 명확하게 배우고 이전 학습을 이어갑니다.', jsMonths:'JavaScript 월별 학습', month:'개월', jsBasics:'기초와 브라우저', jsApps:'API와 애플리케이션',
+  courseUnavailable:'강좌를 불러오지 못했습니다.', retry:'다시 시도', firstFile:'첫 파일부터 프로젝트까지', completedDays:'일 완료 · 매일 이론과 실습',
+  day:'일차', startZero:'기초부터 시작', current:'현재', basics:'기초', harder:'심화', openDay:'오늘의 학습 열기',
+  answersFlow:'문제 → 명확한 해설 → 예시', answersIntro:'면접 준비를 위한 해설 모음입니다. 문제를 열고 해설을 학습한 다음 실습으로 이해도를 확인하세요.',
+  checkYourself:'이해도 확인', showMore:'더 보기', chooseDay:'학습일 선택', preparation:'준비', studyPlan:'학습 계획', goDayOne:'1일차로 이동',
+  connections:'이전 학습과의 연결', connectionsIntro:'이전 과제의 결과에 새 기능을 추가하세요. 기존 기능이 계속 작동하는지도 확인하세요.',
+  dayPractice:'이 학습일의 실습', backExplanation:'해설로 돌아가기', testIntro:'답을 선택하고 해설을 읽어 보세요.', interviewIntro:'내 말로 설명한 다음 해설과 비교하세요.',
+  nextDay:'다음 학습일:', missingDay:'학습 계획에 없는 날짜입니다. 이용 가능한 학습일을 선택하세요.', yourCode:'내 코드', showHtml:'HTML + CSS 미리 보기', htmlResult:'HTML + CSS 실행 결과',
+  preparationFallback:'준비 자료는 현재 러시아어로만 제공됩니다.', contentFallback:'선택한 학습 언어로 번역되지 않은 자료는 러시아어로 표시됩니다.',
+  tutorWelcome:'안녕하세요! 먼저 학습 자료에서 답변을 찾습니다. 무료이며 토큰을 사용하지 않습니다. 새로운 질문에 AI 답변을 받으려면 Google 또는 이메일로 로그인하세요.',
+  tutorIntro:'자료에서 먼저 답변 · 새 질문은 AI로', tutorClose:'튜터 닫기', tutorMaterial:'학습 자료', tutorLocal:'로컬', tokens:'토큰', source:'출처:',
+  tutorLoading:'답변을 준비하는 중…', tutorSignIn:'학습 자료는 무료입니다. AI를 사용하려면 먼저 Google 또는 이메일로 로그인하세요.', tutorLogin:'로그인 / 가입', tutorTopic:'강좌 주제', tutorDeep:'더 자세히 설명해 주세요',
+  tutorQuestion:'튜터에게 질문', tutorPlaceholder:'질문이나 코드를 입력하세요…', tutorSend:'보내기', tutorSpent:'이 대화에서 사용:', tutorCaution:'AI는 틀릴 수 있습니다. 코드를 확인하세요.',
+  tutorUnavailable:'현재 AI를 이용할 수 없습니다. 나중에 다시 시도하세요.', tutorEmpty:'답변이 비어 있습니다. 나중에 다시 시도하세요.', tutorConnection:'연결이 끊겼거나 응답 시간이 초과되었습니다. 다시 시도하세요.',
+  tutorInvalid:'질문 또는 대화 기록이 올바르지 않거나 너무 깁니다.', tutorSignInRequired:'AI에 질문하려면 Google 또는 이메일로 로그인하세요.', tutorAuthUnavailable:'로그인이 아직 설정되지 않았습니다. 설정 후 AI를 사용할 수 있습니다.',
+  tutorUnconfigured:'서버에 AI 키가 설정되지 않았습니다. 학습 자료를 이용하세요.', tutorBusy:'AI에 요청을 보냈습니다. 잠시 기다려 주세요.', tutorRejected:'AI 키 또는 모델 접근이 거부되었습니다. 서버 설정을 확인하세요.',
+  tutorQuota:'AnyModel 이용 한도 또는 토큰이 부족합니다. 제공업체 계정을 확인하세요.', tutorUnreadable:'AI가 읽을 수 있는 답변을 반환하지 않았습니다. 다시 시도하세요.',
+  promptReact:'useState는 무엇에 사용하나요?', promptTopic:'강좌의 첫 주제를 자세히 설명해 주세요.', promptDeep:'앞의 질문을 단계별로 더 자세히 설명해 주세요.',
+};
+
+export const KOREAN_AUTH_COPY = {
+  signupTitle:'함께 학습해요', resetTitle:'계정 복구', loginTitle:'학습을 계속하세요', intro:'진도, 노트, 실습을 컴퓨터와 휴대전화에서 이어가세요.',
+  unavailable:'로그인과 가입이 아직 설정되지 않았습니다. 강의와 해설은 계정 없이 이용할 수 있으며 AI에는 계정이 필요합니다.',
+  guest:'게스트로 계속', google:'Google로 계속', recommended:'추천', orEmail:'또는 이메일로', name:'이름', password:'비밀번호',
+  creating:'생성 중…', saveWait:'잠시 기다려 주세요…', signUp:'계정 만들기', sendLink:'링크 보내기', signIn:'이메일로 로그인', existing:'이미 계정이 있나요? 로그인',
+  createAccount:'계정 만들기', forgot:'비밀번호를 잊으셨나요?', backToLogin:'로그인으로 돌아가기', security:'Google 또는 이메일 · 무료 계정',
+  googleError:'Google 로그인을 사용할 수 없습니다. 이메일을 이용하거나 나중에 다시 시도하세요.', resetSent:'등록된 이메일 주소라면 비밀번호 재설정 링크가 전송됩니다.', confirmEmail:'이메일의 링크로 주소를 인증한 후 로그인하세요.',
+  firstNameTitle:'어떻게 불러 드릴까요?', firstNameDescription:'프로필에 표시될 이름입니다. 설정에서 이름과 사진을 변경할 수 있습니다.', firstNameStart:'학습 시작', logout:'로그아웃', nameError:'이름을 저장하지 못했습니다.',
+};
+
+export const KOREAN_ACCOUNT_COPY = {
+  account:'내 계정', guestMode:'게스트 모드', guestDescription:'진도는 이 브라우저에 저장됩니다. 휴대전화에서도 학습을 이어가고 프로필을 유지하려면 로그인하세요.', guestLogin:'Google 또는 이메일로 로그인',
+  profile:'개인 프로필', name:'이름', saveName:'이름 저장', wait:'잠시 기다려 주세요…', addPhoto:'사진 추가', removePhoto:'사진 삭제', photoHint:'5MB 이하 JPEG, PNG 또는 WebP. 정사각형으로 잘라 비공개로 저장합니다.',
+  profileSaved:'프로필을 저장했습니다.', profileError:'프로필을 저장하지 못했습니다.', profileRetry:'프로필을 저장하지 못했습니다. 다시 시도하세요.', nameError:'이름을 저장하지 못했습니다.', nameInvalid:'이름은 2~60자로 입력하세요.', photoInvalid:'올바르지 않은 사진입니다.', loginUnavailable:'로그인이 설정되지 않았습니다.', photoUploaded:'사진을 업데이트했습니다.', photoUploadError:'사진을 업로드하지 못했습니다.', photoUploadRetry:'사진을 업로드하지 못했습니다. 다시 시도하세요.', photoRemoved:'사진을 삭제했습니다.', photoRemoveError:'사진을 삭제하지 못했습니다.', photoFormat:'5MB 이하 JPEG, PNG 또는 WebP.', photoSize:'이미지가 너무 큽니다.', photoProcess:'사진을 처리하지 못했습니다.',
+  devices:'저장 및 기기', deviceDescription:'답변, XP, 노트, 설정 및 코드는 내 계정에서만 이용할 수 있습니다. 다른 기기에서는 같은 계정으로 로그인하세요.', sync:'지금 동기화', importGuest:'이 브라우저의 게스트 진도 가져오기', noGuestProgress:'아직 게스트 진도가 없습니다.', guestImported:'게스트 진도를 추가했습니다. 아래에서 클라우드 상태를 확인하세요.', guestImportError:'게스트 진도를 읽지 못했습니다. 원본 데이터는 유지됩니다.',
+  local:'이 브라우저에 저장', syncing:'클라우드에 저장 중…', synced:'클라우드에 저장됨', offline:'오프라인 · 변경 사항은 브라우저에 저장됨', error:'클라우드 이용 불가 · 변경 사항은 브라우저에 저장됨',
+  phone:'휴대전화에서 계속', phoneDescription:'카메라로 QR을 스캔하고 사이트를 열어 같은 Google 또는 이메일 계정으로 로그인하세요. QR에는 사이트 링크만 포함됩니다.', phoneAlt:'휴대전화 로그인 화면을 여는 QR', phoneError:'QR을 사용할 수 없습니다. 휴대전화에서 이 사이트를 여세요.',
+  security:'계정 보안', checking:'확인 중…', connected:'인증 앱 연결됨', ordinaryLogin:'일반 로그인', securityDescription:'휴대전화 앱으로 보안을 강화하세요. SMS 없이 Google Authenticator, Microsoft Authenticator, 2FAS 등을 사용할 수 있습니다.', enrollScan:'1. 인증 앱에서 QR을 스캔하세요.', enrollCode:'2. 코드를 입력하여 보안을 활성화하세요.', enrollAlt:'인증 앱용 QR', enrollManual:'스캔할 수 없나요? 키 직접 입력', enrollHint:'다음 로그인에도 앱의 코드가 필요하므로 앱 접근 권한을 유지하세요. 이 QR이나 키를 다른 사람과 공유하지 마세요.', appCode:'앱의 코드', enableSecurity:'보안 활성화', cancel:'취소', requiredCode:'로그인 시 앱의 코드가 필요합니다.', disable:'연결 해제', enroll:'인증 앱 연결 · QR', factorCheckError:'인증 앱을 확인하지 못했습니다.', enrollError:'인증 앱을 연결하지 못했습니다. 나중에 다시 시도하세요.', verifyError:'코드가 승인되지 않았습니다. 앱에서 새 코드를 확인하세요.', cancelError:'설정을 취소하지 못했습니다. 다시 시도하세요.', factorRemoved:'인증 앱 연결을 해제했습니다.', factorRemoveError:'인증 앱 연결을 해제하지 못했습니다. 로그인을 확인하고 다시 시도하세요.',
+  session:'세션', sessionDescription:'브라우저를 닫아도 이 기기에서 로그인 상태가 유지됩니다. 로그아웃하면 이 기기의 세션만 종료됩니다.', logout:'로그아웃', logoutAccount:'계정에서 로그아웃',
+  challengeTitle:'로그인 확인', challengeDescription:'Google Authenticator, Microsoft Authenticator 등의 앱에 표시된 숫자 6자리를 입력하세요.', challengeCode:'인증 코드', confirm:'확인', challengeError:'코드를 확인하지 못했습니다. 앱에서 새 코드를 확인하세요.',
+  newPassword:'새 비밀번호', recoveryDescription:'저장 후 새 비밀번호로 로그인하세요.', repeatPassword:'비밀번호 재입력', savePassword:'비밀번호 저장', passwordMismatch:'비밀번호가 일치하지 않습니다.', recoveryError:'비밀번호를 변경하지 못했습니다. 복구를 다시 요청하세요.',
+  opening:'DevAtlas를 여는 중…', restoring:'로그인 복원 중', openFailed:'계정을 열지 못했습니다', openError:'계정을 열지 못했습니다.', retry:'다시 시도', assuranceError:'계정 보안을 확인하지 못했습니다.', profileLoadError:'프로필을 불러오지 못했습니다. 연결과 데이터베이스 설정을 확인하세요.', connectionError:'연결을 확인하지 못했습니다. 온라인 상태가 되면 저장된 로그인이 복원됩니다.', restoreError:'저장된 로그인을 일시적으로 사용할 수 없습니다. 인터넷에 연결하면 계정이 자동으로 복원됩니다.', sessionExpired:'세션이 만료되었습니다. 다시 로그인하세요.', sessionChanged:'세션이 변경되었습니다. 계정을 다시 여세요.', accountUnverified:'계정을 확인하지 못했습니다. 다시 로그인하세요.', loginIncomplete:'로그인이 완료되지 않았습니다. Google 또는 이메일로 다시 시도하세요.', logoutError:'로그아웃하지 못했습니다. 다시 시도하세요.',
+  emailUnconfirmed:'이메일의 링크로 주소를 인증한 후 로그인하세요.', invalidCredentials:'로그인하지 못했습니다. 이메일과 비밀번호를 확인하세요.', signupDisabled:'현재 가입이 중단되어 있습니다. 나중에 시도하거나 기존 계정으로 로그인하세요.', weakPassword:'비밀번호가 너무 단순합니다. 영문자와 숫자를 포함하여 8자 이상 사용하세요.', emailInvalid:'이메일 주소가 승인되지 않았습니다. 주소를 확인하세요.', emailLimit:'이메일 전송 한도에 도달했습니다. 나중에 다시 시도하세요.', requestLimit:'시도 횟수가 너무 많습니다. 잠시 후 다시 시도하세요.', loginError:'로그인하지 못했습니다. 이메일, 비밀번호 및 이메일 인증 여부를 확인하세요.', requestError:'요청을 보내지 못했습니다. 입력 내용을 확인하고 나중에 다시 시도하세요.',
+};
+
+export const KOREAN_PUBLIC_COPY = {
+  privacyLabel:'개인정보 처리방침', termsLabel:'이용약관', start:'학습 시작', eyebrow:'배움과 역량을 위한 플랫폼', heroLead:'새로운 관심을', heroEmphasis:'실용적인 역량으로', heroEnd:'한 걸음씩.',
+  heroDescription:'프로그래밍, 디자인, 비즈니스, 마케팅에서 배울 분야를 선택하세요. DevAtlas는 이해하기 쉬운 강의, 실습 과제 및 진도 관리를 한곳에서 제공합니다.', seePlatform:'플랫폼 둘러보기', heroNote:'게스트로도 학습할 수 있습니다. 클라우드 동기화와 온라인 AI는 서버 설정이 필요합니다.',
+  featuresTitle:'이해하고, 만들고, 확인하세요', features:[{title:'단계별 강의',description:'분야를 선택하고 명확한 학습 계획에 따라 새로운 주제를 배우세요.'},{title:'과제와 프로젝트',description:'배운 내용을 실천하고 결과를 확인하며 진도를 기록하세요.'},{title:'선택형 AI 튜터',description:'기본 학습 자료는 API 없이 작동하며 온라인 AI는 별도 설정이 필요합니다.'}],
+  ctaTitle:'첫 실습을 시작할까요?', ctaDescription:'제공되는 강의와 실습 과제부터 시작하세요.', ctaLink:'강의로 이동', title:'DevAtlas — 실습으로 키우는 역량', description:'강의와 실습 과제로 프로그래밍, 디자인, 비즈니스, 마케팅 역량을 키우세요.',
+  privacy:{title:'개인정보 처리방침', introduction:'DevAtlas는 교육 플랫폼입니다. 게스트 진도는 브라우저에 저장되며 계정 데이터는 설정된 Supabase에 저장됩니다.', sections:[{title:'계정 데이터',text:'이메일 주소, 프로필, 노트, 답변 및 학습 진도를 처리할 수 있습니다. 클라우드 동기화에는 활성 계정이 필요합니다.'},{title:'AI 튜터',text:'기본 학습 해설은 외부 제공업체 없이 이용할 수 있습니다. 설정된 온라인 AI를 이용하면 질문과 필요한 문맥이 제공업체에 전송될 수 있습니다.'},{title:'데이터 관리',text:'게스트 데이터는 브라우저에서 관리할 수 있습니다. 계정 데이터는 계정 설정에서 관리하세요.'}], notice:'이 문서는 예비 안내입니다. 공개 출시 전에 운영자는 연락처, 보유 기간 및 최종 법적 문서를 확정해야 합니다.'},
+  terms:{title:'이용약관', introduction:'DevAtlas는 학습 플랫폼입니다. 과제, 테스트 및 AI 지원은 자격증이나 취업을 보장하지 않습니다.', sections:[{title:'계정',text:'로그인 정보를 비공개로 유지하고 다른 사람의 데이터에 무단으로 접근하지 마세요.'},{title:'선택 기능',text:'온라인 AI와 클라우드 동기화는 서버 설정과 외부 제공업체에 따라 달라집니다.'}], notice:'상업적 이용 전에 최종 약관과 운영자 정보에 대한 법률 검토가 필요합니다.'},
+};

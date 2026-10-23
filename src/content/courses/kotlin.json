@@ -1,0 +1,259 @@
+{
+  "courseId": "kotlin",
+  "sources": [
+    {
+      "id": "kotlin-official",
+      "title": "Kotlin — official documentation",
+      "url": "https://kotlinlang.org/docs/basic-syntax.html"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "kotlin-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Kotlin: val и точка входа",
+        "tg": "Kotlin: val ва нуқтаи оғоз",
+        "en": "Kotlin: val and the entry point"
+      },
+      "summary": {
+        "ru": "День 1 из 2. Kotlin: val и точка входа. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. Kotlin: val ва нуқтаи оғоз. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. Kotlin: val and the entry point. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "kotlin-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Нужны Kotlin/JVM compiler и JDK. fun main — точка входа. val задаёт привязку без повторного присваивания, var допускает изменение. Kotlin выводит тип Int из целого числа. println печатает результат. Этот консольный пример не собирает Android APK.",
+            "tg": "Kotlin/JVM compiler ва JDK лозиманд. fun main нуқтаи оғоз аст. val номро бе таъйини такрорӣ месозад, var тағйирро иҷозат медиҳад. Kotlin аз адади бутун типи Int-ро муайян мекунад. println натиҷаро мебарорад. Ин мисоли консолӣ Android APK намесозад.",
+            "en": "Kotlin/JVM compiler and a JDK are required. fun main is the entry point. val cannot be reassigned; var can. Kotlin infers Int from a whole number. println prints the result. This console example does not build an Android APK."
+          },
+          "code": "fun main() {\n    val price: Int = 12\n    val quantity = 3\n    println(price * quantity)\n}\n",
+          "language": "kotlin",
+          "output": {
+            "ru": "36",
+            "tg": "36",
+            "en": "36"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните Main.kt в отдельной учебной папке и выполните в её терминале:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nОжидаемый вывод:\n36\n\nПроверьте quantity=0 → 0. Попробуйте повторно присвоить val и объясните ошибку компилятора.",
+            "tg": "Main.kt-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nНатиҷаи интизорӣ:\n36\n\nquantity=0 → 0-ро санҷед. Ба val дубора қимат таъйин кунед ва хатои компиляторро шарҳ диҳед.",
+            "en": "Save Main.kt in a separate learning folder and run in that folder's terminal:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nExpected output:\n36\n\nCheck quantity=0 → 0. Try reassigning a val and explain the compiler error."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "kotlin-day-01-q",
+          "question": {
+            "ru": "Чем объявить привязку без повторного присваивания?",
+            "tg": "Номро бе таъйини такрорӣ бо чӣ эълон мекунем?",
+            "en": "Which declares a binding that cannot be reassigned?"
+          },
+          "answer": {
+            "ru": "val",
+            "tg": "val",
+            "en": "val"
+          },
+          "options": [
+            {
+              "ru": "var",
+              "tg": "var",
+              "en": "var"
+            },
+            {
+              "ru": "val",
+              "tg": "val",
+              "en": "val"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните Main.kt в отдельной учебной папке и выполните в её терминале:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nОжидаемый вывод:\n36\n\nПроверьте quantity=0 → 0. Попробуйте повторно присвоить val и объясните ошибку компилятора.",
+          "tg": "Main.kt-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nНатиҷаи интизорӣ:\n36\n\nquantity=0 → 0-ро санҷед. Ба val дубора қимат таъйин кунед ва хатои компиляторро шарҳ диҳед.",
+          "en": "Save Main.kt in a separate learning folder and run in that folder's terminal:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nExpected output:\n36\n\nCheck quantity=0 → 0. Try reassigning a val and explain the compiler error."
+        },
+        "hint": {
+          "ru": "Нужны Kotlin/JVM compiler и JDK. fun main — точка входа. val задаёт привязку без повторного присваивания, var допускает изменение. Kotlin выводит тип Int из целого числа. println печатает результат. Этот консольный пример не собирает Android APK.",
+          "tg": "Kotlin/JVM compiler ва JDK лозиманд. fun main нуқтаи оғоз аст. val номро бе таъйини такрорӣ месозад, var тағйирро иҷозат медиҳад. Kotlin аз адади бутун типи Int-ро муайян мекунад. println натиҷаро мебарорад. Ин мисоли консолӣ Android APK намесозад.",
+          "en": "Kotlin/JVM compiler and a JDK are required. fun main is the entry point. val cannot be reassigned; var can. Kotlin infers Int from a whole number. println prints the result. This console example does not build an Android APK."
+        },
+        "solution": "fun main() {\n    val price: Int = 12\n    val quantity = 3\n    println(price * quantity)\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл Main.kt выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли Main.kt бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run Main.kt using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте quantity=0 → 0. Попробуйте повторно присвоить val и объясните ошибку компилятора.",
+            "tg": "quantity=0 → 0-ро санҷед. Ба val дубора қимат таъйин кунед ва хатои компиляторро шарҳ диҳед.",
+            "en": "Check quantity=0 → 0. Try reassigning a val and explain the compiler error."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "kotlin-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Kotlin: require и возвращаемое значение",
+        "tg": "Kotlin: require ва қимати натиҷа",
+        "en": "Kotlin: require and returned values"
+      },
+      "summary": {
+        "ru": "День 2 из 2. Kotlin: require и возвращаемое значение. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. Kotlin: require ва қимати натиҷа. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. Kotlin: require and returned values. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "kotlin-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "require проверяет условие и при отказе бросает IllegalArgumentException. return передаёт результат вызывающему коду. Math.multiplyExact в Kotlin/JVM отдельно обнаруживает переполнение Int. try/catch обрабатывает ожидаемую ошибку у вызывающей стороны.",
+            "tg": "require шартро месанҷад ва ҳангоми радкунӣ IllegalArgumentException медиҳад. return натиҷаро ба рамзи даъваткунанда медиҳад. Math.multiplyExact дар Kotlin/JVM пуршавии ҳудуди Int-ро алоҳида меёбад. try/catch хатои интизориро дар тарафи даъваткунанда коркард мекунад.",
+            "en": "require checks a condition and throws IllegalArgumentException when it fails. return passes a result to the caller. Math.multiplyExact on Kotlin/JVM separately detects Int overflow. try/catch handles the expected error at the call site."
+          },
+          "code": "fun total(price: Int, quantity: Int): Int {\n    require(price >= 0 && quantity >= 0) { \"Negative value\" }\n    return Math.multiplyExact(price, quantity)\n}\nfun main() {\n    println(total(12, 3))\n    println(total(12, 0))\n    try { total(12, -1) }\n    catch (error: IllegalArgumentException) { println(\"Invalid input rejected\") }\n}\n",
+          "language": "kotlin",
+          "output": {
+            "ru": "36\n0\nInvalid input rejected",
+            "tg": "36\n0\nInvalid input rejected",
+            "en": "36\n0\nInvalid input rejected"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните Main.kt в отдельной учебной папке и выполните в её терминале:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте total(-1, 3): IllegalArgumentException. Для total(Int.MAX_VALUE, 2) ожидается ArithmeticException.",
+            "tg": "Main.kt-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal(-1, 3)-ро санҷед: IllegalArgumentException. Барои total(Int.MAX_VALUE, 2) ArithmeticException интизор аст.",
+            "en": "Save Main.kt in a separate learning folder and run in that folder's terminal:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nExpected output:\n36\n0\nInvalid input rejected\n\nCheck total(-1, 3): IllegalArgumentException. total(Int.MAX_VALUE, 2) should produce ArithmeticException."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "kotlin-day-02-q",
+          "question": {
+            "ru": "Что делает require, если условие ложно?",
+            "tg": "Агар шарт нодуруст бошад, require чӣ мекунад?",
+            "en": "What does require do when its condition is false?"
+          },
+          "answer": {
+            "ru": "Бросает IllegalArgumentException",
+            "tg": "IllegalArgumentException медиҳад",
+            "en": "Throws IllegalArgumentException"
+          },
+          "options": [
+            {
+              "ru": "Молча возвращает 0",
+              "tg": "Бе хабар 0 бармегардонад",
+              "en": "Silently returns 0"
+            },
+            {
+              "ru": "Бросает IllegalArgumentException",
+              "tg": "IllegalArgumentException медиҳад",
+              "en": "Throws IllegalArgumentException"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните Main.kt в отдельной учебной папке и выполните в её терминале:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте total(-1, 3): IllegalArgumentException. Для total(Int.MAX_VALUE, 2) ожидается ArithmeticException.",
+          "tg": "Main.kt-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal(-1, 3)-ро санҷед: IllegalArgumentException. Барои total(Int.MAX_VALUE, 2) ArithmeticException интизор аст.",
+          "en": "Save Main.kt in a separate learning folder and run in that folder's terminal:\nkotlinc Main.kt -include-runtime -d lesson.jar && java -jar lesson.jar\nExpected output:\n36\n0\nInvalid input rejected\n\nCheck total(-1, 3): IllegalArgumentException. total(Int.MAX_VALUE, 2) should produce ArithmeticException."
+        },
+        "hint": {
+          "ru": "require проверяет условие и при отказе бросает IllegalArgumentException. return передаёт результат вызывающему коду. Math.multiplyExact в Kotlin/JVM отдельно обнаруживает переполнение Int. try/catch обрабатывает ожидаемую ошибку у вызывающей стороны.",
+          "tg": "require шартро месанҷад ва ҳангоми радкунӣ IllegalArgumentException медиҳад. return натиҷаро ба рамзи даъваткунанда медиҳад. Math.multiplyExact дар Kotlin/JVM пуршавии ҳудуди Int-ро алоҳида меёбад. try/catch хатои интизориро дар тарафи даъваткунанда коркард мекунад.",
+          "en": "require checks a condition and throws IllegalArgumentException when it fails. return passes a result to the caller. Math.multiplyExact on Kotlin/JVM separately detects Int overflow. try/catch handles the expected error at the call site."
+        },
+        "solution": "fun total(price: Int, quantity: Int): Int {\n    require(price >= 0 && quantity >= 0) { \"Negative value\" }\n    return Math.multiplyExact(price, quantity)\n}\nfun main() {\n    println(total(12, 3))\n    println(total(12, 0))\n    try { total(12, -1) }\n    catch (error: IllegalArgumentException) { println(\"Invalid input rejected\") }\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл Main.kt выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли Main.kt бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run Main.kt using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте total(-1, 3): IllegalArgumentException. Для total(Int.MAX_VALUE, 2) ожидается ArithmeticException.",
+            "tg": "total(-1, 3)-ро санҷед: IllegalArgumentException. Барои total(Int.MAX_VALUE, 2) ArithmeticException интизор аст.",
+            "en": "Check total(-1, 3): IllegalArgumentException. total(Int.MAX_VALUE, 2) should produce ArithmeticException."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

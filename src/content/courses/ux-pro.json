@@ -1,0 +1,349 @@
+{
+  "courseId": "ux-pro",
+  "sources": [
+    {
+      "id": "ux-pro-reference",
+      "title": "18F Methods — research and evaluation methods (CC0)",
+      "url": "https://github.com/18F/methods"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "ux-pro-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: исследование и карта доказательств",
+        "tg": "Рӯзи 1: таҳқиқ ва харитаи далелҳо",
+        "en": "Day 1: research and an evidence map"
+      },
+      "summary": {
+        "ru": "Первый день трёхдневного прикладного кейса Pro: разберите вымышленные наблюдения записи на занятие, отделите свидетельства от гипотез и составьте этичный план проверки. Это не реальные интервью.",
+        "tg": "Рӯзи аввали кейси амалии серӯзаи Pro: мушоҳидаҳои сохтаи сабти дарсро таҳлил карда, далелро аз тахмин ҷудо кунед ва нақшаи одилонаи санҷиш созед. Ин мусоҳибаи воқеӣ нест.",
+        "en": "Day one of a three-day applied Pro case: analyze fictional class-booking observations, distinguish evidence from hypotheses and plan an ethical check. These are not real interviews."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "ux-pro-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Кейс: общественный центр показывает занятия, но запись часто прерывается. Учебные наблюдения: P1 вернулся к списку, не увидев цену; P2 спросил о доступности помещения; P3 не понял, завершена ли запись. Это три сигнала, не оценка всей аудитории. Для каждого укажите источник, наблюдение, возможное объяснение и вопрос следующей проверки. Перед настоящим исследованием нужны добровольное согласие, понятная цель, право остановиться и минимизация данных; запись голоса по умолчанию не нужна.",
+            "tg": "Кейс: маркази ҷамъиятӣ дарсҳоро нишон медиҳад, вале сабт қатъ мешавад. Мушоҳидаҳои омӯзишӣ: P1 нархро надида баргашт; P2 дастрасии биноро пурсид; P3 анҷоми сабтро нафаҳмид. Ин се аломат аст, на арзёбии ҳама. Барои ҳар кадом манбаъ, мушоҳида, шарҳи эҳтимолӣ ва саволи санҷишро гӯед. Пеш аз таҳқиқи воқеӣ розигии ихтиёрӣ, ҳадафи фаҳмо, ҳуқуқи қатъ ва кам кардани додаҳо лозиманд; овозро худкор сабт накунед.",
+            "en": "Case: a community center lists classes, but booking is often interrupted. Fictional observations: P1 returned to the list without seeing the price; P2 asked about building accessibility; P3 could not tell whether booking was complete. These are three signals, not an audience-wide estimate. For each, record source, observation, possible explanation and a follow-up question. Real research needs voluntary consent, a clear purpose, the right to stop and data minimization; do not record audio by default."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Карта: P1 → цена не найдена → гипотеза: полная стоимость скрыта → проверка: найти итоговую стоимость без подсказки. P2 → вопрос о доступности → гипотеза: детали помещения отсутствуют → проверка: найти сведения о входе и способ уточнения. P3 → неясный результат → гипотеза: подтверждение незаметно → проверка: объяснить статус после отправки. Приоритет пока предварительный; частоту во всей аудитории по трём случаям не выводим.\n\nПриоритет: P3, поскольку непонятный итог может вызвать повторную запись. Инструкция: «Выберите занятие и объясните, что произошло после подтверждения»; успех — правильное объяснение без подсказки. Согласие: «Это добровольная проверка прототипа. Можно остановиться в любой момент; оцениваем интерфейс, не вас». Не собираем имя, контакты, документы и аудиозапись.",
+            "tg": "Харита: P1 → нарх ёфт нашуд → тахмин: арзиши пурра пинҳон аст → санҷиш: арзишро бе ёрӣ ёфтан. P2 → саволи дастрасӣ → тахмин: шарҳи бино нест → санҷиш: маълумоти даромад ва роҳи пурсишро ёфтан. P3 → натиҷа норавшан → тахмин: тасдиқ ноаён → санҷиш: ҳолатро баъди фиристодан шарҳ додан. Афзалият пешакӣ аст; аз се ҳолат басомади ҳамаро намебарорем.\n\nАфзалият: P3, чун натиҷаи норавшан сабти такрорӣ меорад. Дастур: «Дарс интихоб карда, баъди тасдиқ чӣ шуд фаҳмонед»; муваффақият — шарҳи дуруст бе ёрӣ. Розигӣ: «Ин санҷиши ихтиёрии прототип аст. Ҳар вақт қатъ кардан мумкин; интерфейсро месанҷем, на шуморо». Ном, тамос, ҳуҷҷат ва овоз ҷамъ намекунем.",
+            "en": "Map: P1 → price not found → hypothesis: total cost is hidden → test: find the total without hints. P2 → accessibility question → hypothesis: venue details missing → test: find entrance information and a clarification route. P3 → result unclear → hypothesis: confirmation is unnoticed → test: explain the status after submitting. Priority remains provisional; three cases cannot establish audience-wide frequency.\n\nPriority: P3, because an unclear outcome may cause duplicate booking. Instruction: “Choose a class and explain what happened after confirming”; success means a correct explanation without hints. Consent: “This prototype check is voluntary. You may stop at any time; we assess the interface, not you.” Collect no names, contacts, documents or audio."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "ux-pro-day-01-q01",
+          "question": {
+            "ru": "Что допустимо заключить из трёх учебных наблюдений?",
+            "tg": "Аз се мушоҳидаи омӯзишӣ чӣ хулоса дуруст аст?",
+            "en": "What can the three fictional observations support?"
+          },
+          "answer": {
+            "ru": "Есть сигналы барьеров, которые нужно проверить.",
+            "tg": "Аломатҳои монеа ҳастанд, ки бояд санҷида шаванд.",
+            "en": "There are signals of barriers that need checking."
+          },
+          "options": [
+            {
+              "ru": "Все посетители сталкиваются с одной проблемой.",
+              "tg": "Ҳама меҳмонон як мушкил доранд.",
+              "en": "Every visitor has the same problem."
+            },
+            {
+              "ru": "Есть сигналы барьеров, которые нужно проверить.",
+              "tg": "Аломатҳои монеа ҳастанд, ки бояд санҷида шаванд.",
+              "en": "There are signals of barriers that need checking."
+            },
+            {
+              "ru": "Редизайн гарантированно увеличит продажи.",
+              "tg": "Тарҳи нав фурӯшро ҳатман зиёд мекунад.",
+              "en": "A redesign is guaranteed to increase sales."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Создайте три строки карты по P1, P2 и P3: факт, гипотеза, проверка.\n2. Выберите главный вопрос и обоснуйте его влиянием на задачу, не выдумывая статистику.\n3. Напишите нейтральную инструкцию и критерий самостоятельного выполнения.\n4. Добавьте краткий текст добровольного согласия и список данных, которые не собираете.",
+          "tg": "1. Барои P1, P2 ва P3 се сатр созед: далел, тахмин, санҷиш.\n2. Саволи асосиро аз таъсири вазифа интихоб кунед; омор насозед.\n3. Дастури бетараф ва меъёри иҷрои мустақил нависед.\n4. Розигии кӯтоҳи ихтиёрӣ ва рӯйхати додаҳои ҷамънашавандаро илова кунед.",
+          "en": "1. Create three rows for P1, P2 and P3: fact, hypothesis and test.\n2. Choose a primary question based on task impact, without invented statistics.\n3. Write a neutral instruction and independent-completion criterion.\n4. Add short voluntary-consent text and name data you will not collect."
+        },
+        "hint": {
+          "ru": "Фраза «пользователи хотят редизайн» не следует из наблюдений; назовите точный барьер.",
+          "tg": "Аз мушоҳида «корбарон тарҳи нав мехоҳанд» барнамеояд; монеаи аниқро гӯед.",
+          "en": "The observations do not establish “users want a redesign”; identify the precise barrier."
+        },
+        "solution": "Карта: P1 → цена не найдена → гипотеза: полная стоимость скрыта → проверка: найти итоговую стоимость без подсказки. P2 → вопрос о доступности → гипотеза: детали помещения отсутствуют → проверка: найти сведения о входе и способ уточнения. P3 → неясный результат → гипотеза: подтверждение незаметно → проверка: объяснить статус после отправки. Приоритет пока предварительный; частоту во всей аудитории по трём случаям не выводим.\n\nПриоритет: P3, поскольку непонятный итог может вызвать повторную запись. Инструкция: «Выберите занятие и объясните, что произошло после подтверждения»; успех — правильное объяснение без подсказки. Согласие: «Это добровольная проверка прототипа. Можно остановиться в любой момент; оцениваем интерфейс, не вас». Не собираем имя, контакты, документы и аудиозапись.",
+        "referenceAnswer": {
+          "ru": "Карта: P1 → цена не найдена → гипотеза: полная стоимость скрыта → проверка: найти итоговую стоимость без подсказки. P2 → вопрос о доступности → гипотеза: детали помещения отсутствуют → проверка: найти сведения о входе и способ уточнения. P3 → неясный результат → гипотеза: подтверждение незаметно → проверка: объяснить статус после отправки. Приоритет пока предварительный; частоту во всей аудитории по трём случаям не выводим.\n\nПриоритет: P3, поскольку непонятный итог может вызвать повторную запись. Инструкция: «Выберите занятие и объясните, что произошло после подтверждения»; успех — правильное объяснение без подсказки. Согласие: «Это добровольная проверка прототипа. Можно остановиться в любой момент; оцениваем интерфейс, не вас». Не собираем имя, контакты, документы и аудиозапись.",
+          "tg": "Харита: P1 → нарх ёфт нашуд → тахмин: арзиши пурра пинҳон аст → санҷиш: арзишро бе ёрӣ ёфтан. P2 → саволи дастрасӣ → тахмин: шарҳи бино нест → санҷиш: маълумоти даромад ва роҳи пурсишро ёфтан. P3 → натиҷа норавшан → тахмин: тасдиқ ноаён → санҷиш: ҳолатро баъди фиристодан шарҳ додан. Афзалият пешакӣ аст; аз се ҳолат басомади ҳамаро намебарорем.\n\nАфзалият: P3, чун натиҷаи норавшан сабти такрорӣ меорад. Дастур: «Дарс интихоб карда, баъди тасдиқ чӣ шуд фаҳмонед»; муваффақият — шарҳи дуруст бе ёрӣ. Розигӣ: «Ин санҷиши ихтиёрии прототип аст. Ҳар вақт қатъ кардан мумкин; интерфейсро месанҷем, на шуморо». Ном, тамос, ҳуҷҷат ва овоз ҷамъ намекунем.",
+          "en": "Map: P1 → price not found → hypothesis: total cost is hidden → test: find the total without hints. P2 → accessibility question → hypothesis: venue details missing → test: find entrance information and a clarification route. P3 → result unclear → hypothesis: confirmation is unnoticed → test: explain the status after submitting. Priority remains provisional; three cases cannot establish audience-wide frequency.\n\nPriority: P3, because an unclear outcome may cause duplicate booking. Instruction: “Choose a class and explain what happened after confirming”; success means a correct explanation without hints. Consent: “This prototype check is voluntary. You may stop at any time; we assess the interface, not you.” Collect no names, contacts, documents or audio."
+        },
+        "criteria": [
+          {
+            "ru": "Все три сигнала связаны с отдельными гипотезами и проверками.",
+            "tg": "Ҳар се аломат тахмин ва санҷиши ҷудо доранд.",
+            "en": "All three signals connect to separate hypotheses and checks."
+          },
+          {
+            "ru": "Есть приоритет и измеримое самостоятельное действие.",
+            "tg": "Афзалият ва амали мустақили ченшаванда ҳаст.",
+            "en": "A priority and measurable independent action are defined."
+          },
+          {
+            "ru": "Согласие добровольное; реальные данные и результаты не выдуманы.",
+            "tg": "Розигӣ ихтиёрист; дода ё натиҷаи воқеӣ сохта нашудааст.",
+            "en": "Consent is voluntary; no actual data or results are invented."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ux-pro-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: прототип с восстановлением ошибок",
+        "tg": "Рӯзи 2: прототип бо ислоҳи хато",
+        "en": "Day 2: a prototype with recovery"
+      },
+      "summary": {
+        "ru": "Используйте доказательства первого дня для текстового прототипа записи: понятная цена, доступность и подтверждение. Опишите состояния и переходы, а не только красивый главный экран.",
+        "tg": "Далелҳои рӯзи аввалро барои прототипи матнии сабт истифода баред: нархи фаҳмо, дастрасӣ ва тасдиқ. Ҳолат ва гузаришро нависед, на танҳо экрани зебои аввал.",
+        "en": "Use day one’s evidence in a textual booking prototype: clear price, accessibility and confirmation. Specify states and transitions rather than only a polished first screen."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "ux-pro-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Каждый экран должен отвечать: где я, что могу сделать и что произошло. До отправки покажите полную стоимость и условия. Не используйте заранее отмеченное согласие на маркетинг. При ошибке сохраните уже введённое и предложите восстановление. Доступность учитывает подписи, порядок фокуса и понятный текст; текстовый прототип не доказывает соответствие WCAG без проверки реального интерфейса.",
+            "tg": "Ҳар экран гӯяд: куҷоям, чӣ карда метавонам ва чӣ шуд. Пеш аз фиристодан арзиши пурра ва шартро нишон диҳед. Розигии маркетингро пешакӣ қайд накунед. Дар хато маълумоти воридшударо нигоҳ дошта, роҳи барқарор диҳед. Дастрасӣ ном, тартиби фокус ва матни фаҳморо дар бар мегирад; прототипи матнӣ бе санҷиши интерфейси воқеӣ мувофиқати WCAG-ро исбот намекунад.",
+            "en": "Every screen should answer where am I, what can I do and what happened. Show total cost and conditions before submission. Do not preselect marketing consent. Preserve entered work on errors and offer recovery. Accessibility includes labels, focus order and understandable text; a text prototype alone does not prove WCAG conformance."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Путь: список занятий → карточка с полной ценой и сведениями о входе → проверка выбранного времени → подтверждение с номером учебной записи. Ошибка занятости: «Место уже занято. Выберите другое время»; выбор занятия сохранён. Ожидание: «Проверяем наличие» без повторной отправки. Успех: дата, время, место и действие отмены. Маркетинговая подписка отделена и выключена.\n\nСвязь: видимая цена отвечает P1, сведения о входе — P2, подтверждение — P3. Порядок фокуса: выбор времени → сведения и условия → подтверждение → ссылка отмены на результате. Для ошибки фокус переводится к понятному сообщению, после него доступен выбор нового времени. Проверки реальной клавиатурой и скринридером ещё не проведены.",
+            "tg": "Роҳ: рӯйхати дарс → корт бо нархи пурра ва маълумоти даромад → санҷиши вақт → тасдиқ бо рамзи сабти омӯзишӣ. Хатои бандӣ: «Ҷой банд шуд. Вақти дигар интихоб кунед»; дарс нигоҳ дошта мешавад. Интизорӣ: «Мавҷудиятро месанҷем» бе фиристодани такрорӣ. Муваффақият: сана, вақт, ҷой ва бекоркунӣ. Обунаи маркетинг ҷудо ва хомӯш аст.\n\nПайванд: нархи намоён ба P1, маълумоти даромад ба P2, тасдиқ ба P3 ҷавоб медиҳад. Фокус: интихоби вақт → маълумоту шарт → тасдиқ → бекоркунӣ дар натиҷа. Дар хато фокус ба паёми фаҳмо рафта, баъд вақти дигар дастрас аст. Санҷиши воқеии клавиатура ва хонандаи экран нашудааст.",
+            "en": "Flow: class list → card with total price and entrance details → review selected time → confirmation with a practice booking reference. Availability error: “This place is taken. Choose another time”; keep the class selection. Pending: “Checking availability” without duplicate submission. Success shows date, time, location and cancellation action. Marketing subscription is separate and off.\n\nTraceability: visible price addresses P1, entrance information P2, and confirmation P3. Focus order: time choice → details and terms → confirmation → cancellation link on the result. For an error, move focus to its understandable message, followed by the replacement time choice. Real keyboard and screen-reader tests have not yet run."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "ux-pro-day-02-q01",
+          "question": {
+            "ru": "Как вести себя при потере доступного места?",
+            "tg": "Ҳангоми банд шудани ҷой чӣ кардан дуруст аст?",
+            "en": "What should happen when a selected place becomes unavailable?"
+          },
+          "answer": {
+            "ru": "Сохранить выбор занятия и предложить другое время.",
+            "tg": "Интихоби дарсро нигоҳ дошта, вақти дигар пешниҳод кардан.",
+            "en": "Keep the class selection and offer another time."
+          },
+          "options": [
+            {
+              "ru": "Стереть всё и показать только красный экран.",
+              "tg": "Ҳамаро пок карда, танҳо экрани сурх нишон додан.",
+              "en": "Erase everything and show only a red screen."
+            },
+            {
+              "ru": "Сохранить выбор занятия и предложить другое время.",
+              "tg": "Интихоби дарсро нигоҳ дошта, вақти дигар пешниҳод кардан.",
+              "en": "Keep the class selection and offer another time."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Свяжите три решения прототипа с P1, P2 и P3.\n2. Опишите минимум четыре экрана или состояния и переходы.\n3. Добавьте ожидание, ошибку с сохранением данных и подтверждение.\n4. Укажите подписи действий, порядок клавиатурного фокуса и честное ограничение проверки доступности.",
+          "tg": "1. Се қарори прототипро ба P1, P2 ва P3 пайваст кунед.\n2. Камаш чор экран ё ҳолат ва гузаришҳоро нависед.\n3. Интизорӣ, хатои бо нигоҳдории дода ва тасдиқ илова кунед.\n4. Номи амал, тартиби фокуси клавиатура ва маҳдудияти ростини санҷиши дастрасиро гӯед.",
+          "en": "1. Link three prototype decisions to P1, P2 and P3.\n2. Describe at least four screens or states and transitions.\n3. Include pending, recoverable error and confirmation states.\n4. State action labels, keyboard-focus order and an honest accessibility-testing limitation."
+        },
+        "hint": {
+          "ru": "Ошибка должна предлагать продолжение, не стирая всю работу.",
+          "tg": "Хато бояд роҳи идомаро бе пок кардани ҳама кор пешниҳод кунад.",
+          "en": "An error should offer a way forward without erasing all work."
+        },
+        "solution": "Путь: список занятий → карточка с полной ценой и сведениями о входе → проверка выбранного времени → подтверждение с номером учебной записи. Ошибка занятости: «Место уже занято. Выберите другое время»; выбор занятия сохранён. Ожидание: «Проверяем наличие» без повторной отправки. Успех: дата, время, место и действие отмены. Маркетинговая подписка отделена и выключена.\n\nСвязь: видимая цена отвечает P1, сведения о входе — P2, подтверждение — P3. Порядок фокуса: выбор времени → сведения и условия → подтверждение → ссылка отмены на результате. Для ошибки фокус переводится к понятному сообщению, после него доступен выбор нового времени. Проверки реальной клавиатурой и скринридером ещё не проведены.",
+        "referenceAnswer": {
+          "ru": "Путь: список занятий → карточка с полной ценой и сведениями о входе → проверка выбранного времени → подтверждение с номером учебной записи. Ошибка занятости: «Место уже занято. Выберите другое время»; выбор занятия сохранён. Ожидание: «Проверяем наличие» без повторной отправки. Успех: дата, время, место и действие отмены. Маркетинговая подписка отделена и выключена.\n\nСвязь: видимая цена отвечает P1, сведения о входе — P2, подтверждение — P3. Порядок фокуса: выбор времени → сведения и условия → подтверждение → ссылка отмены на результате. Для ошибки фокус переводится к понятному сообщению, после него доступен выбор нового времени. Проверки реальной клавиатурой и скринридером ещё не проведены.",
+          "tg": "Роҳ: рӯйхати дарс → корт бо нархи пурра ва маълумоти даромад → санҷиши вақт → тасдиқ бо рамзи сабти омӯзишӣ. Хатои бандӣ: «Ҷой банд шуд. Вақти дигар интихоб кунед»; дарс нигоҳ дошта мешавад. Интизорӣ: «Мавҷудиятро месанҷем» бе фиристодани такрорӣ. Муваффақият: сана, вақт, ҷой ва бекоркунӣ. Обунаи маркетинг ҷудо ва хомӯш аст.\n\nПайванд: нархи намоён ба P1, маълумоти даромад ба P2, тасдиқ ба P3 ҷавоб медиҳад. Фокус: интихоби вақт → маълумоту шарт → тасдиқ → бекоркунӣ дар натиҷа. Дар хато фокус ба паёми фаҳмо рафта, баъд вақти дигар дастрас аст. Санҷиши воқеии клавиатура ва хонандаи экран нашудааст.",
+          "en": "Flow: class list → card with total price and entrance details → review selected time → confirmation with a practice booking reference. Availability error: “This place is taken. Choose another time”; keep the class selection. Pending: “Checking availability” without duplicate submission. Success shows date, time, location and cancellation action. Marketing subscription is separate and off.\n\nTraceability: visible price addresses P1, entrance information P2, and confirmation P3. Focus order: time choice → details and terms → confirmation → cancellation link on the result. For an error, move focus to its understandable message, followed by the replacement time choice. Real keyboard and screen-reader tests have not yet run."
+        },
+        "criteria": [
+          {
+            "ru": "Решения связаны с тремя исходными сигналами.",
+            "tg": "Қарорҳо ба се аломати аслӣ пайвастанд.",
+            "en": "Decisions trace to all three original signals."
+          },
+          {
+            "ru": "Есть минимум четыре состояния и явный путь восстановления.",
+            "tg": "Камаш чор ҳолат ва роҳи равшани ислоҳ ҳаст.",
+            "en": "At least four states and a clear recovery path are included."
+          },
+          {
+            "ru": "Полная цена, согласие и ограничения доступности описаны честно.",
+            "tg": "Нархи пурра, розигӣ ва маҳдудияти дастрасӣ рост гуфта шудаанд.",
+            "en": "Price, consent and accessibility limits are honestly described."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ux-pro-day-03",
+      "day": 3,
+      "prerequisiteDays": [
+        2
+      ],
+      "title": {
+        "ru": "День 3: критика, приоритет и повторная проверка",
+        "tg": "Рӯзи 3: таҳлил, афзалият ва санҷиши такрорӣ",
+        "en": "Day 3: critique, prioritize and retest"
+      },
+      "summary": {
+        "ru": "Завершите прикладной кейс журналом дефектов и планом проверки изменений. Отделите экспертный просмотр от настоящего пользовательского тестирования и не выдавайте черновик за подтверждённый релиз.",
+        "tg": "Кейси амалиро бо журнали нуқсон ва нақшаи санҷиши тағйир тамом кунед. Баррасии коршиносро аз санҷиши корбар ҷудо карда, сиёҳнависро нашри тасдиқшуда нагӯед.",
+        "en": "Complete the case with an issue log and a plan to verify changes. Distinguish expert review from real user testing and do not call a draft an approved release."
+      },
+      "level": "intermediate",
+      "sourceIds": [
+        "ux-pro-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Для дефекта запишите шаг воспроизведения, наблюдаемую проблему, влияние, серьёзность, исправление и повторную проверку. Приоритет зависит от влияния на основную задачу и возможности восстановиться, а не только от вкуса. Экспертный проход по прототипу выявляет вероятные барьеры, но не заменяет наблюдение реальных пользователей. Закрывайте дефект только после оговорённой проверки; если она не выполнена, статус остаётся открытым.",
+            "tg": "Барои нуқсон қадам, мушкил, таъсир, ҷиддият, ислоҳ ва санҷиши такрориро нависед. Афзалият аз таъсири вазифаи асосӣ ва роҳи ислоҳ вобаста аст, на танҳо завқ. Баррасии прототип монеаи эҳтимолиро меёбад, вале мушоҳидаи корбари воқеиро иваз намекунад. Нуқсонро танҳо баъди санҷиши мувофиқ пӯшед; агар нашуд, кушода монад.",
+            "en": "For each issue, record reproduction steps, observation, impact, severity, fix and retest. Priority depends on impact on the main task and recoverability, not taste alone. Expert walkthroughs identify likely barriers but do not replace observation of real users. Close an issue only after the agreed check; otherwise leave it open."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Журнал: UX-01 — после отправки нет подтверждения; риск повторной записи; высокий приоритет; добавить явный статус и защиту повторного действия; проверка — участник объясняет результат без подсказки. UX-02 — название кнопки «Далее» перед завершением; средний приоритет; заменить на «Подтвердить запись»; проверить ожидаемый результат до нажатия. Оба дефекта пока «к проверке», реальных тестов не проводили.\n\nПовторная проверка: 1) на обновлённом прототипе дать нейтральную задачу записи; 2) попросить объяснить итог и ожидаемый результат кнопки без подсказки; 3) записать выполнение и оставшиеся барьеры, затем пересмотреть приоритеты. Закрытие UX-01: итог понятен без повторной отправки; UX-02: действие кнопки правильно объяснено до нажатия.",
+            "tg": "Журнал: UX-01 — баъди фиристодан тасдиқ нест; хатари сабти такрорӣ; афзалияти баланд; ҳолати равшан ва ҳифзи амали такрорӣ; санҷиш — иштирокчӣ натиҷаро бе ёрӣ фаҳмонад. UX-02 — пеш аз анҷом тугма «Баъдӣ» аст; миёна; ба «Сабтро тасдиқ кунед» иваз шавад; пеш аз пахш натиҷаи интизориро пурсед. Ҳар ду «барои санҷиш» ҳастанд; санҷиши воқеӣ нашуд.\n\nСанҷиши такрорӣ: 1) дар прототипи нав вазифаи бетарафи сабт диҳед; 2) шарҳи натиҷа ва амали тугмаро бе ёрӣ пурсед; 3) иҷро ва монеаҳоро сабт карда, афзалиятро бозбинӣ кунед. Бастани UX-01: натиҷа бе фиристодани такрорӣ фаҳмост; UX-02: амали тугма пеш аз пахш дуруст шарҳ шудааст.",
+            "en": "Log: UX-01 — no confirmation after submission; risk of duplicate booking; high priority; add explicit status and duplicate-action protection; retest — participant explains the result without hints. UX-02 — final button says “Next”; medium priority; change to “Confirm booking”; ask what result is expected before pressing. Both remain “needs verification”; no real tests were run.\n\nRetest: 1) give a neutral booking task on the updated prototype; 2) ask for the outcome and expected button result without hints; 3) record completion and remaining barriers, then revisit priorities. Close UX-01 only when the result is understood without resubmission; close UX-02 when the action is correctly explained before pressing."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "ux-pro-day-03-q01",
+          "question": {
+            "ru": "Когда можно закрыть дефект?",
+            "tg": "Нуқсонро кай пӯшидан мумкин аст?",
+            "en": "When can an issue be closed?"
+          },
+          "answer": {
+            "ru": "После оговорённой проверки критерия закрытия.",
+            "tg": "Баъди санҷиши мувофиқи меъёри бастан.",
+            "en": "After the agreed closure criterion is verified."
+          },
+          "options": [
+            {
+              "ru": "Когда описание исправления написано.",
+              "tg": "Ҳамин ки тавсифи ислоҳ навишта шуд.",
+              "en": "When a fix description is written."
+            },
+            {
+              "ru": "После оговорённой проверки критерия закрытия.",
+              "tg": "Баъди санҷиши мувофиқи меъёри бастан.",
+              "en": "After the agreed closure criterion is verified."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Проведите текстовый экспертный проход по вчерашнему прототипу.\n2. Опишите два разных дефекта со шагами, влиянием и приоритетом.\n3. Для каждого предложите исправление и проверяемый критерий закрытия.\n4. Подготовьте план повторной проверки и статус; не заявляйте о непроведённых тестах.",
+          "tg": "1. Прототипи дирӯзаро матнан баррасӣ кунед.\n2. Ду нуқсони гуногунро бо қадам, таъсир ва афзалият нависед.\n3. Барои ҳар кадом ислоҳ ва меъёри санҷишшавандаи бастан пешниҳод кунед.\n4. Нақшаи санҷиши такрорӣ ва ҳолатро созед; санҷиши нашударо нагӯед.",
+          "en": "1. Perform a textual expert walkthrough of yesterday’s prototype.\n2. Describe two distinct issues with steps, impact and priority.\n3. Propose a fix and verifiable closure condition for each.\n4. Prepare a retest plan and status; do not claim tests that were not run."
+        },
+        "hint": {
+          "ru": "«Исправлено в описании» и «проверено пользователем» — разные состояния.",
+          "tg": "«Дар тавсиф ислоҳ шуд» ва «корбар санҷид» ҳолатҳои гуногунанд.",
+          "en": "“Changed in the description” and “verified by a user” are different states."
+        },
+        "solution": "Журнал: UX-01 — после отправки нет подтверждения; риск повторной записи; высокий приоритет; добавить явный статус и защиту повторного действия; проверка — участник объясняет результат без подсказки. UX-02 — название кнопки «Далее» перед завершением; средний приоритет; заменить на «Подтвердить запись»; проверить ожидаемый результат до нажатия. Оба дефекта пока «к проверке», реальных тестов не проводили.\n\nПовторная проверка: 1) на обновлённом прототипе дать нейтральную задачу записи; 2) попросить объяснить итог и ожидаемый результат кнопки без подсказки; 3) записать выполнение и оставшиеся барьеры, затем пересмотреть приоритеты. Закрытие UX-01: итог понятен без повторной отправки; UX-02: действие кнопки правильно объяснено до нажатия.",
+        "referenceAnswer": {
+          "ru": "Журнал: UX-01 — после отправки нет подтверждения; риск повторной записи; высокий приоритет; добавить явный статус и защиту повторного действия; проверка — участник объясняет результат без подсказки. UX-02 — название кнопки «Далее» перед завершением; средний приоритет; заменить на «Подтвердить запись»; проверить ожидаемый результат до нажатия. Оба дефекта пока «к проверке», реальных тестов не проводили.\n\nПовторная проверка: 1) на обновлённом прототипе дать нейтральную задачу записи; 2) попросить объяснить итог и ожидаемый результат кнопки без подсказки; 3) записать выполнение и оставшиеся барьеры, затем пересмотреть приоритеты. Закрытие UX-01: итог понятен без повторной отправки; UX-02: действие кнопки правильно объяснено до нажатия.",
+          "tg": "Журнал: UX-01 — баъди фиристодан тасдиқ нест; хатари сабти такрорӣ; афзалияти баланд; ҳолати равшан ва ҳифзи амали такрорӣ; санҷиш — иштирокчӣ натиҷаро бе ёрӣ фаҳмонад. UX-02 — пеш аз анҷом тугма «Баъдӣ» аст; миёна; ба «Сабтро тасдиқ кунед» иваз шавад; пеш аз пахш натиҷаи интизориро пурсед. Ҳар ду «барои санҷиш» ҳастанд; санҷиши воқеӣ нашуд.\n\nСанҷиши такрорӣ: 1) дар прототипи нав вазифаи бетарафи сабт диҳед; 2) шарҳи натиҷа ва амали тугмаро бе ёрӣ пурсед; 3) иҷро ва монеаҳоро сабт карда, афзалиятро бозбинӣ кунед. Бастани UX-01: натиҷа бе фиристодани такрорӣ фаҳмост; UX-02: амали тугма пеш аз пахш дуруст шарҳ шудааст.",
+          "en": "Log: UX-01 — no confirmation after submission; risk of duplicate booking; high priority; add explicit status and duplicate-action protection; retest — participant explains the result without hints. UX-02 — final button says “Next”; medium priority; change to “Confirm booking”; ask what result is expected before pressing. Both remain “needs verification”; no real tests were run.\n\nRetest: 1) give a neutral booking task on the updated prototype; 2) ask for the outcome and expected button result without hints; 3) record completion and remaining barriers, then revisit priorities. Close UX-01 only when the result is understood without resubmission; close UX-02 when the action is correctly explained before pressing."
+        },
+        "criteria": [
+          {
+            "ru": "Два дефекта воспроизводимы и приоритет обоснован влиянием.",
+            "tg": "Ду нуқсон такроршаванда ва афзалият аз таъсир асоснок аст.",
+            "en": "Two issues are reproducible and prioritized by impact."
+          },
+          {
+            "ru": "Каждое исправление имеет измеримый критерий закрытия.",
+            "tg": "Ҳар ислоҳ меъёри ченшавандаи бастан дорад.",
+            "en": "Each fix has a measurable closure condition."
+          },
+          {
+            "ru": "Статус различает план, изменение и фактически проведённую проверку.",
+            "tg": "Ҳолат нақша, тағйир ва санҷиши гузаштаро ҷудо мекунад.",
+            "en": "Status distinguishes plans, changes and checks actually run."
+          }
+        ]
+      }
+    }
+  ]
+}

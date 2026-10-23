@@ -1,0 +1,259 @@
+{
+  "courseId": "sql",
+  "sources": [
+    {
+      "id": "sql-official",
+      "title": "SQL — official documentation",
+      "url": "https://www.sqlite.org/lang.html"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "sql-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "SQL: таблица и SELECT",
+        "tg": "SQL: ҷадвал ва SELECT",
+        "en": "SQL: a table and SELECT"
+      },
+      "summary": {
+        "ru": "День 1 из 2. SQL: таблица и SELECT. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. SQL: ҷадвал ва SELECT. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. SQL: a table and SELECT. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "sql-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Используем SQLite и временную базу :memory:, чтобы не менять рабочие данные. CREATE TABLE задаёт столбцы и ограничения; INSERT добавляет строку; SELECT выбирает данные. INTEGER хранит целые числа. Для учебного запроса используем фиксированные значения, не пользовательский ввод.",
+            "tg": "SQLite ва пойгоҳи муваққатии :memory:-ро истифода мебарем, то додаҳои корӣ тағйир наёбанд. CREATE TABLE сутунҳо ва маҳдудиятҳоро муайян мекунад; INSERT сатр илова мекунад; SELECT додаҳоро интихоб мекунад. INTEGER ададҳои бутунро нигоҳ медорад. Дар дархости омӯзишӣ қиматҳои собит ҳастанд, на вуруди корбар.",
+            "en": "Use SQLite with the temporary :memory: database to avoid changing real data. CREATE TABLE defines columns and constraints; INSERT adds a row; SELECT retrieves data. INTEGER stores whole numbers. This teaching query uses fixed values, not user input."
+          },
+          "code": "CREATE TABLE products (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  price INTEGER NOT NULL CHECK (price >= 0)\n);\nINSERT INTO products (id, name, price) VALUES (1, 'Tea', 12);\nSELECT name, price * 3 AS total FROM products WHERE id = 1;\n",
+          "language": "sql",
+          "output": {
+            "ru": "Tea|36",
+            "tg": "Tea|36",
+            "en": "Tea|36"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните lesson.sql в отдельной учебной папке и выполните в её терминале:\nsqlite3 :memory: < lesson.sql\nОжидаемый вывод:\nTea|36\n\nИзмените количество 3 на 0: Tea|0. Для id=99 строк быть не должно. В приложении передавайте значения параметрами драйвера, а не склеивайте SQL.",
+            "tg": "lesson.sql-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nsqlite3 :memory: < lesson.sql\nНатиҷаи интизорӣ:\nTea|36\n\nШумораи 3-ро 0 кунед: Tea|0. Барои id=99 набояд сатр бошад. Дар барнома қиматҳоро бо параметрҳои драйвер диҳед, на бо якҷоякунии SQL.",
+            "en": "Save lesson.sql in a separate learning folder and run in that folder's terminal:\nsqlite3 :memory: < lesson.sql\nExpected output:\nTea|36\n\nChange quantity 3 to 0: Tea|0. Query id=99: expect no rows. In an application bind values with driver parameters rather than concatenating SQL."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "sql-day-01-q",
+          "question": {
+            "ru": "Что ограничивает WHERE id = 1?",
+            "tg": "WHERE id = 1 чиро маҳдуд мекунад?",
+            "en": "What does WHERE id = 1 restrict?"
+          },
+          "answer": {
+            "ru": "Строки, попавшие в результат",
+            "tg": "Сатрҳои ба натиҷа дохилшуда",
+            "en": "Which rows enter the result"
+          },
+          "options": [
+            {
+              "ru": "Число столбцов таблицы",
+              "tg": "Шумораи сутунҳои ҷадвал",
+              "en": "The table column count"
+            },
+            {
+              "ru": "Строки, попавшие в результат",
+              "tg": "Сатрҳои ба натиҷа дохилшуда",
+              "en": "Which rows enter the result"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните lesson.sql в отдельной учебной папке и выполните в её терминале:\nsqlite3 :memory: < lesson.sql\nОжидаемый вывод:\nTea|36\n\nИзмените количество 3 на 0: Tea|0. Для id=99 строк быть не должно. В приложении передавайте значения параметрами драйвера, а не склеивайте SQL.",
+          "tg": "lesson.sql-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nsqlite3 :memory: < lesson.sql\nНатиҷаи интизорӣ:\nTea|36\n\nШумораи 3-ро 0 кунед: Tea|0. Барои id=99 набояд сатр бошад. Дар барнома қиматҳоро бо параметрҳои драйвер диҳед, на бо якҷоякунии SQL.",
+          "en": "Save lesson.sql in a separate learning folder and run in that folder's terminal:\nsqlite3 :memory: < lesson.sql\nExpected output:\nTea|36\n\nChange quantity 3 to 0: Tea|0. Query id=99: expect no rows. In an application bind values with driver parameters rather than concatenating SQL."
+        },
+        "hint": {
+          "ru": "Используем SQLite и временную базу :memory:, чтобы не менять рабочие данные. CREATE TABLE задаёт столбцы и ограничения; INSERT добавляет строку; SELECT выбирает данные. INTEGER хранит целые числа. Для учебного запроса используем фиксированные значения, не пользовательский ввод.",
+          "tg": "SQLite ва пойгоҳи муваққатии :memory:-ро истифода мебарем, то додаҳои корӣ тағйир наёбанд. CREATE TABLE сутунҳо ва маҳдудиятҳоро муайян мекунад; INSERT сатр илова мекунад; SELECT додаҳоро интихоб мекунад. INTEGER ададҳои бутунро нигоҳ медорад. Дар дархости омӯзишӣ қиматҳои собит ҳастанд, на вуруди корбар.",
+          "en": "Use SQLite with the temporary :memory: database to avoid changing real data. CREATE TABLE defines columns and constraints; INSERT adds a row; SELECT retrieves data. INTEGER stores whole numbers. This teaching query uses fixed values, not user input."
+        },
+        "solution": "CREATE TABLE products (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  price INTEGER NOT NULL CHECK (price >= 0)\n);\nINSERT INTO products (id, name, price) VALUES (1, 'Tea', 12);\nSELECT name, price * 3 AS total FROM products WHERE id = 1;\n",
+        "criteria": [
+          {
+            "ru": "Файл lesson.sql выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли lesson.sql бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run lesson.sql using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Измените количество 3 на 0: Tea|0. Для id=99 строк быть не должно. В приложении передавайте значения параметрами драйвера, а не склеивайте SQL.",
+            "tg": "Шумораи 3-ро 0 кунед: Tea|0. Барои id=99 набояд сатр бошад. Дар барнома қиматҳоро бо параметрҳои драйвер диҳед, на бо якҷоякунии SQL.",
+            "en": "Change quantity 3 to 0: Tea|0. Query id=99: expect no rows. In an application bind values with driver parameters rather than concatenating SQL."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sql-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "SQL: безопасное изменение остатка",
+        "tg": "SQL: тағйири бехатари бақия",
+        "en": "SQL: a guarded stock update"
+      },
+      "summary": {
+        "ru": "День 2 из 2. SQL: безопасное изменение остатка. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. SQL: тағйири бехатари бақия. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. SQL: a guarded stock update. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "sql-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "UPDATE меняет подходящие строки. Условие stock >= 2 не позволяет списать больше имеющегося. CHECK защищает таблицу от отрицательного остатка. changes() сообщает число строк предыдущего UPDATE. Каждый пример создаёт новую базу в памяти; это не работающая товарная система.",
+            "tg": "UPDATE сатрҳои мувофиқро тағйир медиҳад. Шарти stock >= 2 аз бақия зиёд кам карданро манъ мекунад. CHECK ҷадвалро аз бақияи манфӣ муҳофизат мекунад. changes() шумораи сатрҳои UPDATE-и пешинаро медиҳад. Ҳар мисол пойгоҳи нави хотиравӣ месозад; ин низоми воқеии анбор нест.",
+            "en": "UPDATE changes matching rows. The stock >= 2 condition prevents subtracting more than is available. CHECK protects against negative stock. changes() reports rows affected by the previous UPDATE. Each example creates a fresh in-memory database; this is not a production inventory system."
+          },
+          "code": "CREATE TABLE products (id INTEGER PRIMARY KEY, stock INTEGER NOT NULL CHECK (stock >= 0));\nINSERT INTO products VALUES (1, 5);\nUPDATE products SET stock = stock - 2 WHERE id = 1 AND stock >= 2;\nSELECT stock FROM products WHERE id = 1;\nUPDATE products SET stock = stock - 9 WHERE id = 1 AND stock >= 9;\nSELECT changes();\n",
+          "language": "sql",
+          "output": {
+            "ru": "3\n0",
+            "tg": "3\n0",
+            "en": "3\n0"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните lesson.sql в отдельной учебной папке и выполните в её терминале:\nsqlite3 :memory: < lesson.sql\nОжидаемый вывод:\n3\n0\n\nИзмените первое списание на 5 с условием stock >= 5: остаток 0. Повторное списание должно изменить 0 строк.",
+            "tg": "lesson.sql-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nsqlite3 :memory: < lesson.sql\nНатиҷаи интизорӣ:\n3\n0\n\nКамкунии аввалро 5 ва шартро stock >= 5 кунед: бақия 0. Камкунии такрорӣ бояд 0 сатрро тағйир диҳад.",
+            "en": "Save lesson.sql in a separate learning folder and run in that folder's terminal:\nsqlite3 :memory: < lesson.sql\nExpected output:\n3\n0\n\nChange the first subtraction to 5 with stock >= 5: stock becomes 0. Another subtraction must affect 0 rows."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "sql-day-02-q",
+          "question": {
+            "ru": "Как узнать, что условный UPDATE не нашёл строк?",
+            "tg": "Чӣ тавр фаҳмем, ки UPDATE-и шартӣ сатр наёфт?",
+            "en": "How can you tell the guarded UPDATE matched no rows?"
+          },
+          "answer": {
+            "ru": "changes() возвращает 0",
+            "tg": "changes() қимати 0 медиҳад",
+            "en": "changes() returns 0"
+          },
+          "options": [
+            {
+              "ru": "SELECT всегда возвращает true",
+              "tg": "SELECT ҳамеша true медиҳад",
+              "en": "SELECT always returns true"
+            },
+            {
+              "ru": "changes() возвращает 0",
+              "tg": "changes() қимати 0 медиҳад",
+              "en": "changes() returns 0"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните lesson.sql в отдельной учебной папке и выполните в её терминале:\nsqlite3 :memory: < lesson.sql\nОжидаемый вывод:\n3\n0\n\nИзмените первое списание на 5 с условием stock >= 5: остаток 0. Повторное списание должно изменить 0 строк.",
+          "tg": "lesson.sql-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nsqlite3 :memory: < lesson.sql\nНатиҷаи интизорӣ:\n3\n0\n\nКамкунии аввалро 5 ва шартро stock >= 5 кунед: бақия 0. Камкунии такрорӣ бояд 0 сатрро тағйир диҳад.",
+          "en": "Save lesson.sql in a separate learning folder and run in that folder's terminal:\nsqlite3 :memory: < lesson.sql\nExpected output:\n3\n0\n\nChange the first subtraction to 5 with stock >= 5: stock becomes 0. Another subtraction must affect 0 rows."
+        },
+        "hint": {
+          "ru": "UPDATE меняет подходящие строки. Условие stock >= 2 не позволяет списать больше имеющегося. CHECK защищает таблицу от отрицательного остатка. changes() сообщает число строк предыдущего UPDATE. Каждый пример создаёт новую базу в памяти; это не работающая товарная система.",
+          "tg": "UPDATE сатрҳои мувофиқро тағйир медиҳад. Шарти stock >= 2 аз бақия зиёд кам карданро манъ мекунад. CHECK ҷадвалро аз бақияи манфӣ муҳофизат мекунад. changes() шумораи сатрҳои UPDATE-и пешинаро медиҳад. Ҳар мисол пойгоҳи нави хотиравӣ месозад; ин низоми воқеии анбор нест.",
+          "en": "UPDATE changes matching rows. The stock >= 2 condition prevents subtracting more than is available. CHECK protects against negative stock. changes() reports rows affected by the previous UPDATE. Each example creates a fresh in-memory database; this is not a production inventory system."
+        },
+        "solution": "CREATE TABLE products (id INTEGER PRIMARY KEY, stock INTEGER NOT NULL CHECK (stock >= 0));\nINSERT INTO products VALUES (1, 5);\nUPDATE products SET stock = stock - 2 WHERE id = 1 AND stock >= 2;\nSELECT stock FROM products WHERE id = 1;\nUPDATE products SET stock = stock - 9 WHERE id = 1 AND stock >= 9;\nSELECT changes();\n",
+        "criteria": [
+          {
+            "ru": "Файл lesson.sql выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли lesson.sql бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run lesson.sql using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Измените первое списание на 5 с условием stock >= 5: остаток 0. Повторное списание должно изменить 0 строк.",
+            "tg": "Камкунии аввалро 5 ва шартро stock >= 5 кунед: бақия 0. Камкунии такрорӣ бояд 0 сатрро тағйир диҳад.",
+            "en": "Change the first subtraction to 5 with stock >= 5: stock becomes 0. Another subtraction must affect 0 rows."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

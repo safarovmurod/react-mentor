@@ -1,0 +1,243 @@
+{
+  "courseId": "ux-design",
+  "sources": [
+    {
+      "id": "ux-design-reference",
+      "title": "W3C WAI — Involving Users in Web Projects",
+      "url": "https://www.w3.org/WAI/planning/involving-users/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "ux-design-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: задача пользователя",
+        "tg": "Рӯзи 1: вазифаи корбар",
+        "en": "Day 1: the user’s task"
+      },
+      "summary": {
+        "ru": "Первый из двух вводных уроков UX: отделите наблюдение от предположения и сформулируйте проблему человека. Результат — короткое описание задачи, а не красивый макет.",
+        "tg": "Дарси аввали ду дарси муқаддимавии UX: мушоҳидаро аз тахмин ҷудо карда, мушкили шахсро муайян кунед. Натиҷа шарҳи кӯтоҳи вазифа аст, на макети зебо.",
+        "en": "First of two introductory UX lessons: separate an observation from an assumption and define a person’s problem. Deliver a short task description, not a polished mockup."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "ux-design-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "UX начинается с того, что человек пытается сделать и что ему мешает. Записывайте контекст, действие и наблюдаемый барьер. Фраза «пользователи ленивые» — оценка, не факт. Фраза «три участника не нашли время встречи» — наблюдение, если вы действительно провели проверку. В учебном сценарии помечайте все данные как вымышленные. Не собирайте имена, телефоны или медицинские данные.",
+            "tg": "UX аз ҳадафи шахс ва монеаи ӯ оғоз мешавад. Вазъият, амал ва монеаи мушоҳидашударо сабт кунед. «Корбарон танбаланд» баҳогузорист, на далел. «Се иштирокчӣ вақти вохӯриро наёфтанд» танҳо баъди санҷиши воқеӣ мушоҳида аст. Дар машқ ҳамаи додаҳоро сохта номбар кунед. Ном, телефон ё маълумоти тиббӣ ҷамъ накунед.",
+            "en": "UX starts with what a person is trying to do and what gets in the way. Record context, action and an observable barrier. “Users are lazy” is a judgment, not a fact. “Three participants could not find the meeting time” is an observation only if the test actually happened. Label practice data as fictional. Do not collect names, phone numbers or medical data."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Учебный сценарий: посетитель библиотеки ищет свободное время для бронирования комнаты с телефона. Проблема: доступные часы скрыты после длинного описания. Предположение: список времени ближе к началу поможет. Проверка: дать участнику задачу найти ближайший свободный час и записать, справился ли он без подсказки. Пока проверка не проведена, успех не заявляем.",
+            "tg": "Вазъияти сохта: меҳмони китобхона аз телефон вақти холии ҳуҷраро меҷӯяд. Мушкил: соатҳои дастрас баъди тавсифи дароз пинҳонанд. Тахмин: рӯйхати вақт дар аввал ёрӣ медиҳад. Санҷиш: аз иштирокчӣ ёфтани соати наздиктарини холиро пурсед ва сабт кунед, ки бе ёрӣ ёфт ё не. То санҷиш натиҷаи муваффақ эълон намешавад.",
+            "en": "Fictional scenario: a library visitor uses a phone to find a free room slot. Problem: available hours are hidden below a long description. Hypothesis: placing slots earlier will help. Test: ask a participant to find the next available hour and record whether they succeed without hints. Do not claim success before testing."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "ux-design-day-01-q01",
+          "question": {
+            "ru": "Что является предположением, а не наблюдением?",
+            "tg": "Кадомаш тахмин аст, на мушоҳида?",
+            "en": "Which is a hypothesis rather than an observation?"
+          },
+          "answer": {
+            "ru": "Новая кнопка поможет быстрее найти время.",
+            "tg": "Тугмаи нав вақтро зудтар меёбонад.",
+            "en": "A new button will help people find a slot faster."
+          },
+          "options": [
+            {
+              "ru": "Пользователь открыл расписание.",
+              "tg": "Корбар ҷадвалро кушод.",
+              "en": "The user opened the timetable."
+            },
+            {
+              "ru": "Новая кнопка поможет быстрее найти время.",
+              "tg": "Тугмаи нав вақтро зудтар меёбонад.",
+              "en": "A new button will help people find a slot faster."
+            },
+            {
+              "ru": "Во время проверки пользователь вернулся назад.",
+              "tg": "Ҳангоми санҷиш корбар баргашт.",
+              "en": "During the test the user went back."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Выберите вымышленный сервис: библиотеку, расписание или список покупок.\n2. Опишите человека без персональных данных и одну его задачу.\n3. Запишите один барьер и отдельно одно предположение о решении.\n4. Составьте нейтральную инструкцию для проверки и измеримый признак успеха.",
+          "tg": "1. Хидмати сохта интихоб кунед: китобхона, ҷадвал ё рӯйхати харид.\n2. Шахсро бе маълумоти шахсӣ ва як вазифаи ӯро шарҳ диҳед.\n3. Як монеа ва алоҳида як тахмини ҳалли онро нависед.\n4. Дастури бетарафи санҷиш ва аломати ченшавандаи муваффақият созед.",
+          "en": "1. Choose a fictional library, timetable or shopping-list service.\n2. Describe a person without personal information and one task.\n3. Record one barrier and one separate solution hypothesis.\n4. Write a neutral test instruction and a measurable success condition."
+        },
+        "hint": {
+          "ru": "Не называйте кнопку в инструкции: «найдите свободное время» нейтральнее, чем «нажмите синюю кнопку».",
+          "tg": "Дар дастур номи тугмаро нагӯед: «вақти холиро ёбед» аз «тугмаи кабудро пахш кунед» бетарафтар аст.",
+          "en": "Do not name the button in the instruction: “find a free slot” is more neutral than “press the blue button”."
+        },
+        "solution": "Учебный сценарий: посетитель библиотеки ищет свободное время для бронирования комнаты с телефона. Проблема: доступные часы скрыты после длинного описания. Предположение: список времени ближе к началу поможет. Проверка: дать участнику задачу найти ближайший свободный час и записать, справился ли он без подсказки. Пока проверка не проведена, успех не заявляем.",
+        "referenceAnswer": {
+          "ru": "Учебный сценарий: посетитель библиотеки ищет свободное время для бронирования комнаты с телефона. Проблема: доступные часы скрыты после длинного описания. Предположение: список времени ближе к началу поможет. Проверка: дать участнику задачу найти ближайший свободный час и записать, справился ли он без подсказки. Пока проверка не проведена, успех не заявляем.",
+          "tg": "Вазъияти сохта: меҳмони китобхона аз телефон вақти холии ҳуҷраро меҷӯяд. Мушкил: соатҳои дастрас баъди тавсифи дароз пинҳонанд. Тахмин: рӯйхати вақт дар аввал ёрӣ медиҳад. Санҷиш: аз иштирокчӣ ёфтани соати наздиктарини холиро пурсед ва сабт кунед, ки бе ёрӣ ёфт ё не. То санҷиш натиҷаи муваффақ эълон намешавад.",
+          "en": "Fictional scenario: a library visitor uses a phone to find a free room slot. Problem: available hours are hidden below a long description. Hypothesis: placing slots earlier will help. Test: ask a participant to find the next available hour and record whether they succeed without hints. Do not claim success before testing."
+        },
+        "criteria": [
+          {
+            "ru": "Есть конкретная задача и контекст пользователя.",
+            "tg": "Вазифа ва вазъияти мушаххаси корбар ҳаст.",
+            "en": "A specific user task and context are defined."
+          },
+          {
+            "ru": "Наблюдение отделено от предположения.",
+            "tg": "Мушоҳида аз тахмин ҷудо аст.",
+            "en": "Observation is separated from hypothesis."
+          },
+          {
+            "ru": "Проверка не подсказывает ответ и имеет признак успеха.",
+            "tg": "Санҷиш ҷавобро намегӯяд ва аломати муваффақият дорад.",
+            "en": "The test avoids hints and defines success."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ux-design-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: понятный путь и проверка",
+        "tg": "Рӯзи 2: роҳи фаҳмо ва санҷиш",
+        "en": "Day 2: a clear flow and test"
+      },
+      "summary": {
+        "ru": "Продолжите вчерашнюю задачу: нарисуйте три состояния экрана, включая ошибку, и подготовьте короткую проверку удобства. Это вводная практика, а не профессиональная сертификация дизайнера.",
+        "tg": "Вазифаи дирӯзаро идома диҳед: се ҳолати экран, аз ҷумла хаторо кашида, санҷиши кӯтоҳи қулайиро омода кунед. Ин машқи муқаддимавист, на шаҳодатномаи касбии тарроҳ.",
+        "en": "Continue yesterday’s task: sketch three screen states, including an error, and prepare a short usability check. This is introductory practice, not a professional design qualification."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "ux-design-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Путь пользователя включает начало, действие и результат. Покажите состояние загрузки, пустой результат или ошибку там, где они возможны. Подпись должна говорить о действии, например «Забронировать», а ошибка — объяснять исправление. Не обозначайте проблему только красным цветом. Бумажного рисунка достаточно: код не нужен.",
+            "tg": "Роҳи корбар оғоз, амал ва натиҷа дорад. Дар ҷои зарурӣ боршавӣ, натиҷаи холӣ ё хаторо нишон диҳед. Матни тугма амалро гӯяд, масалан «Банд кардан»; хато роҳи ислоҳро фаҳмонад. Танҳо ранги сурхро истифода набаред. Расми коғазӣ кофист: код лозим нест.",
+            "en": "A user flow has a start, action and result. Include loading, empty or error states where relevant. Labels should name the action, such as “Book”; errors should explain recovery. Do not communicate a problem through red color alone. A paper sketch is enough: no code is required."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Экран 1: список времени и кнопка «Выбрать». Экран 2: выбранный час и подтверждение. Ошибка: «Это время уже занято. Выберите другое» и возврат к списку. Проверка: найти час, подтвердить и объяснить результат. Запись результата: выполнено самостоятельно / нужна подсказка; замечание записывается без имени участника.",
+            "tg": "Экран 1: рӯйхати вақт ва «Интихоб». Экран 2: соати интихобшуда ва тасдиқ. Хато: «Ин вақт банд шуд. Дигарашро интихоб кунед» ва бозгашт ба рӯйхат. Санҷиш: вақтро ёбед, тасдиқ кунед ва натиҷаро фаҳмонед. Натиҷа: мустақил / бо ёрӣ; қайд бе номи иштирокчӣ сабт мешавад.",
+            "en": "Screen 1: time slots and “Select”. Screen 2: chosen hour and confirmation. Error: “This slot is no longer available. Choose another” with a route back. Test: find a slot, confirm it and explain the result. Record independent completion or a hint needed, without the participant’s name."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "ux-design-day-02-q01",
+          "question": {
+            "ru": "Какое сообщение помогает исправить ошибку?",
+            "tg": "Кадом хабар ба ислоҳи хато ёрӣ медиҳад?",
+            "en": "Which error message helps recovery?"
+          },
+          "answer": {
+            "ru": "Время занято. Выберите другой свободный час.",
+            "tg": "Вақт банд аст. Соати дигари холиро интихоб кунед.",
+            "en": "The slot is taken. Choose another available hour."
+          },
+          "options": [
+            {
+              "ru": "Неверно!",
+              "tg": "Нодуруст!",
+              "en": "Wrong!"
+            },
+            {
+              "ru": "Вы опять ошиблись.",
+              "tg": "Шумо боз хато кардед.",
+              "en": "You made another mistake."
+            },
+            {
+              "ru": "Время занято. Выберите другой свободный час.",
+              "tg": "Вақт банд аст. Соати дигари холиро интихоб кунед.",
+              "en": "The slot is taken. Choose another available hour."
+            }
+          ],
+          "correctIndex": 2
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Используйте задачу первого дня.\n2. Опишите три состояния: начало, успех и восстанавливаемая ошибка.\n3. Напишите подписи действий и текст ошибки без обвинений.\n4. Составьте план проверки из трёх шагов; отдельно отметьте, проводилась ли она реально.",
+          "tg": "1. Вазифаи рӯзи аввалро истифода баред.\n2. Се ҳолатро нависед: оғоз, муваффақият ва хатои ислоҳшаванда.\n3. Матни амалҳо ва хатои беайбдоркуниро нависед.\n4. Нақшаи сесатҳаи санҷиш созед ва алоҳида гӯед, ки он воқеан гузашт ё не.",
+          "en": "1. Use day one’s task.\n2. Describe a starting, successful and recoverable error state.\n3. Write action labels and a non-blaming error message.\n4. Write a three-step test plan and state whether it was actually run."
+        },
+        "hint": {
+          "ru": "Если нет участника, сдайте план и честно напишите «проверка не проведена».",
+          "tg": "Агар иштирокчӣ набошад, нақшаро супоред ва «санҷиш гузаронда нашуд» нависед.",
+          "en": "If no participant is available, submit the plan and say “test not run”."
+        },
+        "solution": "Экран 1: список времени и кнопка «Выбрать». Экран 2: выбранный час и подтверждение. Ошибка: «Это время уже занято. Выберите другое» и возврат к списку. Проверка: найти час, подтвердить и объяснить результат. Запись результата: выполнено самостоятельно / нужна подсказка; замечание записывается без имени участника.",
+        "referenceAnswer": {
+          "ru": "Экран 1: список времени и кнопка «Выбрать». Экран 2: выбранный час и подтверждение. Ошибка: «Это время уже занято. Выберите другое» и возврат к списку. Проверка: найти час, подтвердить и объяснить результат. Запись результата: выполнено самостоятельно / нужна подсказка; замечание записывается без имени участника.",
+          "tg": "Экран 1: рӯйхати вақт ва «Интихоб». Экран 2: соати интихобшуда ва тасдиқ. Хато: «Ин вақт банд шуд. Дигарашро интихоб кунед» ва бозгашт ба рӯйхат. Санҷиш: вақтро ёбед, тасдиқ кунед ва натиҷаро фаҳмонед. Натиҷа: мустақил / бо ёрӣ; қайд бе номи иштирокчӣ сабт мешавад.",
+          "en": "Screen 1: time slots and “Select”. Screen 2: chosen hour and confirmation. Error: “This slot is no longer available. Choose another” with a route back. Test: find a slot, confirm it and explain the result. Record independent completion or a hint needed, without the participant’s name."
+        },
+        "criteria": [
+          {
+            "ru": "Начало, успех и ошибка связаны в один путь.",
+            "tg": "Оғоз, муваффақият ва хато як роҳ доранд.",
+            "en": "Starting, success and error states form a connected flow."
+          },
+          {
+            "ru": "Ошибка объясняет способ продолжить.",
+            "tg": "Хато роҳи идомаро шарҳ медиҳад.",
+            "en": "The error explains how to continue."
+          },
+          {
+            "ru": "План проверки и фактический результат не смешаны.",
+            "tg": "Нақша ва натиҷаи воқеии санҷиш омехта нестанд.",
+            "en": "The test plan is distinguished from actual results."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { CalendarDays, BookOpen, BookOpenCheck, Code2, ListChecks, NotebookPen, Settings2, X, ArrowUpRight, Layers } from 'lucide-react';
+import { CalendarDays, BookOpen, BookOpenCheck, Code2, ListChecks, NotebookPen, Settings2, X, ArrowUpRight, Layers, Crown, MessagesSquare } from 'lucide-react';
 import { useAppStore } from '@/stores/app-store';
 import { useLearningStore } from '@/stores/learning-store';
 import { COPY } from '@/lib/i18n';
@@ -10,7 +10,8 @@ import learningIndex from '@/content/learning-index.json';
 const LEARNING_TOPICS=learningIndex.topics;
 import { useAccount } from '@/components/account/account-provider';
 import { AccountAvatar } from '@/components/account/account-avatar';
-import { courseName } from '@/content/courses/catalog';
+import { courseDisplayName } from '@/lib/catalog-copy';
+import { COURSE_CATALOG } from '@/content/courses/catalog';
 const items = [
   {key:'plan',href:'/plan',icon:BookOpen},{key:'home',href:'/home',icon:CalendarDays},{key:'practice',href:'/practice',icon:Code2},
   {key:'tests',href:'/tests',icon:ListChecks},{key:'notes',href:'/notes',icon:NotebookPen},{key:'answers',href:'/answers',icon:BookOpenCheck},
@@ -20,7 +21,12 @@ const NAV_LABELS = {
   ru:{open:'Открыть меню',close:'Закрыть меню',navigation:'Навигация по курсу',eyebrow:'ОБУЧЕНИЕ',choose:'Выбрать курс',tests:'Тесты и интервью',answers:'Ответы и интервью',guest:'Гость',personal:'Личный аккаунт',local:'В этом браузере'},
   en:{open:'Open menu',close:'Close menu',navigation:'Course navigation',eyebrow:'WORKSPACE',choose:'Choose course',tests:'Tests & interview',answers:'Answers & interview',guest:'Guest',personal:'Personal account',local:'In this browser'},
   tg:{open:'Кушодани меню',close:'Пӯшидани меню',navigation:'Менюи курс',eyebrow:'ОМӮЗИШ',choose:'Интихоби курс',tests:'Санҷишҳо ва мусоҳиба',answers:'Ҷавобҳо ва мусоҳиба',guest:'Меҳмон',personal:'Аккаунти шахсӣ',local:'Дар ҳамин браузер'},
+  ja:{open:'メニューを開く',close:'メニューを閉じる',navigation:'学習ナビゲーション',eyebrow:'学習',choose:'コースを選ぶ',tests:'テストと面接',answers:'解答と面接',guest:'ゲスト',personal:'個人アカウント',local:'このブラウザー内'},
+  ko:{open:'메뉴 열기',close:'메뉴 닫기',navigation:'학습 탐색',eyebrow:'학습',choose:'강좌 선택',tests:'테스트 및 면접',answers:'해답 및 면접',guest:'게스트',personal:'개인 계정',local:'이 브라우저에 저장'},
   uk:{open:'Відкрити меню',close:'Закрити меню',navigation:'Навігація курсом',eyebrow:'НАВЧАННЯ',choose:'Обрати курс',tests:'Тести та співбесіда',answers:'Відповіді та співбесіда',guest:'Гість',personal:'Особистий акаунт',local:'У цьому браузері'},
+};
+const EXTRA_NAV = {
+  ru:{plans:'Тарифы',community:'Сообщество'},en:{plans:'Plans',community:'Community'},tg:{plans:'Тарифҳо',community:'Ҷомеа'},uk:{plans:'Тарифи',community:'Спільнота'},ja:{plans:'プラン',community:'コミュニティ'},ko:{plans:'요금제',community:'커뮤니티'},
 };
 export function Sidebar() {
   const account=useAccount();
@@ -58,8 +64,8 @@ export function Sidebar() {
   const month=useLearningStore(state=>state.activeMonth);
   const completed=useLearningStore(state=>state.completedTopics);
   const course=useLearningStore(state=>state.selectedCourse);
-  const courseCount=useLearningStore(state=>course==='react'?0:course==='css'?state.courses.css?.completedTopics.length||0:state.courses[course]?.completedTopics.filter(id=>id.startsWith(course+'-day-')&&state.courses[course]?.completedPractice.includes(id)).length || 0);
-  const courseTotal=course==='css'?5:course==='nextjs'?20:30;
+  const courseCount=useLearningStore(state=>course==='react'?0:state.courses[course]?.confirmedDays.length || 0);
+  const courseTotal=COURSE_CATALOG.find(item=>item.id===course)?.publishedDays ?? (course==='css'?5:course==='nextjs'?20:30);
   const copy=COPY[language];
   const labels=NAV_LABELS[language];
   const reactMonth=month===2?2:1;
@@ -67,9 +73,10 @@ export function Sidebar() {
   const count=LEARNING_TOPICS.filter(topic=>topic.month===reactMonth&&completed.includes(topic.id)).length;
   return <>{open&&<button className="sidebar-overlay" aria-label={labels.close} onClick={()=>setOpen(false)}/>}
     <aside id="learning-sidebar" ref={drawer} className={'sidebar '+(open?'is-open':'')} role={mobile&&open?'dialog':undefined} aria-modal={mobile&&open?true:undefined} aria-label={labels.navigation} inert={mobile&&!open}><div className="sidebar-top"><span className="eyebrow">{labels.eyebrow}</span><button ref={closeButton} className="icon-button mobile-menu" onClick={()=>setOpen(false)} aria-label={labels.close}><X size={20}/></button></div>
-      <Link href="/courses" aria-current={pathname==='/courses'?'page':undefined} className={'nav-item course-switch '+(pathname==='/courses'?'active':'')} onClick={()=>setOpen(false)}><Layers size={18}/><span>{labels.choose}<small>{courseName(course)}</small></span></Link>
-      <nav>{items.map(item=>{const Icon=item.icon;const href=course==='react'&&item.key==='plan'?`/plan/${reactMonth}`:course==='react'&&item.key==='practice'?'/courses/react/practice-library':course==='react'||item.key==='notes'?item.href:`/courses/${course}${item.href}`;const active=pathname===href || (course==='react'&&item.key==='practice'&&pathname==='/practice') || (course==='react'&&item.href==='/answers'&&pathname.startsWith('/answers/')) || (course==='react'&&item.href==='/plan'&&(pathname.startsWith('/lesson/')||pathname.startsWith('/plan/')));return <Link key={item.href} href={href} aria-current={active?'page':undefined} className={'nav-item '+(active?'active':'')} onClick={()=>setOpen(false)}><Icon size={18}/><span>{item.key==='tests'?(labels.tests):item.key==='answers'?(labels.answers):copy[item.key]}</span>{active&&<span className="nav-dot"/>}</Link>;})}
+      <Link href="/courses" aria-current={pathname==='/courses'?'page':undefined} className={'nav-item course-switch '+(pathname==='/courses'?'active':'')} onClick={()=>setOpen(false)}><Layers size={18}/><span>{labels.choose}<small>{courseDisplayName(course,language)}</small></span></Link>
+      <nav>{items.map(item=>{const Icon=item.icon;const href=item.key==='practice'?'/practice':course==='react'&&item.key==='plan'?`/plan/${reactMonth}`:course==='react'||item.key==='notes'?item.href:`/courses/${course}${item.href}`;const active=pathname===href || (course==='react'&&item.key==='practice'&&pathname==='/practice') || (course==='react'&&item.href==='/answers'&&pathname.startsWith('/answers/')) || (course==='react'&&item.href==='/plan'&&(pathname.startsWith('/lesson/')||pathname.startsWith('/plan/')));return <Link key={item.href} href={href} aria-current={active?'page':undefined} className={'nav-item '+(active?'active':'')} onClick={()=>setOpen(false)}><Icon size={18}/><span>{item.key==='tests'?(labels.tests):item.key==='answers'?(labels.answers):copy[item.key]}</span>{active&&<span className="nav-dot"/>}</Link>;})}
       </nav>
-      <div className="sidebar-bottom"><div className="sidebar-progress"><div className="between"><span>{course==='react'?copy.month+' '+reactMonth:courseName(course)}</span><ArrowUpRight size={16}/></div><strong>{course==='react'?count:courseCount}<span>{' / '+(course==='react'?total:courseTotal)}</span></strong><div className="progress-track"><span style={{width:(course==='react'&&total?count/total*100:courseCount/courseTotal*100)+'%'}}/></div></div><Link href="/settings" aria-current={pathname==='/settings'?'page':undefined} className={'nav-item '+(pathname==='/settings'?'active':'')} onClick={()=>setOpen(false)}><Settings2 size={18}/>{copy.settings}</Link><Link href="/settings" className="profile-row" onClick={()=>setOpen(false)}><AccountAvatar/><div><strong>{account.profile?.displayName || (labels.guest)}</strong><span>{account.user ? (labels.personal):(labels.local)}</span></div></Link></div>
+      <nav className="sidebar-extra" aria-label={EXTRA_NAV[language].community}><Link href="/community" className={'nav-item '+(pathname==='/community'?'active':'')} onClick={()=>setOpen(false)}><MessagesSquare size={18}/><span>{EXTRA_NAV[language].community}</span></Link><Link href="/plans" className={'nav-item '+(pathname==='/plans'?'active':'')} onClick={()=>setOpen(false)}><Crown size={18}/><span>{EXTRA_NAV[language].plans}</span></Link></nav>
+      <div className="sidebar-bottom"><div className="sidebar-progress"><div className="between"><span>{course==='react'?copy.month+' '+reactMonth:courseDisplayName(course,language)}</span><ArrowUpRight size={16}/></div><strong>{course==='react'?count:courseCount}<span>{' / '+(course==='react'?total:courseTotal)}</span></strong><div className="progress-track"><span style={{width:(course==='react'&&total?count/total*100:courseCount/courseTotal*100)+'%'}}/></div></div><Link href="/settings" aria-current={pathname==='/settings'?'page':undefined} className={'nav-item '+(pathname==='/settings'?'active':'')} onClick={()=>setOpen(false)}><Settings2 size={18}/>{copy.settings}</Link><Link href="/settings" className="profile-row" onClick={()=>setOpen(false)}><AccountAvatar/><div><strong>{account.profile?.displayName || (labels.guest)}</strong><span>{account.user ? (labels.personal):(labels.local)}</span></div></Link></div>
     </aside></>;
 }

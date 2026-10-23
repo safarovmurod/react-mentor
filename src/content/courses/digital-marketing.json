@@ -1,0 +1,243 @@
+{
+  "courseId": "digital-marketing",
+  "sources": [
+    {
+      "id": "digital-marketing-reference",
+      "title": "Google Analytics Help — Analytics definitions",
+      "url": "https://support.google.com/analytics/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "digital-marketing-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: цель и аудитория",
+        "tg": "Рӯзи 1: ҳадаф ва аудитория",
+        "en": "Day 1: goal and audience"
+      },
+      "summary": {
+        "ru": "За первый вводный день сформулируйте измеримую цель и полезное предложение для одной аудитории. Работайте с вымышленной кампанией: никаких расходов и сбора персональных данных.",
+        "tg": "Дар рӯзи аввали шиносоӣ ҳадафи ченшаванда ва пешниҳоди фоиданок барои як аудитория созед. Маърака сохта бошад: бе хароҷот ва ҷамъоварии маълумоти шахсӣ.",
+        "en": "In this introductory day, define a measurable goal and a useful offer for one audience. Use a fictional campaign: no spending or personal-data collection."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "digital-marketing-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Маркетинговая цель описывает действие человека, а не просто число просмотров. Укажите предложение, аудиторию, канал, срок и метрику. Не обещайте гарантированный доход или результат обучения. Выбирайте канал по задаче, не по моде. Различайте гипотезу о клиенте и подтверждённое исследование.",
+            "tg": "Ҳадафи маркетинг амалро мефаҳмонад, на танҳо шумораи тамошо. Пешниҳод, аудитория, канал, муҳлат ва ченакро муайян кунед. Даромад ё натиҷаи омӯзишро кафолат надиҳед. Каналро аз рӯи вазифа интихоб кунед, на мӯд. Тахмини муштариро аз таҳқиқи воқеӣ ҷудо кунед.",
+            "en": "A marketing goal describes a person’s action, not only views. Define the offer, audience, channel, deadline and metric. Do not promise guaranteed earnings or learning outcomes. Choose a channel for the task, not fashion. Separate customer assumptions from actual research."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Вымышленная библиотека предлагает бесплатную встречу по чтению. Аудитория: жители, ищущие вечернее занятие. Канал: объявление на сайте библиотеки. Цель за неделю: 20 переходов на страницу расписания. Сообщение: «Посмотрите время открытой встречи; участие бесплатное». Число 20 — учебная цель, не прогноз.",
+            "tg": "Китобхонаи сохта вохӯрии ройгони китобхониро пешниҳод мекунад. Аудитория: сокиноне, ки машғулияти шомиро меҷӯянд. Канал: эълон дар сомонаи китобхона. Ҳадафи як ҳафта: 20 гузариш ба ҷадвал. Матн: «Вақти вохӯрии кушодаро бинед; иштирок ройгон аст». 20 ҳадафи омӯзишист, на пешгӯӣ.",
+            "en": "A fictional library offers a free reading meeting. Audience: residents seeking an evening activity. Channel: a notice on the library website. One-week goal: 20 visits to the timetable page. Message: “See the open meeting schedule; participation is free.” Twenty is a practice goal, not a forecast."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "digital-marketing-day-01-q01",
+          "question": {
+            "ru": "Какая цель измерима?",
+            "tg": "Кадом ҳадаф ченшаванда аст?",
+            "en": "Which goal is measurable?"
+          },
+          "answer": {
+            "ru": "Получить 20 переходов к расписанию за неделю.",
+            "tg": "Дар як ҳафта 20 гузариш ба ҷадвал гирифтан.",
+            "en": "Get 20 timetable visits in one week."
+          },
+          "options": [
+            {
+              "ru": "Стать лучшими.",
+              "tg": "Беҳтарин шудан.",
+              "en": "Become the best."
+            },
+            {
+              "ru": "Получить 20 переходов к расписанию за неделю.",
+              "tg": "Дар як ҳафта 20 гузариш ба ҷадвал гирифтан.",
+              "en": "Get 20 timetable visits in one week."
+            },
+            {
+              "ru": "Нравиться всем.",
+              "tg": "Ба ҳама писанд омадан.",
+              "en": "Be liked by everyone."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Придумайте безопасное вымышленное предложение.\n2. Опишите одну аудиторию и её потребность без личных данных.\n3. Выберите один канал и напишите сообщение без ложных обещаний.\n4. Укажите срок и одно измеримое целевое действие.",
+          "tg": "1. Пешниҳоди бехатари сохта созед.\n2. Як аудитория ва ниёзашро бе маълумоти шахсӣ шарҳ диҳед.\n3. Як канал интихоб карда, матни беваъдаи бардурӯғ нависед.\n4. Муҳлат ва як амали ченшавандаро муайян кунед.",
+          "en": "1. Invent a safe fictional offer.\n2. Define one audience and need without personal information.\n3. Choose one channel and write a truthful message.\n4. State a deadline and one measurable target action."
+        },
+        "hint": {
+          "ru": "«Узнают о нас» замените на конкретное действие, например переход к расписанию.",
+          "tg": "«Моро мешиносанд»-ро ба амали мушаххас, масалан гузариш ба ҷадвал, иваз кунед.",
+          "en": "Replace “people know us” with an observable action, such as visiting the timetable."
+        },
+        "solution": "Вымышленная библиотека предлагает бесплатную встречу по чтению. Аудитория: жители, ищущие вечернее занятие. Канал: объявление на сайте библиотеки. Цель за неделю: 20 переходов на страницу расписания. Сообщение: «Посмотрите время открытой встречи; участие бесплатное». Число 20 — учебная цель, не прогноз.",
+        "referenceAnswer": {
+          "ru": "Вымышленная библиотека предлагает бесплатную встречу по чтению. Аудитория: жители, ищущие вечернее занятие. Канал: объявление на сайте библиотеки. Цель за неделю: 20 переходов на страницу расписания. Сообщение: «Посмотрите время открытой встречи; участие бесплатное». Число 20 — учебная цель, не прогноз.",
+          "tg": "Китобхонаи сохта вохӯрии ройгони китобхониро пешниҳод мекунад. Аудитория: сокиноне, ки машғулияти шомиро меҷӯянд. Канал: эълон дар сомонаи китобхона. Ҳадафи як ҳафта: 20 гузариш ба ҷадвал. Матн: «Вақти вохӯрии кушодаро бинед; иштирок ройгон аст». 20 ҳадафи омӯзишист, на пешгӯӣ.",
+          "en": "A fictional library offers a free reading meeting. Audience: residents seeking an evening activity. Channel: a notice on the library website. One-week goal: 20 visits to the timetable page. Message: “See the open meeting schedule; participation is free.” Twenty is a practice goal, not a forecast."
+        },
+        "criteria": [
+          {
+            "ru": "Предложение и аудитория конкретны.",
+            "tg": "Пешниҳод ва аудитория мушаххасанд.",
+            "en": "Offer and audience are specific."
+          },
+          {
+            "ru": "Сообщение не содержит гарантий и скрытых условий.",
+            "tg": "Матн кафолат ё шарти пинҳонӣ надорад.",
+            "en": "The message has no guarantees or hidden conditions."
+          },
+          {
+            "ru": "Цель включает действие, срок и метрику.",
+            "tg": "Ҳадаф амал, муҳлат ва ченак дорад.",
+            "en": "The goal includes an action, deadline and metric."
+          }
+        ]
+      }
+    },
+    {
+      "id": "digital-marketing-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: воронка без самообмана",
+        "tg": "Рӯзи 2: пайдарпайии натиҷаҳо бе худфиребӣ",
+        "en": "Day 2: measure the funnel honestly"
+      },
+      "summary": {
+        "ru": "Сравните просмотры, переходы и целевые действия на небольших учебных данных. Посчитайте конверсию и предложите проверяемое улучшение, не выдавая корреляцию за причину.",
+        "tg": "Тамошо, гузариш ва амалро дар додаҳои хурди омӯзишӣ муқоиса кунед. Табдилро ҳисоб карда, беҳбудии санҷишшаванда пешниҳод кунед; ҳамбастагӣ сабаб нест.",
+        "en": "Compare views, clicks and actions in a small fictional dataset. Calculate conversion and propose a testable improvement without confusing correlation with causation."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "digital-marketing-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Для каждой доли называйте числитель и знаменатель. 8 регистраций из 40 посетителей страницы — 20%, а из 200 просмотров объявления — 4%. Это разные метрики. Маленькая выборка не доказывает, что один вариант всегда лучше. Учитывайте согласие на аналитику и не записывайте личные сведения в ссылки.",
+            "tg": "Барои ҳар ҳисса сурат ва махраҷро номбар кунед. 8 сабт аз 40 меҳмони саҳифа 20% аст; аз 200 тамошои эълон 4%. Инҳо ченакҳои гуногунанд. Намунаи хурд бартарии доимиро исбот намекунад. Розигии таҳлилро ба назар гирифта, маълумоти шахсиро ба пайванд нагузоред.",
+            "en": "Name the numerator and denominator of every rate. Eight sign-ups from 40 page visits is 20%; eight from 200 ad views is 4%. They are different metrics. A small sample does not prove a variant is always better. Respect analytics consent and never place personal information in tracking URLs."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Учебные данные: 200 просмотров → 40 переходов → 8 записей. Доля переходов = 40/200 × 100 = 20%. Конверсия страницы = 8/40 × 100 = 20%. Гипотеза: более ясное время встречи уменьшит отказы. Проверка: сравнить варианты при сопоставимой аудитории; пока данных нет, не заявлять победителя.",
+            "tg": "Додаҳои омӯзишӣ: 200 тамошо → 40 гузариш → 8 сабт. Ҳиссаи гузариш = 40/200 × 100 = 20%. Табдили саҳифа = 8/40 × 100 = 20%. Тахмин: вақти равшани вохӯрӣ радкуниро кам мекунад. Санҷиш: вариантҳоро бо аудиторияи монанд муқоиса кардан; то дода набошад, ғолиб нест.",
+            "en": "Fictional data: 200 views → 40 visits → 8 sign-ups. Click-through rate = 40/200 × 100 = 20%. Page conversion = 8/40 × 100 = 20%. Hypothesis: clearer meeting times reduce abandonment. Test comparable variants and audiences; do not declare a winner without evidence."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "digital-marketing-day-02-q01",
+          "question": {
+            "ru": "Какова конверсия страницы при 8 записях из 40 посещений?",
+            "tg": "Бо 8 сабт аз 40 меҳмон табдили саҳифа чанд аст?",
+            "en": "What is page conversion for 8 sign-ups from 40 visits?"
+          },
+          "answer": {
+            "ru": "20%",
+            "tg": "20%",
+            "en": "20%"
+          },
+          "options": [
+            {
+              "ru": "4%",
+              "tg": "4%",
+              "en": "4%"
+            },
+            {
+              "ru": "20%",
+              "tg": "20%",
+              "en": "20%"
+            },
+            {
+              "ru": "80%",
+              "tg": "80%",
+              "en": "80%"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Перепишите воронку 200 → 40 → 8 и подпишите этапы.\n2. Вычислите две доли с формулами и знаменателями.\n3. Предложите одно изменение и ожидаемую метрику.\n4. Назовите ограничение данных и способ честной проверки.",
+          "tg": "1. Пайдарпайии 200 → 40 → 8-ро бо номи қадамҳо нависед.\n2. Ду ҳиссаро бо формула ва махраҷ ҳисоб кунед.\n3. Як тағйир ва ченаки интизориро пешниҳод кунед.\n4. Маҳдудияти додаҳо ва санҷиши одилонаро номбар кунед.",
+          "en": "1. Label the stages in 200 → 40 → 8.\n2. Calculate two rates and show their denominators.\n3. Propose one change and the metric it should affect.\n4. State a data limitation and a fair test."
+        },
+        "hint": {
+          "ru": "Не смешивайте переходы и записи. При нулевом знаменателе доля не определена.",
+          "tg": "Гузариш ва сабтро омехта накунед. Бо махраҷи сифр ҳисса муайян нест.",
+          "en": "Do not mix visits and sign-ups. A rate with a zero denominator is undefined."
+        },
+        "solution": "Учебные данные: 200 просмотров → 40 переходов → 8 записей. Доля переходов = 40/200 × 100 = 20%. Конверсия страницы = 8/40 × 100 = 20%. Гипотеза: более ясное время встречи уменьшит отказы. Проверка: сравнить варианты при сопоставимой аудитории; пока данных нет, не заявлять победителя.",
+        "referenceAnswer": {
+          "ru": "Учебные данные: 200 просмотров → 40 переходов → 8 записей. Доля переходов = 40/200 × 100 = 20%. Конверсия страницы = 8/40 × 100 = 20%. Гипотеза: более ясное время встречи уменьшит отказы. Проверка: сравнить варианты при сопоставимой аудитории; пока данных нет, не заявлять победителя.",
+          "tg": "Додаҳои омӯзишӣ: 200 тамошо → 40 гузариш → 8 сабт. Ҳиссаи гузариш = 40/200 × 100 = 20%. Табдили саҳифа = 8/40 × 100 = 20%. Тахмин: вақти равшани вохӯрӣ радкуниро кам мекунад. Санҷиш: вариантҳоро бо аудиторияи монанд муқоиса кардан; то дода набошад, ғолиб нест.",
+          "en": "Fictional data: 200 views → 40 visits → 8 sign-ups. Click-through rate = 40/200 × 100 = 20%. Page conversion = 8/40 × 100 = 20%. Hypothesis: clearer meeting times reduce abandonment. Test comparable variants and audiences; do not declare a winner without evidence."
+        },
+        "criteria": [
+          {
+            "ru": "Обе доли рассчитаны верно с подписями.",
+            "tg": "Ҳар ду ҳисса бо ном дуруст ҳисоб шудаанд.",
+            "en": "Both rates are correctly calculated and labeled."
+          },
+          {
+            "ru": "Изменение связано с конкретной метрикой.",
+            "tg": "Тағйир ба ченаки мушаххас вобаста аст.",
+            "en": "The proposed change targets a specific metric."
+          },
+          {
+            "ru": "Есть ограничение и план проверки без гарантии результата.",
+            "tg": "Маҳдудият ва нақшаи санҷиши бе кафолат ҳаст.",
+            "en": "A limitation and non-guaranteed test plan are stated."
+          }
+        ]
+      }
+    }
+  ]
+}

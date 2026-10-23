@@ -6,7 +6,7 @@ test.beforeEach(async ({page})=>{
 test('settings controls fit small phones in every interface language', async ({page}) => {
   await page.goto('/settings');
   const interfaceLanguage=page.locator('.settings-panel select').first();
-  for (const [locale,title] of [['ru','Настройки'],['en','Settings'],['tg','Танзимот'],['uk','Налаштування']] as const) {
+  for (const [locale,title] of [['ru','Настройки'],['en','Settings'],['tg','Танзимот'],['uk','Налаштування'],['ja','設定'],['ko','설정']] as const) {
     await interfaceLanguage.selectOption(locale);
     await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();
     await expect(page.locator('html')).toHaveAttribute('lang',locale);

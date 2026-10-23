@@ -1,0 +1,233 @@
+{
+  "courseId": "management-foundations",
+  "sources": [
+    {
+      "id": "management-foundations-reference",
+      "title": "U.S. Small Business Administration — Manage your business",
+      "url": "https://www.sba.gov/business-guide/manage-your-business"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "management-foundations-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: результат, роли и договорённости",
+        "tg": "Рӯзи 1: натиҷа, нақш ва мувофиқа",
+        "en": "Day 1: outcomes, roles and agreements"
+      },
+      "summary": {
+        "ru": "Два вводных урока управления начинаются с небольшой командной задачи: результат, ответственный и критерий готовности. Это основы менеджмента, не программа MBA и не диплом.",
+        "tg": "Ду дарси муқаддимавии идоракунӣ аз вазифаи хурди даста оғоз мешаванд: натиҷа, масъул ва меъёри омодагӣ. Ин асосҳои идоракунӣ аст, на барномаи MBA ё диплом.",
+        "en": "Two introductory management lessons start with a small team task: outcome, owner and completion criteria. These are management fundamentals, not an MBA program or degree."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "management-foundations-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Команда должна одинаково понимать результат. Назначьте одного ответственного за координацию, укажите участников и зависимость от чужой работы. Критерий готовности описывает наблюдаемое состояние: «все встречи имеют время», а не «сделано красиво». Срок договаривают с учётом доступности, а не назначают как гарантию. Для упражнения используйте вымышленные роли без персональных данных.",
+            "tg": "Даста натиҷаро яксон фаҳмад. Як масъули ҳамоҳангсоз таъин карда, иштирокчӣ ва вобастагӣ ба кори дигаронро гӯед. Меъёри омодагӣ ҳолати мушоҳидашаванда аст: «ҳама вохӯриҳо вақт доранд», на «зебо шуд». Муҳлат бо дарназардошти дастрасӣ мувофиқа мешавад, на ҳамчун кафолат. Нақшҳои сохтаи бемаълумоти шахсӣ истифода баред.",
+            "en": "The team needs a shared understanding of the outcome. Assign one coordination owner, name contributors and dependencies. A completion criterion describes an observable state: “every meeting has a time”, not “looks nice”. Agree deadlines around availability rather than treating them as guarantees. Use fictional roles without personal information."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Задача: подготовить расписание учебного клуба. Координатор собирает данные, редактор проверяет ясность, проверяющий сверяет время. Готово, когда у каждой встречи есть тема, день и время, а неизвестное помечено «уточняется». Зависимость: данные от ведущих. Договорённость: если данных нет к проверке, показать это явно, а не придумывать время.",
+            "tg": "Вазифа: ҷадвали маҳфили омӯзишӣ. Ҳамоҳангсоз додаҳоро ҷамъ мекунад, муҳаррир равшаниро месанҷад, санҷишгар вақтро муқоиса мекунад. Омода: ҳар вохӯрӣ мавзӯъ, рӯз ва вақт дорад; номаълум «муайян мешавад» аст. Вобастагӣ: додаи роҳбарон. Мувофиқа: набудани додашударо равшан гӯед, на вақт созед.",
+            "en": "Task: prepare a study-club timetable. A coordinator collects information, an editor checks clarity and a reviewer verifies times. Done means each meeting has a topic, day and time, with unknowns marked “to be confirmed”. Dependency: information from facilitators. Agreement: flag missing data rather than invent times."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "management-foundations-day-01-q01",
+          "question": {
+            "ru": "Какой критерий готовности проверяем?",
+            "tg": "Кадом меъёри омодагӣ санҷишшаванда аст?",
+            "en": "Which completion criterion is verifiable?"
+          },
+          "answer": {
+            "ru": "У каждой встречи указаны тема, день и время.",
+            "tg": "Ҳар вохӯрӣ мавзӯъ, рӯз ва вақт дорад.",
+            "en": "Each meeting has a topic, day and time."
+          },
+          "options": [
+            {
+              "ru": "Выглядит круто.",
+              "tg": "Олиҷаноб менамояд.",
+              "en": "Looks impressive."
+            },
+            {
+              "ru": "У каждой встречи указаны тема, день и время.",
+              "tg": "Ҳар вохӯрӣ мавзӯъ, рӯз ва вақт дорад.",
+              "en": "Each meeting has a topic, day and time."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Выберите маленький вымышленный командный результат.\n2. Назначьте координационную роль и две роли участников.\n3. Опишите минимум три проверяемых критерия готовности и одну зависимость.\n4. Укажите, как сообщать о блокировке без сокрытия проблемы.",
+          "tg": "1. Натиҷаи хурди сохтаи даставиро интихоб кунед.\n2. Нақши ҳамоҳангсоз ва ду иштирокчиро таъин кунед.\n3. Камаш се меъёри санҷишшавандаи омодагӣ ва як вобастагӣ нависед.\n4. Роҳи хабар додани монеаро бе пинҳонкунӣ гӯед.",
+          "en": "1. Choose a small fictional team outcome.\n2. Assign a coordination role and two contributor roles.\n3. Define at least three verifiable completion criteria and one dependency.\n4. State how to report a blocker without hiding it."
+        },
+        "hint": {
+          "ru": "Критерий готовности должен позволять другому человеку проверить результат.",
+          "tg": "Меъёри омодагӣ бояд ба шахси дигар санҷиши натиҷаро имкон диҳад.",
+          "en": "A completion criterion should let another person verify the outcome."
+        },
+        "solution": "Задача: подготовить расписание учебного клуба. Координатор собирает данные, редактор проверяет ясность, проверяющий сверяет время. Готово, когда у каждой встречи есть тема, день и время, а неизвестное помечено «уточняется». Зависимость: данные от ведущих. Договорённость: если данных нет к проверке, показать это явно, а не придумывать время.",
+        "referenceAnswer": {
+          "ru": "Задача: подготовить расписание учебного клуба. Координатор собирает данные, редактор проверяет ясность, проверяющий сверяет время. Готово, когда у каждой встречи есть тема, день и время, а неизвестное помечено «уточняется». Зависимость: данные от ведущих. Договорённость: если данных нет к проверке, показать это явно, а не придумывать время.",
+          "tg": "Вазифа: ҷадвали маҳфили омӯзишӣ. Ҳамоҳангсоз додаҳоро ҷамъ мекунад, муҳаррир равшаниро месанҷад, санҷишгар вақтро муқоиса мекунад. Омода: ҳар вохӯрӣ мавзӯъ, рӯз ва вақт дорад; номаълум «муайян мешавад» аст. Вобастагӣ: додаи роҳбарон. Мувофиқа: набудани додашударо равшан гӯед, на вақт созед.",
+          "en": "Task: prepare a study-club timetable. A coordinator collects information, an editor checks clarity and a reviewer verifies times. Done means each meeting has a topic, day and time, with unknowns marked “to be confirmed”. Dependency: information from facilitators. Agreement: flag missing data rather than invent times."
+        },
+        "criteria": [
+          {
+            "ru": "Результат и роли определены без реальных персональных данных.",
+            "tg": "Натиҷа ва нақшҳо бе маълумоти шахсии воқеӣ муайянанд.",
+            "en": "Outcome and roles are defined without actual personal information."
+          },
+          {
+            "ru": "Есть три проверяемых критерия и зависимость.",
+            "tg": "Се меъёри санҷишшаванда ва вобастагӣ ҳаст.",
+            "en": "Three verifiable criteria and a dependency are stated."
+          },
+          {
+            "ru": "Механизм сообщения о блокировке прозрачен.",
+            "tg": "Роҳи хабар додани монеа равшан аст.",
+            "en": "The blocker-reporting mechanism is transparent."
+          }
+        ]
+      }
+    },
+    {
+      "id": "management-foundations-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: риск, статус и решение",
+        "tg": "Рӯзи 2: хатар, ҳолат ва қарор",
+        "en": "Day 2: risk, status and decisions"
+      },
+      "summary": {
+        "ru": "Продолжите командный сценарий: отделите будущий риск от уже возникшей проблемы, подготовьте честный статус и предложите изменение плана. Формального управленческого диплома модуль не присваивает.",
+        "tg": "Вазъияти даставиро идома диҳед: хатари ояндаро аз мушкили воқеӣ ҷудо карда, ҳолати рост ва тағйири нақша созед. Модул дипломи расмии идоракунӣ намедиҳад.",
+        "en": "Continue the team scenario: separate a future risk from an existing issue, prepare an honest status and propose a plan change. This module awards no formal management qualification."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "management-foundations-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Риск может произойти; проблема уже произошла. Для риска укажите сигнал, возможное влияние и запасной вариант. Статус отвечает: готово, в работе, заблокировано, какое решение нужно. Не пишите «всё хорошо», если зависимость остановила работу. Изменение объёма или срока согласуют с участниками и фиксируют явно.",
+            "tg": "Хатар метавонад рӯй диҳад; мушкил аллакай рӯй дод. Барои хатар аломат, таъсири эҳтимолӣ ва роҳи эҳтиётиро гӯед. Ҳолат мегӯяд: тайёр, дар кор, баста ва кадом қарор лозим. Агар вобастагӣ корро боздошт, «ҳама хуб» нанависед. Тағйири ҳаҷм ё муҳлат бо иштирокчиён мувофиқа ва сабт мешавад.",
+            "en": "A risk may happen; an issue has already happened. For a risk, state a trigger, potential impact and fallback. A status report names done, in progress, blocked and the decision needed. Do not write “all good” when a dependency stops work. Agree and record changes to scope or deadline with participants."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Риск: ведущий может не подтвердить время; сигнал — нет ответа к согласованной проверке. Проблема: время двух встреч уже отсутствует. Статус: темы готовы, две строки заблокированы. Предложение: опубликовать только подтверждённые встречи и явно пометить остальные либо перенести публикацию; решение согласовать с координатором. Не заявлять, что полный план готов.",
+            "tg": "Хатар: роҳбар вақтро тасдиқ накунад; аломат — то санҷиши мувофиқ ҷавоб нест. Мушкил: вақти ду вохӯрӣ аллакай нест. Ҳолат: мавзӯъҳо омода, ду сатр баста. Пешниҳод: танҳо тасдиқшударо нашр карда, боқиро нишон диҳед ё нашрро кӯчонед; қарорро бо ҳамоҳангсоз мувофиқа кунед. Нақшаи пурраро тайёр нагӯед.",
+            "en": "Risk: a facilitator may not confirm a time; trigger: no reply by the agreed check. Issue: two meeting times are already missing. Status: topics ready, two rows blocked. Proposal: publish confirmed meetings and clearly flag the rest, or delay publication; agree the decision with the coordinator. Do not claim the full plan is done."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "management-foundations-day-02-q01",
+          "question": {
+            "ru": "Что уже является проблемой, а не только риском?",
+            "tg": "Кадомаш аллакай мушкил аст, на танҳо хатар?",
+            "en": "Which is already an issue rather than only a risk?"
+          },
+          "answer": {
+            "ru": "Срок прошёл, ответ не получен.",
+            "tg": "Муҳлат гузашт, ҷавоб наомад.",
+            "en": "The deadline passed and no reply arrived."
+          },
+          "options": [
+            {
+              "ru": "Ответ может задержаться.",
+              "tg": "Ҷавоб мумкин дер шавад.",
+              "en": "The reply might be late."
+            },
+            {
+              "ru": "Срок прошёл, ответ не получен.",
+              "tg": "Муҳлат гузашт, ҷавоб наомад.",
+              "en": "The deadline passed and no reply arrived."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Возьмите командную задачу первого дня.\n2. Запишите один риск и одну уже возникшую проблему.\n3. Составьте статус «готово / в работе / заблокировано».\n4. Предложите запасной вариант и назовите роль, с которой нужно согласовать решение.",
+          "tg": "1. Вазифаи даставии рӯзи аввалро гиред.\n2. Як хатар ва як мушкили рӯйдодаро нависед.\n3. Ҳолати «тайёр / дар кор / баста»-ро созед.\n4. Роҳи эҳтиётӣ ва нақши тасдиқкунандаи қарорро гӯед.",
+          "en": "1. Use day one’s team task.\n2. Record one risk and one issue that has already occurred.\n3. Write a “done / in progress / blocked” status.\n4. Propose a fallback and identify the role that must agree the decision."
+        },
+        "hint": {
+          "ru": "«Может задержаться» — риск; «срок прошёл, данных нет» — уже проблема.",
+          "tg": "«Мумкин дер шавад» хатар аст; «муҳлат гузашт, дода нест» мушкили воқеист.",
+          "en": "“May be late” is a risk; “the deadline passed and data is missing” is an issue."
+        },
+        "solution": "Риск: ведущий может не подтвердить время; сигнал — нет ответа к согласованной проверке. Проблема: время двух встреч уже отсутствует. Статус: темы готовы, две строки заблокированы. Предложение: опубликовать только подтверждённые встречи и явно пометить остальные либо перенести публикацию; решение согласовать с координатором. Не заявлять, что полный план готов.",
+        "referenceAnswer": {
+          "ru": "Риск: ведущий может не подтвердить время; сигнал — нет ответа к согласованной проверке. Проблема: время двух встреч уже отсутствует. Статус: темы готовы, две строки заблокированы. Предложение: опубликовать только подтверждённые встречи и явно пометить остальные либо перенести публикацию; решение согласовать с координатором. Не заявлять, что полный план готов.",
+          "tg": "Хатар: роҳбар вақтро тасдиқ накунад; аломат — то санҷиши мувофиқ ҷавоб нест. Мушкил: вақти ду вохӯрӣ аллакай нест. Ҳолат: мавзӯъҳо омода, ду сатр баста. Пешниҳод: танҳо тасдиқшударо нашр карда, боқиро нишон диҳед ё нашрро кӯчонед; қарорро бо ҳамоҳангсоз мувофиқа кунед. Нақшаи пурраро тайёр нагӯед.",
+          "en": "Risk: a facilitator may not confirm a time; trigger: no reply by the agreed check. Issue: two meeting times are already missing. Status: topics ready, two rows blocked. Proposal: publish confirmed meetings and clearly flag the rest, or delay publication; agree the decision with the coordinator. Do not claim the full plan is done."
+        },
+        "criteria": [
+          {
+            "ru": "Риск и проблема различаются по факту наступления.",
+            "tg": "Хатар ва мушкил аз рӯи рӯй додан фарқ мекунанд.",
+            "en": "Risk and issue are distinguished by whether they occurred."
+          },
+          {
+            "ru": "Статус честно показывает блокировку и готовые части.",
+            "tg": "Ҳолат монеа ва қисми омодаро рост нишон медиҳад.",
+            "en": "Status honestly identifies blockers and completed parts."
+          },
+          {
+            "ru": "Есть запасной вариант и согласование решения.",
+            "tg": "Роҳи эҳтиётӣ ва мувофиқаи қарор ҳаст.",
+            "en": "A fallback and decision agreement are included."
+          }
+        ]
+      }
+    }
+  ]
+}

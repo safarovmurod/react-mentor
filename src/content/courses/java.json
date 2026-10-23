@@ -1,0 +1,259 @@
+{
+  "courseId": "java",
+  "sources": [
+    {
+      "id": "java-official",
+      "title": "Java — official documentation",
+      "url": "https://dev.java/learn/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "java-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Java: типы и первая программа",
+        "tg": "Java: типҳо ва барномаи аввал",
+        "en": "Java: types and your first program"
+      },
+      "summary": {
+        "ru": "День 1 из 2. Java: типы и первая программа. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. Java: типҳо ва барномаи аввал. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. Java: types and your first program. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "java-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Java выполняет метод main класса Main. int хранит целые числа; переменную объявляют с типом. System.out.println выводит значение и перевод строки. Имя файла Main.java совпадает с именем public-класса. Для запуска исходного файла нужен JDK 21 или новее.",
+            "tg": "Java методи main-и класи Main-ро иҷро мекунад. int адади бутунро нигоҳ медорад; ҳангоми эълон типро менависанд. System.out.println қиматро бо сатри нав мебарорад. Номи Main.java бо номи public-клас мувофиқ аст. Барои иҷро JDK 21 ё навтар лозим аст.",
+            "en": "Java runs the main method of class Main. int stores whole numbers; declare a variable with its type. System.out.println prints a value followed by a newline. The Main.java filename matches its public class. Running this source file requires JDK 21 or newer."
+          },
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int price = 12;\n    int quantity = 3;\n    System.out.println(price * quantity);\n  }\n}\n",
+          "language": "java",
+          "output": {
+            "ru": "36",
+            "tg": "36",
+            "en": "36"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните Main.java в отдельной учебной папке и выполните в её терминале:\njava Main.java\nОжидаемый вывод:\n36\n\nИзмените quantity на 0: получите 0. Затем price=7, quantity=2: получите 14.",
+            "tg": "Main.java-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\njava Main.java\nНатиҷаи интизорӣ:\n36\n\nquantity-ро 0 кунед: натиҷа 0. Баъд price=7, quantity=2: натиҷа 14.",
+            "en": "Save Main.java in a separate learning folder and run in that folder's terminal:\njava Main.java\nExpected output:\n36\n\nSet quantity to 0: expect 0. Then price=7, quantity=2: expect 14."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "java-day-01-q",
+          "question": {
+            "ru": "Где начинается выполнение этой программы?",
+            "tg": "Иҷрои ин барнома аз куҷо сар мешавад?",
+            "en": "Where does this program begin?"
+          },
+          "answer": {
+            "ru": "В методе main класса Main",
+            "tg": "Аз методи main-и класи Main",
+            "en": "In the main method of Main"
+          },
+          "options": [
+            {
+              "ru": "В имени файла",
+              "tg": "Аз номи файл",
+              "en": "In the filename"
+            },
+            {
+              "ru": "В методе main класса Main",
+              "tg": "Аз методи main-и класи Main",
+              "en": "In the main method of Main"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните Main.java в отдельной учебной папке и выполните в её терминале:\njava Main.java\nОжидаемый вывод:\n36\n\nИзмените quantity на 0: получите 0. Затем price=7, quantity=2: получите 14.",
+          "tg": "Main.java-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\njava Main.java\nНатиҷаи интизорӣ:\n36\n\nquantity-ро 0 кунед: натиҷа 0. Баъд price=7, quantity=2: натиҷа 14.",
+          "en": "Save Main.java in a separate learning folder and run in that folder's terminal:\njava Main.java\nExpected output:\n36\n\nSet quantity to 0: expect 0. Then price=7, quantity=2: expect 14."
+        },
+        "hint": {
+          "ru": "Java выполняет метод main класса Main. int хранит целые числа; переменную объявляют с типом. System.out.println выводит значение и перевод строки. Имя файла Main.java совпадает с именем public-класса. Для запуска исходного файла нужен JDK 21 или новее.",
+          "tg": "Java методи main-и класи Main-ро иҷро мекунад. int адади бутунро нигоҳ медорад; ҳангоми эълон типро менависанд. System.out.println қиматро бо сатри нав мебарорад. Номи Main.java бо номи public-клас мувофиқ аст. Барои иҷро JDK 21 ё навтар лозим аст.",
+          "en": "Java runs the main method of class Main. int stores whole numbers; declare a variable with its type. System.out.println prints a value followed by a newline. The Main.java filename matches its public class. Running this source file requires JDK 21 or newer."
+        },
+        "solution": "public class Main {\n  public static void main(String[] args) {\n    int price = 12;\n    int quantity = 3;\n    System.out.println(price * quantity);\n  }\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл Main.java выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли Main.java бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run Main.java using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Измените quantity на 0: получите 0. Затем price=7, quantity=2: получите 14.",
+            "tg": "quantity-ро 0 кунед: натиҷа 0. Баъд price=7, quantity=2: натиҷа 14.",
+            "en": "Set quantity to 0: expect 0. Then price=7, quantity=2: expect 14."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Java: метод и проверка аргументов",
+        "tg": "Java: метод ва санҷиши аргументҳо",
+        "en": "Java: a method and argument validation"
+      },
+      "summary": {
+        "ru": "День 2 из 2. Java: метод и проверка аргументов. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. Java: метод ва санҷиши аргументҳо. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. Java: a method and argument validation. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "java-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "static-метод можно вызвать из main без создания объекта. return возвращает int. Отрицательные значения отклоняем IllegalArgumentException до расчёта; вызывающий код обрабатывает исключение в catch. Проверяйте поведение, а не название параметров.",
+            "tg": "Методи static-ро аз main бе сохтани объект даъват кардан мумкин аст. return қимати int-ро бармегардонад. Қиматҳои манфиро пеш аз ҳисоб бо IllegalArgumentException рад мекунем; рамзи даъваткунанда истисноро бо catch мегирад. Рафторро санҷед, на номи параметрҳоро.",
+            "en": "A static method can be called from main without constructing an object. return produces an int. Reject negative arguments with IllegalArgumentException before calculating; the caller handles the exception with catch. Test behavior rather than parameter spelling."
+          },
+          "code": "public class Main {\n  static int total(int price, int quantity) {\n    if (price < 0 || quantity < 0) throw new IllegalArgumentException(\"Negative value\");\n    return Math.multiplyExact(price, quantity);\n  }\n  public static void main(String[] args) {\n    System.out.println(total(12, 3));\n    System.out.println(total(12, 0));\n    try { total(12, -1); }\n    catch (IllegalArgumentException error) { System.out.println(\"Invalid input rejected\"); }\n  }\n}\n",
+          "language": "java",
+          "output": {
+            "ru": "36\n0\nInvalid input rejected",
+            "tg": "36\n0\nInvalid input rejected",
+            "en": "36\n0\nInvalid input rejected"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните Main.java в отдельной учебной папке и выполните в её терминале:\njava Main.java\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте также total(-1, 3): ожидается IllegalArgumentException. Math.multiplyExact отдельно сообщает о переполнении ArithmeticException.",
+            "tg": "Main.java-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\njava Main.java\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal(-1, 3)-ро низ санҷед: IllegalArgumentException интизор аст. Math.multiplyExact ҳангоми пуршавии ҳудуди адад ArithmeticException медиҳад.",
+            "en": "Save Main.java in a separate learning folder and run in that folder's terminal:\njava Main.java\nExpected output:\n36\n0\nInvalid input rejected\n\nAlso check total(-1, 3): expect IllegalArgumentException. Math.multiplyExact separately reports integer overflow with ArithmeticException."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "java-day-02-q",
+          "question": {
+            "ru": "Зачем проверять аргументы до умножения?",
+            "tg": "Чаро аргументҳоро пеш аз зарб санҷидан лозим аст?",
+            "en": "Why validate arguments before multiplication?"
+          },
+          "answer": {
+            "ru": "Чтобы явно отклонить недопустимые данные",
+            "tg": "Барои ошкоро рад кардани додаҳои нодуруст",
+            "en": "To explicitly reject invalid input"
+          },
+          "options": [
+            {
+              "ru": "Чтобы скрыть любую ошибку",
+              "tg": "Барои пинҳон кардани ҳар хато",
+              "en": "To hide every error"
+            },
+            {
+              "ru": "Чтобы явно отклонить недопустимые данные",
+              "tg": "Барои ошкоро рад кардани додаҳои нодуруст",
+              "en": "To explicitly reject invalid input"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните Main.java в отдельной учебной папке и выполните в её терминале:\njava Main.java\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте также total(-1, 3): ожидается IllegalArgumentException. Math.multiplyExact отдельно сообщает о переполнении ArithmeticException.",
+          "tg": "Main.java-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\njava Main.java\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal(-1, 3)-ро низ санҷед: IllegalArgumentException интизор аст. Math.multiplyExact ҳангоми пуршавии ҳудуди адад ArithmeticException медиҳад.",
+          "en": "Save Main.java in a separate learning folder and run in that folder's terminal:\njava Main.java\nExpected output:\n36\n0\nInvalid input rejected\n\nAlso check total(-1, 3): expect IllegalArgumentException. Math.multiplyExact separately reports integer overflow with ArithmeticException."
+        },
+        "hint": {
+          "ru": "static-метод можно вызвать из main без создания объекта. return возвращает int. Отрицательные значения отклоняем IllegalArgumentException до расчёта; вызывающий код обрабатывает исключение в catch. Проверяйте поведение, а не название параметров.",
+          "tg": "Методи static-ро аз main бе сохтани объект даъват кардан мумкин аст. return қимати int-ро бармегардонад. Қиматҳои манфиро пеш аз ҳисоб бо IllegalArgumentException рад мекунем; рамзи даъваткунанда истисноро бо catch мегирад. Рафторро санҷед, на номи параметрҳоро.",
+          "en": "A static method can be called from main without constructing an object. return produces an int. Reject negative arguments with IllegalArgumentException before calculating; the caller handles the exception with catch. Test behavior rather than parameter spelling."
+        },
+        "solution": "public class Main {\n  static int total(int price, int quantity) {\n    if (price < 0 || quantity < 0) throw new IllegalArgumentException(\"Negative value\");\n    return Math.multiplyExact(price, quantity);\n  }\n  public static void main(String[] args) {\n    System.out.println(total(12, 3));\n    System.out.println(total(12, 0));\n    try { total(12, -1); }\n    catch (IllegalArgumentException error) { System.out.println(\"Invalid input rejected\"); }\n  }\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл Main.java выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли Main.java бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run Main.java using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте также total(-1, 3): ожидается IllegalArgumentException. Math.multiplyExact отдельно сообщает о переполнении ArithmeticException.",
+            "tg": "total(-1, 3)-ро низ санҷед: IllegalArgumentException интизор аст. Math.multiplyExact ҳангоми пуршавии ҳудуди адад ArithmeticException медиҳад.",
+            "en": "Also check total(-1, 3): expect IllegalArgumentException. Math.multiplyExact separately reports integer overflow with ArithmeticException."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

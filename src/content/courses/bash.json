@@ -1,0 +1,259 @@
+{
+  "courseId": "bash",
+  "sources": [
+    {
+      "id": "bash-official",
+      "title": "Bash — official documentation",
+      "url": "https://www.gnu.org/software/bash/manual/bash.html"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "bash-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Bash: переменные, кавычки и арифметика",
+        "tg": "Bash: тағйирёбандаҳо, нохунакҳо ва ҳисоб",
+        "en": "Bash: variables, quoting and arithmetic"
+      },
+      "summary": {
+        "ru": "День 1 из 2. Bash: переменные, кавычки и арифметика. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. Bash: тағйирёбандаҳо, нохунакҳо ва ҳисоб. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. Bash: variables, quoting and arithmetic. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "bash-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Bash — командная оболочка. При присваивании price=12 вокруг = нет пробелов. $((...)) выполняет целочисленную арифметику. printf с фиксированным форматом и значением в кавычках выводит строку без неожиданного разделения аргументов. Эти примеры не удаляют файлы и не требуют sudo.",
+            "tg": "Bash муҳити фармонӣ аст. Дар price=12 атрофи = фосила нест. $((...)) ҳисоби ададҳои бутунро иҷро мекунад. printf бо формати собит ва қимат дар нохунак сатрро бе ҷудокунии ногаҳонии аргументҳо мебарорад. Ин мисолҳо файлҳоро нест намекунанд ва sudo талаб намекунанд.",
+            "en": "Bash is a command shell. Assignment price=12 has no spaces around =. $((...)) performs integer arithmetic. printf with a fixed format and a quoted value prints without unexpected argument splitting. These examples delete no files and need no sudo."
+          },
+          "code": "#!/usr/bin/env bash\nset -eu\nprice=12\nquantity=3\nprintf '%s\\n' \"$((price * quantity))\"\n",
+          "language": "shell",
+          "output": {
+            "ru": "36",
+            "tg": "36",
+            "en": "36"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.sh в отдельной учебной папке и выполните в её терминале:\nbash main.sh\nОжидаемый вывод:\n36\n\nПроверьте quantity=0 → 0; price=7, quantity=2 → 14. Запускайте через bash, не через несовместимый sh.",
+            "tg": "main.sh-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nbash main.sh\nНатиҷаи интизорӣ:\n36\n\nquantity=0 → 0; price=7, quantity=2 → 14-ро санҷед. Бо bash иҷро кунед, на бо sh-и номувофиқ.",
+            "en": "Save main.sh in a separate learning folder and run in that folder's terminal:\nbash main.sh\nExpected output:\n36\n\nCheck quantity=0 → 0; price=7, quantity=2 → 14. Run with bash, not an incompatible sh."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "bash-day-01-q",
+          "question": {
+            "ru": "Как записать присваивание в Bash?",
+            "tg": "Таъйини қиматро дар Bash чӣ тавр менависанд?",
+            "en": "Which is a Bash assignment?"
+          },
+          "answer": {
+            "ru": "price=12",
+            "tg": "price=12",
+            "en": "price=12"
+          },
+          "options": [
+            {
+              "ru": "price = 12",
+              "tg": "price = 12",
+              "en": "price = 12"
+            },
+            {
+              "ru": "price=12",
+              "tg": "price=12",
+              "en": "price=12"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.sh в отдельной учебной папке и выполните в её терминале:\nbash main.sh\nОжидаемый вывод:\n36\n\nПроверьте quantity=0 → 0; price=7, quantity=2 → 14. Запускайте через bash, не через несовместимый sh.",
+          "tg": "main.sh-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nbash main.sh\nНатиҷаи интизорӣ:\n36\n\nquantity=0 → 0; price=7, quantity=2 → 14-ро санҷед. Бо bash иҷро кунед, на бо sh-и номувофиқ.",
+          "en": "Save main.sh in a separate learning folder and run in that folder's terminal:\nbash main.sh\nExpected output:\n36\n\nCheck quantity=0 → 0; price=7, quantity=2 → 14. Run with bash, not an incompatible sh."
+        },
+        "hint": {
+          "ru": "Bash — командная оболочка. При присваивании price=12 вокруг = нет пробелов. $((...)) выполняет целочисленную арифметику. printf с фиксированным форматом и значением в кавычках выводит строку без неожиданного разделения аргументов. Эти примеры не удаляют файлы и не требуют sudo.",
+          "tg": "Bash муҳити фармонӣ аст. Дар price=12 атрофи = фосила нест. $((...)) ҳисоби ададҳои бутунро иҷро мекунад. printf бо формати собит ва қимат дар нохунак сатрро бе ҷудокунии ногаҳонии аргументҳо мебарорад. Ин мисолҳо файлҳоро нест намекунанд ва sudo талаб намекунанд.",
+          "en": "Bash is a command shell. Assignment price=12 has no spaces around =. $((...)) performs integer arithmetic. printf with a fixed format and a quoted value prints without unexpected argument splitting. These examples delete no files and need no sudo."
+        },
+        "solution": "#!/usr/bin/env bash\nset -eu\nprice=12\nquantity=3\nprintf '%s\\n' \"$((price * quantity))\"\n",
+        "criteria": [
+          {
+            "ru": "Файл main.sh выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.sh бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.sh using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте quantity=0 → 0; price=7, quantity=2 → 14. Запускайте через bash, не через несовместимый sh.",
+            "tg": "quantity=0 → 0; price=7, quantity=2 → 14-ро санҷед. Бо bash иҷро кунед, на бо sh-и номувофиқ.",
+            "en": "Check quantity=0 → 0; price=7, quantity=2 → 14. Run with bash, not an incompatible sh."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "bash-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Bash: проверка аргументов функции",
+        "tg": "Bash: санҷиши аргументҳои функсия",
+        "en": "Bash: validating function arguments"
+      },
+      "summary": {
+        "ru": "День 2 из 2. Bash: проверка аргументов функции. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. Bash: санҷиши аргументҳои функсия. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. Bash: validating function arguments. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "bash-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Функция читает аргументы через $1 и $2. Проверяем, что это от одной до шести цифр. Возврат 1 означает отказ; 0 означает успех. Префикс 10# заставляет читать ведущие нули как десятичное число. Никогда не передавайте введённый пользователем текст в eval.",
+            "tg": "Функсия аргументҳоро аз $1 ва $2 мехонад. Месанҷем, ки аз як то шаш рақам бошанд. Баргардондани 1 радкунӣ, 0 муваффақият аст. Пешванди 10# адади дорои сифри аввалро даҳӣ мехонад. Матни воридкардаи корбарро ҳеҷ гоҳ ба eval надиҳед.",
+            "en": "The function reads arguments through $1 and $2. Require one to six digits. Returning 1 signals failure; 0 signals success. The 10# prefix treats leading zeros as decimal. Never pass user-entered text to eval."
+          },
+          "code": "#!/usr/bin/env bash\nset -eu\ntotal() {\n  local price=$1 quantity=$2\n  [[ $price =~ ^[0-9]{1,6}$ && $quantity =~ ^[0-9]{1,6}$ ]] || return 1\n  printf '%s\\n' \"$((10#$price * 10#$quantity))\"\n}\ntotal 12 3\ntotal 12 0\nif ! total 12 -1; then printf '%s\\n' 'Invalid input rejected'; fi\n",
+          "language": "shell",
+          "output": {
+            "ru": "36\n0\nInvalid input rejected",
+            "tg": "36\n0\nInvalid input rejected",
+            "en": "36\n0\nInvalid input rejected"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.sh в отдельной учебной папке и выполните в её терминале:\nbash main.sh\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте total 07 02 → 14; total 12 abc должен вернуть ненулевой статус без вычисления.",
+            "tg": "main.sh-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nbash main.sh\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal 07 02 → 14-ро санҷед; total 12 abc бояд бе ҳисоб ҳолати ғайрисифр диҳад.",
+            "en": "Save main.sh in a separate learning folder and run in that folder's terminal:\nbash main.sh\nExpected output:\n36\n0\nInvalid input rejected\n\nCheck total 07 02 → 14; total 12 abc must return a nonzero status without calculation."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "bash-day-02-q",
+          "question": {
+            "ru": "Как функция сообщает об отказе в Bash?",
+            "tg": "Функсия дар Bash радкуниро чӣ тавр хабар медиҳад?",
+            "en": "How does a Bash function signal failure?"
+          },
+          "answer": {
+            "ru": "Ненулевым статусом возврата",
+            "tg": "Бо ҳолати баргардондани ғайрисифр",
+            "en": "With a nonzero return status"
+          },
+          "options": [
+            {
+              "ru": "Обязательно текстом в stdout",
+              "tg": "Ҳатман бо матн дар stdout",
+              "en": "Only by writing text to stdout"
+            },
+            {
+              "ru": "Ненулевым статусом возврата",
+              "tg": "Бо ҳолати баргардондани ғайрисифр",
+              "en": "With a nonzero return status"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.sh в отдельной учебной папке и выполните в её терминале:\nbash main.sh\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте total 07 02 → 14; total 12 abc должен вернуть ненулевой статус без вычисления.",
+          "tg": "main.sh-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nbash main.sh\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal 07 02 → 14-ро санҷед; total 12 abc бояд бе ҳисоб ҳолати ғайрисифр диҳад.",
+          "en": "Save main.sh in a separate learning folder and run in that folder's terminal:\nbash main.sh\nExpected output:\n36\n0\nInvalid input rejected\n\nCheck total 07 02 → 14; total 12 abc must return a nonzero status without calculation."
+        },
+        "hint": {
+          "ru": "Функция читает аргументы через $1 и $2. Проверяем, что это от одной до шести цифр. Возврат 1 означает отказ; 0 означает успех. Префикс 10# заставляет читать ведущие нули как десятичное число. Никогда не передавайте введённый пользователем текст в eval.",
+          "tg": "Функсия аргументҳоро аз $1 ва $2 мехонад. Месанҷем, ки аз як то шаш рақам бошанд. Баргардондани 1 радкунӣ, 0 муваффақият аст. Пешванди 10# адади дорои сифри аввалро даҳӣ мехонад. Матни воридкардаи корбарро ҳеҷ гоҳ ба eval надиҳед.",
+          "en": "The function reads arguments through $1 and $2. Require one to six digits. Returning 1 signals failure; 0 signals success. The 10# prefix treats leading zeros as decimal. Never pass user-entered text to eval."
+        },
+        "solution": "#!/usr/bin/env bash\nset -eu\ntotal() {\n  local price=$1 quantity=$2\n  [[ $price =~ ^[0-9]{1,6}$ && $quantity =~ ^[0-9]{1,6}$ ]] || return 1\n  printf '%s\\n' \"$((10#$price * 10#$quantity))\"\n}\ntotal 12 3\ntotal 12 0\nif ! total 12 -1; then printf '%s\\n' 'Invalid input rejected'; fi\n",
+        "criteria": [
+          {
+            "ru": "Файл main.sh выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.sh бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.sh using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте total 07 02 → 14; total 12 abc должен вернуть ненулевой статус без вычисления.",
+            "tg": "total 07 02 → 14-ро санҷед; total 12 abc бояд бе ҳисоб ҳолати ғайрисифр диҳад.",
+            "en": "Check total 07 02 → 14; total 12 abc must return a nonzero status without calculation."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

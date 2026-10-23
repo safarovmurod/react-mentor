@@ -1,0 +1,259 @@
+{
+  "courseId": "go",
+  "sources": [
+    {
+      "id": "go-official",
+      "title": "Go — official documentation",
+      "url": "https://go.dev/doc/tutorial/getting-started"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "go-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Go: package main и значения",
+        "tg": "Go: package main ва қиматҳо",
+        "en": "Go: package main and values"
+      },
+      "summary": {
+        "ru": "День 1 из 2. Go: package main и значения. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. Go: package main ва қиматҳо. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. Go: package main and values. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "go-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Установите язык Go с go.dev. package main и func main задают исполняемую программу. import подключает стандартный пакет fmt. Оператор := объявляет локальную переменную с выведенным типом. fmt.Println выводит значение.",
+            "tg": "Забони Go-ро аз go.dev насб кунед. package main ва func main барномаи иҷрошавандаро муайян мекунанд. import пакети стандартии fmt-ро пайваст мекунад. := тағйирёбандаи маҳаллиро бо типи муайяншуда эълон мекунад. fmt.Println қиматро мебарорад.",
+            "en": "Install the Go programming language from go.dev. package main and func main define an executable program. import brings in the standard fmt package. := declares a local variable with an inferred type. fmt.Println displays a value."
+          },
+          "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    price := 12\n    quantity := 3\n    fmt.Println(price * quantity)\n}\n",
+          "language": "go",
+          "output": {
+            "ru": "36",
+            "tg": "36",
+            "en": "36"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.go в отдельной учебной папке и выполните в её терминале:\ngo run main.go\nОжидаемый вывод:\n36\n\nПроверьте quantity=0 → 0; price=7, quantity=2 → 14.",
+            "tg": "main.go-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\ngo run main.go\nНатиҷаи интизорӣ:\n36\n\nquantity=0 → 0; price=7, quantity=2 → 14-ро санҷед.",
+            "en": "Save main.go in a separate learning folder and run in that folder's terminal:\ngo run main.go\nExpected output:\n36\n\nCheck quantity=0 → 0; price=7, quantity=2 → 14."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "go-day-01-q",
+          "question": {
+            "ru": "Для чего нужна функция main?",
+            "tg": "Функсияи main барои чӣ лозим аст?",
+            "en": "What is main for?"
+          },
+          "answer": {
+            "ru": "Это точка входа исполняемой программы",
+            "tg": "Ин нуқтаи оғози барномаи иҷрошаванда аст",
+            "en": "It is the entry point of an executable"
+          },
+          "options": [
+            {
+              "ru": "Она устанавливает Go",
+              "tg": "Он Go-ро насб мекунад",
+              "en": "It installs Go"
+            },
+            {
+              "ru": "Это точка входа исполняемой программы",
+              "tg": "Ин нуқтаи оғози барномаи иҷрошаванда аст",
+              "en": "It is the entry point of an executable"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.go в отдельной учебной папке и выполните в её терминале:\ngo run main.go\nОжидаемый вывод:\n36\n\nПроверьте quantity=0 → 0; price=7, quantity=2 → 14.",
+          "tg": "main.go-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\ngo run main.go\nНатиҷаи интизорӣ:\n36\n\nquantity=0 → 0; price=7, quantity=2 → 14-ро санҷед.",
+          "en": "Save main.go in a separate learning folder and run in that folder's terminal:\ngo run main.go\nExpected output:\n36\n\nCheck quantity=0 → 0; price=7, quantity=2 → 14."
+        },
+        "hint": {
+          "ru": "Установите язык Go с go.dev. package main и func main задают исполняемую программу. import подключает стандартный пакет fmt. Оператор := объявляет локальную переменную с выведенным типом. fmt.Println выводит значение.",
+          "tg": "Забони Go-ро аз go.dev насб кунед. package main ва func main барномаи иҷрошавандаро муайян мекунанд. import пакети стандартии fmt-ро пайваст мекунад. := тағйирёбандаи маҳаллиро бо типи муайяншуда эълон мекунад. fmt.Println қиматро мебарорад.",
+          "en": "Install the Go programming language from go.dev. package main and func main define an executable program. import brings in the standard fmt package. := declares a local variable with an inferred type. fmt.Println displays a value."
+        },
+        "solution": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    price := 12\n    quantity := 3\n    fmt.Println(price * quantity)\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл main.go выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.go бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.go using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте quantity=0 → 0; price=7, quantity=2 → 14.",
+            "tg": "quantity=0 → 0; price=7, quantity=2 → 14-ро санҷед.",
+            "en": "Check quantity=0 → 0; price=7, quantity=2 → 14."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "go-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Go: результат и error",
+        "tg": "Go: натиҷа ва error",
+        "en": "Go: a result and an error"
+      },
+      "summary": {
+        "ru": "День 2 из 2. Go: результат и error. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. Go: натиҷа ва error. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. Go: a result and an error. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "go-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Функция Go может вернуть несколько значений. Здесь total возвращает число и error. nil означает отсутствие ошибки. Если err не nil, вызывающий код должен обработать ошибку. Используйте небольшие учебные целые числа; пример не реализует денежную арифметику произвольной точности.",
+            "tg": "Функсияи Go метавонад чанд қимат баргардонад. total адад ва error медиҳад. nil маънои набудани хаторо дорад. Агар err nil набошад, рамзи даъваткунанда бояд хаторо коркард кунад. Ададҳои хурди омӯзиширо истифода баред; мисол ҳисоби пулиро бо дақиқии бемаҳдуд иҷро намекунад.",
+            "en": "A Go function can return multiple values. total returns a number and an error. nil means no error. If err is not nil, the caller must handle it. Use small teaching integers; this is not arbitrary-precision financial arithmetic."
+          },
+          "code": "package main\n\nimport \"fmt\"\n\nfunc total(price, quantity int) (int, error) {\n    if price < 0 || quantity < 0 { return 0, fmt.Errorf(\"negative value\") }\n    return price * quantity, nil\n}\nfunc main() {\n    value, err := total(12, 3)\n    if err != nil { panic(err) }\n    fmt.Println(value)\n    zero, _ := total(12, 0)\n    fmt.Println(zero)\n    if _, err := total(12, -1); err != nil { fmt.Println(\"Invalid input rejected\") }\n}\n",
+          "language": "go",
+          "output": {
+            "ru": "36\n0\nInvalid input rejected",
+            "tg": "36\n0\nInvalid input rejected",
+            "en": "36\n0\nInvalid input rejected"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.go в отдельной учебной папке и выполните в её терминале:\ngo run main.go\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nУберите игнорирование ошибки через _ у total(12, 0), обработайте err и проверьте также total(-1, 3).",
+            "tg": "main.go-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\ngo run main.go\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\nНодида гирифтани хаторо бо _ дар total(12, 0) бардоред, err-ро коркард кунед ва total(-1, 3)-ро низ санҷед.",
+            "en": "Save main.go in a separate learning folder and run in that folder's terminal:\ngo run main.go\nExpected output:\n36\n0\nInvalid input rejected\n\nReplace the ignored error (_) from total(12, 0) with explicit handling and also check total(-1, 3)."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "go-day-02-q",
+          "question": {
+            "ru": "Что означает nil в возвращённом error?",
+            "tg": "nil дар error-и баргардондашуда чӣ маъно дорад?",
+            "en": "What does nil mean in a returned error?"
+          },
+          "answer": {
+            "ru": "Ошибки нет",
+            "tg": "Хато нест",
+            "en": "There is no error"
+          },
+          "options": [
+            {
+              "ru": "Результат всегда равен нулю",
+              "tg": "Натиҷа ҳамеша сифр аст",
+              "en": "The result is always zero"
+            },
+            {
+              "ru": "Ошибки нет",
+              "tg": "Хато нест",
+              "en": "There is no error"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.go в отдельной учебной папке и выполните в её терминале:\ngo run main.go\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nУберите игнорирование ошибки через _ у total(12, 0), обработайте err и проверьте также total(-1, 3).",
+          "tg": "main.go-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\ngo run main.go\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\nНодида гирифтани хаторо бо _ дар total(12, 0) бардоред, err-ро коркард кунед ва total(-1, 3)-ро низ санҷед.",
+          "en": "Save main.go in a separate learning folder and run in that folder's terminal:\ngo run main.go\nExpected output:\n36\n0\nInvalid input rejected\n\nReplace the ignored error (_) from total(12, 0) with explicit handling and also check total(-1, 3)."
+        },
+        "hint": {
+          "ru": "Функция Go может вернуть несколько значений. Здесь total возвращает число и error. nil означает отсутствие ошибки. Если err не nil, вызывающий код должен обработать ошибку. Используйте небольшие учебные целые числа; пример не реализует денежную арифметику произвольной точности.",
+          "tg": "Функсияи Go метавонад чанд қимат баргардонад. total адад ва error медиҳад. nil маънои набудани хаторо дорад. Агар err nil набошад, рамзи даъваткунанда бояд хаторо коркард кунад. Ададҳои хурди омӯзиширо истифода баред; мисол ҳисоби пулиро бо дақиқии бемаҳдуд иҷро намекунад.",
+          "en": "A Go function can return multiple values. total returns a number and an error. nil means no error. If err is not nil, the caller must handle it. Use small teaching integers; this is not arbitrary-precision financial arithmetic."
+        },
+        "solution": "package main\n\nimport \"fmt\"\n\nfunc total(price, quantity int) (int, error) {\n    if price < 0 || quantity < 0 { return 0, fmt.Errorf(\"negative value\") }\n    return price * quantity, nil\n}\nfunc main() {\n    value, err := total(12, 3)\n    if err != nil { panic(err) }\n    fmt.Println(value)\n    zero, _ := total(12, 0)\n    fmt.Println(zero)\n    if _, err := total(12, -1); err != nil { fmt.Println(\"Invalid input rejected\") }\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл main.go выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.go бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.go using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Уберите игнорирование ошибки через _ у total(12, 0), обработайте err и проверьте также total(-1, 3).",
+            "tg": "Нодида гирифтани хаторо бо _ дар total(12, 0) бардоред, err-ро коркард кунед ва total(-1, 3)-ро низ санҷед.",
+            "en": "Replace the ignored error (_) from total(12, 0) with explicit handling and also check total(-1, 3)."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

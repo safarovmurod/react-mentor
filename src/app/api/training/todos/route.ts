@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { authenticatedUser } from '@/lib/account/require-user';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
+import { readBoundedJson, RequestBodyError } from '@/lib/security/request';
 
 const WorkspaceId = z.string().uuid();
 const PostSchema = z.object({
@@ -56,7 +57,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   let input: unknown;
-  try { input = await req.json(); } catch { return fail('JSON нодуруст аст.', 400); }
+  try { input = await readBoundedJson(req, 4096); } catch (cause) { return fail('JSON нодуруст ё хеле калон аст.', cause instanceof RequestBodyError ? cause.status : 400); }
   const parsed = PostSchema.safeParse(input);
   if (!parsed.success) return fail('workspaceId ё title нодуруст аст.', 400);
   const { workspaceId, title } = parsed.data;
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   let input: unknown;
-  try { input = await req.json(); } catch { return fail('JSON нодуруст аст.', 400); }
+  try { input = await readBoundedJson(req, 4096); } catch (cause) { return fail('JSON нодуруст ё хеле калон аст.', cause instanceof RequestBodyError ? cause.status : 400); }
   const parsed = PutSchema.safeParse(input);
   if (!parsed.success) return fail('Маълумоти вазифа нодуруст аст.', 400);
   const { workspaceId, id, title, completed } = parsed.data;

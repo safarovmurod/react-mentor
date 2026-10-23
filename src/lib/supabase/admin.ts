@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { boundedSupabaseFetch } from './request';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -21,6 +22,7 @@ export function getSupabaseAdminClient(): SupabaseClient | null {
   }
   if (!adminClient) {
     adminClient = createClient(supabaseUrl!, serviceRoleKey!, {
+      global: { fetch: boundedSupabaseFetch },
       auth: {
         autoRefreshToken: false,
         persistSession: false,

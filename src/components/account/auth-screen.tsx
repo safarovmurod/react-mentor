@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Atom, Mail, ShieldCheck } from 'lucide-react';
+import { Compass, Mail, ShieldCheck } from 'lucide-react';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { useAccount } from './account-provider';
 import { useLearningStore } from '@/stores/learning-store';
@@ -42,7 +42,7 @@ export function AuthScreen() {
     finally {setBusy(false);}
   }
   const title=mode==='signup' ? copy.signupTitle:mode==='reset' ? copy.resetTitle:copy.loginTitle;
-  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><p className="eyebrow">REACTMENTOR</p><h1>{title}</h1><p>{copy.intro}</p>
+  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Compass size={28}/></span><p className="eyebrow">DEVATLAS</p><h1>{title}</h1><p>{copy.intro}</p>
     {!account.configured && <section className="auth-unavailable"><p role="status">{copy.unavailable}</p><button className="button primary" onClick={continueAsGuest}>{copy.guest}</button></section>}
     <div className="google-option"><button className="button primary google-button" onClick={google} disabled={busy || !account.configured}><span className="google-mark" aria-hidden="true">G</span><span>{copy.google}</span></button><span className="recommend-tag">{copy.recommended}</span></div>
     <div className="auth-divider">{copy.orEmail}</div>
@@ -70,7 +70,7 @@ export function FirstProfileScreen() {
     event.preventDefault();setBusy(true);setError('');
     try {await account.saveProfile(name);} catch(cause) {setError(accountErrorKey(cause,'nameError'));} finally {setBusy(false);}
   }
-  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Atom size={28}/></span><h1>{copy.firstNameTitle}</h1><p>{copy.firstNameDescription}</p><form className="account-form" onSubmit={submit}><label>{copy.name}<input autoFocus autoComplete="name" value={name} onChange={e=>setName(e.target.value)} minLength={2} maxLength={60} required/></label><button className="button primary" disabled={busy || name.trim().length<2}>{busy ? copy.saveWait:copy.firstNameStart}</button></form>{error && <p role="alert" className="error-message">{ACCOUNT_COPY[language][error]}</p>}<button className="guest-button" onClick={account.signOut} disabled={busy}>{copy.logout}</button></section></div>;
+  return <div className="account-screen"><section className="auth-card"><span className="auth-logo"><Compass size={28}/></span><h1>{copy.firstNameTitle}</h1><p>{copy.firstNameDescription}</p><form className="account-form" onSubmit={submit}><label>{copy.name}<input autoFocus autoComplete="name" value={name} onChange={e=>setName(e.target.value)} minLength={2} maxLength={60} required/></label><button className="button primary" disabled={busy || name.trim().length<2}>{busy ? copy.saveWait:copy.firstNameStart}</button></form>{error && <p role="alert" className="error-message">{ACCOUNT_COPY[language][error]}</p>}<button className="guest-button" onClick={account.signOut} disabled={busy}>{copy.logout}</button></section></div>;
 }
 
 export function MfaChallengeScreen() {

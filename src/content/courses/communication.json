@@ -1,0 +1,233 @@
+{
+  "courseId": "communication",
+  "sources": [
+    {
+      "id": "communication-reference",
+      "title": "University of Minnesota — Communication in the Real World",
+      "url": "https://open.lib.umn.edu/communication/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "communication-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: ясная просьба",
+        "tg": "Рӯзи 1: дархости равшан",
+        "en": "Day 1: a clear request"
+      },
+      "summary": {
+        "ru": "За первый из двух вводных дней превратите расплывчатое сообщение в понятную просьбу: контекст, действие и срок. Учебный текст не нужно отправлять реальному человеку.",
+        "tg": "Дар рӯзи аввал аз ду дарси шиносоӣ паёми норавшанро ба дархости фаҳмо табдил диҳед: вазъият, амал ва муҳлат. Матни омӯзиширо ба шахси воқеӣ фиристодан лозим нест.",
+        "en": "In the first of two introductory days, turn a vague message into a clear request: context, action and deadline. You do not need to send the practice message to anyone."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "communication-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Получателю нужны причина сообщения, конкретное действие и понятный срок с часовым поясом, если он важен. Отделяйте факты от обвинений. «Вы ничего не делаете» не объясняет следующего шага. Попросите подтвердить понимание или предложить другой срок. Не включайте пароли, номера документов и чужую переписку.",
+            "tg": "Ба қабулкунанда сабаб, амали мушаххас ва муҳлати фаҳмо бо минтақаи вақт, агар муҳим бошад, лозим аст. Далелро аз айбдоркунӣ ҷудо кунед. «Шумо ҳеҷ кор намекунед» қадами ояндаро намегӯяд. Тасдиқи фаҳмиш ё муҳлати дигарро пурсед. Рамз, рақами ҳуҷҷат ё номаи дигаронро нагузоред.",
+            "en": "The recipient needs the reason, a specific action and a clear deadline with a time zone when relevant. Separate facts from blame. “You do nothing” does not explain the next step. Ask for confirmation or an alternative deadline. Do not include passwords, document numbers or other people’s messages."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Было: «Срочно пришлите это». Стало: «Для учебного расписания нужна итоговая таблица. Пришлите, пожалуйста, файл с днями и временем до пятницы, 15:00 по вашему местному времени. Если срок неудобен, предложите другой. Подтвердите, пожалуйста, что задача понятна». Имена и реальные даты в учебном примере не нужны.",
+            "tg": "Пеш: «Инро зуд фиристед». Баъд: «Барои ҷадвали омӯзишӣ ҷадвали ниҳоӣ лозим аст. Лутфан файлро бо рӯз ва вақт то ҷумъа, соати 15:00 бо вақти маҳаллии худ фиристед. Агар муҳлат номувофиқ бошад, дигарро пешниҳод кунед. Фаҳмо будани вазифаро тасдиқ кунед». Ном ва санаи воқеӣ лозим нест.",
+            "en": "Before: “Send that urgently.” After: “We need the final table for the practice timetable. Please send the file with days and times by Friday, 15:00 in your local time. If that is not workable, suggest another deadline. Please confirm that the task is clear.” Real names and dates are unnecessary in this example."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "communication-day-01-q01",
+          "question": {
+            "ru": "Что делает просьбу понятнее?",
+            "tg": "Чӣ дархостро фаҳмотар мекунад?",
+            "en": "What makes a request clearer?"
+          },
+          "answer": {
+            "ru": "Конкретное действие и срок.",
+            "tg": "Амали мушаххас ва муҳлат.",
+            "en": "A specific action and deadline."
+          },
+          "options": [
+            {
+              "ru": "Больше восклицательных знаков.",
+              "tg": "Аломатҳои хитоби бештар.",
+              "en": "More exclamation marks."
+            },
+            {
+              "ru": "Конкретное действие и срок.",
+              "tg": "Амали мушаххас ва муҳлат.",
+              "en": "A specific action and deadline."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Возьмите вымышленную просьбу «сделайте нормально».\n2. Добавьте нейтральный контекст и конкретный результат.\n3. Укажите срок и способ уточнить ожидания.\n4. Проверьте, что сообщение не обвиняет и не содержит личных данных.",
+          "tg": "1. Дархости сохтаи «дуруст кунед»-ро гиред.\n2. Вазъияти бетараф ва натиҷаи мушаххас илова кунед.\n3. Муҳлат ва роҳи равшан кардани интизориро гӯед.\n4. Санҷед, ки паём айбдоркунӣ ва маълумоти шахсӣ надорад.",
+          "en": "1. Start with a fictional “do it properly” request.\n2. Add neutral context and a specific deliverable.\n3. Give a deadline and a way to clarify expectations.\n4. Check for blame and personal information."
+        },
+        "hint": {
+          "ru": "Получатель должен понять, что именно сделать, не угадывая смысл слова «это».",
+          "tg": "Қабулкунанда бояд бе тахмини маънои «ин» амалро фаҳмад.",
+          "en": "The recipient should know the action without guessing what “that” means."
+        },
+        "solution": "Было: «Срочно пришлите это». Стало: «Для учебного расписания нужна итоговая таблица. Пришлите, пожалуйста, файл с днями и временем до пятницы, 15:00 по вашему местному времени. Если срок неудобен, предложите другой. Подтвердите, пожалуйста, что задача понятна». Имена и реальные даты в учебном примере не нужны.",
+        "referenceAnswer": {
+          "ru": "Было: «Срочно пришлите это». Стало: «Для учебного расписания нужна итоговая таблица. Пришлите, пожалуйста, файл с днями и временем до пятницы, 15:00 по вашему местному времени. Если срок неудобен, предложите другой. Подтвердите, пожалуйста, что задача понятна». Имена и реальные даты в учебном примере не нужны.",
+          "tg": "Пеш: «Инро зуд фиристед». Баъд: «Барои ҷадвали омӯзишӣ ҷадвали ниҳоӣ лозим аст. Лутфан файлро бо рӯз ва вақт то ҷумъа, соати 15:00 бо вақти маҳаллии худ фиристед. Агар муҳлат номувофиқ бошад, дигарро пешниҳод кунед. Фаҳмо будани вазифаро тасдиқ кунед». Ном ва санаи воқеӣ лозим нест.",
+          "en": "Before: “Send that urgently.” After: “We need the final table for the practice timetable. Please send the file with days and times by Friday, 15:00 in your local time. If that is not workable, suggest another deadline. Please confirm that the task is clear.” Real names and dates are unnecessary in this example."
+        },
+        "criteria": [
+          {
+            "ru": "Понятны контекст и требуемый результат.",
+            "tg": "Вазъият ва натиҷаи дархост фаҳмоанд.",
+            "en": "Context and requested outcome are clear."
+          },
+          {
+            "ru": "Есть срок и возможность уточнения.",
+            "tg": "Муҳлат ва имкони равшанкунӣ ҳаст.",
+            "en": "A deadline and clarification route are included."
+          },
+          {
+            "ru": "Тон нейтрален, персональные данные отсутствуют.",
+            "tg": "Оҳанг бетараф ва маълумоти шахсӣ нест.",
+            "en": "Tone is neutral and no personal information is included."
+          }
+        ]
+      }
+    },
+    {
+      "id": "communication-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: обратная связь без нападения",
+        "tg": "Рӯзи 2: бозхӯрд бе ҳамла",
+        "en": "Day 2: feedback without blame"
+      },
+      "summary": {
+        "ru": "Составьте короткую обратную связь о работе: наблюдение, влияние и следующий шаг. Затем ответьте на уточнение, не приписывая человеку намерения и черты характера.",
+        "tg": "Бозхӯрди кӯтоҳи корро созед: мушоҳида, таъсир ва қадами оянда. Баъд ба саволи равшанкунанда бе нисбат додани ният ё хислат ҷавоб диҳед.",
+        "en": "Write short feedback about work: observation, impact and a next step. Then answer a clarification without assuming motives or character traits."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "communication-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Обратная связь полезнее, когда описывает проверяемое действие, а не личность. Назовите ситуацию, факт, влияние и предложение. Дайте собеседнику возможность объяснить ограничения. Не путайте уважительный тон с отказом от ясных требований. В серьёзном конфликте или угрозе безопасности нужны соответствующие реальные процедуры помощи.",
+            "tg": "Бозхӯрд вақте фоиданок аст, ки амали санҷишшавандаро гӯяд, на шахсиятро. Вазъият, далел, таъсир ва пешниҳодро номбар кунед. Ба ҳамсуҳбат фаҳмонидани маҳдудиятҳоро иҷозат диҳед. Оҳанги боэҳтиром маънои талаботи норавшанро надорад. Дар муноқишаи ҷиддӣ ё хатари амният роҳҳои воқеии кумак лозиманд.",
+            "en": "Feedback works better when it describes observable behavior rather than personality. State the situation, fact, impact and suggestion. Let the other person explain constraints. Respectful tone does not mean unclear requirements. Serious conflict or safety threats require appropriate real support procedures."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "«В учебной таблице у двух встреч не указано время. Из-за этого я не могу собрать расписание. Добавьте время или отметьте “уточняется” до согласованного срока. Есть ли препятствие, о котором мне стоит знать?» Ответ на уточнение: «Если точного времени ещё нет, отметка “уточняется” подойдёт; не придумывайте значение».",
+            "tg": "«Дар ҷадвали омӯзишӣ вақти ду вохӯрӣ нест. Аз ин сабаб ҷадвалро ҷамъ карда наметавонам. То муҳлати мувофиқ вақтро илова кунед ё “муайян мешавад” нависед. Оё монеае ҳаст, ки донистанам лозим?» Ҷавоб: «Агар вақти аниқ набошад, “муайян мешавад” кофист; қимат насозед».",
+            "en": "“Two meetings in the practice table have no time. That prevents me from assembling the timetable. Add the time or mark it ‘to be confirmed’ by the agreed deadline. Is there a constraint I should know about?” Clarification: “If the time is unknown, ‘to be confirmed’ is fine; do not invent a value.”"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "communication-day-02-q01",
+          "question": {
+            "ru": "Какой текст описывает наблюдение?",
+            "tg": "Кадом матн мушоҳидаро мегӯяд?",
+            "en": "Which text describes an observation?"
+          },
+          "answer": {
+            "ru": "В двух строках не указано время.",
+            "tg": "Дар ду сатр вақт навишта нашудааст.",
+            "en": "Two rows have no time listed."
+          },
+          "options": [
+            {
+              "ru": "Вы всегда невнимательны.",
+              "tg": "Шумо ҳамеша бепарвоед.",
+              "en": "You are always careless."
+            },
+            {
+              "ru": "В двух строках не указано время.",
+              "tg": "Дар ду сатр вақт навишта нашудааст.",
+              "en": "Two rows have no time listed."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Выберите вымышленную ошибку в учебной работе.\n2. Напишите наблюдение без оценки личности.\n3. Объясните влияние и предложите следующий шаг.\n4. Добавьте вопрос об ограничениях и уважительный ответ на него.",
+          "tg": "1. Хатои сохтаи кори омӯзиширо интихоб кунед.\n2. Мушоҳидаро бе баҳодиҳии шахсият нависед.\n3. Таъсир ва қадами ояндаро фаҳмонед.\n4. Саволи маҳдудият ва ҷавоби боэҳтиром илова кунед.",
+          "en": "1. Choose a fictional mistake in practice work.\n2. Describe it without judging the person.\n3. Explain its impact and suggest a next step.\n4. Include a question about constraints and a respectful response."
+        },
+        "hint": {
+          "ru": "«В таблице нет времени» проверяемо; «вы безответственны» — ярлык.",
+          "tg": "«Дар ҷадвал вақт нест» санҷишшаванда аст; «шумо бемасъулиятед» тамға аст.",
+          "en": "“The table has no time” is observable; “you are irresponsible” is a label."
+        },
+        "solution": "«В учебной таблице у двух встреч не указано время. Из-за этого я не могу собрать расписание. Добавьте время или отметьте “уточняется” до согласованного срока. Есть ли препятствие, о котором мне стоит знать?» Ответ на уточнение: «Если точного времени ещё нет, отметка “уточняется” подойдёт; не придумывайте значение».",
+        "referenceAnswer": {
+          "ru": "«В учебной таблице у двух встреч не указано время. Из-за этого я не могу собрать расписание. Добавьте время или отметьте “уточняется” до согласованного срока. Есть ли препятствие, о котором мне стоит знать?» Ответ на уточнение: «Если точного времени ещё нет, отметка “уточняется” подойдёт; не придумывайте значение».",
+          "tg": "«Дар ҷадвали омӯзишӣ вақти ду вохӯрӣ нест. Аз ин сабаб ҷадвалро ҷамъ карда наметавонам. То муҳлати мувофиқ вақтро илова кунед ё “муайян мешавад” нависед. Оё монеае ҳаст, ки донистанам лозим?» Ҷавоб: «Агар вақти аниқ набошад, “муайян мешавад” кофист; қимат насозед».",
+          "en": "“Two meetings in the practice table have no time. That prevents me from assembling the timetable. Add the time or mark it ‘to be confirmed’ by the agreed deadline. Is there a constraint I should know about?” Clarification: “If the time is unknown, ‘to be confirmed’ is fine; do not invent a value.”"
+        },
+        "criteria": [
+          {
+            "ru": "Факт отделён от оценки личности.",
+            "tg": "Далел аз баҳодиҳии шахсият ҷудо аст.",
+            "en": "Fact is separated from personal judgment."
+          },
+          {
+            "ru": "Показаны влияние и следующий шаг.",
+            "tg": "Таъсир ва қадами оянда нишон дода шудаанд.",
+            "en": "Impact and a next step are stated."
+          },
+          {
+            "ru": "Есть возможность уточнения и ответ без обвинения.",
+            "tg": "Роҳи равшанкунӣ ва ҷавоби беайбдоркунӣ ҳаст.",
+            "en": "Clarification and a non-blaming reply are included."
+          }
+        ]
+      }
+    }
+  ]
+}

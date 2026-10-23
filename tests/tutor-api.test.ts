@@ -94,7 +94,7 @@ describe('Tutor API', () => {
     expect(init.cache).toBe('no-store');
     const payload = JSON.parse(init.body);
     expect(payload).toMatchObject({ model: 'cx/gpt-6.1-sol', max_tokens: 256 });
-    expect(payload.messages[0]).toMatchObject({ role: 'system', content: expect.stringContaining('React Mentor') });
+    expect(payload.messages[0]).toMatchObject({ role: 'system', content: expect.stringContaining('DevAtlas') });
     expect(payload.messages.slice(1, 3)).toEqual(history);
     expect(payload.messages.at(-1).content).toContain('Svelte runes чияй?');
     expect(payload.messages.at(-1).content).toContain('Expand this question');

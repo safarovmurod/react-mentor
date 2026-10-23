@@ -12,7 +12,7 @@ export const courseContentSchema = z.object({
     id, day: z.number().int().min(0).max(30).optional(), prerequisiteDays: z.array(z.number().int().min(0).max(30)).optional(), title: text, summary: text, level: z.enum(['beginner', 'intermediate']), sourceIds: z.array(id).min(1),
     sections: z.array(z.object({ title: text, body: text, code: z.string().optional(), language: z.string().optional(), output: text.optional() })).min(1),
     questions: z.array(z.object({ id, question: text, answer: text, options: z.array(text).min(2).max(6), correctIndex: z.number().int().nonnegative() })),
-    practice: z.object({ task: text, hint: text, solution: z.string(), criteria: z.array(text).min(1) }).optional(),
+    practice: z.object({ kind: z.enum(['code','written']).optional(), referenceAnswer: text.optional(), task: text, hint: text, solution: z.string(), criteria: z.array(text).min(1) }).optional(),
   })),
 }).superRefine((course, ctx) => {
   const sourceIds = new Set(course.sources.map(source => source.id));

@@ -100,7 +100,7 @@ function SecuritySettings() {
       // Remove incomplete factors left by abandoned enrollment before starting.
       const listed=await client.auth.mfa.listFactors();if (listed.error) throw listed.error;
       for (const factor of listed.data.all.filter(f=>f.factor_type==='totp' && f.status==='unverified')) {const removed=await client.auth.mfa.unenroll({factorId:factor.id});if (removed.error) throw removed.error;}
-      const result=await client.auth.mfa.enroll({factorType:'totp',friendlyName:'ReactMentor',issuer:'ReactMentor'});if (result.error) throw result.error;
+      const result=await client.auth.mfa.enroll({factorType:'totp',friendlyName:'DevAtlas',issuer:'DevAtlas'});if (result.error) throw result.error;
       const qr=result.data.totp.qr_code;
       setEnrollment({id:result.data.id,qr:qr.startsWith('data:') ? qr:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(qr),secret:result.data.totp.secret});setCode('');
     } catch {setError('enrollError');} finally {setBusy(false);}

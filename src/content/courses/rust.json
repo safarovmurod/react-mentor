@@ -1,0 +1,259 @@
+{
+  "courseId": "rust",
+  "sources": [
+    {
+      "id": "rust-official",
+      "title": "Rust — official documentation",
+      "url": "https://doc.rust-lang.org/book/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "rust-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "Rust: let и неизменяемость",
+        "tg": "Rust: let ва тағйирнопазирӣ",
+        "en": "Rust: let and immutability"
+      },
+      "summary": {
+        "ru": "День 1 из 2. Rust: let и неизменяемость. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 1 аз 2. Rust: let ва тағйирнопазирӣ. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 1 of 2. Rust: let and immutability. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "rust-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Установите Rust через официальный rustup. rustc компилирует main.rs в исполняемый файл. let по умолчанию создаёт неизменяемую привязку; тип i32 — знаковое 32-битное целое. println! — макрос форматированного вывода.",
+            "tg": "Rust-ро тавассути rustup-и расмӣ насб кунед. rustc main.rs-ро ба файли иҷрошаванда табдил медиҳад. let одатан номи тағйирнопазир месозад; i32 адади бутуни 32-бита бо аломат аст. println! макроси баровардани матни форматшуда мебошад.",
+            "en": "Install Rust using official rustup. rustc compiles main.rs into an executable. let creates an immutable binding by default; i32 is a signed 32-bit integer. println! is a formatted-output macro."
+          },
+          "code": "fn main() {\n    let price: i32 = 12;\n    let quantity: i32 = 3;\n    println!(\"{}\", price * quantity);\n}\n",
+          "language": "rust",
+          "output": {
+            "ru": "36",
+            "tg": "36",
+            "en": "36"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.rs в отдельной учебной папке и выполните в её терминале:\nrustc main.rs -o lesson && ./lesson\nОжидаемый вывод:\n36\n\nИзмените начальное quantity на 0 и перекомпилируйте: 0. Попробуйте повторное присваивание без mut и прочитайте ошибку компилятора.",
+            "tg": "main.rs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nrustc main.rs -o lesson && ./lesson\nНатиҷаи интизорӣ:\n36\n\nҚимати аввали quantity-ро 0 карда, аз нав тарҷума кунед: 0. Бе mut дубора қимат таъйин кунед ва хатои компиляторро хонед.",
+            "en": "Save main.rs in a separate learning folder and run in that folder's terminal:\nrustc main.rs -o lesson && ./lesson\nExpected output:\n36\n\nChange the initial quantity to 0 and recompile: 0. Try reassigning it without mut and read the compiler diagnostic."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "rust-day-01-q",
+          "question": {
+            "ru": "Можно ли присвоить новое значение let quantity без mut?",
+            "tg": "Ба let quantity бе mut қимати нав таъйин кардан мумкин аст?",
+            "en": "Can you reassign a let quantity binding without mut?"
+          },
+          "answer": {
+            "ru": "Нет: привязка неизменяема",
+            "tg": "Не: ном тағйирнопазир аст",
+            "en": "No: the binding is immutable"
+          },
+          "options": [
+            {
+              "ru": "Да, Rust не проверяет это",
+              "tg": "Ҳа, Rust инро намесанҷад",
+              "en": "Yes, Rust does not check this"
+            },
+            {
+              "ru": "Нет: привязка неизменяема",
+              "tg": "Не: ном тағйирнопазир аст",
+              "en": "No: the binding is immutable"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.rs в отдельной учебной папке и выполните в её терминале:\nrustc main.rs -o lesson && ./lesson\nОжидаемый вывод:\n36\n\nИзмените начальное quantity на 0 и перекомпилируйте: 0. Попробуйте повторное присваивание без mut и прочитайте ошибку компилятора.",
+          "tg": "main.rs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nrustc main.rs -o lesson && ./lesson\nНатиҷаи интизорӣ:\n36\n\nҚимати аввали quantity-ро 0 карда, аз нав тарҷума кунед: 0. Бе mut дубора қимат таъйин кунед ва хатои компиляторро хонед.",
+          "en": "Save main.rs in a separate learning folder and run in that folder's terminal:\nrustc main.rs -o lesson && ./lesson\nExpected output:\n36\n\nChange the initial quantity to 0 and recompile: 0. Try reassigning it without mut and read the compiler diagnostic."
+        },
+        "hint": {
+          "ru": "Установите Rust через официальный rustup. rustc компилирует main.rs в исполняемый файл. let по умолчанию создаёт неизменяемую привязку; тип i32 — знаковое 32-битное целое. println! — макрос форматированного вывода.",
+          "tg": "Rust-ро тавассути rustup-и расмӣ насб кунед. rustc main.rs-ро ба файли иҷрошаванда табдил медиҳад. let одатан номи тағйирнопазир месозад; i32 адади бутуни 32-бита бо аломат аст. println! макроси баровардани матни форматшуда мебошад.",
+          "en": "Install Rust using official rustup. rustc compiles main.rs into an executable. let creates an immutable binding by default; i32 is a signed 32-bit integer. println! is a formatted-output macro."
+        },
+        "solution": "fn main() {\n    let price: i32 = 12;\n    let quantity: i32 = 3;\n    println!(\"{}\", price * quantity);\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл main.rs выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.rs бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.rs using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Измените начальное quantity на 0 и перекомпилируйте: 0. Попробуйте повторное присваивание без mut и прочитайте ошибку компилятора.",
+            "tg": "Қимати аввали quantity-ро 0 карда, аз нав тарҷума кунед: 0. Бе mut дубора қимат таъйин кунед ва хатои компиляторро хонед.",
+            "en": "Change the initial quantity to 0 and recompile: 0. Try reassigning it without mut and read the compiler diagnostic."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "rust-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "Rust: Result и обработка ошибок",
+        "tg": "Rust: Result ва коркарди хатоҳо",
+        "en": "Rust: Result and error handling"
+      },
+      "summary": {
+        "ru": "День 2 из 2. Rust: Result и обработка ошибок. Практика в локальной среде, с проверкой вывода и граничного случая.",
+        "tg": "Рӯзи 2 аз 2. Rust: Result ва коркарди хатоҳо. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
+        "en": "Day 2 of 2. Rust: Result and error handling. Practice locally and check the output and a boundary case."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "rust-official"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Разберите пример",
+            "tg": "Мисолро фаҳмед",
+            "en": "Understand the example"
+          },
+          "body": {
+            "ru": "Result<i32, &str> явно представляет успех Ok или ошибку Err. Проверка отрицательных аргументов возвращает Err. checked_mul возвращает Option и обнаруживает переполнение; ok_or переводит отсутствие результата в Err. match обрабатывает обе ветки.",
+            "tg": "Result<i32, &str> муваффақиятро бо Ok ё хаторо бо Err нишон медиҳад. Аргументҳои манфӣ Err медиҳанд. checked_mul Option баргардонда, пуршавии ҳудуди ададро меёбад; ok_or набудани натиҷаро ба Err табдил медиҳад. match ҳар ду ҳолатро коркард мекунад.",
+            "en": "Result<i32, &str> explicitly represents success with Ok or failure with Err. Negative arguments return Err. checked_mul returns Option and detects overflow; ok_or converts a missing result to Err. match handles both cases."
+          },
+          "code": "fn total(price: i32, quantity: i32) -> Result<i32, &'static str> {\n    if price < 0 || quantity < 0 { return Err(\"Negative value\"); }\n    price.checked_mul(quantity).ok_or(\"Total too large\")\n}\nfn main() {\n    println!(\"{}\", total(12, 3).expect(\"valid input\"));\n    println!(\"{}\", total(12, 0).expect(\"valid input\"));\n    match total(12, -1) {\n        Err(_) => println!(\"Invalid input rejected\"),\n        Ok(value) => println!(\"Unexpected: {}\", value),\n    }\n}\n",
+          "language": "rust",
+          "output": {
+            "ru": "36\n0\nInvalid input rejected",
+            "tg": "36\n0\nInvalid input rejected",
+            "en": "36\n0\nInvalid input rejected"
+          }
+        },
+        {
+          "title": {
+            "ru": "Запустите и проверьте",
+            "tg": "Иҷро карда санҷед",
+            "en": "Run and verify"
+          },
+          "body": {
+            "ru": "Сохраните main.rs в отдельной учебной папке и выполните в её терминале:\nrustc main.rs -o lesson && ./lesson\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте total(-1, 3) и total(i32::MAX, 2): оба должны дать Err.",
+            "tg": "main.rs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nrustc main.rs -o lesson && ./lesson\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal(-1, 3) ва total(i32::MAX, 2)-ро санҷед: ҳар ду бояд Err диҳанд.",
+            "en": "Save main.rs in a separate learning folder and run in that folder's terminal:\nrustc main.rs -o lesson && ./lesson\nExpected output:\n36\n0\nInvalid input rejected\n\nCheck total(-1, 3) and total(i32::MAX, 2): both must return Err."
+          }
+        },
+        {
+          "title": {
+            "ru": "Среда выполнения",
+            "tg": "Муҳити иҷро",
+            "en": "Runtime requirements"
+          },
+          "body": {
+            "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+            "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
+            "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "rust-day-02-q",
+          "question": {
+            "ru": "Какой вариант Result означает ошибку?",
+            "tg": "Кадом ҳолати Result хаторо нишон медиҳад?",
+            "en": "Which Result variant means failure?"
+          },
+          "answer": {
+            "ru": "Err",
+            "tg": "Err",
+            "en": "Err"
+          },
+          "options": [
+            {
+              "ru": "Ok",
+              "tg": "Ok",
+              "en": "Ok"
+            },
+            {
+              "ru": "Err",
+              "tg": "Err",
+              "en": "Err"
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "task": {
+          "ru": "Сохраните main.rs в отдельной учебной папке и выполните в её терминале:\nrustc main.rs -o lesson && ./lesson\nОжидаемый вывод:\n36\n0\nInvalid input rejected\n\nПроверьте total(-1, 3) и total(i32::MAX, 2): оба должны дать Err.",
+          "tg": "main.rs-ро дар папкаи алоҳидаи омӯзишӣ сабт карда, дар терминали он иҷро кунед:\nrustc main.rs -o lesson && ./lesson\nНатиҷаи интизорӣ:\n36\n0\nInvalid input rejected\n\ntotal(-1, 3) ва total(i32::MAX, 2)-ро санҷед: ҳар ду бояд Err диҳанд.",
+          "en": "Save main.rs in a separate learning folder and run in that folder's terminal:\nrustc main.rs -o lesson && ./lesson\nExpected output:\n36\n0\nInvalid input rejected\n\nCheck total(-1, 3) and total(i32::MAX, 2): both must return Err."
+        },
+        "hint": {
+          "ru": "Result<i32, &str> явно представляет успех Ok или ошибку Err. Проверка отрицательных аргументов возвращает Err. checked_mul возвращает Option и обнаруживает переполнение; ok_or переводит отсутствие результата в Err. match обрабатывает обе ветки.",
+          "tg": "Result<i32, &str> муваффақиятро бо Ok ё хаторо бо Err нишон медиҳад. Аргументҳои манфӣ Err медиҳанд. checked_mul Option баргардонда, пуршавии ҳудуди ададро меёбад; ok_or набудани натиҷаро ба Err табдил медиҳад. match ҳар ду ҳолатро коркард мекунад.",
+          "en": "Result<i32, &str> explicitly represents success with Ok or failure with Err. Negative arguments return Err. checked_mul returns Option and detects overflow; ok_or converts a missing result to Err. match handles both cases."
+        },
+        "solution": "fn total(price: i32, quantity: i32) -> Result<i32, &'static str> {\n    if price < 0 || quantity < 0 { return Err(\"Negative value\"); }\n    price.checked_mul(quantity).ok_or(\"Total too large\")\n}\nfn main() {\n    println!(\"{}\", total(12, 3).expect(\"valid input\"));\n    println!(\"{}\", total(12, 0).expect(\"valid input\"));\n    match total(12, -1) {\n        Err(_) => println!(\"Invalid input rejected\"),\n        Ok(value) => println!(\"Unexpected: {}\", value),\n    }\n}\n",
+        "criteria": [
+          {
+            "ru": "Файл main.rs выполнен указанной командой; вывод совпадает с ожидаемым.",
+            "tg": "Файли main.rs бо фармони зикршуда иҷро шуд; натиҷа ба интизорӣ мувофиқ аст.",
+            "en": "Run main.rs using the stated command; output matches the expected result."
+          },
+          {
+            "ru": "Проверьте total(-1, 3) и total(i32::MAX, 2): оба должны дать Err.",
+            "tg": "total(-1, 3) ва total(i32::MAX, 2)-ро санҷед: ҳар ду бояд Err диҳанд.",
+            "en": "Check total(-1, 3) and total(i32::MAX, 2): both must return Err."
+          },
+          {
+            "ru": "Могу объяснить результат своими словами; имена переменных могут отличаться от примера.",
+            "tg": "Натиҷаро бо суханони худ шарҳ дода метавонам; номи тағйирёбандаҳо метавонад аз мисол дигар бошад.",
+            "en": "Explain the result in your own words; variable names may differ from the example."
+          }
+        ]
+      }
+    }
+  ]
+}

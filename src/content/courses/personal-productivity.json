@@ -1,0 +1,233 @@
+{
+  "courseId": "personal-productivity",
+  "sources": [
+    {
+      "id": "personal-productivity-reference",
+      "title": "The Open University OpenLearn — Managing your time",
+      "url": "https://www.open.edu/openlearn/"
+    }
+  ],
+  "files": [],
+  "lessons": [
+    {
+      "id": "personal-productivity-day-01",
+      "day": 1,
+      "prerequisiteDays": [],
+      "title": {
+        "ru": "День 1: реалистичный учебный день",
+        "tg": "Рӯзи 1: рӯзи воқеъбинонаи омӯзиш",
+        "en": "Day 1: a realistic study day"
+      },
+      "summary": {
+        "ru": "Первый из двух вводных уроков планирования: выберите один результат и разместите работу в доступном времени с перерывом. Это организация задач, а не медицинский совет и не обещание постоянной продуктивности.",
+        "tg": "Аввалин ду дарси муқаддимавии нақшагирӣ: як натиҷа интихоб карда, корро дар вақти дастрас бо танаффус ҷойгир кунед. Ин тартиби вазифаҳост, на маслиҳати тиббӣ ё ваъдаи самаранокии доимӣ.",
+        "en": "First of two planning lessons: choose one outcome and fit work into available time with a break. This is task organization, not medical advice or a promise of constant productivity."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "personal-productivity-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "План начинается с реального доступного времени и небольшого проверяемого результата. «Учить всё» замените на «прочитать раздел и ответить на три вопроса». Оставляйте запас и учитывайте обязательства. Перерыв — часть плана. Если задача не помещается, сократите объём или перенесите её, а не обещайте невозможное. Не нужно раскрывать личное расписание: используйте вымышленный день.",
+            "tg": "Нақша аз вақти воқеии дастрас ва натиҷаи хурди санҷишшаванда оғоз мешавад. «Ҳамаро хондан»-ро ба «як бахш ва се савол» иваз кунед. Захираи вақт ва уҳдадориҳоро ба назар гиред. Танаффус қисми нақша аст. Агар кор нағунҷад, ҳаҷмро кам ё кӯчонед, на ваъдаи номумкин. Ҷадвали шахсиро фош накунед: рӯзи сохта истифода баред.",
+            "en": "Start with genuinely available time and a small verifiable outcome. Replace “learn everything” with “read one section and answer three questions”. Leave buffer and account for commitments. Breaks belong in the plan. If work does not fit, reduce scope or reschedule instead of promising the impossible. Use a fictional day rather than disclose your private schedule."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "Вымышленное окно: 60 минут. Результат: краткое объяснение одной темы и три ответа. План: 10 минут на обзор, 25 на изучение, 5 на перерыв, 15 на вопросы, 5 запас. Итого 60. Если раздел оказался большим, прочитать одну часть и записать следующий шаг вместо ночной спешки.",
+            "tg": "Вақти сохта: 60 дақиқа. Натиҷа: шарҳи кӯтоҳи як мавзӯъ ва се ҷавоб. Нақша: 10 дақиқа назар, 25 омӯзиш, 5 танаффус, 15 савол, 5 захира. Ҳамагӣ 60. Агар бахш калон бошад, як қисмро хонда, қадами дигарро нависед, на шабона шитоб кунед.",
+            "en": "Fictional window: 60 minutes. Outcome: a short explanation of one topic and three answers. Plan: 10 minutes preview, 25 study, 5 break, 15 questions, 5 buffer. Total 60. If the section is too large, finish one part and record the next step rather than rush late into the night."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "personal-productivity-day-01-q01",
+          "question": {
+            "ru": "Какой план помещается в 60 минут?",
+            "tg": "Кадом нақша дар 60 дақиқа меғунҷад?",
+            "en": "Which plan fits into 60 minutes?"
+          },
+          "answer": {
+            "ru": "40 работа + 10 перерыв + 10 запас.",
+            "tg": "40 кор + 10 танаффус + 10 захира.",
+            "en": "40 work + 10 break + 10 buffer."
+          },
+          "options": [
+            {
+              "ru": "50 работа + 10 перерыв + 10 запас.",
+              "tg": "50 кор + 10 танаффус + 10 захира.",
+              "en": "50 work + 10 break + 10 buffer."
+            },
+            {
+              "ru": "40 работа + 10 перерыв + 10 запас.",
+              "tg": "40 кор + 10 танаффус + 10 захира.",
+              "en": "40 work + 10 break + 10 buffer."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Возьмите вымышленное окно в 60 минут.\n2. Сформулируйте один проверяемый учебный результат.\n3. Разбейте время на работу, перерыв и запас; сумма не должна превышать 60.\n4. Укажите, что сократите, если работа займёт дольше.",
+          "tg": "1. Вақти сохтаи 60-дақиқаиро гиред.\n2. Як натиҷаи санҷишшавандаи омӯзишро нависед.\n3. Вақтро ба кор, танаффус ва захира ҷудо кунед; ҷамъ аз 60 зиёд нашавад.\n4. Агар кор тӯл кашад, чиро кам мекунед, гӯед.",
+          "en": "1. Use a fictional 60-minute window.\n2. Define one verifiable learning outcome.\n3. Allocate work, break and buffer time, totaling no more than 60.\n4. State what you would reduce if work takes longer."
+        },
+        "hint": {
+          "ru": "Сначала сложите минуты; несколько параллельных обещаний не увеличивают доступное время.",
+          "tg": "Аввал дақиқаҳоро ҷамъ кунед; чанд ваъдаи ҳамзамон вақтро зиёд намекунад.",
+          "en": "Add the minutes first; parallel promises do not create more time."
+        },
+        "solution": "Вымышленное окно: 60 минут. Результат: краткое объяснение одной темы и три ответа. План: 10 минут на обзор, 25 на изучение, 5 на перерыв, 15 на вопросы, 5 запас. Итого 60. Если раздел оказался большим, прочитать одну часть и записать следующий шаг вместо ночной спешки.",
+        "referenceAnswer": {
+          "ru": "Вымышленное окно: 60 минут. Результат: краткое объяснение одной темы и три ответа. План: 10 минут на обзор, 25 на изучение, 5 на перерыв, 15 на вопросы, 5 запас. Итого 60. Если раздел оказался большим, прочитать одну часть и записать следующий шаг вместо ночной спешки.",
+          "tg": "Вақти сохта: 60 дақиқа. Натиҷа: шарҳи кӯтоҳи як мавзӯъ ва се ҷавоб. Нақша: 10 дақиқа назар, 25 омӯзиш, 5 танаффус, 15 савол, 5 захира. Ҳамагӣ 60. Агар бахш калон бошад, як қисмро хонда, қадами дигарро нависед, на шабона шитоб кунед.",
+          "en": "Fictional window: 60 minutes. Outcome: a short explanation of one topic and three answers. Plan: 10 minutes preview, 25 study, 5 break, 15 questions, 5 buffer. Total 60. If the section is too large, finish one part and record the next step rather than rush late into the night."
+        },
+        "criteria": [
+          {
+            "ru": "Один результат можно проверить.",
+            "tg": "Як натиҷа санҷишшаванда аст.",
+            "en": "One outcome can be verified."
+          },
+          {
+            "ru": "Работа, перерыв и запас укладываются в 60 минут.",
+            "tg": "Кор, танаффус ва захира дар 60 дақиқа меғунҷанд.",
+            "en": "Work, break and buffer fit within 60 minutes."
+          },
+          {
+            "ru": "Есть вариант сокращения объёма без вредных обещаний.",
+            "tg": "Роҳи кам кардани ҳаҷм бе ваъдаи зарарнок ҳаст.",
+            "en": "A scope-reduction option avoids harmful promises."
+          }
+        ]
+      }
+    },
+    {
+      "id": "personal-productivity-day-02",
+      "day": 2,
+      "prerequisiteDays": [
+        1
+      ],
+      "title": {
+        "ru": "День 2: обзор и следующий шаг",
+        "tg": "Рӯзи 2: баррасӣ ва қадами оянда",
+        "en": "Day 2: review and the next step"
+      },
+      "summary": {
+        "ru": "Сравните план с вымышленным фактом и измените оценку следующей работы. Смысл обзора — улучшить решение, а не обвинить себя или выдать пропуск за выполненную задачу.",
+        "tg": "Нақша ва воқеаи сохтаро муқоиса карда, ҳисоби кори ояндаро ислоҳ кунед. Мақсад беҳ кардани қарор аст, на худро айбдор кардан ё кори иҷронашударо анҷомшуда гуфтан.",
+        "en": "Compare a plan with fictional actual results and adjust the next estimate. Reviewing improves decisions; it is not self-blame or a reason to mark unfinished work complete."
+      },
+      "level": "beginner",
+      "sourceIds": [
+        "personal-productivity-reference"
+      ],
+      "sections": [
+        {
+          "title": {
+            "ru": "Ключевая идея",
+            "tg": "Фикри асосӣ",
+            "en": "Key idea"
+          },
+          "body": {
+            "ru": "Короткий обзор отвечает: что планировалось, что сделано, что помешало, что изменить. Отличайте полезное наблюдение от ярлыка «я ленивый». Если оценка была занижена, уменьшите объём или выделите больше времени. Следующий шаг должен быть небольшим действием, которое можно начать без повторного планирования.",
+            "tg": "Баррасии кӯтоҳ мегӯяд: нақша чӣ буд, чӣ шуд, чӣ монеъ шуд ва чӣ дигар шавад. Мушоҳидаи фоиданокро аз тамғаи «танбалам» ҷудо кунед. Агар вақт кам ҳисоб шуд, ҳаҷмро кам ё вақтро зиёд кунед. Қадами дигар амали хурд бошад, ки бе нақшагирии нав оғоз шавад.",
+            "en": "A short review asks what was planned, what happened, what got in the way and what to change. Separate useful observation from labels such as “I am lazy”. If time was underestimated, reduce scope or allow more time. Make the next step small enough to start without planning again."
+          }
+        },
+        {
+          "title": {
+            "ru": "Разобранный пример",
+            "tg": "Мисоли шарҳдодашуда",
+            "en": "Worked example"
+          },
+          "body": {
+            "ru": "План: 25 минут чтения и 15 минут вопросов. Факт: чтение заняло 35, ответы — 10, один вопрос остался. Наблюдение: раздел сложнее ожидаемого. Корректировка: завтра взять половину раздела. Следующий шаг: открыть оставшийся вопрос и выписать непонятные слова. Незавершённый вопрос остаётся незавершённым.",
+            "tg": "Нақша: 25 дақиқа хониш ва 15 дақиқа савол. Воқеа: хониш 35 ва ҷавобҳо 10; як савол монд. Мушоҳида: бахш аз интизор душвортар буд. Ислоҳ: пагоҳ нисфи бахшро гирифтан. Қадами дигар: саволи мондаро кушода, калимаҳои нофаҳморо навиштан. Саволи нотамом ҳамоно нотамом аст.",
+            "en": "Plan: 25 minutes reading and 15 answering questions. Actual: reading took 35, answers took 10, and one question remains. Observation: the section was harder than expected. Adjustment: use half a section tomorrow. Next step: open the remaining question and list unfamiliar terms. An unfinished question stays unfinished."
+          }
+        }
+      ],
+      "questions": [
+        {
+          "id": "personal-productivity-day-02-q01",
+          "question": {
+            "ru": "Зачем проводить короткий обзор?",
+            "tg": "Баррасии кӯтоҳ барои чист?",
+            "en": "Why do a short review?"
+          },
+          "answer": {
+            "ru": "Чтобы улучшить оценку и выбрать следующий шаг.",
+            "tg": "Барои беҳ кардани ҳисоб ва интихоби қадами оянда.",
+            "en": "To improve estimates and choose the next step."
+          },
+          "options": [
+            {
+              "ru": "Чтобы скрыть невыполненную работу.",
+              "tg": "Барои пинҳон кардани кори нашуда.",
+              "en": "To hide unfinished work."
+            },
+            {
+              "ru": "Чтобы улучшить оценку и выбрать следующий шаг.",
+              "tg": "Барои беҳ кардани ҳисоб ва интихоби қадами оянда.",
+              "en": "To improve estimates and choose the next step."
+            }
+          ],
+          "correctIndex": 1
+        }
+      ],
+      "practice": {
+        "kind": "written",
+        "task": {
+          "ru": "1. Используйте вымышленные план и факт из примера.\n2. Отдельно запишите выполненное и оставшееся.\n3. Объясните расхождение нейтрально и измените объём следующей сессии.\n4. Сформулируйте один стартовый шаг; не отмечайте невыполненное завершённым.",
+          "tg": "1. Нақша ва воқеаи сохтаи мисолро истифода баред.\n2. Иҷрошуда ва мондаро алоҳида нависед.\n3. Фарқро бетараф шарҳ дода, ҳаҷми ҷаласаи дигарро иваз кунед.\n4. Як қадами оғозро созед; кори нашударо анҷомшуда нагӯед.",
+          "en": "1. Use the fictional plan and actuals from the example.\n2. Separate completed and remaining work.\n3. Explain the difference neutrally and adjust the next session’s scope.\n4. Define one starting action; do not mark unfinished work complete."
+        },
+        "hint": {
+          "ru": "Хороший следующий шаг содержит глагол и объект: «открыть вопрос и выписать термины».",
+          "tg": "Қадами хуб феъл ва чиз дорад: «саволро кушода, истилоҳҳоро навиштан».",
+          "en": "A useful next step has a verb and object: “open the question and list terms”."
+        },
+        "solution": "План: 25 минут чтения и 15 минут вопросов. Факт: чтение заняло 35, ответы — 10, один вопрос остался. Наблюдение: раздел сложнее ожидаемого. Корректировка: завтра взять половину раздела. Следующий шаг: открыть оставшийся вопрос и выписать непонятные слова. Незавершённый вопрос остаётся незавершённым.",
+        "referenceAnswer": {
+          "ru": "План: 25 минут чтения и 15 минут вопросов. Факт: чтение заняло 35, ответы — 10, один вопрос остался. Наблюдение: раздел сложнее ожидаемого. Корректировка: завтра взять половину раздела. Следующий шаг: открыть оставшийся вопрос и выписать непонятные слова. Незавершённый вопрос остаётся незавершённым.",
+          "tg": "Нақша: 25 дақиқа хониш ва 15 дақиқа савол. Воқеа: хониш 35 ва ҷавобҳо 10; як савол монд. Мушоҳида: бахш аз интизор душвортар буд. Ислоҳ: пагоҳ нисфи бахшро гирифтан. Қадами дигар: саволи мондаро кушода, калимаҳои нофаҳморо навиштан. Саволи нотамом ҳамоно нотамом аст.",
+          "en": "Plan: 25 minutes reading and 15 answering questions. Actual: reading took 35, answers took 10, and one question remains. Observation: the section was harder than expected. Adjustment: use half a section tomorrow. Next step: open the remaining question and list unfamiliar terms. An unfinished question stays unfinished."
+        },
+        "criteria": [
+          {
+            "ru": "Факт и оставшаяся работа названы честно.",
+            "tg": "Воқеа ва кори монда рост гуфта шудаанд.",
+            "en": "Actual results and remaining work are honestly stated."
+          },
+          {
+            "ru": "Корректировка связана с наблюдением.",
+            "tg": "Ислоҳ ба мушоҳида вобаста аст.",
+            "en": "The adjustment follows an observation."
+          },
+          {
+            "ru": "Следующий шаг конкретен и выполним.",
+            "tg": "Қадами дигар мушаххас ва иҷрошаванда аст.",
+            "en": "The next action is specific and feasible."
+          }
+        ]
+      }
+    }
+  ]
+}
