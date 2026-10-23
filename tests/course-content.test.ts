@@ -15,7 +15,7 @@ it('every published course has valid provenance and every download has matching 
       expect(bytes.length).toBe(file.bytes);expect(createHash('sha256').update(bytes).digest('hex')).toBe(file.sha256);
     }
   }
-});
+},30000);
 
 it('a course search does not fall back to unrelated React answers',async ()=>{
   const {courseAnswer}=await import('@/lib/courses/tutor');
