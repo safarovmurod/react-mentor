@@ -52,7 +52,7 @@ The final catalog contains 38 courses in 10 categories and six programming subtr
 
 Server-side membership checks protect premium course bodies, tutor references and premium-only attachments. Premium lesson bodies are omitted from initial page/RSC data and fetched through the guarded API; public catalog metadata remains available. The four Pro and one Expert curricula are implemented, but payment processing remains unconfigured and live membership/database deployment remains unverified. Manual study records are not presented as server-certified grades.
 
-The repository was observed public and the platform integration could not change visibility (HTTP 403). The requested private-before-push gate remains in force: no push until the owner makes it private and visibility is verified.
+The repository owner canceled the earlier private-before-push gate and authorized public push, then merge. The DevAtlas commit was successfully pushed and fast-forwarded into main. Vercel reported deployment success; live metadata returned 38 courses and premium content denied an unauthenticated request with 401.
 
 The practical computer/Supabase/Vercel launch procedure is in [LAUNCH-STEPS-RU.md](LAUNCH-STEPS-RU.md). The final React audit repaired 19 empty teaching topics with specific explanations, execution flows, TSX examples and RU/EN translations. Scheduled-topic completeness, translation coverage and TSX syntax checks pass; these checks do not replace human editorial review or execute every external-library example.
 

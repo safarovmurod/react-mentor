@@ -22,8 +22,8 @@ const hasNode = probe(process.execPath, ['--version'], /^v\d+/);
 
 // These subprocesses execute only reviewed, repository-owned examples. This is
 // not a submission runner and must never receive learner-controlled source.
-function runTrusted(command: string, args: string[], input?: string) {
-  const result = spawnSync(command, args, { cwd: root, input, encoding: 'utf8', timeout: 20000, maxBuffer: 200000 });
+function runTrusted(command: string, args: string[], input?: string, timeout = 20000) {
+  const result = spawnSync(command, args, { cwd: root, input, encoding: 'utf8', timeout, maxBuffer: 200000 });
   expect(result.error, result.error?.message).toBeUndefined();
   expect(result.status, result.stderr).toBe(0);
   return result.stdout.trim();
@@ -84,11 +84,13 @@ describe('original two-day programming introductions', () => {
     for (const lesson of load('sql').lessons) expect(runTrusted('python3', ['-c', sqlite], lesson.practice!.solution)).toBe(lesson.sections[0].output!.en);
   });
   it.skipIf(!hasGo)('Go examples compile with the actual Go programming-language toolchain', () => {
+    // A fresh CI runner must compile the standard library before these examples.
+    // Retain bounded subprocesses and exact-output checks while allowing a cold cache.
     for (const lesson of load('go').lessons) {
       writeFileSync(path.join(root, 'main.go'), lesson.practice!.solution);
-      expect(runTrusted('go', ['run', 'main.go'])).toBe(lesson.sections[0].output!.en);
+      expect(runTrusted('go', ['run', 'main.go'], undefined, 40000)).toBe(lesson.sections[0].output!.en);
     }
-  });
+  }, 90000);
   // SDKs/database are not installed/configured in this cloud instance. Keep
   // unexecuted examples visible as skipped, not silently counted as passing.
   it.skip.each(['csharp', 'rust', 'php', 'ruby', 'mongodb', 'swift', 'kotlin'])('%s compiler/interpreter/database examples await an available local runtime', () => {});

@@ -85,7 +85,7 @@ Ten distinct specialists participated across architecture, curriculum, frontend,
 
 Before production launch: configure and test live authentication/database migrations, verify backup/restore and deployment HTTPS, provision secure isolated runners before advertising additional automatic language execution, integrate verified payment webhooks before selling paid access, review translations/content, and perform deployment/load/security checks.
 
-The user requires the destination repository to be private before pushing. Git read access does not prove visibility. GitHub API access was enabled through the environment draft and confirmed that this repository is currently **public**. Changing visibility failed with HTTP 403 `Resource not accessible by integration`; the owner must make it private in GitHub settings. No push is permitted until private visibility is verified.
+The owner subsequently canceled the private-before-push requirement, authorized pushing while public and then authorized merging. The DevAtlas change was fast-forwarded into `main` and pushed successfully. Vercel reported successful deployment; the live course API returned 38 entries and the premium course API denied an unauthenticated request with 401. Live account/database/payment configuration remains separately scoped.
 
 The cloud environment draft stores installation/startup instructions. Draft saving does not publish the environment or deploy the website. Repository changes and production publication are separate operations.
 
