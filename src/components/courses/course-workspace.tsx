@@ -18,6 +18,15 @@ import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { PROGRESSION_COPY } from '@/lib/progression-copy';
 import { CoursePractice } from './course-practice';
 import { courseDayProgress, courseDayReady, courseMonthPlan } from '@/lib/courses/plan';
+import { coursePublishedDays, courseTrack, type LearningStage } from '@/content/courses/catalog';
+
+const stageLabels: Record<LearningStage, Record<string, string>> = {
+  beginner: { ru: 'Начальный · бесплатно', tg: 'Асосӣ · бепул', en: 'Beginner · free', uk: 'Початковий · безкоштовно', ja: '初級 · 無料', ko: '입문 · 무료' },
+  pro: { ru: 'Pro · по подписке', tg: 'Pro · бо обуна', en: 'Pro · subscription', uk: 'Pro · за підпискою', ja: 'Pro · 有料', ko: 'Pro · 유료' },
+  expert: { ru: 'Expert · по подписке', tg: 'Expert · бо обуна', en: 'Expert · subscription', uk: 'Expert · за підпискою', ja: 'Expert · 有料', ko: 'Expert · 유료' },
+};
+const unpublishedLabels: Record<string, string> = { ru: 'уровень ещё не опубликован', tg: 'ин сатҳ ҳоло нашр нашудааст', en: 'stage not published yet', uk: 'рівень ще не опубліковано', ja: 'このレベルは未公開', ko: '아직 공개되지 않은 단계' };
+const trackLabel: Record<string, string> = { ru: 'Направление', tg: 'Самти омӯзиш', en: 'Learning track', uk: 'Напрям', ja: '学習トラック', ko: '학습 트랙' };
 
 const empty = emptyCourseProgress();
 const subscribeHash=(notify:()=>void)=>{window.addEventListener('hashchange',notify);return ()=>window.removeEventListener('hashchange',notify);};
@@ -38,6 +47,7 @@ export function CourseWorkspace({courseId,section,initialContent,day:requestedDa
   const [confirming,setConfirming]=useState(false), [confirmationError,setConfirmationError]=useState('');
   const [accessStatus,setAccessStatus]=useState<number|null>(null);
   const requiredTier=courseAccessTier(courseId), premium=PREMIUM_COPY[state.language];
+  const trackInfo=courseTrack(courseId);
   const [error,setError]=useState(false), [retry,setRetry]=useState(0), [query,setQuery]=useState(''), [limit,setLimit]=useState(18);
   const deferredQuery=useDeferredValue(query.trim().toLowerCase());
   const {selectedCourse,courseChosen,chooseCourse}=state;
@@ -84,7 +94,7 @@ export function CourseWorkspace({courseId,section,initialContent,day:requestedDa
   const text=(value:CourseLesson['title'])=>courseText(value,state.contentLanguage);
   const href=(target:string,targetDay=day)=>target==='practice'?`/practice?course=${courseId}&day=${targetDay}`:`/courses/${courseId}/${target}?day=${targetDay}`;
   const saveCourseDraft=state.saveCourseDraft;
-  useEffect(()=>{if(day>=0&&day<=30&&progress.drafts[selectedDayKey]!==String(day))saveCourseDraft(courseId,selectedDayKey,String(day));},[courseId,day,progress.drafts,saveCourseDraft,selectedDayKey]);
+  useEffect(()=>{const publishedDays=coursePublishedDays(courseId);if(day>=0&&day<=publishedDays&&progress.drafts[selectedDayKey]!==String(day))saveCourseDraft(courseId,selectedDayKey,String(day));},[courseId,day,progress.drafts,saveCourseDraft,selectedDayKey]);
   const availableLessons=new Set(statuses.days.filter(entry=>entry.status!=='upcoming').map(entry=>entry.lesson.id));
   const library=(content?.lessons || []).filter(item=>availableLessons.has(item.id)).filter(item=>!deferredQuery||[text(item.title),text(item.summary),...item.questions.flatMap(q=>[text(q.question),text(q.answer)]),...item.sections.map(s=>text(s.body))].join(' ').toLowerCase().includes(deferredQuery));
   const translationNotice=state.contentLanguage==='en'&&content&&hasEnglishFallback(content)?ui.contentFallback:lessonTranslationNotice(state.language);
@@ -115,6 +125,16 @@ export function CourseWorkspace({courseId,section,initialContent,day:requestedDa
   return <section className="course-workspace">
     <Link href="/courses" className="back-link"><Layers size={16}/>{ui.allCourses}</Link>
     <div className="page-heading"><div><span className="eyebrow">{courseDisplayName(courseId,state.language)} · {courseDayCount(plan.length,state.language)}</span><h1>{titles[section]}</h1><p>{section==='plan'?ui.planIntro:ui.dayIntro}</p></div></div>
+    {trackInfo&&<nav className="track-stages" aria-label={trackLabel[state.language] ?? trackLabel.en}>
+      {(['beginner','pro','expert'] as const).map(stage=>{
+        const published=trackInfo.courses.filter(entry=>entry.stage===stage);
+        return <div key={stage} className={'track-stage '+(published.some(entry=>entry.course===courseId)?'is-here':'')}>
+          <strong>{stage==='beginner'?'Beginner':stage==='pro'?'Pro':'Expert'}</strong>
+          {published.length?published.map(entry=><Link key={entry.course} href={`/courses/${entry.course}/plan`} aria-current={entry.course===courseId?'location':undefined}>{courseDisplayName(entry.course,state.language)} · {courseDayCount(coursePublishedDays(entry.course),state.language)}</Link>):<span className="track-stage-pending">{stageLabels[stage][state.language] ?? stageLabels[stage].en} — {unpublishedLabels[state.language] ?? unpublishedLabels.en}</span>}
+          {published.length?<small>{stageLabels[stage][state.language] ?? stageLabels[stage].en}</small>:null}
+        </div>;
+      })}
+    </nav>}
     {translationNotice&&<p role="note">{translationNotice}</p>}
     {(courseId==='javascript-1'||courseId==='javascript-2')&&<nav className="course-months" aria-label={ui.jsMonths}>{(['javascript-1','javascript-2'] as const).map((id,index)=><Link key={id} href={`/courses/${id}/plan`} aria-current={id===courseId?'page':undefined}><strong>{ui.month} {index+1} · JS{index+1}</strong><span>{index===0?ui.jsBasics:ui.jsApps}</span></Link>)}</nav>}
     {error?<div className="panel course-access-gate"><p role="alert">{accessStatus===401?premium.login:accessStatus===403?premium.required+' '+(requiredTier==='expert'?'Expert':'Pro'):accessStatus===503?premium.unavailable:ui.courseUnavailable}</p>{requiredTier!=='starter'&&<p>{premium.protected}</p>}<div className="button-row">{accessStatus===401&&<Link className="button primary" href="/login">{premium.signIn}</Link>}{accessStatus&&<Link className="button subtle" href="/plans">{premium.plans}</Link>}<button className="button subtle" onClick={()=>{setError(false);setAccessStatus(null);setRetry(n=>n+1);}}>{ui.retry}</button></div></div>:!content?<p role="status">{copy.loading}</p>:<>

@@ -33,7 +33,7 @@ const DISPLAY_NAMES: Partial<Record<CourseId, LocalizedText>> = {
 };
 
 const DESCRIPTIONS: Record<CourseId, LocalizedText> = {
-  "javascript-pro": text("Три дня Pro: преобразование данных, асинхронные ошибки и проверяемый проект. Нужен Node.js.", "Three Pro days: data transformations, async failures and a tested project. Requires Node.js.", "Се рӯзи Pro: табдили додаҳо, хатогиҳои асинхронӣ ва лоиҳаи санҷидашаванда. Node.js лозим аст.", "Три дні Pro: перетворення даних, асинхронні помилки й проєкт із тестами. Потрібен Node.js.", "Proの3日間。データ変換、非同期エラー、テスト可能な課題に取り組みます。Node.jsが必要です。", "Pro 3일 과정입니다. 데이터 변환, 비동기 오류와 테스트 가능한 프로젝트를 다룹니다. Node.js가 필요합니다."),
+  "javascript-pro": text("Четырнадцать дней Pro: event loop, промисы, отмена запросов, retry, генераторы, память, производительность и тестирование. Нужен Node.js.", "Fourteen Pro days: the event loop, promises, request cancellation, retries, generators, memory, performance and testing. Requires Node.js.", "Чордаҳ рӯзи Pro: event loop, promise-ҳо, бекор кардани дархост, retry, генераторҳо, хотира, самаранокӣ ва тестҳо. Node.js лозим аст.", "Чотирнадцять днів Pro: event loop, проміси, скасування запитів, retry, генератори, пам'ять, продуктивність і тестування. Потрібен Node.js.", "Proの14日間。イベントループ、プロミス、リクエストのキャンセル、リトライ、ジェネレーター、メモリー、パフォーマンス、テストを学びます。Node.jsが必要です。", "Pro 14일 과정입니다. 이벤트 루프, 프로미스, 요청 취소, 재시도, 제너레이터, 메모리, 성능과 테스트를 배웁니다. Node.js가 필요합니다."),
   "backend-pro": text("Три дня Pro: проверка HTTP-запросов, права владельца и тесты серверного поведения. Нужен Node.js.", "Three Pro days: HTTP validation, ownership authorization and server behavior tests. Requires Node.js.", "Се рӯзи Pro: санҷиши HTTP, ҳуқуқи соҳиб ва санҷишҳои рафтори сервер. Node.js лозим аст.", "Три дні Pro: перевірка HTTP-запитів, права власника й тести поведінки сервера. Потрібен Node.js.", "Proの3日間。HTTPの検証、所有者の認可、サーバーの動作テストを学びます。Node.jsが必要です。", "Pro 3일 과정입니다. HTTP 검증, 소유자 권한과 서버 동작 테스트를 배웁니다. Node.js가 필요합니다."),
   "architecture-expert": text("Три дня Expert: отказоустойчивость, модель угроз и план восстановления. Работа с письменными архитектурными решениями.", "Three Expert days: resilience, threat modeling and recovery plans through written architecture decisions.", "Се рӯзи Expert: устуворӣ, модели таҳдид ва нақшаи барқарорсозӣ бо қарорҳои хаттии меъморӣ.", "Три дні Expert: стійкість до відмов, модель загроз і план відновлення через письмові архітектурні рішення.", "Expertの3日間。障害への備え、脅威モデル、復旧計画を設計文書で学びます。", "Expert 3일 과정입니다. 장애 대응, 위협 모델과 복구 계획을 설계 문서로 학습합니다."),
   "ux-pro": text("Три дня Pro: исследование задачи, прототип и проверка удобства на учебном кейсе.", "Three Pro days: problem research, prototyping and usability evaluation through a learning case.", "Се рӯзи Pro: таҳқиқи масъала, прототип ва санҷиши осонии истифода дар мисоли омӯзишӣ.", "Три дні Pro: дослідження проблеми, прототип і перевірка зручності на навчальному кейсі.", "Proの3日間。学習用ケースで課題調査、プロトタイプ、使いやすさの評価に取り組みます。", "Pro 3일 과정입니다. 학습 사례를 통해 문제 조사, 프로토타입과 사용성 평가를 진행합니다."),
@@ -95,12 +95,26 @@ const DESCRIPTIONS: Record<CourseId, LocalizedText> = {
     'C++の基礎とコンパイラーを使う課題に取り組む独立した学習コースです。',
     'C++ 기초와 컴파일러를 사용하는 과제를 다루는 별도 과정입니다.'),
   python: text(
-    'Переменные и функции. Запускайте примеры через Python 3 на своём компьютере.',
-    'Variables and functions. Run examples with Python 3 on your own computer.',
-    'Тағйирёбандаҳо ва функсияҳо. Мисолҳоро бо Python 3 дар компютери худ иҷро кунед.',
-    'Змінні та функції. Запускайте приклади через Python 3 на власному комп’ютері.',
-    '変数と関数を学びます。サンプルは自分のパソコンのPython 3で実行します。',
-    '변수와 함수를 배웁니다. 예제는 내 컴퓨터의 Python 3로 실행하세요.'),
+    'Полный курс с нуля: 30 дней от переменных и условий до файлов, функций и итогового проекта. Запуск примеров через Python 3 на своём компьютере.',
+    'A full course from zero: 30 days from variables and conditions to files, functions and a final project. Run examples with Python 3 on your own computer.',
+    'Курси пурра аз сифр: 30 рӯз аз тағйирёбандаҳо ва шартҳо то файлҳо, функсияҳо ва лоиҳаи ниҳоӣ. Мисолҳоро бо Python 3 дар компютери худ иҷро кунед.',
+    'Повний курс з нуля: 30 днів від змінних і умов до файлів, функцій і підсумкового проєкту. Запускайте приклади через Python 3 на власному комп’ютері.',
+    'ゼロから学ぶ完全コース。30日間で変数と条件からファイル、関数、最終プロジェクトまで学びます。サンプルは自分のパソコンのPython 3で実行します。',
+    '제로부터 배우는 완전 과정입니다. 30일 동안 변수와 조건부터 파일, 함수, 최종 프로젝트까지 학습합니다. 예제는 내 컴퓨터의 Python 3로 실행하세요.'),
+  typescript: text(
+    'Четырнадцать дней: типы, функции, narrowing, generics, utility types, strict-режим и типизированный мини-проект.',
+    'Fourteen days: types, functions, narrowing, generics, utility types, strict mode and a typed mini project.',
+    'Чордаҳ рӯз: типҳо, функсияҳо, narrowing, generics, utility types, режими strict ва лоиҳаи хурди типизатсияшуда.',
+    'Чотирнадцять днів: типи, функції, звуження, generics, utility types, strict-режим і типізований мініпроєкт.',
+    '14日間。型、関数、ナローイング、ジェネリクス、ユーティリティ型、strictモード、型付きミニプロジェクトを学びます。',
+    '14일 과정입니다. 타입, 함수, narrowing, 제네릭, 유틸리티 타입, strict 모드와 타입이 적용된 미니 프로젝트를 배웁니다.'),
+  algorithms: text(
+    'Четырнадцать дней: сложность, массивы и строки, поиск, сортировки, структуры данных и пошаговое решение задач.',
+    'Fourteen days: complexity, arrays and strings, searching, sorting, data structures and step-by-step problem solving.',
+    'Чордаҳ рӯз: мураккабӣ, массивҳо ва сатрҳо, ҷустуҷӯ, тартибдодан, сохторҳои додаҳо ва ҳалли масъала қадам ба қадам.',
+    'Чотирнадцять днів: складність, масиви й рядки, пошук, сортування, структури даних і покрокове розв’язання задач.',
+    '14日間。計算量、配列と文字列、探索、ソート、データ構造、問題解決の手順を学びます。',
+    '14일 과정입니다. 복잡도, 배열과 문자열, 탐색, 정렬, 자료 구조와 단계별 문제 해결을 배웁니다.'),
   backend: text(
     'HTTP-сервер и проверка запросов. Для запуска нужен локальный Node.js.',
     'An HTTP server and request validation. Running the examples requires local Node.js.',

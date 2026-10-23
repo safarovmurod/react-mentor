@@ -35,6 +35,8 @@ const loaders:Record<ImportedCourseId,()=>Promise<{default:unknown}>> = {
   'digital-literacy': () => import('@/content/courses/digital-literacy.json'),
   'personal-productivity': () => import('@/content/courses/personal-productivity.json'),
   'management-foundations': () => import('@/content/courses/management-foundations.json'),
+  'typescript': () => import('@/content/courses/typescript.json'),
+  'algorithms': () => import('@/content/courses/algorithms.json'),
   'ai-fundamentals': () => import('@/content/courses/ai-fundamentals.json'),
   'context-engineering': () => import('@/content/courses/context-engineering.json'),
   'agent-harness': () => import('@/content/courses/agent-harness.json'),

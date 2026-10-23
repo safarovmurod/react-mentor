@@ -3,7 +3,7 @@ import type { InterfaceLocale } from '@/lib/locale';
 /** Navigation taxonomy only: categories do not imply a published course or a paid entitlement. */
 export const COURSE_CATEGORY_IDS = ['programming', 'ai', 'design', 'marketing', 'analytics', 'business', 'soft-skills', 'content', 'languages', 'kids', 'lifestyle'] as const;
 export type CourseCategoryId = typeof COURSE_CATEGORY_IDS[number];
-export const PROGRAMMING_SUBTRACK_IDS = ['frontend', 'backend', 'mobile', 'languages', 'databases', 'tools'] as const;
+export const PROGRAMMING_SUBTRACK_IDS = ['frontend', 'backend', 'mobile', 'languages', 'databases', 'tools', 'algorithms'] as const;
 export type ProgrammingSubtrackId = typeof PROGRAMMING_SUBTRACK_IDS[number];
 type Labels = Record<InterfaceLocale, string>;
 
@@ -28,6 +28,7 @@ export const PROGRAMMING_SUBTRACKS: { id: ProgrammingSubtrackId; symbol: string;
   { id:'languages', symbol:'{ }', labels:{ru:'Языки программирования',tg:'Забонҳои барномасозӣ',en:'Programming languages',uk:'Мови програмування',ja:'プログラミング言語',ko:'프로그래밍 언어'} },
   { id:'databases', symbol:'DB', labels:{ru:'Базы данных',tg:'Пойгоҳҳои додаҳо',en:'Databases',uk:'Бази даних',ja:'データベース',ko:'데이터베이스'} },
   { id:'tools', symbol:'>_', labels:{ru:'Инструменты',tg:'Абзорҳо',en:'Tools',uk:'Інструменти',ja:'開発ツール',ko:'개발 도구'} },
+  { id:'algorithms', symbol:'Σ', labels:{ru:'Алгоритмы',tg:'Алгоритмҳо',en:'Algorithms',uk:'Алгоритми',ja:'アルゴリズム',ko:'알고리즘'} },
 ];
 
 export function categoryLabel(id: CourseCategoryId, locale: InterfaceLocale): string {

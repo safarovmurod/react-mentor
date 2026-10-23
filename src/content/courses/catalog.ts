@@ -29,7 +29,9 @@ export const COURSE_CATALOG: CourseCatalogEntry[] = [
   {id:'react',publishedDays:60,category:'programming',subtrack:'frontend',editorLanguage:'typescript',runtime:'local',name:'React',symbol:'⚛',ru:'Готовый курс: разборы, практика, тесты и глубокие ответы.',en:'Ready course: lessons, practice, quizzes and deep answers.',route:'web',prerequisite:'javascript-2'},
   {id:'nextjs',publishedDays:20,category:'programming',subtrack:'frontend',editorLanguage:'typescript',runtime:'local',name:'Next.js',symbol:'N',ru:'Отдельный курс: App Router, серверные компоненты, API, авторизация и деплой.',en:'Independent course: App Router, server components, APIs, authentication and deployment.',route:'web',prerequisite:'react'},
   {id:'git',publishedDays:30,category:'programming',subtrack:'tools',editorLanguage:'shell',runtime:'local',name:'Git / GitHub',symbol:'git',ru:'История изменений и совместная работа. Изучайте параллельно.',en:'Version history and collaboration. Study alongside your main course.',route:'tools',prerequisite:null},
-  {id:'python',publishedDays:2,category:'programming',subtrack:'languages',editorLanguage:'python',runtime:'local',introductoryDays:2,name:'Python',symbol:'Py',ru:'Вводный модуль: два дня, переменные и функции. Запуск примеров через Python 3 на компьютере.',en:'Two-day introduction: variables and functions. Run examples with Python 3 on your computer.',route:'systems',prerequisite:null},
+  {"id":"typescript","publishedDays":14,"name":"TypeScript","symbol":"TS","ru":"Четырнадцать дней: типы, функции, generics, strict-режим и типизированный мини-проект.","en":"Fourteen days: types, functions, generics, strict mode and a typed mini project.","route":"web","prerequisite":"javascript-2","category":"programming","subtrack":"frontend","editorLanguage":"typescript","runtime":"local"},
+  {"id":"algorithms","publishedDays":14,"name":"Algorithms","symbol":"Σ","ru":"Четырнадцать дней: сложность, массивы, поиск, сортировки, структуры данных и решение задач.","en":"Fourteen days: complexity, arrays, searching, sorting, data structures and problem solving.","route":"systems","prerequisite":"javascript-1","category":"programming","subtrack":"algorithms","editorLanguage":"javascript","runtime":"browser"},
+  {id:'python',publishedDays:30,category:'programming',subtrack:'languages',editorLanguage:'python',runtime:'local',name:'Python',symbol:'Py',ru:'Полный курс с нуля: 30 дней от переменных до итогового проекта-анализатора расходов.',en:'A full course from zero: 30 days from variables to a final expense-analyzer project.',route:'systems',prerequisite:null},
   {id:'backend',publishedDays:2,category:'programming',subtrack:'backend',editorLanguage:'javascript',runtime:'local',introductoryDays:2,name:'Backend',symbol:'API',ru:'Вводный модуль: два дня, HTTP-сервер и проверка запросов. Нужен локальный Node.js.',en:'Two-day introduction: an HTTP server and request validation. Requires local Node.js.',route:'web',prerequisite:'javascript-1'},
   {id:'mobile',publishedDays:2,category:'programming',subtrack:'mobile',editorLanguage:'typescript',runtime:'local',introductoryDays:2,name:'Mobile',symbol:'App',ru:'Вводный модуль: два дня, экран React Native и счётчик. Запуск через Expo на своём устройстве.',en:'Two-day introduction: a React Native screen and counter. Run with Expo on your own device.',route:'tools',prerequisite:'react'},
   {id:'cpp',publishedDays:30,category:'programming',subtrack:'languages',editorLanguage:'cpp',runtime:'local',name:'C++',symbol:'C++',ru:'Отдельное направление программирования со своими материалами.',en:'A separate programming path with its own materials.',route:'systems',prerequisite:null},
@@ -58,10 +60,75 @@ export const COURSE_CATALOG: CourseCatalogEntry[] = [
   {"id":"digital-literacy","publishedDays":2,"name":"Digital Literacy","symbol":"☆","ru":"Вводный модуль: два дня. Файлы, поиск информации и безопасность в интернете.","en":"Two-day introductory module. Files, finding information and online safety.","route":"tools","prerequisite":null,"category":"kids","introductoryDays":2},
   {"id":"personal-productivity","publishedDays":2,"name":"Personal Productivity","symbol":"☀","ru":"Вводный модуль: два дня. Реалистичный план дня, приоритеты и проверка результата.","en":"Two-day introductory module. A realistic daily plan, priorities and reviewing outcomes.","route":"tools","prerequisite":null,"category":"lifestyle","introductoryDays":2},
   {"id":"management-foundations","publishedDays":2,"name":"Management Foundations","symbol":"◇","ru":"Вводный модуль: два дня. Цели команды, распределение задач и обратная связь.","en":"Two-day introductory module. Team goals, task delegation and feedback.","route":"tools","prerequisite":null,"category":"business","introductoryDays":2},
-  {"id":"javascript-pro","name":"JavaScript Pro","symbol":"JS+","ru":"Практический модуль Pro: три дня. Асинхронность, устойчивые запросы и тестирование.","en":"Three-day Pro module: asynchronous code, resilient requests and testing.","route":"web","prerequisite":"javascript-2","category":"programming","subtrack":"frontend","editorLanguage":"javascript","runtime":"browser","accessTier":"pro","publishedDays":3},
+  {"id":"javascript-pro","name":"JavaScript Pro","symbol":"JS+","ru":"Четырнадцать дней Pro: event loop, устойчивые запросы, генераторы, память, производительность и тестирование.","en":"Fourteen Pro days: the event loop, resilient requests, generators, memory, performance and testing.","route":"web","prerequisite":"javascript-2","category":"programming","subtrack":"frontend","editorLanguage":"javascript","runtime":"browser","accessTier":"pro","publishedDays":14},
   {"id":"backend-pro","name":"Backend Pro","symbol":"API+","ru":"Практический модуль Pro: три дня. Валидация, обработка ошибок и проверка API.","en":"Three-day Pro module: validation, error handling and API testing.","route":"web","prerequisite":"backend","category":"programming","subtrack":"backend","editorLanguage":"javascript","runtime":"local","accessTier":"pro","publishedDays":3},
   {"id":"architecture-expert","name":"Software Architecture Expert","symbol":"ARCH","ru":"Практический модуль Expert: три дня. Границы системы, надёжность и архитектурные решения.","en":"Three-day Expert module: system boundaries, reliability and architecture decisions.","route":"systems","prerequisite":"backend-pro","category":"programming","subtrack":"backend","editorLanguage":"javascript","runtime":"local","accessTier":"expert","publishedDays":3},
   {"id":"ux-pro","name":"UX Design Pro","symbol":"UX+","ru":"Практический модуль Pro: три дня. Исследование, прототип и проверка пользовательского сценария.","en":"Three-day Pro module: research, prototyping and testing a user flow.","route":"tools","prerequisite":"ux-design","category":"design","accessTier":"pro","publishedDays":3},
   {"id":"business-pro","name":"Business Pro","symbol":"BIZ+","ru":"Практический модуль Pro: три дня. Проверка гипотез, экономика и план запуска.","en":"Three-day Pro module: hypothesis validation, unit economics and a launch plan.","route":"tools","prerequisite":"business-foundations","category":"business","accessTier":"pro","publishedDays":3},
 ];
 export function courseName(id: CourseId) { return COURSE_CATALOG.find(course => course.id === id)!.name; }
+export function coursePublishedDays(id: CourseId) { return COURSE_CATALOG.find(course => course.id === id)?.publishedDays ?? 0; }
+
+/* ============ Learning tracks ============
+   A track is one discipline studied across three stages: Beginner (free),
+   Pro and Expert (paid). Stage membership is derived from accessTier so a
+   course can never claim a stage its access tier contradicts. Tracks with
+   unpublished stages list only what actually exists — the UI renders missing
+   stages as "not published yet", never as finished courses. */
+export type LearningStage = 'beginner' | 'pro' | 'expert';
+export interface TrackStageRef { stage: LearningStage; course: CourseId; }
+export interface LearningTrack { id: string; name: string; courses: TrackStageRef[]; }
+
+const stageOf = (id: CourseId): LearningStage => {
+  const tier = COURSE_CATALOG.find(course => course.id === id)?.accessTier;
+  return tier === 'pro' ? 'pro' : tier === 'expert' ? 'expert' : 'beginner';
+};
+
+function track(id: string, name: string, courses: CourseId[]): LearningTrack {
+  return { id, name, courses: courses.map(course => ({ stage: stageOf(course), course })) };
+}
+
+export const LEARNING_TRACKS: LearningTrack[] = [
+  track('html', 'HTML + CSS', ['html']),
+  track('css', 'CSS', ['css']),
+  track('javascript', 'JavaScript', ['javascript-1', 'javascript-2', 'javascript-pro']),
+  track('typescript', 'TypeScript', ['typescript']),
+  track('react', 'React', ['react']),
+  track('nextjs', 'Next.js', ['nextjs']),
+  track('python', 'Python', ['python']),
+  track('algorithms', 'Algorithms', ['algorithms']),
+  track('cpp', 'C++', ['cpp']),
+  track('java', 'Java', ['java']),
+  track('csharp', 'C#', ['csharp']),
+  track('go', 'Go', ['go']),
+  track('rust', 'Rust', ['rust']),
+  track('php', 'PHP', ['php']),
+  track('ruby', 'Ruby', ['ruby']),
+  track('backend', 'Backend', ['backend', 'backend-pro']),
+  track('nodejs', 'Node.js', ['nodejs']),
+  track('sql', 'SQL', ['sql']),
+  track('mongodb', 'MongoDB', ['mongodb']),
+  track('bash', 'Bash', ['bash']),
+  track('git', 'Git / GitHub', ['git']),
+  track('mobile', 'Mobile', ['mobile']),
+  track('swift', 'Swift', ['swift']),
+  track('kotlin', 'Kotlin', ['kotlin']),
+  track('ai-fundamentals', 'AI Fundamentals', ['ai-fundamentals']),
+  track('context-engineering', 'Context Engineering', ['context-engineering']),
+  track('agent-harness', 'Agent Harness', ['agent-harness']),
+  track('ux', 'UX/UI Design', ['ux-design', 'ux-pro']),
+  track('digital-marketing', 'Digital Marketing', ['digital-marketing']),
+  track('data-analytics', 'Data Analytics', ['data-analytics']),
+  track('business', 'Business', ['business-foundations', 'business-pro']),
+  track('management', 'Management', ['management-foundations']),
+  track('communication', 'Communication', ['communication']),
+  track('content-creation', 'Content Creation', ['content-creation']),
+  track('english', 'English', ['english-foundations']),
+  track('digital-literacy', 'Digital Literacy', ['digital-literacy']),
+  track('personal-productivity', 'Personal Productivity', ['personal-productivity']),
+  track('architecture', 'Software Architecture', ['architecture-expert']),
+];
+
+export function courseTrack(id: CourseId): LearningTrack | null {
+  return LEARNING_TRACKS.find(item => item.courses.some(entry => entry.course === id)) ?? null;
+}
