@@ -179,8 +179,10 @@
   color-scheme: light;
 }
 
+html { background-color: var(--canvas); }
+
 body {
-  background-color: var(--canvas);
+  background-color: transparent;
   color: var(--text);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 14px;
@@ -904,7 +906,8 @@ select { cursor: pointer; }
 .course-search input{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font:inherit}
 
 /* Public React Mentor product pages: scoped so learning workspace stays unchanged. */
-.public-home,.public-policy{background:var(--canvas);color:var(--text);min-height:100dvh;}
+.public-home,.public-policy{color:var(--text);min-height:100dvh;}
+.public-policy{background:var(--canvas);}
 .public-home{padding:0 max(20px,calc((100vw - 1120px)/2));}
 .public-header,.public-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;}
 .public-header{min-height:88px;border-bottom:1px solid var(--border);}
@@ -1058,7 +1061,7 @@ select { cursor: pointer; }
 .course-lesson p {max-width:82ch;}
 .day-confirmation {padding:20px;border:1px solid #d6e4fa;border-radius:14px;background:#f0f5ff;margin-top:24px;}
 .day-confirmation p {font-size:14px;margin:8px 0 16px;}
-.public-home {background:radial-gradient(ellipse at 85% 8%,#e9efff 0,transparent 40%),#f8faff;padding:0 max(24px,calc((100vw - 1200px)/2));}
+.public-home {background:transparent;padding:0 max(24px,calc((100vw - 1200px)/2));}
 .public-header {border-bottom-color:#e0e7f1;}
 .public-brand {display:flex;align-items:center;font-size:24px;letter-spacing:-.055em;gap:0;white-space:nowrap;}
 .public-brand .brand-icon {width:39px;height:39px;margin-right:10px;color:white;}
@@ -1377,3 +1380,121 @@ select { cursor: pointer; }
 [data-theme=dark] .course-tier.tier-expert { color:#d6b9ff; background:#312242; border-color:#624180; }
 .course-access-gate { padding:28px; }
 .practice-tier { font-size:10px; opacity:.8; }
+
+/* ============ Ambient background system (shared across pages) ============
+   Pure-CSS aurora + faint grid behind all content. Layering: html canvas
+   color -> body::before aurora (z -2) -> body::after grid (z -1) -> content.
+   Only transform/opacity are animated (compositor-friendly, no repaint).
+   Content stays readable: cards/panels keep their opaque backgrounds, and
+   the effect is intentionally faint on learning screens. */
+:root {
+  --aurora-1: #c7d7fe;
+  --aurora-2: #e2dbfd;
+  --aurora-3: #c9eefb;
+  --aurora-opacity: .5;
+  --aurora-drift: 42s;
+  --grid-line: rgba(15, 23, 42, .04);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: -18vmax;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(36% 30% at 16% 10%, var(--aurora-1) 0%, transparent 68%),
+    radial-gradient(32% 28% at 84% 6%, var(--aurora-2) 0%, transparent 66%),
+    radial-gradient(30% 26% at 62% 92%, var(--aurora-3) 0%, transparent 64%);
+  opacity: var(--aurora-opacity);
+  animation: aurora-drift var(--aurora-drift) ease-in-out infinite alternate;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 72% at 50% 0%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 95% 72% at 50% 0%, #000 0%, transparent 78%);
+}
+@keyframes aurora-drift {
+  from { transform: translate3d(-1.6%, -1%, 0) scale(1); }
+  50%  { transform: translate3d(1.2%, 1.6%, 0) scale(1.045); }
+  to   { transform: translate3d(1.8%, -1.2%, 0) scale(1.02); }
+}
+[data-theme=dark] {
+  --aurora-1: #1d2c52;
+  --aurora-2: #32265c;
+  --aurora-3: #14344d;
+  --aurora-opacity: .6;
+  --grid-line: rgba(148, 163, 184, .055);
+}
+/* Landing hero: layered glow behind the headline and two floating orbs.
+   Scoped to the public home so learning screens stay visually quiet. */
+.public-hero { position: relative; }
+.public-hero::before {
+  content: '';
+  position: absolute;
+  top: -70px; left: -120px;
+  width: min(560px, 60vw); height: min(560px, 60vw);
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--primary-soft) 0%, transparent 65%);
+  opacity: .5;
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: -1;
+}
+.public-hero-layout { position: relative; }
+.public-hero-layout::before,
+.public-hero-layout::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
+}
+.public-hero-layout::before {
+  top: 6%; right: 4%;
+  width: clamp(140px, 22vw, 300px); height: clamp(140px, 22vw, 300px);
+  background: radial-gradient(circle at 32% 32%, rgba(129, 140, 248, .22), rgba(129, 140, 248, 0) 70%);
+  animation: orb-float 16s ease-in-out infinite alternate;
+}
+.public-hero-layout::after {
+  bottom: 10%; left: -6%;
+  width: clamp(110px, 16vw, 220px); height: clamp(110px, 16vw, 220px);
+  background: radial-gradient(circle at 60% 40%, rgba(45, 212, 191, .16), rgba(45, 212, 191, 0) 70%);
+  animation: orb-float 21s ease-in-out infinite alternate-reverse;
+}
+@keyframes orb-float {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-26px, 30px, 0); }
+}
+/* Micro-interactions: cards lift softly on hover (transform/opacity only). */
+.public-feature-grid article,
+.studio-preview,
+.public-cta {
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.public-feature-grid article:hover,
+.studio-preview:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--border-strong);
+}
+/* Accessibility and low-power devices: freeze all ambient motion. */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .public-hero-layout::before,
+  .public-hero-layout::after { animation: none; }
+  .public-feature-grid article,
+  .studio-preview,
+  .public-cta { transition: none; }
+}
+@media (max-width: 650px) {
+  body::after { display: none; }
+  .public-hero::before { left: -40px; top: -40px; }
+}
