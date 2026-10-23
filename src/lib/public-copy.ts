@@ -19,7 +19,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
   tg: {
     privacyLabel:'Махфият',termsLabel:'Қоидаҳо',start:'Оғоз кардан',
     eyebrow:'ПЛАТФОРМАИ ОМӮЗИШ ВА МАЛАКАҲО',heroLead:'Аз шавқи нав',heroEmphasis:'то малакаи амалӣ',heroEnd:'қадам ба қадам.',
-    heroDescription:'Барномасозӣ, дизайн, соҳибкорӣ ва маркетинг: самти худро интихоб кунед. DevAtlas дарсҳо, супоришҳои амалӣ ва пайгирии пешрафтро дар як ҷо ҷамъ мекунад.',
+    heroDescription:'Барномасозӣ, муҳандисии AI, дизайн, соҳибкорӣ ва маркетинг: самти худро интихоб кунед. DevAtlas дарсҳо, супоришҳои амалӣ ва пайгирии пешрафтро дар як ҷо ҷамъ мекунад.',
     seePlatform:'Дидани платформа',heroNote:'Омӯзиш ҳамчун меҳмон ҳам имконпазир аст. Ҳамоҳангсозии абрӣ ва AI-и онлайн ба танзимоти сервер вобастаанд.',
     featuresTitle:'Аз назария то амалия',
     features:[
@@ -50,7 +50,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
   ru: {
     privacyLabel:'Конфиденциальность',termsLabel:'Правила',start:'Начать обучение',
     eyebrow:'ОБРАЗОВАТЕЛЬНАЯ ПЛАТФОРМА',heroLead:'От нового интереса',heroEmphasis:'к полезному навыку',heroEnd:'шаг за шагом.',
-    heroDescription:'Программирование, дизайн, бизнес и маркетинг — выберите своё направление. DevAtlas объединяет понятные уроки, практические задания и отслеживание прогресса.',
+    heroDescription:'Программирование, ИИ-инженерия, дизайн, бизнес и маркетинг — выберите своё направление. DevAtlas объединяет понятные уроки, практические задания и отслеживание прогресса.',
     seePlatform:'Посмотреть платформу',heroNote:'Можно учиться как гость. Облачная синхронизация и онлайн-AI зависят от настроек сервера.',
     featuresTitle:'От теории к практике',
     features:[
@@ -59,7 +59,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
       {title:'AI Tutor — дополнительно',description:'Локальные материалы работают без API; онлайн-AI требует настройки.'},
     ],
     ctaTitle:'Готовы к первому упражнению?',ctaDescription:'Начните с уже доступных уроков и задач.',ctaLink:'К урокам',
-    title:'DevAtlas — обучение на практике',description:'Платформа для развития навыков: программирование, дизайн, бизнес и маркетинг с уроками и практическими заданиями.',
+    title:'DevAtlas — обучение на практике',description:'Платформа для развития навыков: программирование, ИИ-инженерия, дизайн, бизнес и маркетинг с уроками и практическими заданиями.',
     privacy:{
       title:'Конфиденциальность',introduction:'DevAtlas — образовательная платформа. Гостевой прогресс сохраняется в браузере, а данные аккаунта — в Supabase, если сервис настроен.',
       sections:[
@@ -81,7 +81,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
   en: {
     privacyLabel:'Privacy',termsLabel:'Terms',start:'Start learning',
     eyebrow:'A PLATFORM FOR LEARNING AND SKILLS',heroLead:'Turn your curiosity',heroEmphasis:'into useful skills',heroEnd:'one step at a time.',
-    heroDescription:'Programming, design, business and marketing: choose your direction. DevAtlas brings together clear lessons, practical assignments and progress tracking.',
+    heroDescription:'Programming, AI engineering, design, business and marketing: choose your direction. DevAtlas brings together clear lessons, practical assignments and progress tracking.',
     seePlatform:'Explore the platform',heroNote:'Guest learning is available. Cloud sync and online AI depend on server configuration.',
     featuresTitle:'From theory to practice',
     features:[
@@ -90,7 +90,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
       {title:'Optional AI Tutor',description:'Local learning materials work without an API; online AI requires setup.'},
     ],
     ctaTitle:'Ready for your first exercise?',ctaDescription:'Start with the available lessons and practical assignments.',ctaLink:'Go to lessons',
-    title:'DevAtlas — learn by doing',description:'Build skills in programming, design, business and marketing with lessons and practical assignments.',
+    title:'DevAtlas — learn by doing',description:'Build skills in programming, AI engineering, design, business and marketing with lessons and practical assignments.',
     privacy:{
       title:'Privacy',introduction:'DevAtlas is an educational platform. Guest progress is stored in your browser; account data is stored in Supabase when configured.',
       sections:[
@@ -112,7 +112,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
   uk: {
     privacyLabel:'Конфіденційність',termsLabel:'Правила',start:'Почати навчання',
     eyebrow:'ОСВІТНЯ ПЛАТФОРМА',heroLead:'Від нового інтересу',heroEmphasis:'до корисної навички',heroEnd:'крок за кроком.',
-    heroDescription:'Програмування, дизайн, бізнес і маркетинг — оберіть свій напрям. DevAtlas поєднує зрозумілі уроки, практичні завдання й відстеження прогресу.',
+    heroDescription:'Програмування, Інженерія ШІ, дизайн, бізнес і маркетинг — оберіть свій напрям. DevAtlas поєднує зрозумілі уроки, практичні завдання й відстеження прогресу.',
     seePlatform:'Переглянути платформу',heroNote:'Можна навчатися як гість. Хмарна синхронізація й онлайн-AI потребують налаштування сервера.',
     featuresTitle:'Від теорії до практики',
     features:[
@@ -121,7 +121,7 @@ export const PUBLIC_COPY: Record<InterfaceLocale, PublicLocaleCopy> = {
       {title:'AI Tutor — додатково',description:'Локальні матеріали працюють без API; онлайн-AI потребує налаштування.'},
     ],
     ctaTitle:'Готові до першої вправи?',ctaDescription:'Почніть із наявних уроків і завдань.',ctaLink:'До уроків',
-    title:'DevAtlas — навчання на практиці',description:'Платформа для розвитку навичок: програмування, дизайн, бізнес і маркетинг з уроками та практичними завданнями.',
+    title:'DevAtlas — навчання на практиці',description:'Платформа для розвитку навичок: програмування, інженерія ШІ, дизайн, бізнес і маркетинг з уроками та практичними завданнями.',
     privacy:{
       title:'Конфіденційність',introduction:'DevAtlas — освітня платформа. Гостьовий прогрес зберігається в браузері, дані акаунта — в Supabase, якщо сервіс налаштовано.',
       sections:[
