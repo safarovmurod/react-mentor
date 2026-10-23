@@ -1,7 +1,7 @@
 import type { InterfaceLocale } from '@/lib/locale';
 
 /** Navigation taxonomy only: categories do not imply a published course or a paid entitlement. */
-export const COURSE_CATEGORY_IDS = ['programming', 'design', 'marketing', 'analytics', 'business', 'soft-skills', 'content', 'languages', 'kids', 'lifestyle'] as const;
+export const COURSE_CATEGORY_IDS = ['programming', 'ai', 'design', 'marketing', 'analytics', 'business', 'soft-skills', 'content', 'languages', 'kids', 'lifestyle'] as const;
 export type CourseCategoryId = typeof COURSE_CATEGORY_IDS[number];
 export const PROGRAMMING_SUBTRACK_IDS = ['frontend', 'backend', 'mobile', 'languages', 'databases', 'tools'] as const;
 export type ProgrammingSubtrackId = typeof PROGRAMMING_SUBTRACK_IDS[number];
@@ -9,6 +9,7 @@ type Labels = Record<InterfaceLocale, string>;
 
 export const COURSE_CATEGORIES: { id: CourseCategoryId; symbol: string; labels: Labels }[] = [
   { id:'programming', symbol:'</>', labels:{ru:'Программирование',tg:'Барномасозӣ',en:'Programming',uk:'Програмування',ja:'プログラミング',ko:'프로그래밍'} },
+  { id:'ai', symbol:'✳', labels:{ru:'ИИ-инженерия',tg:'Муҳандисии AI',en:'AI Engineering',uk:'Інженерія ШІ',ja:'AIエンジニアリング',ko:'AI 엔지니어링'} },
   { id:'design', symbol:'✦', labels:{ru:'Дизайн',tg:'Тарроҳӣ',en:'Design',uk:'Дизайн',ja:'デザイン',ko:'디자인'} },
   { id:'marketing', symbol:'↗', labels:{ru:'Маркетинг',tg:'Маркетинг',en:'Marketing',uk:'Маркетинг',ja:'マーケティング',ko:'마케팅'} },
   { id:'analytics', symbol:'▥', labels:{ru:'Аналитика',tg:'Таҳлили маълумот',en:'Analytics',uk:'Аналітика',ja:'データ分析',ko:'데이터 분석'} },

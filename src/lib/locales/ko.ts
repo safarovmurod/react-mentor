@@ -74,9 +74,9 @@ export const KOREAN_ACCOUNT_COPY = {
 
 export const KOREAN_PUBLIC_COPY = {
   privacyLabel:'개인정보 처리방침', termsLabel:'이용약관', start:'학습 시작', eyebrow:'배움과 역량을 위한 플랫폼', heroLead:'새로운 관심을', heroEmphasis:'실용적인 역량으로', heroEnd:'한 걸음씩.',
-  heroDescription:'프로그래밍, 디자인, 비즈니스, 마케팅에서 배울 분야를 선택하세요. DevAtlas는 이해하기 쉬운 강의, 실습 과제 및 진도 관리를 한곳에서 제공합니다.', seePlatform:'플랫폼 둘러보기', heroNote:'게스트로도 학습할 수 있습니다. 클라우드 동기화와 온라인 AI는 서버 설정이 필요합니다.',
+  heroDescription:'프로그래밍, AI 엔지니어링, 디자인, 비즈니스, 마케팅에서 배울 분야를 선택하세요. DevAtlas는 이해하기 쉬운 강의, 실습 과제 및 진도 관리를 한곳에서 제공합니다.', seePlatform:'플랫폼 둘러보기', heroNote:'게스트로도 학습할 수 있습니다. 클라우드 동기화와 온라인 AI는 서버 설정이 필요합니다.',
   featuresTitle:'이해하고, 만들고, 확인하세요', features:[{title:'단계별 강의',description:'분야를 선택하고 명확한 학습 계획에 따라 새로운 주제를 배우세요.'},{title:'과제와 프로젝트',description:'배운 내용을 실천하고 결과를 확인하며 진도를 기록하세요.'},{title:'선택형 AI 튜터',description:'기본 학습 자료는 API 없이 작동하며 온라인 AI는 별도 설정이 필요합니다.'}],
-  ctaTitle:'첫 실습을 시작할까요?', ctaDescription:'제공되는 강의와 실습 과제부터 시작하세요.', ctaLink:'강의로 이동', title:'DevAtlas — 실습으로 키우는 역량', description:'강의와 실습 과제로 프로그래밍, 디자인, 비즈니스, 마케팅 역량을 키우세요.',
+  ctaTitle:'첫 실습을 시작할까요?', ctaDescription:'제공되는 강의와 실습 과제부터 시작하세요.', ctaLink:'강의로 이동', title:'DevAtlas — 실습으로 키우는 역량', description:'강의와 실습 과제로 프로그래밍, AI 엔지니어링, 디자인, 비즈니스, 마케팅 역량을 키우세요.',
   privacy:{title:'개인정보 처리방침', introduction:'DevAtlas는 교육 플랫폼입니다. 게스트 진도는 브라우저에 저장되며 계정 데이터는 설정된 Supabase에 저장됩니다.', sections:[{title:'계정 데이터',text:'이메일 주소, 프로필, 노트, 답변 및 학습 진도를 처리할 수 있습니다. 클라우드 동기화에는 활성 계정이 필요합니다.'},{title:'AI 튜터',text:'기본 학습 해설은 외부 제공업체 없이 이용할 수 있습니다. 설정된 온라인 AI를 이용하면 질문과 필요한 문맥이 제공업체에 전송될 수 있습니다.'},{title:'데이터 관리',text:'게스트 데이터는 브라우저에서 관리할 수 있습니다. 계정 데이터는 계정 설정에서 관리하세요.'}], notice:'이 문서는 예비 안내입니다. 공개 출시 전에 운영자는 연락처, 보유 기간 및 최종 법적 문서를 확정해야 합니다.'},
   terms:{title:'이용약관', introduction:'DevAtlas는 학습 플랫폼입니다. 과제, 테스트 및 AI 지원은 자격증이나 취업을 보장하지 않습니다.', sections:[{title:'계정',text:'로그인 정보를 비공개로 유지하고 다른 사람의 데이터에 무단으로 접근하지 마세요.'},{title:'선택 기능',text:'온라인 AI와 클라우드 동기화는 서버 설정과 외부 제공업체에 따라 달라집니다.'}], notice:'상업적 이용 전에 최종 약관과 운영자 정보에 대한 법률 검토가 필요합니다.'},
 };

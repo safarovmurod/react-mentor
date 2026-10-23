@@ -17,7 +17,7 @@ describe('published course taxonomy',()=>{
   }
  });
  it('provides every category and programming subtrack label in all supported interface languages',()=>{
-  expect(COURSE_CATEGORIES).toHaveLength(10);expect(PROGRAMMING_SUBTRACKS).toHaveLength(6);
+  expect(COURSE_CATEGORIES).toHaveLength(11);expect(PROGRAMMING_SUBTRACKS).toHaveLength(6);
   for(const locale of INTERFACE_LOCALES){
    for(const category of COURSE_CATEGORIES)expect(categoryLabel(category.id,locale).trim().length).toBeGreaterThan(0);
    for(const subtrack of PROGRAMMING_SUBTRACKS)expect(subtrackLabel(subtrack.id,locale).trim().length).toBeGreaterThan(0);
@@ -27,9 +27,20 @@ describe('published course taxonomy',()=>{
   const tracks={frontend:['html','css','javascript-1','javascript-2','react','nextjs','javascript-pro'],backend:['backend','nodejs','php','java','csharp','backend-pro','architecture-expert'],languages:['python','go','rust','ruby','cpp'],mobile:['mobile','swift','kotlin'],databases:['sql','mongodb'],tools:['bash','git']};
   for(const [subtrack,ids] of Object.entries(tracks))for(const id of ids)expect(COURSE_CATALOG.find(course=>course.id===id)).toMatchObject({category:'programming',subtrack});
  });
- it('keeps nonprogramming courses separate from runtime and code editor claims',()=>{
-  for(const course of COURSE_CATALOG.filter(course=>course.category!=='programming')){
+ it('keeps non-technical courses separate from runtime and code editor claims',()=>{
+  for(const course of COURSE_CATALOG.filter(course=>course.category!=='programming'&&course.category!=='ai')){
    expect(course.subtrack).toBeUndefined();expect(course.editorLanguage).toBeUndefined();expect(course.runtime).toBeUndefined();
+  }
+ });
+ it('publishes the AI engineering direction as free fourteen-day beginner courses',()=>{
+  const aiCourses={'ai-fundamentals':null,'context-engineering':'ai-fundamentals','agent-harness':'context-engineering'} as const;
+  for(const [id,prerequisite] of Object.entries(aiCourses)){
+   const course=COURSE_CATALOG.find(course=>course.id===id);
+   expect(course).toMatchObject({category:'ai',publishedDays:14,prerequisite});
+   expect(course?.accessTier).toBeUndefined();
+   expect(course?.introductoryDays).toBeUndefined();
+   expect(course?.subtrack).toBeUndefined();
+   expect(['javascript','typescript']).toContain(course?.editorLanguage);
   }
  });
  it('marks distinct Pro and Expert modules with their actual three-day scope',()=>{
