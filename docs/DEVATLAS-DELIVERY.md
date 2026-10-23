@@ -20,15 +20,16 @@ Counts below were calculated directly from the current catalog, JSON curricula, 
 
 | Published schedule | Days |
 | --- | ---: |
-| HTML + CSS, JavaScript JS1, JavaScript JS2, Git, C++ | 30 each |
+| HTML + CSS, JavaScript JS1, JavaScript JS2, Git, C++, Python | 30 each |
 | CSS | 5 |
 | Next.js | 20 |
 | React | 60 across two months |
-| 25 Starter introductory modules | 2 each |
-| AI Fundamentals, Context Engineering, Agent Harness (free AI direction) | 14 each |
-| JavaScript Pro, Backend Pro, UX Design Pro, Business Pro, Software Architecture Expert | 3 each |
+| 24 Starter introductory modules | 2 each |
+| AI Fundamentals, Context Engineering, Agent Harness, TypeScript, Algorithms (free) | 14 each |
+| JavaScript Pro | 14 |
+| Backend Pro, UX Design Pro, Business Pro, Software Architecture Expert | 3 each |
 
-There are **342 scheduled day slots** in total: 327 Starter (including React's 60) and 15 premium. The three AI courses add 42 authored days, 42 practice assignments (23 code with executed deterministic solutions, 19 written with trilingual reference answers) and 118 quiz questions, all verified by `tests/published-curriculum.test.ts` and the zod content schema. Every published day count reflects actual authored lessons; no planned-but-unwritten days are listed.
+There are **464 scheduled day slots** in total (404 across non-React track stages plus React's 60): 449 free and 15 premium. Learning tracks are a first-class registry (`LEARNING_TRACKS`): 38 tracks whose Beginner stage is always free, with Pro/Expert stages rendered honestly on every course page — published stages carry real day counts, unpublished ones say "not published yet". The 2026-10-24 increment added 67 authored days (Python 2→30, new TypeScript and Algorithms courses, JavaScript Pro 3→14) with ~155 new quiz questions; every executable solution was verified by actually running it (Python 3.12, tsc+esbuild+node, node). Full Track × Stage matrix: [COMPLETE-COURSE-RECOVERY-AUDIT.md](COMPLETE-COURSE-RECOVERY-AUDIT.md), regenerable via `scripts/track-coverage-report.mjs`.
 
 `courseMonthPlan` publishes each unscheduled lesson once and retains explicit authored schedules; it no longer pads a short course with generated review days. Unscheduled reference lessons in explicitly scheduled courses stay in their answer library, not in invented extra days. Cards and navigation use actual `publishedDays` metadata. A short introduction is not silently expanded into a full 30-day course.
 
