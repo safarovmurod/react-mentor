@@ -530,7 +530,7 @@
       "tg": "То ҳол println як қиматро чоп мекард. Барномаҳои воқеӣ паёмҳоро аз порчаҳо месозанд: матн, ададҳо, натиҷаи ҳисобҳо. Роҳи осонтарин пайвасткунӣ бо аломати + аст: \"Hello, \" + name матни чапро ба қимати рост мечаспонад. Вале барои пул ва рост кардан printf бароҳаттар аст: он як намуна ва қиматҳоро бо тартиб мегирад. Дар намуна %d адади бутун, %s — сатр, %.2f — адади касрӣ бо ду аломат пас аз нуқта, \\n — гузариш ба сатри нав аст. Диққат кунед: 12.5 ба 12.50 табдил ёфт, чунки %.2f ҳамеша ду аломат мемонад — ин барои ҳисобфактура ва нархҳо муҳим аст. Ба фарқи println, printf худ ба сатри нав намегузарад, аз ин рӯ \\n дар намуна ҳатмӣ аст. Ҳар даъватро ҳамчун гуфтугӯ хонед: ин намуна, ин қиматҳо — бо тартиб ҷойгузин кун.",
       "en": "Until now println printed a single value. Real programs assemble messages from pieces: text, numbers, calculation results. The simplest way is concatenation with +: \"Hello, \" + name glues the left text to the right value. But for money and alignment printf is more convenient: it takes a template and values in order. In the template %d means a whole number, %s a string, %.2f a decimal with two digits after the point, and \\n a newline. Notice that 12.5 became 12.50 because %.2f always keeps two digits — this matters for receipts and prices. Unlike println, printf does not move to a new line by itself, so \\n in the template is required. Read each call as a dialogue: here is the template, here are the values — substitute them in order."
      },
-     "code": "public class Main {\n  public static void main(String[] args) {\n    String name = \"Parviz\";\n    int apples = 5;\n    double price = 2.5;\n\n    System.out.println(\"Hello, \" + name + \"!\");\n    System.out.printf(\"%d apples\\n\", apples);\n    System.out.printf(\"Total: %.2f somoni\\n\", apples * price);\n    System.out.printf(\"%s has %d apples\\n\", name, apples);\n  }\n}\n",
+     "code": "public class Main {\n  public static void main(String[] args) {\n    String name = \"Parviz\";\n    int apples = 5;\n    double price = 2.5;\n\n    System.out.println(\"Hello, \" + name + \"!\");\n    System.out.printf(\"%d apples\\n\", apples);\n    System.out.printf(java.util.Locale.US, \"Total: %.2f somoni\\n\", apples * price);\n    System.out.printf(\"%s has %d apples\\n\", name, apples);\n  }\n}\n",
      "language": "java",
      "output": {
       "ru": "Hello, Parviz!\n5 apples\nTotal: 12.50 somoni\nParviz has 5 apples",
@@ -639,7 +639,7 @@
      "tg": "Пайвасткунии + сатрҳоро мечаспонад, printf қиматҳоро ба намуна ҷойгузин мекунад: %d — бутун, %s — сатр, %.2f — касрӣ бо ду аломат, \\n — сатри нав. Аргументҳо бо тартиби пайдоиши ҷойҳои % ҷойгузин мешаванд. Scanner вуруди клавиатураро мехонад: nextInt() барои адад, nextLine() барои сатр.",
      "en": "Concatenation + glues strings; printf substitutes values into a template: %d whole number, %s string, %.2f decimal with two digits, \\n newline. Arguments are substituted in the order of the % slots. Scanner reads keyboard input: nextInt() for a number, nextLine() for a line."
     },
-    "solution": "public class Main {\n  public static void main(String[] args) {\n    String name = \"Parviz\";\n    int apples = 5;\n    double price = 2.5;\n\n    System.out.println(\"Hello, \" + name + \"!\");\n    System.out.printf(\"%d apples\\n\", apples);\n    System.out.printf(\"Total: %.2f somoni\\n\", apples * price);\n    System.out.printf(\"%s has %d apples\\n\", name, apples);\n  }\n}\n",
+    "solution": "public class Main {\n  public static void main(String[] args) {\n    String name = \"Parviz\";\n    int apples = 5;\n    double price = 2.5;\n\n    System.out.println(\"Hello, \" + name + \"!\");\n    System.out.printf(\"%d apples\\n\", apples);\n    System.out.printf(java.util.Locale.US, \"Total: %.2f somoni\\n\", apples * price);\n    System.out.printf(\"%s has %d apples\\n\", name, apples);\n  }\n}\n",
     "criteria": [
      {
       "ru": "Файл Main.java выполнен указанной командой; вывод совпадает с ожидаемым.",
@@ -3760,9 +3760,9 @@
      "code": "import java.util.List;\n\npublic class Main {\n  public static void main(String[] args) {\n    List<Integer> numbers = List.of(3, 8, 4, 10, 7);\n\n    List<Integer> big = numbers.stream().filter(n -> n > 5).toList();\n    System.out.println(big);\n\n    List<Integer> doubled = numbers.stream().map(n -> n * 2).toList();\n    System.out.println(doubled);\n\n    long count = numbers.stream().filter(n -> n > 5).count();\n    System.out.println(count);\n  }\n}\n",
      "language": "java",
      "output": {
-      "ru": "[8, 10]\n[6, 16, 8, 20, 14]\n2",
-      "tg": "[8, 10]\n[6, 16, 8, 20, 14]\n2",
-      "en": "[8, 10]\n[6, 16, 8, 20, 14]\n2"
+      "ru": "[8, 10, 7]\n[6, 16, 8, 20, 14]\n3",
+      "tg": "[8, 10, 7]\n[6, 16, 8, 20, 14]\n3",
+      "en": "[8, 10, 7]\n[6, 16, 8, 20, 14]\n3"
      }
     },
     {
@@ -3857,9 +3857,9 @@
    "practice": {
     "kind": "code",
     "task": {
-     "ru": "1. Сохраните пример в Main.java внутри папки day24 и запустите java Main.java.\n2. Сверьте вывод с ожидаемым:\n[8, 10]\n[6, 16, 8, 20, 14]\n2\n3. Поменяйте условие на n > 20: первый список напечатает [].\n4. Добавьте sorted() перед toList() и выведите сумму чисел через mapToInt(Integer::intValue).sum().\nОжидаемый итог: три строки совпадают посимвольно, пустой фильтр печатает [], сортировка и сумма посчитаны потоком.",
-     "tg": "1. Мисолро дар Main.java дохили папкаи day24 сабт карда, java Main.java-ро иҷро кунед.\n2. Натиҷаро бо интизорӣ муқоиса кунед:\n[8, 10]\n[6, 16, 8, 20, 14]\n2\n3. Шартро ба n > 20 иваз кунед: рӯйхати аввал [] чоп мекунад.\n4. sorted()-ро пеш аз toList() илова карда, ҷамъи ададҳоро тавассути mapToInt(Integer::intValue).sum() бароред.\nНатиҷаи интизорӣ: се сатр аломат ба аломат мувофиқанд, филтри холӣ []-ро чоп мекунад ва тартиб ва ҷамъ аз ҷониби ҷараён ҳисоб шудаанд.",
-     "en": "1. Save the example as Main.java inside a day24 folder and run java Main.java.\n2. Compare the output with the expected text:\n[8, 10]\n[6, 16, 8, 20, 14]\n2\n3. Change the condition to n > 20: the first list prints [].\n4. Add sorted() before toList() and print the sum via mapToInt(Integer::intValue).sum().\nExpected result: three lines match character for character, the empty filter prints [], and the sort and the sum are computed by the stream."
+     "ru": "1. Сохраните пример в Main.java внутри папки day24 и запустите java Main.java.\n2. Сверьте вывод с ожидаемым:\n[8, 10, 7]\n[6, 16, 8, 20, 14]\n3\n3. Поменяйте условие на n > 20: первый список напечатает [].\n4. Добавьте sorted() перед toList() и выведите сумму чисел через mapToInt(Integer::intValue).sum().\nОжидаемый итог: три строки совпадают посимвольно, пустой фильтр печатает [], сортировка и сумма посчитаны потоком.",
+     "tg": "1. Мисолро дар Main.java дохили папкаи day24 сабт карда, java Main.java-ро иҷро кунед.\n2. Натиҷаро бо интизорӣ муқоиса кунед:\n[8, 10, 7]\n[6, 16, 8, 20, 14]\n3\n3. Шартро ба n > 20 иваз кунед: рӯйхати аввал [] чоп мекунад.\n4. sorted()-ро пеш аз toList() илова карда, ҷамъи ададҳоро тавассути mapToInt(Integer::intValue).sum() бароред.\nНатиҷаи интизорӣ: се сатр аломат ба аломат мувофиқанд, филтри холӣ []-ро чоп мекунад ва тартиб ва ҷамъ аз ҷониби ҷараён ҳисоб шудаанд.",
+     "en": "1. Save the example as Main.java inside a day24 folder and run java Main.java.\n2. Compare the output with the expected text:\n[8, 10, 7]\n[6, 16, 8, 20, 14]\n3\n3. Change the condition to n > 20: the first list prints [].\n4. Add sorted() before toList() and print the sum via mapToInt(Integer::intValue).sum().\nExpected result: three lines match character for character, the empty filter prints [], and the sort and the sum are computed by the stream."
     },
     "hint": {
      "ru": "Поток: источник → промежуточные (filter, map, sorted, distinct, limit) → терминальная (toList, count, forEach, reduce). Ленивость: без терминальной операции цепочка не работает. Источник не мутируется. toList() появился в Java 16, stream API — в Java 8.",
