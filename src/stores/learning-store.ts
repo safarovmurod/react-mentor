@@ -140,10 +140,12 @@ export const useLearningStore = create<LearningState>()(persist((set, get) => ({
   },
   recordCourseAnswer(courseId, question, mode, correct, answer) {
     const courses=get().courses, progress=courses[courseId] || emptyCourseProgress(), today=dateKey(), key=`${today}:${mode}:${question.id}`;
-    if (progress.answers[key]) return;
+    // A wrong answer never blocks a retry; once correct, the attempt is recorded.
+    if (progress.answers[key]?.correct) return;
     set({courses:{...courses,[courseId]:{...progress,
       answers:{...progress.answers,[key]:{questionId:question.id,topicId:question.topicId,mode,correct,answer,date:today}},
       awards:correct ? {...progress.awards,[`${mode}:${question.id}`]:mode==='test'?10:5}:progress.awards,
+      masteredQuestions:(mode==='test'&&correct&&!progress.masteredQuestions.includes(question.id)) ? [...progress.masteredQuestions,question.id] : progress.masteredQuestions,
       reviews:{...progress.reviews,[question.id]:nextReview(progress.reviews[question.id],question.id,question.topicId,correct,today)},
       reviewClock:{...progress.reviewClock,[question.id]:Date.now()},
     }}});

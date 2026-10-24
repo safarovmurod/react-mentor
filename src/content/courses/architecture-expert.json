@@ -69,9 +69,9 @@
     "en": "Failures: deadlines, retries and idempotency"
    },
    "summary": {
-    "ru": "День 1 из 3 опубликованных. Отказы: deadline, повторы и идемпотентность. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 1 из 30 опубликованных. Отказы: deadline, повторы и идемпотентность. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 1 аз 3 рӯзи нашршуда. Нокомиҳо: deadline, такрор ва идемпотентӣ. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 1 of 3 published days. Failures: deadlines, retries and idempotency. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 1 of 30 published days. Failures: deadlines, retries and idempotency. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -236,9 +236,9 @@
     "en": "Trust boundaries and paid entitlements"
    },
    "summary": {
-    "ru": "День 2 из 3 опубликованных. Граница доверия и платные права доступа. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 2 из 30 опубликованных. Граница доверия и платные права доступа. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 2 аз 3 рӯзи нашршуда. Сарҳади эътимод ва ҳуқуқи дастрасии пулакӣ. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 2 of 3 published days. Trust boundaries and paid entitlements. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 2 of 30 published days. Trust boundaries and paid entitlements. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -403,9 +403,9 @@
     "en": "Release evidence: metrics, restore and rollback"
    },
    "summary": {
-    "ru": "День 3 из 3 опубликованных. Доказательства готовности: метрики, restore и rollback. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 3 из 30 опубликованных. Доказательства готовности: метрики, restore и rollback. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 3 аз 3 рӯзи нашршуда. Далелҳои омодагӣ: метрика, restore ва rollback. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 3 of 3 published days. Release evidence: metrics, restore and rollback. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 3 of 30 published days. Release evidence: metrics, restore and rollback. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
