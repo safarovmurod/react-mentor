@@ -84,9 +84,9 @@
     "en": "Request validation and rejecting extra fields"
    },
    "summary": {
-    "ru": "День 1 из 3 опубликованных. Валидация запроса и запрет лишних полей. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 1 из 30 опубликованных. Валидация запроса и запрет лишних полей. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 1 аз 3 рӯзи нашршуда. Санҷиши дархост ва манъи майдонҳои зиёдатӣ. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 1 of 3 published days. Request validation and rejecting extra fields. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 1 of 30 published days. Request validation and rejecting extra fields. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -246,9 +246,9 @@
     "en": "Ownership authorization and IDOR prevention"
    },
    "summary": {
-    "ru": "День 2 из 3 опубликованных. Авторизация владельца и защита от IDOR. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 2 из 30 опубликованных. Авторизация владельца и защита от IDOR. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 2 аз 3 рӯзи нашршуда. Санҷиши соҳиб ва ҳифз аз IDOR. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 2 of 3 published days. Ownership authorization and IDOR prevention. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 2 of 30 published days. Ownership authorization and IDOR prevention. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -408,9 +408,9 @@
     "en": "HTTP integration tests and a resilient handler"
    },
    "summary": {
-    "ru": "День 3 из 3 опубликованных. Интеграционные HTTP-тесты и отказоустойчивый обработчик. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 3 из 30 опубликованных. Интеграционные HTTP-тесты и отказоустойчивый обработчик. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 3 аз 3 рӯзи нашршуда. HTTP-тестҳои ҳамгироӣ ва коркарди устувор. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 3 of 3 published days. HTTP integration tests and a resilient handler. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 3 of 30 published days. HTTP integration tests and a resilient handler. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [

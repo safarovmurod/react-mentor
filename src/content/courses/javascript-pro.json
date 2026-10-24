@@ -109,9 +109,9 @@
     "en": "Immutable data: a task summary"
    },
    "summary": {
-    "ru": "День 1 из 3 опубликованных. Неизменяемые данные: сводка задач. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 1 из 30 опубликованных. Неизменяемые данные: сводка задач. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 1 аз 3 рӯзи нашршуда. Додаҳои тағйирнопазир: ҷамъбасти вазифаҳо. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 1 of 3 published days. Immutable data: a task summary. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 1 of 30 published days. Immutable data: a task summary. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -272,9 +272,9 @@
     "en": "Async requests: HTTP and invalid data"
    },
    "summary": {
-    "ru": "День 2 из 3 опубликованных. Асинхронный запрос: HTTP и неверные данные. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 2 из 30 опубликованных. Асинхронный запрос: HTTP и неверные данные. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 2 аз 3 рӯзи нашршуда. Дархости асинхронӣ: HTTP ва додаҳои нодуруст. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 2 of 3 published days. Async requests: HTTP and invalid data. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 2 of 30 published days. Async requests: HTTP and invalid data. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -434,9 +434,9 @@
     "en": "Browser storage: versioning and validation"
    },
    "summary": {
-    "ru": "День 3 из 3 опубликованных. Браузерное хранилище: версия и валидация. Разберите решение, выполните задание и проверьте крайние случаи.",
+    "ru": "День 3 из 30 опубликованных. Браузерное хранилище: версия и валидация. Разберите решение, выполните задание и проверьте крайние случаи.",
     "tg": "Рӯзи 3 аз 3 рӯзи нашршуда. Захираи браузер: версия ва санҷиш. Ҳалро фаҳмед, супоришро иҷро карда, ҳолатҳои канориро санҷед.",
-    "en": "Day 3 of 3 published days. Browser storage: versioning and validation. Understand the solution, complete the task and check boundary cases."
+    "en": "Day 3 of 30 published days. Browser storage: versioning and validation. Understand the solution, complete the task and check boundary cases."
    },
    "level": "intermediate",
    "sourceIds": [
@@ -596,7 +596,7 @@
     "en": "The event loop: call stack and execution order"
    },
    "summary": {
-    "ru": "День 4 из 14 дней Pro-курса. Цикл событий: стек вызовов, микрозадачи против макрозадач, детерминированная трасса порядка выполнения. Разберите трассу, предскажите собственный порядок и проверьте его.",
+    "ru": "День 4 из 30 дней Pro-курса. Цикл событий: стек вызовов, микрозадачи против макрозадач, детерминированная трасса порядка выполнения. Разберите трассу, предскажите собственный порядок и проверьте его.",
     "tg": "Рӯзи 4 аз 14 рӯзи курси Pro. Давраи ҳодисаҳо: стеки даъватҳо, микровазифаҳо бар зидди макровазифаҳо, трассаи детерминистии тартиби иҷро. Трассаро фаҳмед, тартиби худро пешгӯӣ карда, санҷед.",
     "en": "Day 4 of the 14-day Pro course. The event loop: call stack, microtasks versus macrotasks, a deterministic trace of execution order. Study the trace, predict your own order and verify it."
    },
@@ -758,7 +758,7 @@
     "en": "Promises: composition and errors in chains"
    },
    "summary": {
-    "ru": "День 5 из 14 дней Pro-курса. Композиция промисов: all, allSettled, race, any, AggregateError и восстановление после ошибок в цепочках. Разберите все семь сценариев и соберите собственный набор.",
+    "ru": "День 5 из 30 дней Pro-курса. Композиция промисов: all, allSettled, race, any, AggregateError и восстановление после ошибок в цепочках. Разберите все семь сценариев и соберите собственный набор.",
     "tg": "Рӯзи 5 аз 14 рӯзи курси Pro. Композитсияи промисҳо: all, allSettled, race, any, AggregateError ва барқарорсозӣ баъди хатогиҳо дар занҷираҳо. Ҳафт сенарияро фаҳмед ва маҷмӯи худро созед.",
     "en": "Day 5 of the 14-day Pro course. Promise composition: all, allSettled, race, any, AggregateError and recovery from errors in chains. Work through all seven scenarios and build your own set."
    },
@@ -920,7 +920,7 @@
     "en": "Cancelling work: AbortController and timeouts"
    },
    "summary": {
-    "ru": "День 6 из 14 дней Pro-курса. Кооперативная отмена: AbortController, прослушивание signal, очистка ресурсов и ограничение по времени через AbortSignal.timeout. Разберите четыре сценария отмены и соберите собственные.",
+    "ru": "День 6 из 30 дней Pro-курса. Кооперативная отмена: AbortController, прослушивание signal, очистка ресурсов и ограничение по времени через AbortSignal.timeout. Разберите четыре сценария отмены и соберите собственные.",
     "tg": "Рӯзи 6 аз 14 рӯзи курси Pro. Бекоркунии ҳамкорона: AbortController, гӯш кардани signal, тоза кардани захираҳо ва маҳдудият бо вақт тавассути AbortSignal.timeout. Чор сенарияи бекоркуниро фаҳмед ва худӣ созед.",
     "en": "Day 6 of the 14-day Pro course. Cooperative cancellation: AbortController, listening to signal, resource cleanup and time bounds via AbortSignal.timeout. Study four cancellation scenarios and build your own."
    },
@@ -1082,7 +1082,7 @@
     "en": "Retries: exponential backoff and jitter"
    },
    "summary": {
-    "ru": "День 7 из 14 дней Pro-курса. Повторные попытки: классификация ошибок, экспоненциальная пауза с потолком, детерминированный джиттер и бюджет попыток. Разберите три сценария и настройте собственную политику.",
+    "ru": "День 7 из 30 дней Pro-курса. Повторные попытки: классификация ошибок, экспоненциальная пауза с потолком, детерминированный джиттер и бюджет попыток. Разберите три сценария и настройте собственную политику.",
     "tg": "Рӯзи 7 аз 14 рӯзи курси Pro. Кӯшишҳои такрорӣ: таснифи хатогиҳо, таваққуфи экспоненсиалӣ бо шифт, ҷиттери детерминистӣ ва буҷети кӯшишҳо. Се сенарияро фаҳмед ва сиёсати худро танзим кунед.",
     "en": "Day 7 of the 14-day Pro course. Retries: error classification, capped exponential backoff, deterministic jitter and an attempt budget. Work through three scenarios and tune your own policy."
    },
@@ -1244,7 +1244,7 @@
     "en": "Generators and iterators: lazy sequences"
    },
    "summary": {
-    "ru": "День 8 из 14 дней Pro-курса. Генераторы и итераторы: протокол next, делегирование yield*, ленивые конвейеры над бесконечными последовательностями и раннее закрытие. Разберите пять демонстраций и соберите свой конвейер.",
+    "ru": "День 8 из 30 дней Pro-курса. Генераторы и итераторы: протокол next, делегирование yield*, ленивые конвейеры над бесконечными последовательностями и раннее закрытие. Разберите пять демонстраций и соберите свой конвейер.",
     "tg": "Рӯзи 8 аз 14 рӯзи курси Pro. Генераторҳо ва итераторҳо: протоколи next, делегатсияи yield*, конвейерҳои танҳол болои пайдарпайиҳои беохир ва пӯшидани барвақт. Панҷ намоишро фаҳмед ва конвейери худро созед.",
     "en": "Day 8 of the 14-day Pro course. Generators and iterators: the next protocol, yield* delegation, lazy pipelines over infinite sequences and early closing. Study five demonstrations and build your own pipeline."
    },
@@ -1406,7 +1406,7 @@
     "en": "ESM modules: structure and circular dependencies"
    },
    "summary": {
-    "ru": "День 9 из 14 дней Pro-курса. Модули ESM: именованные экспорты, живые привязки, единственная вычисление модуля и анатомия циклической зависимости с двумя порядками входа. Разберите разбор в письменной практике.",
+    "ru": "День 9 из 30 дней Pro-курса. Модули ESM: именованные экспорты, живые привязки, единственная вычисление модуля и анатомия циклической зависимости с двумя порядками входа. Разберите разбор в письменной практике.",
     "tg": "Рӯзи 9 аз 14 рӯзи курси Pro. Модулҳои ESM: экспортҳои номдор, пайвастагиҳои зинда, як бор ҳисобшавии модул ва анатомияи вобастагии даврӣ бо ду тартиби вуруд. Таҳлилро дар машқи хаттӣ иҷро кунед.",
     "en": "Day 9 of the 14-day Pro course. ESM modules: named exports, live bindings, single module evaluation, and the anatomy of a circular dependency under two entry orders. The practice is a written analysis."
    },
@@ -1582,7 +1582,7 @@
     "en": "Memory: references, retention and leaks"
    },
    "summary": {
-    "ru": "День 10 из 14 дней Pro-курса. Память: достижимость через ссылки, удержание замыканиями, утечки в подписках и неограниченных кэшах, WeakMap для метаданных. Считайте ссылки, а не ждите сборщик.",
+    "ru": "День 10 из 30 дней Pro-курса. Память: достижимость через ссылки, удержание замыканиями, утечки в подписках и неограниченных кэшах, WeakMap для метаданных. Считайте ссылки, а не ждите сборщик.",
     "tg": "Рӯзи 10 аз 14 рӯзи курси Pro. Хота: дастрасӣ тавассути истинодҳо, нигоҳдорӣ бо клозурҳо, талаф дар обунаҳо ва кэшҳои беҳудуд, WeakMap барои метадода. Истинодҳоро шуморед, на интизори collector.",
     "en": "Day 10 of the 14-day Pro course. Memory: reachability through references, retention by closures, leaks in subscriptions and unbounded caches, WeakMap for metadata. Count references instead of waiting for the collector."
    },
@@ -1744,7 +1744,7 @@
     "en": "Performance: debounce, throttle and memoization"
    },
    "summary": {
-    "ru": "День 11 из 14 дней Pro-курса. Производительность интерфейсов: debounce и throttle на инжектированных часах, мемоизация со счётчиком вызовов и честные границы каждого приёма. Измеряйте, потом оптимизируйте.",
+    "ru": "День 11 из 30 дней Pro-курса. Производительность интерфейсов: debounce и throttle на инжектированных часах, мемоизация со счётчиком вызовов и честные границы каждого приёма. Измеряйте, потом оптимизируйте.",
     "tg": "Рӯзи 11 аз 14 рӯзи курси Pro. Самаранокии интерфейсҳо: debounce ва throttle дар соатҳои воридкардашуда, мемоизатсия бо ҳисобкунаки даъватҳо ва ҳудудҳои ростии ҳар усул. Чен кунед, баъд беҳтар созед.",
     "en": "Day 11 of the 14-day Pro course. Interface performance: debounce and throttle on injected clocks, memoization with a call counter, and the honest limits of each technique. Measure first, then optimize."
    },
@@ -1906,7 +1906,7 @@
     "en": "Testing: node:test and test-case tables"
    },
    "summary": {
-    "ru": "День 12 из 14 дней Pro-курса. Тестирование: структура unit-тестов, node:test, таблицы тест-кейсов и покрытие критических веток, включая ветку отказа. Стабильная расшифровка вместо таймингов раннера.",
+    "ru": "День 12 из 30 дней Pro-курса. Тестирование: структура unit-тестов, node:test, таблицы тест-кейсов и покрытие критических веток, включая ветку отказа. Стабильная расшифровка вместо таймингов раннера.",
     "tg": "Рӯзи 12 аз 14 рӯзи курси Pro. Санҷиш: сохтори unit-тестҳо, node:test, ҷадвалҳои тест-кейсҳо ва фарогирии шохаҳои муҳим, аз ҷумла шохаи радкунӣ. Сабти устувор ба ҷои таймингҳои раннер.",
     "en": "Day 12 of the 14-day Pro course. Testing: unit-test structure, node:test, test-case tables and coverage of critical branches, including the failure branch. A stable transcript instead of runner timings."
    },
@@ -2068,7 +2068,7 @@
     "en": "Code review: checklist and common defects"
    },
    "summary": {
-    "ru": "День 13 из 14 дней Pro-курса. Code review: как читать чужой код, чек-лист ревью и типовые дефекты — кэш без границ, отсутствие проверки HTTP, мутация общих данных. Письменная практика: разбор сниппета с дефектами.",
+    "ru": "День 13 из 30 дней Pro-курса. Code review: как читать чужой код, чек-лист ревью и типовые дефекты — кэш без границ, отсутствие проверки HTTP, мутация общих данных. Письменная практика: разбор сниппета с дефектами.",
     "tg": "Рӯзи 13 аз 14 рӯзи курси Pro. Code review: чӣ тавр коди дигаронро хондан, рӯйхати санҷиши ревью ва нуқсонҳои маъмул — кэши бе ҳудуд, набудани санҷиши HTTP, тағйири додаҳои умумӣ. Машқи хаттӣ: таҳлили сниппет бо нуқсонҳо.",
     "en": "Day 13 of the 14-day Pro course. Code review: reading someone else's code, a review checklist, and common defects — an unbounded cache, missing HTTP checks, mutation of shared data. Written practice: dissecting a defective snippet."
    },
@@ -2242,7 +2242,7 @@
     "en": "Capstone: a resilient data pipeline"
    },
    "summary": {
-    "ru": "День 14 из 14 дней Pro-курса. Capstone: полный пайплайн — загрузка с повторами, валидация строк с отчётом об отклонениях, агрегация и итоговый отчёт. Всё на scripted-источнике без сети, вывод детерминирован.",
+    "ru": "День 14 из 30 дней Pro-курса. Capstone: полный пайплайн — загрузка с повторами, валидация строк с отчётом об отклонениях, агрегация и итоговый отчёт. Всё на scripted-источнике без сети, вывод детерминирован.",
     "tg": "Рӯзи 14 аз 14 рӯзи курси Pro. Capstone: пайплайни пурра — боркунӣ бо такрорҳо, валидатсияи сатрҳо бо ҳисоботи радшудаҳо, агрегатсия ва ҳисоботи ниҳоӣ. Ҳама бо манбаи scripted бе шабака, хуруҷ детерминистӣ аст.",
     "en": "Day 14 of the 14-day Pro course. Capstone: a full pipeline — loading with retries, row validation with a rejection report, aggregation and a final report. Everything runs on a scripted source without network, output deterministic."
    },

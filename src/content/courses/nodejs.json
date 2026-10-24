@@ -89,9 +89,9 @@
     "en": "Node.js: JavaScript outside the browser"
    },
    "summary": {
-    "ru": "День 1 из 2. Node.js: JavaScript вне браузера. Практика в локальной среде, с проверкой вывода и граничного случая.",
+    "ru": "День 1 из 30. Node.js: JavaScript вне браузера. Практика в локальной среде, с проверкой вывода и граничного случая.",
     "tg": "Рӯзи 1 аз 2. Node.js: JavaScript берун аз браузер. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
-    "en": "Day 1 of 2. Node.js: JavaScript outside the browser. Practice locally and check the output and a boundary case."
+    "en": "Day 1 of 30. Node.js: JavaScript outside the browser. Practice locally and check the output and a boundary case."
    },
    "level": "beginner",
    "sourceIds": [
@@ -136,9 +136,9 @@
       "en": "Runtime requirements"
      },
      "body": {
-      "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+      "ru": "Это вводный модуль из 30 дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
       "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
-      "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+      "en": "This is a thirty-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
      }
     }
    ],
@@ -250,9 +250,9 @@
     "en": "Node.js: a module and assert checks"
    },
    "summary": {
-    "ru": "День 2 из 2. Node.js: модуль и тесты assert. Практика в локальной среде, с проверкой вывода и граничного случая.",
+    "ru": "День 2 из 30. Node.js: модуль и тесты assert. Практика в локальной среде, с проверкой вывода и граничного случая.",
     "tg": "Рӯзи 2 аз 2. Node.js: модул ва санҷишҳои assert. Практика дар муҳити маҳаллӣ бо санҷиши натиҷа ва ҳолати канорӣ.",
-    "en": "Day 2 of 2. Node.js: a module and assert checks. Practice locally and check the output and a boundary case."
+    "en": "Day 2 of 30. Node.js: a module and assert checks. Practice locally and check the output and a boundary case."
    },
    "level": "beginner",
    "sourceIds": [
@@ -297,9 +297,9 @@
       "en": "Runtime requirements"
      },
      "body": {
-      "ru": "Это вводный модуль из двух дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
+      "ru": "Это вводный модуль из 30 дней. Нужна указанная локальная среда; сайт не исполняет этот код и не выдаёт серверную аттестацию по отметке самопроверки.",
       "tg": "Ин модули шиносоии дурӯза аст. Муҳити маҳаллии зикршуда лозим аст; сайт ин кодро иҷро намекунад ва аз рӯи худсанҷӣ аттестатсияи серверӣ намедиҳад.",
-      "en": "This is a two-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
+      "en": "This is a thirty-day introductory module. The stated local runtime is required; this website does not execute this code or grant server-verified assessment from a self-check."
      }
     }
    ],
@@ -1240,7 +1240,7 @@
      "title": {
       "ru": "Пример: дневник за два дня",
       "tg": "Мисол: рӯзнома дар ду рӯз",
-      "en": "Example: a two-day diary"
+      "en": "Example: a thirty-day diary"
      },
      "body": {
       "ru": "Сохраните код как main.mjs в отдельной учебной папке и выполните в её терминале: node main.mjs. Ожидаемый вывод — три строки: Lines: 2, Exists before delete: true и Exists after delete: false. Программа создаёт diary.txt с первой записью, дописывает вторую, считает строки прочитанного текста, показывает, что файл существует, удаляет его и подтверждает, что файла больше нет. Сайт не исполняет Node-код — запускайте локально с установленным Node.js. Обратите внимание: writeFileSync с первой записью создаёт файл с нуля; если файл уже существовал, его старое содержимое было бы стёрто. Разделитель строк \\n нужен в конце каждой записи, чтобы записи не слипались в одну строку. Уберите из кода appendFileSync и запустите снова: Lines станет 1. Удаление необратимо: корзины у unlinkSync нет, поэтому в настоящих программах удаление всегда проверяют и подтверждают.",
