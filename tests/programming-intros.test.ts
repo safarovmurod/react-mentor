@@ -6,7 +6,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { courseContentSchema } from '@/lib/courses/schema';
 
-const ids = ['java', 'csharp', 'go', 'rust', 'php', 'ruby', 'sql', 'bash', 'nodejs', 'mongodb', 'swift', 'kotlin'] as const;
+const ids = ['java', 'csharp', 'go', 'rust', 'php', 'ruby', 'sql', 'bash', 'mongodb', 'swift', 'kotlin'] as const;
 const load = (id: typeof ids[number]) => courseContentSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), 'src/content/courses', id + '.json'), 'utf8')));
 const root = mkdtempSync(path.join(tmpdir(), 'devatlas-trusted-examples-'));
 afterAll(() => rmSync(root, { recursive: true, force: true }));
@@ -63,17 +63,24 @@ describe('original two-day programming introductions', () => {
       expect(runTrusted('java', ['Main.java'])).toBe(lesson.sections[0].output!.en);
     }
   });
-  it.skipIf(!hasNode)('Node examples perform the stated calculation and fail on a broken implementation', () => {
+  it.skipIf(!hasNode)('Node course: every executable day runs and matches its recorded output', () => {
+    let verified = 0;
     for (const lesson of load('nodejs').lessons) {
-      writeFileSync(path.join(root, 'main.mjs'), lesson.practice!.solution);
-      expect(runTrusted(process.execPath, ['main.mjs'])).toBe(lesson.sections[0].output!.en);
+      if (lesson.practice!.kind !== 'code') continue;
+      const section = lesson.sections.find(item => item.output?.en !== undefined);
+      if (!section) continue;
+      const extension = /require\(/.test(lesson.practice!.solution) && !/import /.test(lesson.practice!.solution) ? 'main.cjs' : 'main.mjs';
+      writeFileSync(path.join(root, extension), lesson.practice!.solution);
+      expect(runTrusted(process.execPath, [extension])).toBe(section.output!.en);
+      verified++;
     }
-    const solution = load('nodejs').lessons[1].practice!.solution;
-    writeFileSync(path.join(root, 'main.mjs'), solution.replace('price * quantity', 'price + quantity'));
+    expect(verified).toBeGreaterThanOrEqual(26);
+    const day2 = load('nodejs').lessons[1].practice!.solution;
+    writeFileSync(path.join(root, 'main.mjs'), day2.replace('price * quantity', 'price + quantity'));
     const broken = spawnSync(process.execPath, ['main.mjs'], { cwd: root, encoding: 'utf8', timeout: 5000 });
     expect(broken.status).not.toBe(0);
     expect(broken.stderr).toContain('AssertionError');
-  });
+  }, 120000);
   it.skipIf(!hasBash)('Bash examples run and their validation rejects nonnumeric input', () => {
     for (const lesson of load('bash').lessons) {
       writeFileSync(path.join(root, 'main.sh'), lesson.practice!.solution);
