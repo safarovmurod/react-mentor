@@ -8,6 +8,9 @@ const review = z.object({ questionId:id, topicId:id, due:z.string().max(30), rep
 export const studyProgressSchema = z.object({
   dailySets:z.record(z.string(),z.array(id)).default({}), studied:z.array(id).default([]), answers:z.record(z.string(),answer).default({}), reviews:z.record(z.string(),review).default({}), awards:z.record(z.string(),z.number().nonnegative()).default({}),
   completedTopics:z.array(id).default([]), completedPractice:z.array(id).default([]), confirmedDays:z.array(id).default([]), drafts:z.record(z.string(),z.string().max(200000)).default({}),
+  // Question ids answered correctly in test mode at least once — durable mastery
+  // evidence, distinct from the per-day review answers which reset by date.
+  masteredQuestions:z.array(id).default([]),
   notes:z.array(z.object({id,title:z.string().max(1000),content:z.string().max(200000)})).default([]),
   draftClock:clock, noteClock:clock, deletedNotes:clock, reviewClock:clock,
   studySeconds:z.record(z.string(),z.number().int().nonnegative()).default({}),
@@ -43,7 +46,7 @@ export function mergeProgress(remote: Progress, local: Progress): Progress {
 }
 export function mergeStudyProgress(remote: CourseProgress, local: CourseProgress): CourseProgress {
   const merged = { ...remote };
-  for (const key of ['studied','completedTopics','completedPractice','confirmedDays'] as const) merged[key] = [...new Set([...remote[key],...local[key]])];
+  for (const key of ['studied','completedTopics','completedPractice','confirmedDays','masteredQuestions'] as const) merged[key] = [...new Set([...remote[key],...local[key]])];
   merged.answers = {...local.answers,...remote.answers};
   merged.dailySets = {...local.dailySets,...remote.dailySets};
   for (const key of ['awards','studySeconds'] as const) {
