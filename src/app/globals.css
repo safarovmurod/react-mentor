@@ -179,8 +179,10 @@
   color-scheme: light;
 }
 
+html { background-color: var(--canvas); }
+
 body {
-  background-color: var(--canvas);
+  background-color: transparent;
   color: var(--text);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 14px;
@@ -904,7 +906,8 @@ select { cursor: pointer; }
 .course-search input{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font:inherit}
 
 /* Public React Mentor product pages: scoped so learning workspace stays unchanged. */
-.public-home,.public-policy{background:var(--canvas);color:var(--text);min-height:100dvh;}
+.public-home,.public-policy{color:var(--text);min-height:100dvh;}
+.public-policy{background:var(--canvas);}
 .public-home{padding:0 max(20px,calc((100vw - 1120px)/2));}
 .public-header,.public-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;}
 .public-header{min-height:88px;border-bottom:1px solid var(--border);}
@@ -1058,7 +1061,7 @@ select { cursor: pointer; }
 .course-lesson p {max-width:82ch;}
 .day-confirmation {padding:20px;border:1px solid #d6e4fa;border-radius:14px;background:#f0f5ff;margin-top:24px;}
 .day-confirmation p {font-size:14px;margin:8px 0 16px;}
-.public-home {background:radial-gradient(ellipse at 85% 8%,#e9efff 0,transparent 40%),#f8faff;padding:0 max(24px,calc((100vw - 1200px)/2));}
+.public-home {background:transparent;padding:0 max(24px,calc((100vw - 1200px)/2));}
 .public-header {border-bottom-color:#e0e7f1;}
 .public-brand {display:flex;align-items:center;font-size:24px;letter-spacing:-.055em;gap:0;white-space:nowrap;}
 .public-brand .brand-icon {width:39px;height:39px;margin-right:10px;color:white;}
@@ -1377,3 +1380,238 @@ select { cursor: pointer; }
 [data-theme=dark] .course-tier.tier-expert { color:#d6b9ff; background:#312242; border-color:#624180; }
 .course-access-gate { padding:28px; }
 .practice-tier { font-size:10px; opacity:.8; }
+
+/* ============ Ambient background system (shared across pages) ============
+   Pure-CSS aurora + faint grid behind all content. Layering: html canvas
+   color -> body::before aurora (z -2) -> body::after grid (z -1) -> content.
+   Only transform/opacity are animated (compositor-friendly, no repaint).
+   Content stays readable: cards/panels keep their opaque backgrounds, and
+   the effect is intentionally faint on learning screens. */
+:root {
+  --aurora-1: #c7d7fe;
+  --aurora-2: #e2dbfd;
+  --aurora-3: #c9eefb;
+  --aurora-opacity: .5;
+  --aurora-drift: 42s;
+  --grid-line: rgba(15, 23, 42, .04);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: -18vmax;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(36% 30% at 16% 10%, var(--aurora-1) 0%, transparent 68%),
+    radial-gradient(32% 28% at 84% 6%, var(--aurora-2) 0%, transparent 66%),
+    radial-gradient(30% 26% at 62% 92%, var(--aurora-3) 0%, transparent 64%);
+  opacity: var(--aurora-opacity);
+  animation: aurora-drift var(--aurora-drift) ease-in-out infinite alternate;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 72% at 50% 0%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 95% 72% at 50% 0%, #000 0%, transparent 78%);
+}
+@keyframes aurora-drift {
+  from { transform: translate3d(-1.6%, -1%, 0) scale(1); }
+  50%  { transform: translate3d(1.2%, 1.6%, 0) scale(1.045); }
+  to   { transform: translate3d(1.8%, -1.2%, 0) scale(1.02); }
+}
+[data-theme=dark] {
+  --aurora-1: #1d2c52;
+  --aurora-2: #32265c;
+  --aurora-3: #14344d;
+  --aurora-opacity: .6;
+  --grid-line: rgba(148, 163, 184, .055);
+}
+/* Landing hero: layered glow behind the headline and two floating orbs.
+   Scoped to the public home so learning screens stay visually quiet. */
+.public-hero { position: relative; }
+.public-hero::before {
+  content: '';
+  position: absolute;
+  top: -70px; left: -120px;
+  width: min(560px, 60vw); height: min(560px, 60vw);
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--primary-soft) 0%, transparent 65%);
+  opacity: .5;
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: -1;
+}
+.public-hero-layout { position: relative; }
+.public-hero-layout::before,
+.public-hero-layout::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
+}
+.public-hero-layout::before {
+  top: 6%; right: 4%;
+  width: clamp(140px, 22vw, 300px); height: clamp(140px, 22vw, 300px);
+  background: radial-gradient(circle at 32% 32%, rgba(129, 140, 248, .22), rgba(129, 140, 248, 0) 70%);
+  animation: orb-float 16s ease-in-out infinite alternate;
+}
+.public-hero-layout::after {
+  bottom: 10%; left: -6%;
+  width: clamp(110px, 16vw, 220px); height: clamp(110px, 16vw, 220px);
+  background: radial-gradient(circle at 60% 40%, rgba(45, 212, 191, .16), rgba(45, 212, 191, 0) 70%);
+  animation: orb-float 21s ease-in-out infinite alternate-reverse;
+}
+@keyframes orb-float {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-26px, 30px, 0); }
+}
+/* Micro-interactions: cards lift softly on hover (transform/opacity only). */
+.public-feature-grid article,
+.studio-preview,
+.public-cta {
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.public-feature-grid article:hover,
+.studio-preview:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--border-strong);
+}
+/* Accessibility and low-power devices: freeze all ambient motion. */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .public-hero-layout::before,
+  .public-hero-layout::after { animation: none; }
+  .public-feature-grid article,
+  .studio-preview,
+  .public-cta { transition: none; }
+}
+@media (max-width: 650px) {
+  body::after { display: none; }
+  .public-hero::before { left: -40px; top: -40px; }
+}
+
+/* ============ Learning track stages ============ */
+.track-stages { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-bottom:18px; }
+.track-stage { display:flex; flex-direction:column; gap:6px; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:var(--card); min-width:0; }
+.track-stage.is-here { border-color:var(--primary); background:var(--primary-soft); }
+.track-stage strong { font-size:13px; letter-spacing:.02em; }
+.track-stage a { font-size:13px; color:var(--text); text-decoration:none; font-weight:600; overflow-wrap:anywhere; }
+.track-stage a[aria-current=location] { color:var(--primary); }
+.track-stage a:hover { text-decoration:underline; }
+.track-stage small { color:var(--text-muted); font-size:11px; }
+.track-stage-pending { font-size:12px; color:var(--text-muted); }
+@media (max-width: 650px) { .track-stages { grid-template-columns:1fr; } }
+
+/* ============ Premium design layer (2026-10-24) ============
+   Bigger display typography, staged entrance motion, richer landing aurora,
+   floating studio preview, glassy app header and tactile micro-interactions.
+   Motion is decorative only: every rule is frozen under reduced motion and
+   nothing animates layout properties (transform/opacity only). */
+
+/* --- Crisper text rendering everywhere --- */
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* --- Landing: oversized display type --- */
+.public-hero h1 { font-size: clamp(42px, 7vw, 88px); line-height: 1.04; letter-spacing: -.055em; font-weight: 800; }
+.public-eyebrow { display: inline-flex; align-items: center; gap: 8px; }
+.public-eyebrow::before { content: ''; width: 26px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--primary)); }
+.public-hero > p:not(.public-eyebrow) { font-size: clamp(16px, 2vw, 20px); }
+.public-actions .button.primary { font-size: 16px; min-height: 52px; }
+.public-features h2, .public-cta h2 { font-size: clamp(26px, 3.4vw, 40px); }
+.public-brand { background: linear-gradient(92deg, var(--text) 20%, var(--primary) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.public-brand span { background: linear-gradient(92deg, var(--primary), #6d5cf0); -webkit-background-clip: text; background-clip: text; }
+
+/* --- Landing: richer aurora + decorative rings --- */
+.public-home::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(42% 36% at 12% 0%, #dbe4ff 0%, transparent 70%),
+    radial-gradient(38% 34% at 92% 4%, #e6dfff 0%, transparent 68%),
+    radial-gradient(36% 30% at 50% 108%, #d3f1fd 0%, transparent 66%);
+  opacity: .8;
+  animation: landing-breathe 14s ease-in-out infinite alternate;
+}
+.public-home::after {
+  content: '';
+  position: fixed; z-index: -1; pointer-events: none;
+  top: -18vmin; right: -14vmin; width: 58vmin; height: 58vmin;
+  border: 1.5px solid color-mix(in srgb, var(--primary) 22%, transparent);
+  border-radius: 50%;
+  animation: ring-spin 60s linear infinite;
+}
+[data-theme=dark] .public-home::before {
+  background:
+    radial-gradient(42% 36% at 12% 0%, #1c2c55 0%, transparent 70%),
+    radial-gradient(38% 34% at 92% 4%, #332763 0%, transparent 68%),
+    radial-gradient(36% 30% at 50% 108%, #12374f 0%, transparent 66%);
+}
+@keyframes landing-breathe { from { transform: scale(1); opacity: .8; } to { transform: scale(1.06); opacity: 1; } }
+@keyframes ring-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* --- Landing: staged entrance motion --- */
+.public-hero > * { animation: rise-in .7s cubic-bezier(.2,.7,.2,1) both; }
+.public-hero > *:nth-child(1) { animation-delay: .05s; }
+.public-hero > *:nth-child(2) { animation-delay: .15s; }
+.public-hero > *:nth-child(3) { animation-delay: .25s; }
+.public-hero > *:nth-child(4) { animation-delay: .35s; }
+.public-hero > *:nth-child(5) { animation-delay: .45s; }
+.public-hero > *:nth-child(6) { animation-delay: .55s; }
+.studio-preview, .public-feature-grid article, .public-cta { animation: rise-in .8s cubic-bezier(.2,.7,.2,1) both; }
+.studio-preview { animation-delay: .3s; }
+.public-feature-grid article:nth-child(1) { animation-delay: .45s; }
+.public-feature-grid article:nth-child(2) { animation-delay: .55s; }
+.public-feature-grid article:nth-child(3) { animation-delay: .65s; }
+.public-cta { animation-delay: .75s; }
+@keyframes rise-in { from { opacity: 0; transform: translate3d(0, 22px, 0); } to { opacity: 1; transform: none; } }
+
+/* --- Landing: living studio preview --- */
+.studio-preview { animation-delay: .3s, 0s; animation-name: rise-in, studio-float; animation-duration: .8s, 7s; animation-timing-function: cubic-bezier(.2,.7,.2,1), ease-in-out; animation-fill-mode: both, none; animation-iteration-count: 1, infinite; animation-direction: normal, alternate; }
+@keyframes studio-float { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.public-actions .button.primary { box-shadow: 0 10px 26px -10px color-mix(in srgb, var(--primary) 65%, transparent); }
+.public-actions .button.primary:hover { transform: translateY(-2px); }
+.public-actions .button.primary, .public-cta .button.primary { transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+
+/* --- App shell: glassy header + tactile interactions --- */
+.app-header { background: color-mix(in srgb, var(--card) 82%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+[data-theme=dark] .app-header { background: #151f30d9; }
+.nav-item { transition: background .18s ease, color .18s ease, transform .18s ease; }
+.nav-item:hover { transform: translateX(2px); }
+.panel { transition: box-shadow .25s ease, border-color .25s ease; }
+.day-card:not(.is-locked):hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: var(--border-strong); }
+.day-card { transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.button.primary { transition: transform .15s ease, box-shadow .2s ease, background .2s ease; }
+.button.primary:active { transform: scale(.97); }
+.progress-track span { background-image: linear-gradient(90deg, var(--primary), #6d5cf0, var(--primary)); background-size: 200% 100%; animation: progress-shine 2.6s linear infinite; }
+@keyframes progress-shine { from { background-position: 0% 0; } to { background-position: 200% 0; } }
+.app-main > * { animation: app-enter .45s cubic-bezier(.2,.7,.2,1) both; }
+.app-main > *:nth-child(2) { animation-delay: .05s; }
+.app-main > *:nth-child(3) { animation-delay: .1s; }
+@keyframes app-enter { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
+
+/* --- AI tutor drawer: smoother arrival --- */
+.tutor-panel { animation: drawer-in .32s cubic-bezier(.2,.7,.2,1) both; }
+.tutor-backdrop { animation: fade-in .25s ease both; }
+@keyframes drawer-in { from { transform: translateX(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Track stage cards hover --- */
+.track-stage { transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+.track-stage:not(.is-here):hover { transform: translateY(-2px); border-color: var(--border-strong); }
+
+/* --- Freeze everything decorative under reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .public-hero > *, .studio-preview, .public-feature-grid article, .public-cta,
+  .app-main > *, .tutor-panel, .tutor-backdrop, .day-card, .track-stage,
+  .public-home::before, .public-home::after, .progress-track span { animation: none !important; }
+}

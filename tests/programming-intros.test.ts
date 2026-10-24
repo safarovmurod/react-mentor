@@ -6,8 +6,8 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { courseContentSchema } from '@/lib/courses/schema';
 
-const ids = ['java', 'csharp', 'go', 'rust', 'php', 'ruby', 'sql', 'bash', 'nodejs', 'mongodb', 'swift', 'kotlin'] as const;
-const load = (id: typeof ids[number]) => courseContentSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), 'src/content/courses', id + '.json'), 'utf8')));
+const ids = ['csharp', 'go', 'rust', 'php', 'ruby', 'bash', 'mongodb', 'swift', 'kotlin'] as const;
+const load = (id: string) => courseContentSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), 'src/content/courses', id + '.json'), 'utf8')));
 const root = mkdtempSync(path.join(tmpdir(), 'devatlas-trusted-examples-'));
 afterAll(() => rmSync(root, { recursive: true, force: true }));
 const probe = (command: string, args: string[], pattern?: RegExp) => {
@@ -16,7 +16,11 @@ const probe = (command: string, args: string[], pattern?: RegExp) => {
 };
 const hasJava = probe('java', ['--list-modules'], /jdk\.compiler@/);
 const hasGo = probe('go', ['version'], /^go version go/);
-const hasPython = probe('python3', ['--version'], /Python 3\./);
+const hasPython = probe('python3', ['-c', 'print(1)'], /^1$/) || probe('python', ['-c', 'print(1)'], /^1$/) ||
+  (process.env.LOCALAPPDATA ? probe(path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe'), ['-c', 'print(1)'], /^1$/) : false);
+const pythonCommand = probe('python3', ['-c', 'print(1)'], /^1$/) ? 'python3'
+  : probe('python', ['-c', 'print(1)'], /^1/) ? 'python'
+  : (process.env.LOCALAPPDATA && probe(path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe'), ['-c', 'print(1)'], /^1/) ? path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe') : 'python3');
 const hasBash = probe('bash', ['--version'], /GNU bash/);
 const hasNode = probe(process.execPath, ['--version'], /^v\d+/);
 
@@ -59,17 +63,24 @@ describe('original two-day programming introductions', () => {
       expect(runTrusted('java', ['Main.java'])).toBe(lesson.sections[0].output!.en);
     }
   });
-  it.skipIf(!hasNode)('Node examples perform the stated calculation and fail on a broken implementation', () => {
+  it.skipIf(!hasNode)('Node course: every executable day runs and matches its recorded output', () => {
+    let verified = 0;
     for (const lesson of load('nodejs').lessons) {
-      writeFileSync(path.join(root, 'main.mjs'), lesson.practice!.solution);
-      expect(runTrusted(process.execPath, ['main.mjs'])).toBe(lesson.sections[0].output!.en);
+      if (lesson.practice!.kind !== 'code') continue;
+      const section = lesson.sections.find(item => item.output?.en !== undefined);
+      if (!section) continue;
+      const extension = /require\(/.test(lesson.practice!.solution) && !/import /.test(lesson.practice!.solution) ? 'main.cjs' : 'main.mjs';
+      writeFileSync(path.join(root, extension), lesson.practice!.solution);
+      expect(runTrusted(process.execPath, [extension])).toBe(section.output!.en);
+      verified++;
     }
-    const solution = load('nodejs').lessons[1].practice!.solution;
-    writeFileSync(path.join(root, 'main.mjs'), solution.replace('price * quantity', 'price + quantity'));
+    expect(verified).toBeGreaterThanOrEqual(26);
+    const day2 = load('nodejs').lessons[1].practice!.solution;
+    writeFileSync(path.join(root, 'main.mjs'), day2.replace('price * quantity', 'price + quantity'));
     const broken = spawnSync(process.execPath, ['main.mjs'], { cwd: root, encoding: 'utf8', timeout: 5000 });
     expect(broken.status).not.toBe(0);
     expect(broken.stderr).toContain('AssertionError');
-  });
+  }, 120000);
   it.skipIf(!hasBash)('Bash examples run and their validation rejects nonnumeric input', () => {
     for (const lesson of load('bash').lessons) {
       writeFileSync(path.join(root, 'main.sh'), lesson.practice!.solution);
@@ -79,10 +90,20 @@ describe('original two-day programming introductions', () => {
     writeFileSync(path.join(root, 'main.sh'), solution + '\ntotal 07 02\nif total 12 abc; then exit 99; fi\n');
     expect(runTrusted('bash', ['main.sh'])).toBe('36\n0\nInvalid input rejected\n14');
   });
-  it.skipIf(!hasPython)('SQL examples run in actual in-memory SQLite and preserve guarded stock', () => {
+  it.skipIf(!hasPython)('SQL course: every executable day runs in real SQLite and matches its recorded output', () => {
     const sqlite = 'import sqlite3, sys\nc=sqlite3.connect(":memory:")\nbuffer=""\nfor line in sys.stdin:\n buffer+=line\n if sqlite3.complete_statement(buffer):\n  cursor=c.execute(buffer)\n  if cursor.description:\n   for row in cursor.fetchall(): print("|".join(str(value) for value in row))\n  buffer=""\n';
-    for (const lesson of load('sql').lessons) expect(runTrusted('python3', ['-c', sqlite], lesson.practice!.solution)).toBe(lesson.sections[0].output!.en);
-  });
+    let verified = 0;
+    for (const lesson of load('sql').lessons) {
+      if (lesson.practice!.kind !== 'code') continue;
+      const section = lesson.sections.find(item => item.output?.en !== undefined);
+      if (!section) continue;
+      // Windows pipes CRLF; course JSON stores LF like a Linux CI.
+      const out = runTrusted(pythonCommand, ['-c', sqlite], lesson.practice!.solution).replace(/\r/g, '');
+      expect(out, lesson.id).toBe(section.output!.en);
+      verified++;
+    }
+    expect(verified).toBeGreaterThanOrEqual(26);
+  }, 180000);
   it.skipIf(!hasGo)('Go examples compile with the actual Go programming-language toolchain', () => {
     // A fresh CI runner must compile the standard library before these examples.
     // Retain bounded subprocesses and exact-output checks while allowing a cold cache.

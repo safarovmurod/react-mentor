@@ -1,12 +1,29 @@
 // @vitest-environment node
 import { spawn, spawnSync } from 'node:child_process';
 import { once } from 'node:events';
+import path from 'node:path';
 import { expect, it } from 'vitest';
 import { loadCourseContent } from '@/lib/courses/content';
 import { courseMonthPlan } from '@/lib/courses/plan';
 
+// CI images ship `python3`; a user-scope Windows install exposes `python.exe`
+// (and the WindowsApps `python3` alias is only a Store stub). Probe real ones.
+function resolvePython(): { command: string; prefixArgs: string[] } | null {
+  const candidates: { command: string; prefixArgs: string[] }[] = [
+    { command: 'python3', prefixArgs: [] },
+    { command: 'python', prefixArgs: [] },
+  ];
+  if (process.env.LOCALAPPDATA) candidates.push({ command: path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe'), prefixArgs: [] });
+  for (const candidate of candidates) {
+    const probe = spawnSync(candidate.command, [...candidate.prefixArgs, '-c', 'print(1)'], { encoding: 'utf8', timeout: 5000 });
+    if (probe.status === 0 && probe.stdout.trim() === '1') return candidate;
+  }
+  return null;
+}
+const python = resolvePython();
+
 it('new introductory tracks have two real sequential days with explicit runtime instructions', async () => {
-  for (const id of ['python', 'backend', 'mobile'] as const) {
+  for (const id of ['backend', 'mobile'] as const) {
     const content = await loadCourseContent(id);
     const plan = courseMonthPlan(content.lessons);
     expect(plan.map(day => day.day)).toEqual([1, 2]);
@@ -24,16 +41,28 @@ it('new introductory tracks have two real sequential days with explicit runtime 
   }
 });
 
-it('both published Python examples execute and produce the documented output', async () => {
+it('python publishes a full thirty-day schedule from zero to a final project', async () => {
   const content = await loadCourseContent('python');
-  for (const lesson of content.lessons) {
-    const result = spawnSync('python3', ['-c', lesson.practice!.solution], { encoding: 'utf8', timeout: 3000 });
-    expect(result.error).toBeUndefined();
-    expect(result.status).toBe(0);
-    expect(result.stderr).toBe('');
-    expect(result.stdout.trim()).toBe(lesson.sections[1].output!.en);
-  }
+  const plan = courseMonthPlan(content.lessons);
+  expect(plan.map(day => day.day)).toEqual(Array.from({ length: 30 }, (_, index) => index + 1));
+  expect(content.lessons).toHaveLength(30);
 });
+
+it.skipIf(!python)('every published Python example with documented output executes and matches it exactly', async () => {
+  const content = await loadCourseContent('python');
+  let verified = 0;
+  for (const lesson of content.lessons) {
+    const section = lesson.sections.find(item => item.output?.en !== undefined);
+    if (!section) continue;
+    const result = spawnSync(python!.command, ['-c', lesson.practice!.solution], { encoding: 'utf8', timeout: 15000 });
+    expect(result.error, `${lesson.id}: ${result.error?.message}`).toBeUndefined();
+    expect(result.status, `${lesson.id}: ${result.stderr}`).toBe(0);
+    // Windows Python text-mode emits CRLF; course JSON stores LF like a Linux CI.
+    expect(result.stdout.trim().replace(/\r\n/g, '\n'), lesson.id).toBe(section.output!.en);
+    verified++;
+  }
+  expect(verified).toBeGreaterThanOrEqual(27);
+}, 120000);
 
 it('backend validation rejects invalid types and boundaries while allowing equivalent valid inputs', async () => {
   const content = await loadCourseContent('backend');

@@ -1,7 +1,7 @@
 // @vitest-environment node
 import {describe,expect,it} from 'vitest';
 import {COURSE_CATEGORIES,PROGRAMMING_SUBTRACKS,categoryLabel,subtrackLabel} from '@/content/course-categories';
-import {COURSE_CATALOG} from '@/content/courses/catalog';
+import {COURSE_CATALOG,LEARNING_TRACKS,courseTrack,coursePublishedDays} from '@/content/courses/catalog';
 import {COURSE_IDS} from '@/lib/courses/ids';
 import {INTERFACE_LOCALES} from '@/lib/locale';
 
@@ -17,14 +17,37 @@ describe('published course taxonomy',()=>{
   }
  });
  it('provides every category and programming subtrack label in all supported interface languages',()=>{
-  expect(COURSE_CATEGORIES).toHaveLength(11);expect(PROGRAMMING_SUBTRACKS).toHaveLength(6);
+  expect(COURSE_CATEGORIES).toHaveLength(11);expect(PROGRAMMING_SUBTRACKS).toHaveLength(7);
   for(const locale of INTERFACE_LOCALES){
    for(const category of COURSE_CATEGORIES)expect(categoryLabel(category.id,locale).trim().length).toBeGreaterThan(0);
    for(const subtrack of PROGRAMMING_SUBTRACKS)expect(subtrackLabel(subtrack.id,locale).trim().length).toBeGreaterThan(0);
   }
  });
+ it('organizes every course into exactly one learning track whose stage matches its access tier',()=>{
+  const seen=new Set<string>();
+  for(const trackItem of LEARNING_TRACKS){
+   expect(new Set(trackItem.courses.map(entry=>entry.course)).size).toBe(trackItem.courses.length);
+   for(const entry of trackItem.courses){
+    expect(seen.has(entry.course)).toBe(false);
+    seen.add(entry.course);
+    const course=COURSE_CATALOG.find(item=>item.id===entry.course);
+    expect(course,entry.course).toBeTruthy();
+    const tier=course?.accessTier??'starter';
+    expect(entry.stage).toBe(tier==='starter'?'beginner':tier);
+   }
+  }
+  expect([...seen].sort()).toEqual([...COURSE_IDS].sort());
+ });
+ it('keeps every published beginner stage free inside each track',()=>{
+  for(const trackItem of LEARNING_TRACKS){
+   for(const entry of trackItem.courses.filter(entry=>entry.stage==='beginner')){
+    expect(COURSE_CATALOG.find(item=>item.id===entry.course)?.accessTier).toBeUndefined();
+   }
+   expect(courseTrack(trackItem.courses[0].course)?.id).toBe(trackItem.id);
+  }
+ });
  it('groups programming subjects by actual track instead of mixing languages and tools',()=>{
-  const tracks={frontend:['html','css','javascript-1','javascript-2','react','nextjs','javascript-pro'],backend:['backend','nodejs','php','java','csharp','backend-pro','architecture-expert'],languages:['python','go','rust','ruby','cpp'],mobile:['mobile','swift','kotlin'],databases:['sql','mongodb'],tools:['bash','git']};
+  const tracks={frontend:['html','css','javascript-1','javascript-2','react','nextjs','javascript-pro','typescript'],backend:['backend','nodejs','php','java','csharp','backend-pro','architecture-expert'],languages:['python','go','rust','ruby','cpp'],mobile:['mobile','swift','kotlin'],databases:['sql','mongodb'],tools:['bash','git'],algorithms:['algorithms']};
   for(const [subtrack,ids] of Object.entries(tracks))for(const id of ids)expect(COURSE_CATALOG.find(course=>course.id===id)).toMatchObject({category:'programming',subtrack});
  });
  it('keeps non-technical courses separate from runtime and code editor claims',()=>{
@@ -43,9 +66,10 @@ describe('published course taxonomy',()=>{
    expect(['javascript','typescript']).toContain(course?.editorLanguage);
   }
  });
- it('marks distinct Pro and Expert modules with their actual three-day scope',()=>{
+ it('marks distinct Pro and Expert modules with their actual published scope',()=>{
   const tiers={'javascript-pro':'pro','backend-pro':'pro','architecture-expert':'expert','ux-pro':'pro','business-pro':'pro'};
-  for(const [id,accessTier] of Object.entries(tiers))expect(COURSE_CATALOG.find(course=>course.id===id)).toMatchObject({accessTier,publishedDays:3});
+  const days:Record<string,number>={'javascript-pro':30,'backend-pro':30,'architecture-expert':30,'ux-pro':30,'business-pro':30};
+  for(const [id,accessTier] of Object.entries(tiers))expect(COURSE_CATALOG.find(course=>course.id===id)).toMatchObject({accessTier,publishedDays:days[id]});
   expect(COURSE_CATALOG.find(course=>course.id==='css')?.publishedDays).toBe(5);
   expect(COURSE_CATALOG.find(course=>course.id==='nextjs')?.publishedDays).toBe(20);
   expect(COURSE_CATALOG.find(course=>course.id==='mongodb')?.editorLanguage).toBe('javascript');
