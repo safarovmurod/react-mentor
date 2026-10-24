@@ -11,7 +11,7 @@ test('appearance changes the shell and persists without loading Monaco on the ca
   const appearance=page.getByRole('combobox',{name:'Оформление',exact:true});
   await appearance.selectOption('dark');
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
-  await expect.poll(()=>page.evaluate(()=>getComputedStyle(document.body).backgroundColor)).toBe('rgb(13, 20, 34)');
+  await expect.poll(()=>page.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor)).toBe('rgb(13, 20, 34)');
   await page.goto('/courses');
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
   await expect(page.locator('h1')).toHaveCSS('color','rgb(237, 243, 253)');
@@ -22,5 +22,5 @@ test('appearance changes the shell and persists without loading Monaco on the ca
   await page.goto('/settings');
   await appearance.selectOption('light');
   await expect(page.locator('html')).toHaveAttribute('data-theme','light');
-  await expect.poll(()=>page.evaluate(()=>getComputedStyle(document.body).backgroundColor)).toBe('rgb(245, 247, 251)');
+  await expect.poll(()=>page.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor)).toBe('rgb(245, 247, 251)');
 });
