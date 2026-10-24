@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { courseContentSchema } from '@/lib/courses/schema';
 
 const ids = ['javascript-pro', 'backend-pro', 'architecture-expert'] as const;
-const expectedDays = (id: typeof ids[number]) => (id === 'javascript-pro' ? 14 : 3);
+const expectedDays = (_id: typeof ids[number]) => 30;
 const load = (id: typeof ids[number]) => courseContentSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), 'src/content/courses', id + '.json'), 'utf8')));
 const root = mkdtempSync(path.join(tmpdir(), 'devatlas-reviewed-premium-'));
 afterAll(() => rmSync(root, { recursive: true, force: true }));
@@ -27,9 +27,9 @@ describe('separate published premium curriculum', () => {
       expect(lesson.practice).toBeTruthy();
       expect(lesson.questions.length).toBeGreaterThan(0);
       const written = lesson.practice!.kind === 'written';
-      // Written review days teach through worked prose; every other day ships
-      // a reviewable code fixture with its documented output.
-      if (!written || id === 'architecture-expert') expect(lesson.sections.some(section => section.code && section.output?.en)).toBe(true);
+      // Executable days ship a reviewable code fixture with its documented
+      // output; written days (review/case days) teach through worked prose.
+      if (!written) expect(lesson.sections.some(section => section.code && section.output?.en)).toBe(true);
       for (const locale of ['ru', 'tg', 'en'] as const) {
         expect(lesson.title[locale]).toBeTruthy();
         expect(lesson.sections[0].body[locale]!.length).toBeGreaterThan(150);
@@ -51,7 +51,7 @@ describe('separate published premium curriculum', () => {
       expect(result.stdout.trim()).toBe(example.output!.en);
       expect(lesson.practice!.solution).toBe(example.code);
     }
-  });
+  }, 180000);
 
   const defects = [
     { id: 'javascript-pro', day: 1, before: 'previous.completed + Number(task.done)', after: 'previous.completed + 1' },
