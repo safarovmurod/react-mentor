@@ -16,11 +16,11 @@ const probe = (command: string, args: string[], pattern?: RegExp) => {
 };
 const hasJava = probe('java', ['--list-modules'], /jdk\.compiler@/);
 const hasGo = probe('go', ['version'], /^go version go/);
-const hasPython = probe('python3', ['-c', 'print(1)'], /^1$/) || probe('python', ['-c', 'print(1)'], /^1$/) ||
-  (process.env.LOCALAPPDATA ? probe(path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe'), ['-c', 'print(1)'], /^1$/) : false);
-const pythonCommand = probe('python3', ['-c', 'print(1)'], /^1$/) ? 'python3'
-  : probe('python', ['-c', 'print(1)'], /^1/) ? 'python'
-  : (process.env.LOCALAPPDATA && probe(path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe'), ['-c', 'print(1)'], /^1/) ? path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe') : 'python3');
+// Version probes, not output-equality: a bare /^1$/ never matches "1\n" and
+// the WindowsApps `python` stub prints "Python" with no version number.
+const pythonCandidates = ['python3', 'python', ...(process.env.LOCALAPPDATA ? [path.join(process.env.LOCALAPPDATA, 'Programs/Python/Python312/python.exe')] : [])];
+const pythonCommand = pythonCandidates.find(command => probe(command, ['--version'], /Python 3\./)) ?? '';
+const hasPython = pythonCommand !== '';
 const hasBash = probe('bash', ['--version'], /GNU bash/);
 const hasNode = probe(process.execPath, ['--version'], /^v\d+/);
 
@@ -57,12 +57,19 @@ describe('original two-day programming introductions', () => {
     }
   });
 
-  it.skipIf(!hasJava)('Java source-file launcher runs both examples with exact expected output', () => {
+  it.skipIf(!hasJava)('Java course: every executable day runs with the real JDK and matches its recorded output', () => {
+    let verified = 0;
     for (const lesson of load('java').lessons) {
+      if (lesson.practice!.kind !== 'code') continue;
+      const section = lesson.sections.find(item => item.output?.en !== undefined);
+      if (!section) continue;
       writeFileSync(path.join(root, 'Main.java'), lesson.practice!.solution);
-      expect(runTrusted('java', ['Main.java'])).toBe(lesson.sections[0].output!.en);
+      // Java println uses the platform separator; course JSON stores LF.
+      expect(runTrusted('java', ['Main.java']).replace(/\r/g, ''), lesson.id).toBe(section.output!.en);
+      verified++;
     }
-  });
+    expect(verified).toBeGreaterThanOrEqual(27);
+  }, 300000);
   it.skipIf(!hasNode)('Node course: every executable day runs and matches its recorded output', () => {
     let verified = 0;
     for (const lesson of load('nodejs').lessons) {
@@ -71,7 +78,7 @@ describe('original two-day programming introductions', () => {
       if (!section) continue;
       const extension = /require\(/.test(lesson.practice!.solution) && !/import /.test(lesson.practice!.solution) ? 'main.cjs' : 'main.mjs';
       writeFileSync(path.join(root, extension), lesson.practice!.solution);
-      expect(runTrusted(process.execPath, [extension])).toBe(section.output!.en);
+      expect(runTrusted(process.execPath, [extension]).replace(/\r/g, ''), lesson.id).toBe(section.output!.en);
       verified++;
     }
     expect(verified).toBeGreaterThanOrEqual(26);
