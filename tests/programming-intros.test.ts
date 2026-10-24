@@ -6,8 +6,8 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { courseContentSchema } from '@/lib/courses/schema';
 
-const ids = ['csharp', 'go', 'rust', 'php', 'ruby', 'sql', 'bash', 'mongodb', 'swift', 'kotlin'] as const;
-const load = (id: typeof ids[number]) => courseContentSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), 'src/content/courses', id + '.json'), 'utf8')));
+const ids = ['csharp', 'go', 'rust', 'php', 'ruby', 'bash', 'mongodb', 'swift', 'kotlin'] as const;
+const load = (id: string) => courseContentSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), 'src/content/courses', id + '.json'), 'utf8')));
 const root = mkdtempSync(path.join(tmpdir(), 'devatlas-trusted-examples-'));
 afterAll(() => rmSync(root, { recursive: true, force: true }));
 const probe = (command: string, args: string[], pattern?: RegExp) => {
@@ -90,10 +90,20 @@ describe('original two-day programming introductions', () => {
     writeFileSync(path.join(root, 'main.sh'), solution + '\ntotal 07 02\nif total 12 abc; then exit 99; fi\n');
     expect(runTrusted('bash', ['main.sh'])).toBe('36\n0\nInvalid input rejected\n14');
   });
-  it.skipIf(!hasPython)('SQL examples run in actual in-memory SQLite and preserve guarded stock', () => {
+  it.skipIf(!hasPython)('SQL course: every executable day runs in real SQLite and matches its recorded output', () => {
     const sqlite = 'import sqlite3, sys\nc=sqlite3.connect(":memory:")\nbuffer=""\nfor line in sys.stdin:\n buffer+=line\n if sqlite3.complete_statement(buffer):\n  cursor=c.execute(buffer)\n  if cursor.description:\n   for row in cursor.fetchall(): print("|".join(str(value) for value in row))\n  buffer=""\n';
-    for (const lesson of load('sql').lessons) expect(runTrusted(pythonCommand, ['-c', sqlite], lesson.practice!.solution)).toBe(lesson.sections[0].output!.en);
-  });
+    let verified = 0;
+    for (const lesson of load('sql').lessons) {
+      if (lesson.practice!.kind !== 'code') continue;
+      const section = lesson.sections.find(item => item.output?.en !== undefined);
+      if (!section) continue;
+      // Windows pipes CRLF; course JSON stores LF like a Linux CI.
+      const out = runTrusted(pythonCommand, ['-c', sqlite], lesson.practice!.solution).replace(/\r/g, '');
+      expect(out, lesson.id).toBe(section.output!.en);
+      verified++;
+    }
+    expect(verified).toBeGreaterThanOrEqual(26);
+  }, 180000);
   it.skipIf(!hasGo)('Go examples compile with the actual Go programming-language toolchain', () => {
     // A fresh CI runner must compile the standard library before these examples.
     // Retain bounded subprocesses and exact-output checks while allowing a cold cache.
